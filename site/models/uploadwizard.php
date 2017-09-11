@@ -32,7 +32,19 @@ class MiniTheatreCMModelUploadWizard extends JModelItem
 	{
 		if (!isset($this->message))
 		{
-			$this->message = 'MiniTheatreCM UploadWizard Model Message Ver 0.0.4';
+			$jinput = JFactory::getApplication()->input;
+			$id     = $jinput->get('id', 1, 'INT');
+
+			switch ($id)
+			{
+				case 2:
+					$this->message = 'Anime Model Message Data Ver 0.0.5';
+					break;
+				default:
+				case 1:
+					$this->message = 'Selection Model Message Data Ver 0.0.5';
+					break;
+			}
 		}
 
 		return $this->message;
