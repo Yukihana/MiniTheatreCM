@@ -15,17 +15,19 @@ defined('_JEXEC') or die('Restricted access');
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th width="1%"><?php echo JText::_('COM_MINITHEATRECM_NUM'); ?></th>
+				<th width="3%">
+					<?php echo JText::_('COM_MINITHEATRECM_NUM'); ?>
+				</th>
 				<th width="2%">
 					<?php echo JHtml::_('grid.checkall'); ?>
 				</th>
 				<th width="90%">
 					<?php echo JText::_('COM_MINITHEATRECM_UPLOADCONFIG_NAME') ;?>
 				</th>
-				<th width="5%">
+				<th width="2%">
 					<?php echo JText::_('COM_MINITHEATRECM_PUBLISHED'); ?>
 				</th>
-				<th width="2%">
+				<th width="3%">
 					<?php echo JText::_('COM_MINITHEATRECM_ID'); ?>
 				</th>
 			</tr>
@@ -39,26 +41,27 @@ defined('_JEXEC') or die('Restricted access');
 		</tfoot>
 		<tbody>
 			<?php if (!empty($this->items)) : ?>
-				<?php foreach ($this->items as $i => $row) : ?>
+			<?php foreach ($this->items as $i => $row) : ?>
 
-					<tr>
-						<td>
-							<?php echo $this->pagination->getRowOffset($i); ?>
-						</td>
-						<td>
-							<?php echo JHtml::_('grid.id', $i, $row->id); ?>
-						</td>
-						<td>
-							<?php echo $row->wmode; ?>
-						</td>
-						<td align="center">
-							<?php echo JHtml::_('jgrid.published', $row->published, $i, 'uploadconfig.', true, 'cb'); ?>
-						</td>
-						<td align="center">
-							<?php echo $row->id; ?>
-						</td>
-					</tr>
-				<?php endforeach; ?>
+			<tr>
+				<td>
+					<?php echo $this->pagination->getRowOffset($i); ?>
+				</td>
+				<td>
+					<?php echo JHtml::_('grid.id', $i, $row->id); ?>
+				</td>
+				<td>
+					<?php echo $row->wmode; ?>
+				</td>
+				<td align="center">
+					<?php echo JHtml::_('jgrid.published', $row->published, $i, 'uploadconfig.', true, 'cb', $row->publish_up, $row->publish_down); ?>
+				</td>
+				<td align="center">
+					<?php echo $row->id; ?>
+				</td>
+			</tr>
+			
+			<?php endforeach; ?>
 			<?php endif; ?>
 		</tbody>
 	</table>
