@@ -10,7 +10,7 @@
 	<authorUrl>http://fb.me/LilyflowerAngel</authorUrl>
 	<copyright>CherrySoft-X 2017, MiniTheatre 2017</copyright>
 	<license>GNU/GPL</license>
-	<version>0.0.3</version>
+	<version>0.0.4</version>
 	<description>Content Import and Review Manager for MiniTheatre</description>
 	
 	<!--Runs on Update-->
@@ -27,6 +27,7 @@
 		<filename>controller.php</filename>
 		
 		<folder>views</folder>
+		<folder>models</folder>
 	</files>	
 	
 	<administration>

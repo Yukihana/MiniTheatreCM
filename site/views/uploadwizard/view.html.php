@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
- class MiniTheatreCMViewUploadWizard extends JViewLegacy
+class MiniTheatreCMViewUploadWizard extends JViewLegacy
 {
 	/**
 	 * Display the Upload Wizard view
@@ -28,7 +28,15 @@ defined('_JEXEC') or die('Restricted access');
 	function display($tpl = null)
 	{
 		// Assign data to the view
-		$this->msg = 'MiniTheatreCM UploadWizard ViewMessage Ver 0.0.2';
+		$this->msg = $this->get('Msg');
+
+		// Check for errors.
+		if (count($errors = $this->get('Errors')))
+		{
+			JLog::add(implode('<br />', $errors), JLog::WARNING, 'jerror');
+
+			return false;
+		}
 
 		// Display the view
 		parent::display($tpl);
