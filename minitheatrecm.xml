@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.7.0" method="upgrade">
+
+    <name>MiniTheatre CM</name>
+	
+	<!--Optional Content-->
+	<creationDate>24 August 2017</creationDate>
+	<author>Yuki (RiA)</author>
+	<authorEmail>lilyflowerangel@gmail.com</authorEmail>
+	<authorUrl>http://fb.me/LilyflowerAngel</authorUrl>
+	<copyright>CherrySoft-X 2017, MiniTheatre 2017</copyright>
+	<license>GNU/GPL</license>
+	<version>0.0.2</version>
+	<description>Content Import and Review Manager for MiniTheatre</description>
+	
+	<!--Runs on Update-->
+	<update>
+        <schemas>
+		    <schemapath type="mysql">sql/updates/mysql</schemapath>
+		</schemas>
+	</update>
+	
+	<!--Site Base Folder Manifest-->
+	<files folder="site">
+	    <filename>index.html</filename>
+		<filename>minitheatrecm.php</filename>
+		<filename>controller.php</filename>
+		
+		<folder>views</folder>
+	</files>	
+	
+	<administration>
+	    <!--Admin Menu Section-->
+	    <menu link="option=com_minitheatrecm">MiniTheatre CM</menu>
+		
+		<!--Backend Base Folder Manifest-->
+		<files folder="admin">
+		    <filename>index.html</filename>
+			<filename>minitheatrecm.php</filename>
+			
+			<folder>sql</folder>		
+		</files>
+	</administration>
+	
+</extension>
