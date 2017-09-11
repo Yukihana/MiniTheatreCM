@@ -62,7 +62,7 @@ defined('_JEXEC') or die('Restricted access');
 				</td>
 				<td>
 					<a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_MINITHEATRECM_EDIT_ULWIZCONFIG'); ?>">
-						<?php echo $row->wmode; ?>
+						<?php echo $row->wname; ?>
 					</a>
 				</td>
 				<td align="center">

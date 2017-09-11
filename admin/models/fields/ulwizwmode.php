@@ -47,7 +47,7 @@ class JFormFieldUlWizWMode extends JFormFieldList
 	{
 		$db    = JFactory::getDBO();
 		$query = $db->getQuery(true);
-		$query->select('id,wmode');
+		$query->select('id,wname');
 		$query->from('#__mtcm_admin_ulwiz');
 		$db->setQuery((string) $query);
 		$messages = $db->loadObjectList();
@@ -57,7 +57,7 @@ class JFormFieldUlWizWMode extends JFormFieldList
 		{
 			foreach ($messages as $message)
 			{
-				$options[] = JHtml::_('select.option', $message->id, $message->wmode);
+				$options[] = JHtml::_('select.option', $message->id, $message->wname);
 			}
 		}
 

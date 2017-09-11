@@ -82,7 +82,7 @@ class MiniTheatreCMModelUploadWizard extends JModelItem
 			$table->load($id);			
 
 			// Assign the message
-			$this->messages[$id] = $table->wmode;			
+			$this->messages[$id] = $table->wname;			
 			
 			/*
 			 * Old Hardcoded Messages response Model
