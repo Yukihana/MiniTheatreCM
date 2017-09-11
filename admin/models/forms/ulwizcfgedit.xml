@@ -8,8 +8,8 @@
 		<field
 				name="wname"
 				type="text"
-				label="COM_MINITHEATRECM_ULWIZSOURCE_WMODE_LABEL"
-				description="COM_MINITHEATRECM_ULWIZSOURCE_WMODE_DESC"
+				label="COM_MINITHEATRECM_ULWIZSOURCE_WTITLE_LABEL"
+				description="COM_MINITHEATRECM_ULWIZSOURCE_WTITLE_DESC"
 				size="40"
 				class="inputbox"
 				default=""

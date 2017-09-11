@@ -76,7 +76,10 @@ class MiniTheatreCMViewUlWizSource extends JViewLegacy
 		$title = JText::_('COM_MINITHEATRECM_MANAGER_ULWIZSOURCES_TITLE').': '.JText::_($isNew ? 'COM_MINITHEATRECM_DICTIONARY_NEW' : 'COM_MINITHEATRECM_DICTIONARY_EDIT');
 
 		JToolbarHelper::title($title, 'pencil-2');
+		JToolbarHelper::apply('ulwizsource.apply');
 		JToolbarHelper::save('ulwizsource.save');
+		if(!$isNew)
+			JToolbarHelper::save2new('ulwizsource.save2new');
 		JToolbarHelper::cancel(
 			'ulwizsource.cancel',
 			$isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE'
@@ -88,11 +91,14 @@ class MiniTheatreCMViewUlWizSource extends JViewLegacy
 	 *
 	 * @return void
 	 */
+	 
 	protected function setDocument() 
 	{
 		$isNew = ($this->item->id < 1);
 		$document = JFactory::getDocument();
-		$document->setTitle($isNew ? JText::_('COM_MINITHEATRECM_ULWIZSOURCE_CREATING') :
-                JText::_('COM_MINITHEATRECM_ULWIZSOURCE_EDITING'));
-	}
-}	
+		$document->setTitle(
+			JText::_($isNew ? 'COM_MINITHEATRECM_ULWIZSOURCE_TITLE_NEW' : 'COM_MINITHEATRECM_ULWIZSOURCE_TITLE_EDIT').' - '.
+			JText::_('COM_MINITHEATRECM_DICTIONARY_ADMINISTRATION').' - '.
+			JText::_('COM_MINITHEATRECM_GLOBAL_TITLE'));
+	}	
+}

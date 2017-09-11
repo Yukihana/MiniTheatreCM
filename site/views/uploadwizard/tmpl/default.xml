@@ -12,8 +12,8 @@
 			<field
 				name="id"
 				type="ulwizname"
-				label="COM_MINITHEATRECM_UPLOADWIZARD_FIELD_WMODE_LABEL"
-				description="COM_MINITHEATRECM_UPLOADWIZARD_FIELD_WMODE_DESC"
+				label="COM_MINITHEATRECM_UPLOADWIZARD_FIELD_WTITLE_LABEL"
+				description="COM_MINITHEATRECM_UPLOADWIZARD_FIELD_WTITLE_DESC"
 				/>
 				
 				<!--HardCoded-Values are now replaced by DataBase.

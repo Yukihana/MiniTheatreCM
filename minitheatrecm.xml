@@ -10,7 +10,7 @@
 	<authorUrl>http://fb.me/LilyflowerAngel</authorUrl>
 	<copyright>CherrySoft-X 2017, MiniTheatre 2017</copyright>
 	<license>GNU/GPL</license>
-	<version>0.0.8</version>
+	<version>0.0.10</version>
 	<description>COM_MINITHEATRECM_DESCRIPTION</description>
 	
 	<install> <!-- Runs on install -->
@@ -45,6 +45,12 @@
 	<languages folder="site/language">
 		<language tag="en-GB">en-GB/en-GB.com_minitheatrecm.ini</language>
 	</languages>
+	
+	<!--Media Configuration-->
+	<media destination="com_minitheatrecm" folder="media">
+		<filename>index.html</filename>
+		<folder>images</folder>
+	</media>
 	
 	<administration>
 	    <!--Admin Menu Section-->

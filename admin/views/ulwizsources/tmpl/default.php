@@ -16,44 +16,43 @@ JHtml::_('formbehavior.chosen', 'select');
 $listOrder     = $this->escape($this->filter_order);
 $listDirn      = $this->escape($this->filter_order_Dir);
 ?>
-<div class="alert">
-	<h4 class="alert-heading">Work In Progress (Ver: 0.0.9r) (Updated: 2017-09-07 22:00)</h4>
-	<ul class="alert-message">
-		<li>Refactoring complete but might have bugs. Links on this page may still give errors.</li>
-		<li>But they're not supposed to break the website. Just un-ready/disabled functionalities.</li>
-		<li>This page will list all the different upload wizards.</li>
-		<li>Each wizard can be editted to best fit their respective upload requirements.</li>
-	</ul>
-</div>
 <form action="index.php?option=com_minitheatrecm&view=ulwizsources" method="post" id="adminForm" name="adminForm">
+	<!--Yuki: Probably Unnecessary START
 	<div class="row-fluid">
 		<div class="span6">
-			<?php echo JText::_('COM_MINITHEATRECM_ULWIZSOURCES_FILTER'); ?>
+			<?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_FILTERS'); ?>
+			-->
 			<?php
-				echo JLayoutHelper::render(
-					'joomla.searchtools.default',
-					array('view' => $this)
-				);
+				echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));
 			?>
+			<!--Yuki: Probably Unnecessary END
 		</div>
 	</div>
+	-->
+
+	<?php if (empty($this->items)) : ?>
+	<div class="alert alert-no-items">
+		<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
+	</div>
+
+	<?php else : ?>
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
 				<th width="3%">
-					<?php echo JText::_('COM_MINITHEATRECM_NUM'); ?>
+					<?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_NUM'); ?>
 				</th>
 				<th width="2%">
 					<?php echo JHtml::_('grid.checkall'); ?>
 				</th>
 				<th width="90%">
-					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_ULWIZSOURCES_NAME', 'wname', $listDirn, $listOrder) ;?>
+					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_TITLE', 'wname', $listDirn, $listOrder) ;?>
 				</th>
 				<th width="2%">
-					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_PUBLISHED', 'published', $listDirn, $listOrder) ;?>
+					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_PUBLISHED', 'published', $listDirn, $listOrder) ;?>
 				</th>
 				<th width="3%">
-					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_ID', 'id', $listDirn, $listOrder) ;?>
+					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_ID', 'id', $listDirn, $listOrder) ;?>
 				</th>
 			</tr>
 		</thead>
@@ -77,7 +76,7 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 					<?php echo JHtml::_('grid.id', $i, $row->id); ?>
 				</td>
 				<td>
-					<a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_MINITHEATRECM_EDIT_ULWIZSOURCE'); ?>">
+					<a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_MINITHEATRECM_ULWIZSOURCE_LEGEND_EDIT'); ?>">
 						<?php echo $row->wname; ?>
 					</a>
 				</td>
@@ -93,9 +92,20 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 			<?php endif; ?>
 		</tbody>
 	</table>
+	<?php endif;?>
+	
 	<?php echo JHtml::_('form.token'); ?>
 	<input type="hidden" name="task" value="" />
 	<input type="hidden" name="boxchecked" value="0" />
 	<input type="hidden" name="filter_order" value="<?php echo $listOrder; ?>"/>
 	<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>"/>
 </form>
+<div class="alert">
+	<h4 class="alert-heading"><?php echo JText::_('COM_MINITHEATRECM_ADMIN_UPDATESTRING');?></h4>
+	<ul class="alert-message">
+		<li>This page will list the different upload wizards, each of which, can be editted to best fit the content they're uploading.</li>
+		<li>These codes haven't been priorly debugged, and hence may contain errors. However, they shouldn't break the website.</li>
+		<li>Inform me in case of missing translations, <i>e.g. All-caps texts like 'COM_MINITHEATRECM_SOMENAME_ETC'</i>.</li>
+		<li>And in case of errors, <i>with the error message and details on how to recreate the event.</i></li>
+	</ul>
+</div>
