@@ -52,6 +52,9 @@ class MiniTheatreCMViewUlWizSource extends JViewLegacy
 
 		// Display the template
 		parent::display($tpl);
+		
+		// Set the document
+		$this->setDocument();
 	}
 	
 	/**
@@ -78,5 +81,18 @@ class MiniTheatreCMViewUlWizSource extends JViewLegacy
 			'ulwizsource.cancel',
 			$isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE'
 		);
+	}
+	
+	/**
+	 * Method to set up the document properties
+	 *
+	 * @return void
+	 */
+	protected function setDocument() 
+	{
+		$isNew = ($this->item->id < 1);
+		$document = JFactory::getDocument();
+		$document->setTitle($isNew ? JText::_('COM_MINITHEATRECM_ULWIZSOURCE_CREATING') :
+                JText::_('COM_MINITHEATRECM_ULWIZSOURCE_EDITING'));
 	}
 }	

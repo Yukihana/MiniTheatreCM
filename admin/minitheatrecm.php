@@ -11,6 +11,12 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+/* Setting the icon:
+ * Set some global property
+ * $document = JFactory::getDocument();
+ * $document->addStyleDeclaration('.icon-helloworld {background-image: url(../media/com_helloworld/images/Tux-16x16.png);}');
+ */
+
 // Get an instance of the controller prefixed by MiniTheatreCM
 $controller = JControllerLegacy::getInstance('MiniTheatreCM');
 

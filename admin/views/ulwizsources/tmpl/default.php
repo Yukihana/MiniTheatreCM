@@ -10,6 +10,11 @@
   
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+
+JHtml::_('formbehavior.chosen', 'select');
+
+$listOrder     = $this->escape($this->filter_order);
+$listDirn      = $this->escape($this->filter_order_Dir);
 ?>
 <div class="alert">
 	<h4 class="alert-heading">Work In Progress (Ver: 0.0.9r) (Updated: 2017-09-07 22:00)</h4>
@@ -21,6 +26,17 @@ defined('_JEXEC') or die('Restricted access');
 	</ul>
 </div>
 <form action="index.php?option=com_minitheatrecm&view=ulwizsources" method="post" id="adminForm" name="adminForm">
+	<div class="row-fluid">
+		<div class="span6">
+			<?php echo JText::_('COM_MINITHEATRECM_ULWIZSOURCES_FILTER'); ?>
+			<?php
+				echo JLayoutHelper::render(
+					'joomla.searchtools.default',
+					array('view' => $this)
+				);
+			?>
+		</div>
+	</div>
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
@@ -31,13 +47,13 @@ defined('_JEXEC') or die('Restricted access');
 					<?php echo JHtml::_('grid.checkall'); ?>
 				</th>
 				<th width="90%">
-					<?php echo JText::_('COM_MINITHEATRECM_ULWIZSOURCES_NAME') ;?>
+					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_ULWIZSOURCES_NAME', 'wname', $listDirn, $listOrder) ;?>
 				</th>
 				<th width="2%">
-					<?php echo JText::_('COM_MINITHEATRECM_PUBLISHED'); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_PUBLISHED', 'published', $listDirn, $listOrder) ;?>
 				</th>
 				<th width="3%">
-					<?php echo JText::_('COM_MINITHEATRECM_ID'); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_ID', 'id', $listDirn, $listOrder) ;?>
 				</th>
 			</tr>
 		</thead>
@@ -80,4 +96,6 @@ defined('_JEXEC') or die('Restricted access');
 	<?php echo JHtml::_('form.token'); ?>
 	<input type="hidden" name="task" value="" />
 	<input type="hidden" name="boxchecked" value="0" />
+	<input type="hidden" name="filter_order" value="<?php echo $listOrder; ?>"/>
+	<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>"/>
 </form>
