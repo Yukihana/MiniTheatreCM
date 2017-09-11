@@ -10,7 +10,7 @@
 	<authorUrl>http://fb.me/LilyflowerAngel</authorUrl>
 	<copyright>CherrySoft-X 2017, MiniTheatre 2017</copyright>
 	<license>GNU/GPL</license>
-	<version>0.0.6</version>
+	<version>0.0.7</version>
 	<description>Content Import and Review Manager for MiniTheatre</description>
 	
 	<install> <!-- Runs on install -->
@@ -49,10 +49,12 @@
 		<files folder="admin">
 		    <filename>index.html</filename>
 			<filename>minitheatrecm.php</filename>
+			<filename>controller.php</filename>
 			
 			<folder>sql</folder>
 			<folder>tables</folder>
 			<folder>models</folder>
+			<folder>views</folder>
 		</files>
 	</administration>
 	
