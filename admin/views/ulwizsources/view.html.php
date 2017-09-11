@@ -10,33 +10,25 @@
   
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-
 /**
- * UlWizConfig View
+ * UlWizSources View
  *
  * @since  0.0.1
  */
-class MiniTheatreCMViewUlWizConfig extends JViewLegacy
+ class MiniTheatreCMViewUlWizSources extends JViewLegacy
 {
 	/**
-	 * View form
-	 *
-	 * @var         form
-	 */
-	protected $form = null;
-
-	/**
-	 * Display the UlWizConfig view
+	 * Display the Upload Config view
 	 *
 	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
 	 *
 	 * @return  void
-	 */ 
-	public function display($tpl = null)
+	 */
+	function display($tpl = null)
 	{
-		// Get the Data
-		$this->form = $this->get('Form');
-		$this->item = $this->get('Item');
+		// Get data from the model
+		$this->items		= $this->get('Items');
+		$this->pagination	= $this->get('Pagination');
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
@@ -46,10 +38,9 @@ class MiniTheatreCMViewUlWizConfig extends JViewLegacy
 			return false;
 		}
 
-
 		// Set the toolbar
 		$this->addToolBar();
-
+		
 		// Display the template
 		parent::display($tpl);
 	}
@@ -63,20 +54,9 @@ class MiniTheatreCMViewUlWizConfig extends JViewLegacy
 	 */
 	protected function addToolBar()
 	{
-		$input = JFactory::getApplication()->input;
-
-		// Hide Joomla Administrator Main menu
-		$input->set('hidemainmenu', true);
-
-		$isNew = ($this->item->id == 0);
-
-		$title = JText::_('COM_MINITHEATRECM_MANAGER_ULWIZCONFIGS_TITLE').': '.JText::_($isNew ? 'COM_MINITHEATRECM_DICTIONARY_NEW' : 'COM_MINITHEATRECM_DICTIONARY_EDIT');
-
-		JToolbarHelper::title($title, 'pencil-2');
-		JToolbarHelper::save('ulwizconfig.save');
-		JToolbarHelper::cancel(
-			'ulwizconfig.cancel',
-			$isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE'
-		);
+		JToolbarHelper::title(JText::_('COM_MINITHEATRECM_MANAGER_ULWIZSOURCES_TITLE'), 'wand');
+		JToolbarHelper::addNew('ulwizsource.add');
+		JToolbarHelper::editList('ulwizsource.edit');
+		JToolbarHelper::deleteList('This would permanently delete the respective user-submission forms. Backing-up before deletion is highly recommended. Are you sure you want to delete the selected items?', 'ulwizsources.delete');
 	}
-}	
+}

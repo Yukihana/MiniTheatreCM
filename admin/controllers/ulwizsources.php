@@ -11,11 +11,11 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 /**
- * UlWizConfigs Controller
+ * UlWizSources Controller
  *
  * @since  0.0.1
  */
-class MiniTheatreCMControllerUlWizConfigs extends JControllerAdmin
+class MiniTheatreCMControllerUlWizSources extends JControllerAdmin
 {
 	/**
 	 * Proxy for getModel.
@@ -28,7 +28,7 @@ class MiniTheatreCMControllerUlWizConfigs extends JControllerAdmin
 	 *
 	 * @since   1.6
 	 */
-	public function getModel($name = 'UlWizConfig', $prefix = 'MiniTheatreCMModel', $config = array('ignore_request' => true))
+	public function getModel($name = 'UlWizSource', $prefix = 'MiniTheatreCMModel', $config = array('ignore_request' => true))
 	{
 		$model = parent::getModel($name, $prefix, $config);
 

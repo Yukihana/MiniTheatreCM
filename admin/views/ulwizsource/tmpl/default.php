@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
     method="post" name="adminForm" id="adminForm">
     <div class="form-horizontal">
         <fieldset class="adminform">
-            <legend><?php echo JText::_('COM_MINITHEATRECM_ULWIZCONFIG_DETAILS'); ?></legend>
+            <legend><?php echo JText::_('COM_MINITHEATRECM_ULWIZSOURCE_DETAILS'); ?></legend>
             <div class="row-fluid">
                 <div class="span6">
                     <?php foreach ($this->form->getFieldset() as $field): ?>
@@ -28,6 +28,6 @@ defined('_JEXEC') or die('Restricted access');
             </div>
         </fieldset>
     </div>
-    <input type="hidden" name="task" value="ulwizconfig.edit" />
+    <input type="hidden" name="task" value="ulwizsource.edit" />
     <?php echo JHtml::_('form.token'); ?>
 </form>

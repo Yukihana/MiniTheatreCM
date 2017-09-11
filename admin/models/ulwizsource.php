@@ -12,11 +12,11 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * UlWizConfig Model
+ * UlWizSource Model
  *
  * @since  0.0.1
  */
-class MiniTheatreCMModelUlWizConfig extends JModelAdmin
+class MiniTheatreCMModelUlWizSource extends JModelAdmin
 {
 	/**
 	 * Method to get a table object, load it if necessary.
@@ -48,7 +48,7 @@ class MiniTheatreCMModelUlWizConfig extends JModelAdmin
 	{
 		// Get the form.
 		$form = $this->loadForm(
-			'com_minitheatrecm.ulwizconfig',
+			'com_minitheatrecm.ulwizsource',
 			'ulwizcfgedit',
 			array(
 				'control' => 'jform',

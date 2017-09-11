@@ -23,7 +23,7 @@ class MiniTheatreCMController extends JControllerLegacy
 	 * @var string
 	 * @since 12.2
 	 */
-	protected $default_view = 'ulwizconfigs';
+	protected $default_view = 'ulwizsources';
 	
 	/* TODO change this later to the default backend view */
 }

@@ -11,10 +11,10 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 /**
- * UlWizConfig Controller
+ * UlWizSource Controller
  *
  * @since  0.0.9
  */
-class MiniTheatreCMControllerUlWizConfig extends JControllerForm
+class MiniTheatreCMControllerUlWizSource extends JControllerForm
 {
 }

@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class MiniTheatreCMModelUlWizConfigs extends JModelList
+class MiniTheatreCMModelUlWizSources extends JModelList
 {
 	/**
 	 * Method to build an SQL query to load the list data.
