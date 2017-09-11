@@ -57,6 +57,8 @@ defined('_JEXEC') or die('Restricted access');
 		JToolbarHelper::title(JText::_('COM_MINITHEATRECM_MANAGER_ULWIZSOURCES_TITLE'), 'wand');
 		JToolbarHelper::addNew('ulwizsource.add');
 		JToolbarHelper::editList('ulwizsource.edit');
+		JToolbarHelper::publish('ulwizsources.publish', 'JTOOLBAR_PUBLISH', true);
+		JToolbarHelper::unpublish('ulwizsources.unpublish', 'JTOOLBAR_UNPUBLISH', true);
 		JToolbarHelper::deleteList('This would permanently delete the respective user-submission forms. Backing-up before deletion is highly recommended. Are you sure you want to delete the selected items?', 'ulwizsources.delete');
 	}
 }

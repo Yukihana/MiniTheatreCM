@@ -12,9 +12,9 @@
 defined('_JEXEC') or die('Restricted access');
 ?>
 <div class="alert">
-	<h4 class="alert-heading">Work In Progress (Ver: 0.0.9f8) (Updated: 2017-09-06 00:02)</h4>
+	<h4 class="alert-heading">Work In Progress (Ver: 0.0.9r) (Updated: 2017-09-07 22:00)</h4>
 	<ul class="alert-message">
-		<li><strike>Incomplete/Missing Targets.</strike> Refactors in progress. Links on this page <strike>will</strike> may give errors.</li>
+		<li>Refactoring complete but might have bugs. Links on this page may still give errors.</li>
 		<li>But they're not supposed to break the website. Just un-ready/disabled functionalities.</li>
 		<li>This page will list all the different upload wizards.</li>
 		<li>Each wizard can be editted to best fit their respective upload requirements.</li>
