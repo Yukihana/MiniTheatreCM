@@ -10,8 +10,19 @@
 	<authorUrl>http://fb.me/LilyflowerAngel</authorUrl>
 	<copyright>CherrySoft-X 2017, MiniTheatre 2017</copyright>
 	<license>GNU/GPL</license>
-	<version>0.0.5</version>
+	<version>0.0.6</version>
 	<description>Content Import and Review Manager for MiniTheatre</description>
+	
+	<install> <!-- Runs on install -->
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+		</sql>
+	</install>
+	<uninstall> <!-- Runs on uninstall -->
+		<sql>
+			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+		</sql>
+	</uninstall>
 	
 	<!--Runs on Update-->
 	<update>
@@ -39,8 +50,17 @@
 		    <filename>index.html</filename>
 			<filename>minitheatrecm.php</filename>
 			
-			<folder>sql</folder>		
+			<folder>sql</folder>
+			<folder>tables</folder>
+			<folder>models</folder>
 		</files>
 	</administration>
+	
+	<!--Tutorial Manifest
+	Tutorial: Developing an MVC Component/Using the database	
+	Notes: field-type (also same.php in fields folder)
+	
+	Failed #1: Menu Settings only show an integer "1" in the form field.
+	-->
 	
 </extension>

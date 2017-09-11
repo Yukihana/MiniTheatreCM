@@ -4,17 +4,31 @@
 		<message>COM_MINITHEATRECM_UPLOADWIZARD_VIEW_DEFAULT_DESC</message>
 	</layout>
 	
-	<fields name="request">
+	<fields
+		name="request"
+		addfieldpath="/administrator/components/com_minitheatrecm/models/fields"
+		>
 		<fieldset name="request">
 			<field
 				name="id"
-				type="list"
-				label="COM_MINITHEATRECM_UPLOADWIZARD_FIELD_MODE_LABEL"
-				description="COM_MINITHEATRECM_UPLOADWIZARD_FIELD_MODE_DESC"
+				type="ulwizwmode"
+				label="COM_MINITHEATRECM_UPLOADWIZARD_FIELD_WMODE_LABEL"
+				description="COM_MINITHEATRECM_UPLOADWIZARD_FIELD_WMODE_DESC"
+				/>
+				
+				<!--HardCoded-Values are now replaced by DataBase.
+				@Since 0.0.6
+				Type 'list' replaced by type '-fieldname-'.
+				
+				Future Concerns:
+				label/desc name might need updating if
+				they're supposed to reflect actual fieldnames.
+				
 				default="1">
 				<option value="1">Selection</option>
 				<option value="2">Anime</option>
-			</field>
+				</field>
+				-->
 		</fieldset>
 	</fields>
 </metadata>
