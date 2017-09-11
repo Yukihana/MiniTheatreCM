@@ -78,8 +78,9 @@ class MiniTheatreCMViewUlWizSource extends JViewLegacy
 		JToolbarHelper::title($title, 'pencil-2');
 		JToolbarHelper::apply('ulwizsource.apply');
 		JToolbarHelper::save('ulwizsource.save');
+		JToolbarHelper::save2new('ulwizsource.save2new');
 		if(!$isNew)
-			JToolbarHelper::save2new('ulwizsource.save2new');
+			JToolbarHelper::save2copy('ulwizsource.save2copy');
 		JToolbarHelper::cancel(
 			'ulwizsource.cancel',
 			$isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE'

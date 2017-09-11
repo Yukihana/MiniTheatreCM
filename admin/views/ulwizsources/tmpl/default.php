@@ -22,9 +22,7 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 		<div class="span6">
 			<?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_FILTERS'); ?>
 			-->
-			<?php
-				echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));
-			?>
+			<?php echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this)); ?>
 			<!--Yuki: Probably Unnecessary END
 		</div>
 	</div>
@@ -39,19 +37,19 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th width="3%">
+				<th width="1%" class="nowrap center">
 					<?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_NUM'); ?>
 				</th>
-				<th width="2%">
+				<th width="2%" class="center">
 					<?php echo JHtml::_('grid.checkall'); ?>
 				</th>
-				<th width="90%">
+				<th width="90%" class="no-wrap">
 					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_TITLE', 'wname', $listDirn, $listOrder) ;?>
 				</th>
-				<th width="2%">
+				<th width="5%" class="center">
 					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_PUBLISHED', 'published', $listDirn, $listOrder) ;?>
 				</th>
-				<th width="3%">
+				<th width="2%">
 					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_ID', 'id', $listDirn, $listOrder) ;?>
 				</th>
 			</tr>
@@ -64,13 +62,11 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 			</tr>
 		</tfoot>
 		<tbody>
-			<?php if (!empty($this->items)) : ?>
-			<?php foreach ($this->items as $i => $row) :
-				$link = JRoute::_('index.php?option=com_minitheatrecm&task=ulwizsource.edit&id=' . $row->id); ?>
-
+		
+			<?php foreach ($this->items as $i => $row) : $link = JRoute::_('index.php?option=com_minitheatrecm&task=ulwizsource.edit&id=' . $row->id); ?>
 			<tr>
 				<td>
-					<?php echo $this->pagination->getRowOffset($i); ?>
+					<?php echo $this->pagination->getRowOffset($i);?>
 				</td>
 				<td>
 					<?php echo JHtml::_('grid.id', $i, $row->id); ?>
@@ -80,16 +76,15 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 						<?php echo $row->wname; ?>
 					</a>
 				</td>
-				<td align="center">
+				<td class="center">
 					<?php echo JHtml::_('jgrid.published', $row->published, $i, 'ulwizsources.', true, 'cb'); ?>
 				</td>
-				<td align="center">
+				<td class="right">
 					<?php echo $row->id; ?>
 				</td>
-			</tr>
-			
+			</tr>			
 			<?php endforeach; ?>
-			<?php endif; ?>
+			
 		</tbody>
 	</table>
 	<?php endif;?>
@@ -101,6 +96,7 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 	<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>"/>
 </form>
 <div class="alert">
+	<button type="button" class="close" data-dismiss="alert">×</button>
 	<h4 class="alert-heading"><?php echo JText::_('COM_MINITHEATRECM_ADMIN_UPDATESTRING');?></h4>
 	<ul class="alert-message">
 		<li>This page will list the different upload wizards, each of which, can be editted to best fit the content they're uploading.</li>

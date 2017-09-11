@@ -14,6 +14,7 @@ defined('_JEXEC') or die('Restricted access');
 <h1><?php echo JText::_('COM_MINITHEATRECM_UPLOADWIZARD_HEADING'); ?></h1>
 <h3><?php echo $this->msg; ?></h3>
 <div class="alert">
+    <button type="button" class="close" data-dismiss="alert">×</button>
 	<h4 class="alert-heading"><?php echo JText::_('COM_MINITHEATRECM_SITE_UPDATESTRING');?></h4>
 	<ul class="alert-message">
 		<li>This is the page for the upload/submission wizard.</li>		
