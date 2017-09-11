@@ -56,10 +56,12 @@
 			<filename>minitheatrecm.php</filename>
 			<filename>controller.php</filename>
 			
+			<folder>controllers</folder>			
+			<folder>models</folder>
 			<folder>sql</folder>
 			<folder>tables</folder>
-			<folder>models</folder>
 			<folder>views</folder>
+			
 		</files>
 		
 		<!--Admin Language Configuration-->
@@ -71,10 +73,21 @@
 	</administration>
 	
 	<!--Tutorial Manifest
-	Tutorial: Developing an MVC Component/Using the database	
+	Tutorial: Backend Actions
 	Notes: field-type (also same.php in fields folder)
+	Notes: Avoid underscores in Class Names, only use in translations/db-table. Not even the table class.
+	Notes: Nomenclature is strict. reference strings(variables) for classnames should match the classname.
+	Notes: Classname Capitalization doesn't matter against variables. (usually)
+	Notes: MVC are a set by naming. One of each (if)needed.
+	Notes: Backend naming convention( plural for list page, singular for edit page ).
 	
-	Failed #1: Menu Settings only show an integer "1" in the form field.
+	Issue #1
+		Failed: Menu Settings only show an integer "1" in the form field.
+		Fix: Do not use underscores in classnames when referenced by a variable.
+	Issue #2
+		Failed: Backend controller targetting to and from.
+		Fix: MVC are a set. One of each when needed, and of the same name.
+			Convention: List page named in plural. Edit page named the same in singular.
 	-->
 	
 </extension>

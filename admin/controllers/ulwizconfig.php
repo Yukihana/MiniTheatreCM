@@ -10,21 +10,11 @@
   
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-
 /**
- * ULWiz_WMode Table class
+ * UlWizConfig Controller
  *
- * @since  0.0.1
+ * @since  0.0.9
  */
-class MiniTheatreCMTableUlWiz_WMode extends JTable
+class MiniTheatreCMControllerUlWizConfig extends JControllerForm
 {
-	/**
-	 * Constructor
-	 *
-	 * @param   JDatabaseDriver  &$db  A database connector object
-	 */
-	function __construct(&$db)
-	{
-		parent::__construct('#__mtcmopt_ulwiz_wmode', 'id', $db);
-	}
 }

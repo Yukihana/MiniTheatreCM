@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class MiniTheatreCMModelUploadConfig extends JModelList
+class MiniTheatreCMModelUlWizConfigs extends JModelList
 {
 	/**
 	 * Method to build an SQL query to load the list data.
@@ -30,7 +30,7 @@ class MiniTheatreCMModelUploadConfig extends JModelList
 
 		// Create the base select statement.
 		$query->select('*')
-                ->from($db->quoteName('#__mtcmopt_ulwiz_wmode'));
+                ->from($db->quoteName('#__mtcmopt_ulwiz_wmodes'));
 
 		return $query;
 	}

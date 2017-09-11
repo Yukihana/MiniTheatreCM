@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS `#__mtcmopt_ulwiz_wmode`;
+DROP TABLE IF EXISTS `#__mtcmopt_ulwiz_wmodes`;

@@ -48,7 +48,7 @@ class JFormFieldUlWizWMode extends JFormFieldList
 		$db    = JFactory::getDBO();
 		$query = $db->getQuery(true);
 		$query->select('id,wmode');
-		$query->from('#__mtcmopt_ulwiz_wmode');
+		$query->from('#__mtcmopt_ulwiz_wmodes');
 		$db->setQuery((string) $query);
 		$messages = $db->loadObjectList();
 		$options  = array();

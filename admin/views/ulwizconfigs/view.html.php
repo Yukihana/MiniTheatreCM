@@ -11,11 +11,11 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 /**
- * UploadConfig View
+ * UlWizConfigs View
  *
  * @since  0.0.1
  */
- class MiniTheatreCMViewUploadConfig extends JViewLegacy
+ class MiniTheatreCMViewUlWizConfigs extends JViewLegacy
 {
 	/**
 	 * Display the Upload Config view
@@ -38,7 +38,25 @@ defined('_JEXEC') or die('Restricted access');
 			return false;
 		}
 
+		// Set the toolbar
+		$this->addToolBar();
+		
 		// Display the template
 		parent::display($tpl);
+	}
+	
+	/**
+	 * Add the page title and toolbar.
+	 *
+	 * @return  void
+	 *
+	 * @since   1.6
+	 */
+	protected function addToolBar()
+	{
+		JToolbarHelper::title(JText::_('COM_MINITHEATRECM_MANAGER_ULWIZCONFIGS_TITLE'), 'wand');
+		JToolbarHelper::addNew('ulwizconfig.add');
+		JToolbarHelper::editList('ulwizconfig.edit');
+		JToolbarHelper::deleteList('This would permanently delete the respective user-submission forms. Backing-up before deletion is highly recommended. Are you sure you want to delete the selected items?', 'ulwizconfigs.delete');
 	}
 }
