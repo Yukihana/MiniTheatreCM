@@ -14,18 +14,18 @@ defined('_JEXEC') or die('Restricted access');
 JFormHelper::loadFieldClass('list');
 
 /**
- * UlWizWMode Form Field class for the MiniTheatreCM component
+ * UlWizName Form Field class for the MiniTheatreCM component
  *
  * @since  0.0.1
  */
-class JFormFieldUlWizWMode extends JFormFieldList
+class JFormFieldUlWizName extends JFormFieldList
 {
 	/**
 	 * The field type.
 	 *
 	 * @var         string
 	 */
-	protected $type = 'UlWizWMode';
+	protected $type = 'UlWizName';
 	/**
 	 * @Since 0.0.6
 	 * Yuki's Tutorial Notes:

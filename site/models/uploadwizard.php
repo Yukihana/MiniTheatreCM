@@ -50,7 +50,7 @@ class MiniTheatreCMModelUploadWizard extends JModelItem
 	 * Yuki's Tutorial Notes:
 	 * 
 	 * I suppose this refers to the className for the admin/tables/tablename.php file
-	 * prefix + type = MiniTheatreCMTableUlWizWMode	
+	 * prefix + type = MiniTheatreCMTableUploadWizards
 	 * Also assuming that PHP/Joomla is
 	 * using reflection to determine the className
 	 */	 
@@ -75,7 +75,7 @@ class MiniTheatreCMModelUploadWizard extends JModelItem
 			$jinput = JFactory::getApplication()->input;
 			$id     = $jinput->get('id', 1, 'INT');
 			
-			// Get a TableUlWizWMode instance
+			// Get a TableUploadWizard instance
 			$table = $this->getTable();
 			
 			// Load the message

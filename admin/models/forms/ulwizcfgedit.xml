@@ -6,7 +6,7 @@
 				type="hidden"
 				/>
 		<field
-				name="wmode"
+				name="wname"
 				type="text"
 				label="COM_MINITHEATRECM_ULWIZCONFIG_WMODE_LABEL"
 				description="COM_MINITHEATRECM_ULWIZCONFIG_WMODE_DESC"
