@@ -41,7 +41,7 @@ class MiniTheatreCMModelUploadWizard extends JModelItem
 	 *
 	 * @since   1.6
 	 */
-	public function getTable($type = 'UlWizWModes', $prefix = 'MiniTheatreCMTable', $config = array())
+	public function getTable($type = 'UploadWizards', $prefix = 'MiniTheatreCMTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	} 

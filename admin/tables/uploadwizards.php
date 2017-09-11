@@ -12,11 +12,11 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * ULWizWModes Table class
+ * UploadWizards Table class
  *
  * @since  0.0.1
  */
-class MiniTheatreCMTableUlWizWModes extends JTable
+class MiniTheatreCMTableUploadWizards extends JTable
 {
 	/**
 	 * Constructor
