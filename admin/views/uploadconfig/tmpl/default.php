@@ -11,6 +11,10 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 ?>
+<div class="alert">
+	<h4 class="alert-heading">Work In Progress</h4>
+	<div class="alert-message">The current layout is temporary. Tutorial purposes ONLY.<br/>Actual Encode/Review entries will be displayed here eventually.<br>Design for this section will have to wait until the concept as well as data-model is confirmed.</div>
+</div>
 <form action="index.php?option=com_minitheatrecm&view=uploadconfig" method="post" id="adminForm" name="adminForm">
 	<table class="table table-striped table-hover">
 		<thead>
