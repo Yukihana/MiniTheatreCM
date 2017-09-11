@@ -21,5 +21,4 @@ defined('_JEXEC') or die('Restricted access');
 		<li>The backend/management counterpart has to be coded/designed first.</li>
 		<li>After that, the design stage, electively based off the prototype.</li>
 	</ul>
-	<div ></div>
 </div>

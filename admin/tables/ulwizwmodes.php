@@ -25,6 +25,6 @@ class MiniTheatreCMTableUlWizWModes extends JTable
 	 */
 	function __construct(&$db)
 	{
-		parent::__construct('#__mtcmopt_ulwiz_wmodes', 'id', $db);
+		parent::__construct('#__mtcm_admin_ulwiz', 'id', $db);
 	}
 }

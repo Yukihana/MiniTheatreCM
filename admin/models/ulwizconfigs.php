@@ -30,7 +30,7 @@ class MiniTheatreCMModelUlWizConfigs extends JModelList
 
 		// Create the base select statement.
 		$query->select('*')
-                ->from($db->quoteName('#__mtcmopt_ulwiz_wmodes'));
+                ->from($db->quoteName('#__mtcm_admin_ulwiz'));
 
 		return $query;
 	}
