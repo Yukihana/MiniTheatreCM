@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.7.0" method="upgrade">
 
-    <name>MiniTheatre CM</name>
+    <name>COM_MINITHEATRECM</name>
 	
 	<!--Optional Content-->
 	<creationDate>24 August 2017</creationDate>
@@ -10,8 +10,8 @@
 	<authorUrl>http://fb.me/LilyflowerAngel</authorUrl>
 	<copyright>CherrySoft-X 2017, MiniTheatre 2017</copyright>
 	<license>GNU/GPL</license>
-	<version>0.0.7</version>
-	<description>Content Import and Review Manager for MiniTheatre</description>
+	<version>0.0.8</version>
+	<description>COM_MINITHEATRECM_DESCRIPTION</description>
 	
 	<install> <!-- Runs on install -->
 		<sql>
@@ -39,11 +39,16 @@
 		
 		<folder>views</folder>
 		<folder>models</folder>
-	</files>	
+	</files>
+	
+	<!--Site Language Configuration-->
+	<languages folder="site/language">
+		<language tag="en-GB">en-GB/en-GB.com_minitheatrecm.ini</language>
+	</languages>
 	
 	<administration>
 	    <!--Admin Menu Section-->
-	    <menu link="option=com_minitheatrecm">MiniTheatre CM</menu>
+	    <menu link="option=com_minitheatrecm">COM_MINITHEATRECM_MENU</menu>
 		
 		<!--Backend Base Folder Manifest-->
 		<files folder="admin">
@@ -56,6 +61,13 @@
 			<folder>models</folder>
 			<folder>views</folder>
 		</files>
+		
+		<!--Admin Language Configuration-->
+		<languages folder="admin/language">
+			<language tag="en-GB">en-GB/en-GB.com_minitheatrecm.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_minitheatrecm.sys.ini</language>
+		</languages>
+		
 	</administration>
 	
 	<!--Tutorial Manifest

@@ -11,4 +11,5 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 ?>
-<h1><?php echo $this->msg; ?></h1>
+<h1><?php echo JText::_('COM_MINITHEATRECM_UPLOADWIZARD_HEADING'); ?></h1>
+<h3><?php echo $this->msg; ?></h3>

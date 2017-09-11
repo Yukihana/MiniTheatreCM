@@ -54,7 +54,7 @@ defined('_JEXEC') or die('Restricted access');
 					<?php echo $row->wmode; ?>
 				</td>
 				<td align="center">
-					<?php echo JHtml::_('jgrid.published', $row->published, $i, 'uploadconfig.', true, 'cb', $row->publish_up, $row->publish_down); ?>
+					<?php echo JHtml::_('jgrid.published', $row->published, $i, 'uploadconfig.', true, 'cb'); ?>
 				</td>
 				<td align="center">
 					<?php echo $row->id; ?>
