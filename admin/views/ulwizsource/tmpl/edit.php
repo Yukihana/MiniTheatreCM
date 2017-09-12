@@ -10,10 +10,11 @@
   
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+JHtml::_('behavior.formvalidator');
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_minitheatrecm&layout=edit&id=' . (int) $this->item->id); ?>"
-    method="post" name="adminForm" id="adminForm">
+    method="post" name="adminForm" id="adminForm" class="form-validate">
     <div class="form-horizontal">
         <fieldset class="adminform">
             <legend><?php echo JText::_('COM_MINITHEATRECM_ULWIZSOURCE_LEGEND'); ?></legend>

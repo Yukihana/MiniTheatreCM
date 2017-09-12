@@ -49,7 +49,7 @@ class MiniTheatreCMModelUlWizSource extends JModelAdmin
 		// Get the form.
 		$form = $this->loadForm(
 			'com_minitheatrecm.ulwizsource',
-			'ulwizcfgedit',
+			'ulwizedit',
 			array(
 				'control' => 'jform',
 				'load_data' => $loadData
@@ -65,6 +65,16 @@ class MiniTheatreCMModelUlWizSource extends JModelAdmin
 	}
 	
 	/**
+	 * Method to get the script that have to be included on the form
+	 *
+	 * @return string	Script files
+	 */
+	public function getScript() 
+	{
+		return 'administrator/components/com_minitheatrecm/models/forms/ulwizedit.js';
+	}
+	
+	/**
 	 * Method to get the data that should be injected in the form.
 	 *
 	 * @return  mixed  The data for the form.
@@ -75,7 +85,7 @@ class MiniTheatreCMModelUlWizSource extends JModelAdmin
 	{
 		// Check the session for previously entered form data.
 		$data = JFactory::getApplication()->getUserState(
-			'com_minitheatrecm.edit.ulwizcfgedit.data',
+			'com_minitheatrecm.edit.ulwizedit.data',
 			array()
 		);
 

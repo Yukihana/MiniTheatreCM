@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<form>
+<form addrulepath="/administrator/components/com_minitheatrecm/models/rules">
 	<fieldset>
 		<field
 				name="id"
@@ -11,7 +11,9 @@
 				label="COM_MINITHEATRECM_ULWIZSOURCE_WTITLE_LABEL"
 				description="COM_MINITHEATRECM_ULWIZSOURCE_WTITLE_DESC"
 				size="40"
-				class="inputbox"
+				class="inputbox validate-wname"
+				validate="wname"
+				required="true"
 				default=""
 				/>
 	</fieldset>

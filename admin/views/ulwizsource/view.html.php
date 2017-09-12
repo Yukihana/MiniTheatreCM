@@ -37,6 +37,7 @@ class MiniTheatreCMViewUlWizSource extends JViewLegacy
 		// Get the Data
 		$this->form = $this->get('Form');
 		$this->item = $this->get('Item');
+		$this->script = $this->get('Script');
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
@@ -100,6 +101,11 @@ class MiniTheatreCMViewUlWizSource extends JViewLegacy
 		$document->setTitle(
 			JText::_($isNew ? 'COM_MINITHEATRECM_ULWIZSOURCE_TITLE_NEW' : 'COM_MINITHEATRECM_ULWIZSOURCE_TITLE_EDIT').' - '.
 			JText::_('COM_MINITHEATRECM_DICTIONARY_ADMINISTRATION').' - '.
-			JText::_('COM_MINITHEATRECM_GLOBAL_TITLE'));
+			JText::_('COM_MINITHEATRECM_GLOBAL_TITLE')
+		);
+		$document->addScript(JURI::root() . $this->script);
+		$document->addScript(JURI::root() . "/administrator/components/com_minitheatrecm"
+		                                  . "/views/ulwizsource/submitbutton.js");
+		JText::script('COM_MINITHEATRECM_ERROR_UNACCEPTABLE');
 	}	
 }
