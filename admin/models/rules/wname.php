@@ -22,6 +22,22 @@ class JFormRuleWName extends JFormRule
 	 * @access	protected
 	 * @var		string
 	 * @since	2.5
+	 **
+	 * JS commentary START
+	 *
+	 * Original regex: /^[^0-9]+$/
+	 *
+	 * Yuki's Regex: /^[a-zA-Z_]/ (Cannot use /^[a-z]/i because no way to use modifiers with php regex)
+	 * Returns true for first character: 'a-z' or 'A-Z' or '_'
+	 *
+	 * Yuki's Tutorial Notes:
+	 * str.test(regex) in javascript checks for matches found in 'str'-var based on the regex expression provided.
+	 *
+	 * Regex (Regular Expressions / Match Patterns) References:
+	 * 1. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+	 * 2. https://www.w3schools.com/jsref/jsref_obj_regexp.asp
+	 *
+	 * JS commentary END
 	 */
-	protected $regex = '^[^0-9]+$';
+	protected $regex = '^[a-zA-Z_]';
 }
