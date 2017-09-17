@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-	<layout title="COM_MINITHEATRECM_UPLOADWIZARD_VIEW_DEFAULT_TITLE">
-		<message>COM_MINITHEATRECM_UPLOADWIZARD_VIEW_DEFAULT_DESC</message>
+	<layout title="COM_MINITHEATRECM_VIEW_UPLOADWIZARD_DEFAULT_TITLE">
+		<message>COM_MINITHEATRECM_VIEW_UPLOADWIZARD_DEFAULT_DESC</message>
 	</layout>
 	
 	<fields
