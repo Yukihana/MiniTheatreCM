@@ -3,4 +3,16 @@
 	<layout title="COM_MINITHEATRECM_VIEW_ITEM_DEFAULT_TITLE">
 		<message>COM_MINITHEATRECM_VIEW_ITEM_DEFAULT_DESC</message>
 	</layout>
+	<fields
+		name="request"
+		addfieldpath="administrator/components/com_minitheatrecm/models/fields">
+		<fieldset name="request">
+			<field
+				name="id"
+				type="itemlist"
+				label="COM_MINITHEATRECM_ITEM_FIELD_NAME_LABEL"
+				description="COM_MINITHEATRECM_ITEM_FIELD_NAME_DESC">
+			</field>
+		</fieldset>
+	</fields>
 </metadata>
