@@ -10,21 +10,6 @@
   
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+?>
 
-/**
- * WikiItems Table class
- *
- * @since  0.0.1
- */
-class MiniTheatreCMTableWikiItems extends JTable
-{
-	/**
-	 * Constructor
-	 *
-	 * @param   JDatabaseDriver  &$db  A database connector object
-	 */
-	function __construct(&$db)
-	{
-		parent::__construct('#__mtcm_wiki_items', 'id', $db);
-	}
-}
+<h3>Test Text for Genres View</h3>

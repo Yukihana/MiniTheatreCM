@@ -10,20 +10,13 @@
   
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-/**
- * MiniTheatreCM General Controller
- *
- * @since  0.0.7
- */
-class MiniTheatreCMController extends JControllerLegacy
-{
-	/**
-	 * The default view for the display method.
-	 *
-	 * @var string
-	 * @since 12.2
-	 */
-	protected $default_view = 'overview';
-	
-	/* TODO change this later to the default backend view */
-}
+?>
+
+<form action="index.php?option=com_minitheatrecm&view=items" method="post">
+	<div id="j-sidebar-container" class="span2">
+		<?php echo JHtmlSidebar::render();?>
+	</div>
+	<div id="j-main-container" class="span10">
+		<h3>Test Text</h3>
+	</div>
+</form>

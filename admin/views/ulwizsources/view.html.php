@@ -18,7 +18,7 @@ defined('_JEXEC') or die('Restricted access');
  class MiniTheatreCMViewUlWizSources extends JViewLegacy
 {
 	/**
-	 * Display the Upload Config view
+	 * Display the UlWizSources view
 	 *
 	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
 	 *
@@ -47,6 +47,9 @@ defined('_JEXEC') or die('Restricted access');
 			return false;
 		}
 
+		// Set the submenu
+		MiniTheatreCMHelper::addSubmenu('ulwizsources');
+		
 		// Set the toolbar and number of found items
 		$this->addToolBar();
 		

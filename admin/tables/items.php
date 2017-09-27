@@ -10,20 +10,21 @@
   
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+
 /**
- * MiniTheatreCM General Controller
+ * Items Table class
  *
- * @since  0.0.7
+ * @since  0.0.1
  */
-class MiniTheatreCMController extends JControllerLegacy
+class MiniTheatreCMTableItems extends JTable
 {
 	/**
-	 * The default view for the display method.
+	 * Constructor
 	 *
-	 * @var string
-	 * @since 12.2
+	 * @param   JDatabaseDriver  &$db  A database connector object
 	 */
-	protected $default_view = 'overview';
-	
-	/* TODO change this later to the default backend view */
+	function __construct(&$db)
+	{
+		parent::__construct('#__mtcm_items', 'id', $db);
+	}
 }

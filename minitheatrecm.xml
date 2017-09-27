@@ -67,6 +67,7 @@
 			<folder>sql</folder>
 			<folder>tables</folder>
 			<folder>views</folder>
+			<folder>helpers</folder>
 			
 		</files>
 		

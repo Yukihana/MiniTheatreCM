@@ -17,6 +17,9 @@ defined('_JEXEC') or die('Restricted access');
  * $document->addStyleDeclaration('.icon-helloworld {background-image: url(../media/com_helloworld/images/Tux-16x16.png);}');
  */
 
+// Require helper file
+JLoader::register('MiniTheatreCMHelper', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/minitheatrecm.php'); 
+ 
 // Get an instance of the controller prefixed by MiniTheatreCM
 $controller = JControllerLegacy::getInstance('MiniTheatreCM');
 

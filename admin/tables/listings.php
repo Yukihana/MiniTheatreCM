@@ -12,11 +12,11 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * DataReviews Table class
+ * Listings Table class
  *
  * @since  0.0.1
  */
-class MiniTheatreCMTableDataReviews extends JTable
+class MiniTheatreCMTableListings extends JTable
 {
 	/**
 	 * Constructor
@@ -25,6 +25,6 @@ class MiniTheatreCMTableDataReviews extends JTable
 	 */
 	function __construct(&$db)
 	{
-		parent::__construct('#__mtcm_data_reviews', 'id', $db);
+		parent::__construct('#__mtcm_listings', 'id', $db);
 	}
 }

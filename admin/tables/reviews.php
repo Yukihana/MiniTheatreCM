@@ -12,11 +12,11 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * WikiFranchises Table class
+ * Reviews Table class
  *
  * @since  0.0.1
  */
-class MiniTheatreCMTableWikiFranchises extends JTable
+class MiniTheatreCMTableReviews extends JTable
 {
 	/**
 	 * Constructor
@@ -25,6 +25,6 @@ class MiniTheatreCMTableWikiFranchises extends JTable
 	 */
 	function __construct(&$db)
 	{
-		parent::__construct('#__mtcm_wiki_franchises', 'id', $db);
+		parent::__construct('#__mtcm_reviews', 'id', $db);
 	}
 }
