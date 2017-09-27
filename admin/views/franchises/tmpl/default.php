@@ -17,6 +17,6 @@ defined('_JEXEC') or die('Restricted access');
 		<?php echo JHtmlSidebar::render();?>
 	</div>
 	<div id="j-main-container" class="span10">
-		<h3>Genres to be shown here.</h3>
+		<h3>Franchises to be shown here.</h3>
 	</div>
 </form>

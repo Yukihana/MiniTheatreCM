@@ -93,6 +93,6 @@ INSERT INTO `#__mtcm_admin_ulwiz` (`wname`) VALUES
 ('Manga'),
 ('Dorama');
 
-INSERT INTO `#__mtcm_wiki_items` (`name`,`content`) VALUES
+INSERT INTO `#__mtcm_items` (`name`,`content`) VALUES
 ('Watashi No Koibito Wa Monster Desu', 'Description of the item <b>Watashi No Koibito Wa Monster Desu</b> goes here.'),
 ('Killing Squad', 'Description of the item <b>Killing Squad</b> goes here.');
