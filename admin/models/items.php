@@ -12,11 +12,11 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * MiniTheatreCMList Model
+ * ItemList Model
  *
  * @since  0.0.1
  */
-class MiniTheatreCMModelUlWizSources extends JModelList
+class MiniTheatreCMModelItems extends JModelList
 {
 	/**
 	 * Constructor.
@@ -32,7 +32,7 @@ class MiniTheatreCMModelUlWizSources extends JModelList
 		{
 			$config['filter_fields'] = array(
 				'id',
-				'wname',
+				'name',
 				'published'
 			);
 		}
@@ -52,17 +52,17 @@ class MiniTheatreCMModelUlWizSources extends JModelList
 
 		// Create the base select statement.
 		$query->select('*')
-                ->from($db->quoteName('#__mtcm_admin_ulwiz'));
-				
+                ->from($db->quoteName('#__mtcm_items'));
+
 		// Filter: like / search
 		$search = $this->getState('filter.search');
-
+		
 		if (!empty($search))
 		{
 			$like = $db->quote('%' . $search . '%');
-			$query->where('wname LIKE ' . $like);
+			$query->where('name LIKE ' . $like);
 		}
-
+		
 		// Filter by published state
 		$published = $this->getState('filter.published');
 
@@ -74,13 +74,13 @@ class MiniTheatreCMModelUlWizSources extends JModelList
 		{
 			$query->where('(published IN (0, 1))');
 		}
-
+		
 		// Add the list ordering clause.
-		$orderCol	= $this->state->get('list.ordering', 'wname');
+		$orderCol	= $this->state->get('list.ordering', 'name');
 		$orderDirn 	= $this->state->get('list.direction', 'asc');
 
 		$query->order($db->escape($orderCol) . ' ' . $db->escape($orderDirn));
-
+		
 		return $query;
 	}
 }

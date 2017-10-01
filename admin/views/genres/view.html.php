@@ -42,7 +42,24 @@ class MiniTheatreCMViewGenres extends JViewLegacy
 		// Set the submenu
 		MiniTheatreCMHelper::addSubmenu('genres');
 		
+		// Set the toolbar and number of found items
+		$this->addToolBar();
+		
 		// Display the template
 		parent::display($tpl);
+	}
+	
+	/**
+	 * Add the page title and toolbar.
+	 *
+	 * @return  void
+	 *
+	 * @since   1.6
+	 */
+	protected function addToolBar()
+	{
+		$title = JText::_('COM_MINITHEATRECM_MANAGER_GENRES_TITLE');
+		
+		JToolbarHelper::title($title, 'smiley-2');		
 	}
 }

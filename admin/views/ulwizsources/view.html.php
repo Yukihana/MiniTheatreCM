@@ -10,6 +10,7 @@
   
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+
 /**
  * UlWizSources View
  *
@@ -69,7 +70,7 @@ defined('_JEXEC') or die('Restricted access');
 	 */
 	protected function addToolBar()
 	{
-		$title = JText::_('COM_MINITHEATRECM_MANAGER_ULWIZSOURCES_TITLE');		
+		$title = JText::_('COM_MINITHEATRECM_MANAGER_ULWIZSOURCES_TITLE');
 		if ($this->pagination->total)
 		{
 			$title .= "<span style='font-size: 0.5em; vertical-align: middle;'>(" . $this->pagination->total . ")</span>";

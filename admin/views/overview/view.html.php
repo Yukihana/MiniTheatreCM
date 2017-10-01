@@ -42,7 +42,24 @@ class MiniTheatreCMViewOverview extends JViewLegacy
 		// Set the submenu
 		MiniTheatreCMHelper::addSubmenu('overview');
 		
+		// Set the toolbar and number of found items
+		$this->addToolBar();
+		
 		// Display the template
 		parent::display($tpl);
+	}
+	
+	/**
+	 * Add the page title and toolbar.
+	 *
+	 * @return  void
+	 *
+	 * @since   1.6
+	 */
+	protected function addToolBar()
+	{
+		$title = JText::_('COM_MINITHEATRECM_MANAGER_OVERVIEW_TITLE');
+		
+		JToolbarHelper::title($title, 'chart');		
 	}
 }

@@ -16,22 +16,14 @@ JHtml::_('formbehavior.chosen', 'select');
 $listOrder     = $this->escape($this->filter_order);
 $listDirn      = $this->escape($this->filter_order_Dir);
 ?>
+
 <form action="index.php?option=com_minitheatrecm&view=ulwizsources" method="post" id="adminForm" name="adminForm">
 	<div id="j-sidebar-container" class="span2">
 		<?php echo JHtmlSidebar::render(); ?>
 	</div>
 	<div id="j-main-container" class="span10">
-		<!--Yuki: Probably Unnecessary START
-		<div class="row-fluid">
-			<div class="span6">
-				<?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_FILTERS'); ?>
-				-->
-				<?php echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this)); ?>
-				<!--Yuki: Probably Unnecessary END
-			</div>
-		</div>
-		-->
-
+		<?php echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this)); ?>
+				
 		<?php if (empty($this->items)) : ?>
 		<div class="alert alert-no-items">
 			<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>

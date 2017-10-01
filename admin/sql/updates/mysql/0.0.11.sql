@@ -17,9 +17,12 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_metadatas` (
 
 -- Data: Listings, Reviews
 CREATE TABLE IF NOT EXISTS `#__mtcm_listings` (
-	`id`		INT(11)			NOT NULL AUTO_INCREMENT,
-	`name`		VARCHAR(255)	NOT NULL,
-	`content`	TEXT			NOT NULL DEFAULT '',
+	`id`				INT(11)			NOT NULL AUTO_INCREMENT,
+	`name`				VARCHAR(255)	NOT NULL,
+	`content`			TEXT			NOT NULL DEFAULT '',
+	`author`			INT(10)			UNSIGNED NOT NULL DEFAULT '0',
+	`item_id`			INT(10)			UNSIGNED NOT NULL DEFAULT '0',
+	`request_id`		INT(10)			UNSIGNED NOT NULL DEFAULT '0',
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -30,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_reviews` (
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Wiki: Franchises, Items
+-- Items, Franchises
 CREATE TABLE IF NOT EXISTS `#__mtcm_items` (
 	`id`				INT(11)			NOT NULL AUTO_INCREMENT,
 	`name`				VARCHAR(255)	NOT NULL,
@@ -59,9 +62,28 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_items` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `#__mtcm_franchises` (
-	`id`		INT(11)			NOT NULL AUTO_INCREMENT,
-	`name`		VARCHAR(255)	NOT NULL,
-	`content`	TEXT			NOT NULL DEFAULT '',
+	`id`				INT(11)			NOT NULL AUTO_INCREMENT,
+	`name`				VARCHAR(255)	NOT NULL,
+	`content`			TEXT			NOT NULL DEFAULT '',
+	`image_id`			VARCHAR(255)	NOT NULL DEFAULT '',
+	`genres`			VARCHAR(255)	NOT NULL DEFAULT '',
+	`franchise_id`		INT(11)			NOT NULL DEFAULT '0',
+	`www`				VARCHAR(255)	NOT NULL DEFAULT '',
+	`mal`				VARCHAR(255)	NOT NULL DEFAULT '',
+	`anidb`				VARCHAR(255)	NOT NULL DEFAULT '',
+	`urls`				VARCHAR(1023)	NOT NULL DEFAULT '',
+	`access`			INT(10)			UNSIGNED NOT NULL DEFAULT '1',
+	`state`				INT(10)			NOT NULL DEFAULT '1',
+	`featured`			TINYINT(4)		UNSIGNED NOT NULL DEFAULT '0',
+	`rating`			TINYINT			UNSIGNED NOT NULL DEFAULT '0',
+	`hits`				INT(11)			UNSIGNED NOT NULL DEFAULT '0',
+	`created_on`		TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
+	`lastedit_by`		INT(10)			UNSIGNED NOT NULL DEFAULT '0',
+	`modified_on`		DATETIME		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	`poll_items`		BOOLEAN			NOT NULL DEFAULT '0',
+	`poll_reviews`		BOOLEAN			NOT NULL DEFAULT '0',
+	`cache_items`		TEXT			NOT NULL DEFAULT '',
+	`cache_reviews`		TEXT			NOT NULL DEFAULT '',
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
