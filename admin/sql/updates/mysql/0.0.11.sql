@@ -20,12 +20,13 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_listings` (
 	`id`				INT(11)			NOT NULL AUTO_INCREMENT,
 	`name`				VARCHAR(255)	NOT NULL,
 	`content`			TEXT			NOT NULL DEFAULT '',
+	`description`		TEXT			NOT NULL DEFAULT '',
 	`author`			INT(10)			UNSIGNED NOT NULL DEFAULT '0',
 	`state`				INT(10)			NOT NULL DEFAULT '1',
-	`codec`				VARCHAR(255)	NOT NULL DEFAULT '',
-	`video_res`			VARCHAR(255)	NOT NULL DEFAULT '',
-	`audio`				VARCHAR(255)	NOT NULL DEFAULT '',
-	`subs`				VARCHAR(255)	NOT NULL DEFAULT '',
+	`misc1`				VARCHAR(255)	NOT NULL DEFAULT ''		COMMENT 'codec',
+	`misc2`				VARCHAR(255)	NOT NULL DEFAULT ''		COMMENT 'vid_res',
+	`misc3`				VARCHAR(255)	NOT NULL DEFAULT ''		COMMENT 'audio',
+	`misc4`				VARCHAR(255)	NOT NULL DEFAULT ''		COMMENT 'subs',
 	`item_id`			INT(10)			UNSIGNED NOT NULL DEFAULT '0',
 	`request_id`		INT(10)			UNSIGNED NOT NULL DEFAULT '0',
 	`created_on`		TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
@@ -104,19 +105,13 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_genres` (
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Admin: UploadWizards (+ Multiple Upgrades)
+-- Admin: UploadWizards
 CREATE TABLE IF NOT EXISTS `#__mtcm_admin_ulwiz` (
 	`id`		INT(11)			NOT NULL AUTO_INCREMENT,
 	`wname`		VARCHAR(25)		NOT NULL,
 	`published`	tinyint(4)		NOT NULL DEFAULT '1',
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-ALTER TABLE `#__mtcm_admin_ulwiz` ENGINE=INNODB;
-ALTER TABLE `#__mtcm_admin_ulwiz` CHARSET=utf8mb4;
-ALTER TABLE `#__mtcm_admin_ulwiz` COLLATE=utf8mb4_unicode_ci;
-
-TRUNCATE TABLE `#__mtcm_admin_ulwiz`;
 
 -- Test Values, release version won't be using these.
 INSERT INTO `#__mtcm_admin_ulwiz` (`wname`) VALUES
@@ -130,8 +125,13 @@ INSERT INTO `#__mtcm_items` (`name`,`content`) VALUES
 ('Killing Squad', 'Description of the item <b>Killing Squad</b> goes here.');
 
 INSERT INTO `#__mtcm_listings` (`name`, `author`) VALUES
-('Test Listing 1', 49),
-('Test Listing 2', 49),
-('Test Listing 3', 49),
-('Test Listing 4', 43),
-('Test Listing 5', 43);
+('Test Listing 1', 42),
+('Test Listing 2', 42),
+('Test Listing 3', 42),
+('Test Listing 4', 45),
+('Test Listing 5', 45),
+('Test Listing 6', 49),
+('Test Listing 7', 49),
+('Test Listing 8', 49),
+('Test Listing 9', 50),
+('Test Listing 10', 50);

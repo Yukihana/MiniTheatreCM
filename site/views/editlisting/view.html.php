@@ -28,7 +28,20 @@ class MiniTheatreCMViewEditListing extends JViewLegacy
 	function display($tpl = null)
 	{
 		// Assign data to the view
-		$this->msg = JText::_('COM_MINITHEATRECM_EDITLISTING_HEADING');
+		$this->iAuthorized		= $this->get('UserMatched');
+		
+		if( $this->iAuthorized )
+		{
+			$this->iLoggedUserId	= $this->get('LoggedUserId');
+			$this->iLoggedUserName	= $this->get('LoggedUserName');
+			$this->iLoggedRealName	= $this->get('LoggedRealName');
+			
+			$this->iListingId		= $this->get('RequestId');
+			$this->iListingName		= $this->get('ListingName');
+			$this->iListingContent	= $this->get('ListingContent');
+			$this->iListingInfo		= $this->get('ListingInfo');
+			$this->iLastModified	= $this->get('LastModified');
+		}
 
 		// Display the view
 		parent::display($tpl);

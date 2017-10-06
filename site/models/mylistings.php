@@ -24,47 +24,37 @@ class MiniTheatreCMModelMyListings extends JModelItem
 		return JTable::getInstance($type, $prefix, $config);
 	}
 	
-	protected $currentuser;
-	protected $currentuserid;
-	protected $currentusername;	
+	protected $loggeduserid;
 	
 	private function popuser()
 	{
-		if( !isset( $this->currentuser ))
+		if( !isset( $this->loggeduserid ))
 		{
-			$this->currentuser = JFactory::getUser();
-		}
-		if( !isset( $this->currentuserid ))
-		{
-			$this->currentuserid = $this->currentuser->get('id');
-		}
-		if( !isset( $this->currentusername ))
-		{
-			$this->currentusername = $this->currentuser->get('username');
+			$this->loggeduserid = JFactory::getUser()->get('id');
 		}
 	}
 	
 	public function getUserId()
 	{
-		if( !isset( $this->currentuserid ))
+		if( !isset( $this->loggeduserid ))
 		{
 			$this->popuser();
 		}
-		return $this->currentuserid;
+		return $this->loggeduserid;
 	}
 	
-	public function getUserName()
+	public function getLoggedIn()
 	{
-		if( !isset( $this->currentusername ))
+		if( !isset( $this->loggeduserid ))
 		{
 			$this->popuser();
 		}
-		return $this->currentusername;
+		return ($this->loggeduserid != 0);
 	}
 	
 	public function getListings()
 	{
-		if( !isset( $this->currentuserid ))
+		if( !isset( $this->loggeduserid ))
 		{
 			$this->popuser();
 		}
@@ -77,7 +67,7 @@ class MiniTheatreCMModelMyListings extends JModelItem
 		
 		$query->select($db->quoteName( array('id', 'name', 'author', 'item_id', 'state')));
 		$query->from($db->quoteName('#__mtcm_listings'));
-		$query->where($db->quoteName('author').'='.$this->currentuserid);
+		$query->where($db->quoteName('author').'='.$this->loggeduserid);
 		
 		//Set the query object
 		$db->setQuery($query);

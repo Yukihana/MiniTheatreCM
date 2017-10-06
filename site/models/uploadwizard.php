@@ -51,8 +51,8 @@ class MiniTheatreCMModelUploadWizard extends JModelItem
 	 * 
 	 * I suppose this refers to the className for the admin/tables/tablename.php file
 	 * prefix + type = MiniTheatreCMTableUploadWizards
-	 * Also assuming that PHP/Joomla is
-	 * using reflection to determine the className
+	 * Assuming that PHP/Joomla is using reflection to determine the className,
+	 * or it could also be possible that such use of reflection is a standard PHP thing.
 	 */	 
 	 
 	/**
@@ -87,6 +87,7 @@ class MiniTheatreCMModelUploadWizard extends JModelItem
 			/*
 			 * Old Hardcoded Messages response Model
 			 * This is the actual content sent to the pages
+			 
 			switch ($id)
 			{
 				case 2:
@@ -97,6 +98,7 @@ class MiniTheatreCMModelUploadWizard extends JModelItem
 					$this->message = 'Selection Model Message Data Ver 0.0.5';
 					break;
 			}
+			
 			 */
 		}
 
