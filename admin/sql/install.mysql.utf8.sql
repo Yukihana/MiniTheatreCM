@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_listings` (
 	`name`				VARCHAR(255)	NOT NULL,
 	`content`			TEXT			NOT NULL DEFAULT '',
 	`author`			INT(10)			UNSIGNED NOT NULL DEFAULT '0',
+	`state`				INT(10)			NOT NULL DEFAULT '1',
 	`codec`				VARCHAR(255)	NOT NULL DEFAULT '',
 	`video_res`			VARCHAR(255)	NOT NULL DEFAULT '',
 	`audio`				VARCHAR(255)	NOT NULL DEFAULT '',
@@ -36,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_reviews` (
 	`id`		INT(11)			NOT NULL AUTO_INCREMENT,
 	`name`		VARCHAR(255)	NOT NULL,
 	`content`	TEXT			NOT NULL DEFAULT '',
+	`state`		INT(10)			NOT NULL DEFAULT '1',
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -55,7 +57,8 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_items` (
 	`access`			INT(10)			UNSIGNED NOT NULL DEFAULT '1',
 	`state`				INT(10)			NOT NULL DEFAULT '1',
 	`featured`			TINYINT(4)		UNSIGNED NOT NULL DEFAULT '0',
-	`rating`			TINYINT			UNSIGNED NOT NULL DEFAULT '0',
+	`rating_sum`		INT(10)			UNSIGNED NOT NULL DEFAULT '0',
+	`rating_count`		INT(10)			UNSIGNED NOT NULL DEFAULT '0',
 	`hits`				INT(11)			UNSIGNED NOT NULL DEFAULT '0',
 	`created_on`		TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
 	`lastedit_by`		INT(10)			UNSIGNED NOT NULL DEFAULT '0',
@@ -81,7 +84,8 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_franchises` (
 	`access`			INT(10)			UNSIGNED NOT NULL DEFAULT '1',
 	`state`				INT(10)			NOT NULL DEFAULT '1',
 	`featured`			TINYINT(4)		UNSIGNED NOT NULL DEFAULT '0',
-	`rating`			TINYINT			UNSIGNED NOT NULL DEFAULT '0',
+	`rating_sum`		INT(10)			UNSIGNED NOT NULL DEFAULT '0',
+	`rating_count`		INT(10)			UNSIGNED NOT NULL DEFAULT '0',
 	`hits`				INT(11)			UNSIGNED NOT NULL DEFAULT '0',
 	`created_on`		TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
 	`lastedit_by`		INT(10)			UNSIGNED NOT NULL DEFAULT '0',
@@ -124,3 +128,10 @@ INSERT INTO `#__mtcm_admin_ulwiz` (`wname`) VALUES
 INSERT INTO `#__mtcm_items` (`name`,`content`) VALUES
 ('Watashi No Koibito Wa Monster Desu', 'Description of the item <b>Watashi No Koibito Wa Monster Desu</b> goes here.'),
 ('Killing Squad', 'Description of the item <b>Killing Squad</b> goes here.');
+
+INSERT INTO `#__mtcm_listings` (`name`, `author`) VALUES
+('Test Listing 1', 49),
+('Test Listing 2', 49),
+('Test Listing 3', 49),
+('Test Listing 4', 43),
+('Test Listing 5', 43);
