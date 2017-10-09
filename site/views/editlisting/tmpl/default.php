@@ -32,7 +32,23 @@ defined('_JEXEC') or die('Restricted access');
 		<li>Information: <?php echo $this->iListingInfo;?></li>
 		<li>Last Modified On: <?php echo $this->iLastModified;?></li>
 		<li>Listing ID: <?php echo $this->iListingId;?></li>
+		<li>Live: <?php echo JText::_( $this->iUserLive ? 'JYES' : 'JNO' ); if($this->iItemState != 1) echo ' (N/A)';?></li>
 		<li>Author Name: <?php echo $this->iLoggedRealName;?></li>
+		
+		<?php if($this->iItemState == 0): ?>
+		<li>Item State: <?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_REQUESTED');?></li>
+		<li>Requested Item: <?php echo $this->iRequestName;?></li>
+		<li>Requested Item Description: <?php echo $this->iRequestDesc;?></li>
+		
+		<?php elseif($this->iItemState == 1): ?>
+		<li>Item State: <?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_EXISTS');?></li>
+		<li>Associated Item ID: <?php echo $this->iItemId;?></li>
+		<li>Associated Item Name: <?php echo $this->iItemName;?></li>
+		
+		<?php else: ?>
+		<li>Item State: <?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_MISSING');?></li>
+		<li>Associated Item ID: <?php echo $this->iItemId;?></li>
+		<?php endif;?>
 	<ol>
 </div>
 <?php endif; ?>

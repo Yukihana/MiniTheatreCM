@@ -41,6 +41,12 @@ class MiniTheatreCMViewEditListing extends JViewLegacy
 			$this->iListingContent	= $this->get('ListingContent');
 			$this->iListingInfo		= $this->get('ListingInfo');
 			$this->iLastModified	= $this->get('LastModified');
+			$this->iUserLive		= $this->get('UserLive');
+			$this->iItemId			= $this->get('ItemId');
+			$this->iItemState		= $this->get('ItemState');
+			$this->iItemName		= $this->get('ItemName');
+			$this->iRequestName		= $this->get('RequestName');
+			$this->iRequestDesc		= $this->get('RequestDesc');
 		}
 
 		// Display the view

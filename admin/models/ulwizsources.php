@@ -39,6 +39,7 @@ class MiniTheatreCMModelUlWizSources extends JModelList
 
 		parent::__construct($config);
 	}
+	
 	/**
 	 * Method to build an SQL query to load the list data.
 	 *

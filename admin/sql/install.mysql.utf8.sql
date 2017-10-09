@@ -23,12 +23,14 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_listings` (
 	`description`		TEXT			NOT NULL DEFAULT '',
 	`author`			INT(10)			UNSIGNED NOT NULL DEFAULT '0',
 	`state`				INT(10)			NOT NULL DEFAULT '1',
+	`live`				BOOLEAN			NOT NULL DEFAULT '1',
 	`misc1`				VARCHAR(255)	NOT NULL DEFAULT ''		COMMENT 'codec',
 	`misc2`				VARCHAR(255)	NOT NULL DEFAULT ''		COMMENT 'vid_res',
 	`misc3`				VARCHAR(255)	NOT NULL DEFAULT ''		COMMENT 'audio',
 	`misc4`				VARCHAR(255)	NOT NULL DEFAULT ''		COMMENT 'subs',
 	`item_id`			INT(10)			UNSIGNED NOT NULL DEFAULT '0',
-	`request_id`		INT(10)			UNSIGNED NOT NULL DEFAULT '0',
+	`request_name`		VARCHAR(255)	NOT NULL DEFAULT '',
+	`request_desc`		TEXT			NOT NULL DEFAULT '',
 	`created_on`		TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
 	`modified_on`		DATETIME		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	PRIMARY KEY (`id`)
@@ -124,14 +126,21 @@ INSERT INTO `#__mtcm_items` (`name`,`content`) VALUES
 ('Watashi No Koibito Wa Monster Desu', 'Description of the item <b>Watashi No Koibito Wa Monster Desu</b> goes here.'),
 ('Killing Squad', 'Description of the item <b>Killing Squad</b> goes here.');
 
-INSERT INTO `#__mtcm_listings` (`name`, `author`) VALUES
-('Test Listing 1', 42),
-('Test Listing 2', 42),
-('Test Listing 3', 42),
-('Test Listing 4', 45),
-('Test Listing 5', 45),
-('Test Listing 6', 49),
-('Test Listing 7', 49),
-('Test Listing 8', 49),
-('Test Listing 9', 50),
-('Test Listing 10', 50);
+INSERT INTO `#__mtcm_listings` (`name`, `author`, `item_id`) VALUES
+('Test Listing 1', 42, 1),
+('Test Listing 2', 42, 2),
+('Test Listing 3', 42, 1),
+('Missing Item Listing 4', 42, 5),
+('Test Listing 5', 45, 2),
+('Test Listing 6', 45, 1),
+('Test Listing 7', 49, 2),
+('Test Listing 8', 49, 1),
+('Test Listing 9', 49, 2),
+('Missing Item Listing 10', 49, 6),
+('Test Listing 11', 50, 1),
+('Test Listing 10', 50, 2);
+
+
+INSERT INTO `#__mtcm_listings` (`name`, `author`, `request_name`, `request_desc`) VALUES
+('No Item Listing 13', 42, 'Hellsblade', 'New requested anime example'),
+('No Item Listing 14', 49, 'HellsbladeMega', 'New requested anime example');

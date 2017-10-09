@@ -26,13 +26,21 @@ class MiniTheatreCMModelEditListing extends JModelItem
 	protected $loggedusername;
 	protected $loggedrealname;
 	
-	protected $requestid;
+	protected $requestid;	//Note this is the $id, not associated to table data
 	protected $usermatched;
 	
 	protected $listingname;
 	protected $listingcontent;
 	protected $listinginfo;
 	protected $lastmodified;
+	protected $userlive;
+	protected $requestname;
+	protected $requestdesc;
+	protected $itemid;
+	
+	protected $itemstate;
+	protected $itemname;
+
 	
 	/**
 	 * Method to get a table object, load it if necessary.
@@ -53,30 +61,12 @@ class MiniTheatreCMModelEditListing extends JModelItem
 	// Method for loading User Id/Name and Request Id
 	private function popuser()
 	{
-		if( !isset( $this->loggeduser ))
-		{
-			$this->loggeduser = JFactory::getUser();
-		}
+		$this->loggeduser = JFactory::getUser();		
+		$this->loggeduserid = $this->loggeduser->get('id');
+		$this->loggedusername = $this->loggeduser->get('username');
+		$this->loggedrealname = $this->loggeduser->get('name');
 		
-		if( !isset( $this->loggeduserid ))
-		{
-			$this->loggeduserid = $this->loggeduser->get('id');
-		}
-		
-		if( !isset( $this->loggedusername ))
-		{
-			$this->loggedusername = $this->loggeduser->get('username');
-		}
-		
-		if( !isset( $this->loggedrealname ))
-		{
-			$this->loggedrealname = $this->loggeduser->get('name');
-		}
-		
-		if( !isset( $this->requestid ))
-		{
-			$this->requestid = JFactory::getApplication()->input->get('id', 0, 'INT');
-		}
+		$this->requestid = JFactory::getApplication()->input->get('id', 0, 'INT');
 	}
 	
 	// Method for checking if the record exists and if the logged user matches the author
@@ -128,25 +118,44 @@ class MiniTheatreCMModelEditListing extends JModelItem
 		$table->load($this->requestid);
 		
 		// Assign data to global variables
-		if( !isset( $this->listingname ))
+		$this->listingname = $table->name;
+		$this->listingcontent = $table->content;
+		$this->listinginfo = $table->description;
+		$this->lastmodified = $table->modified_on;
+		$this->userlive = $table->live;
+		$this->itemid = $table->item_id;
+		$this->requestname = $table->request_name;
+		$this->requestdesc = $table->request_desc;
+	}
+	
+	// Method for loading item data
+	private function popitem()
+	{
+		// Check Access
+		if( !$this->checkAccess() )
 		{
-			$this->listingname = $table->name;
+			return;
 		}
 		
-		if( !isset( $this->listingcontent ))
+		// Else check if popdata has been run
+		if( !isset( $this->itemid ))
 		{
-			$this->listingcontent = $table->content;
+			$this->popdata();
 		}
 		
-		if( !isset( $this->listinginfo ))
-		{
-			$this->listinginfo = $table->description;
-		}
+		// Finally, load the items table instance
+		$nametable = $this->getTable('Items', 'MiniTheatreCMTable', array());
 		
-		if( !isset( $this->lastmodified ))
+		// Assign data
+		if( $this->itemid == 0 )
 		{
-			$this->lastmodified = $table->modified_on;
+			$this->itemstate = 0;
 		}
+		else
+		{
+			$this->itemstate = ( $nametable->load($this->itemid) ) ? 1 : 2;
+		}
+		$this->itemname = ( $this->itemstate == 1 ) ? $nametable->name : '';
 	}
 		
 	/**
@@ -154,7 +163,8 @@ class MiniTheatreCMModelEditListing extends JModelItem
 	 *
 	 * - $usermatched
 	 * - $loggeduserid, $loggedusername, $requestid
-	 * - $listingname, $listingcontent, $lastmodified
+	 * - $listingname, $listingcontent, $listinginfo, $lastmodified, $userlive, $itemid, $requestname, $requestdesc
+	 * - $itemexists, $itemname
 	 */
 	public function getUserMatched()
 	{
@@ -260,4 +270,96 @@ class MiniTheatreCMModelEditListing extends JModelItem
 		}
 		return $this->lastmodified;
 	}
+	public function getUserLive()
+	{
+		// Verify Access
+		if( ! $this->checkAccess() )
+		{
+			return JText::_('COM_MINITHEATRECM_MESSAGE_UNAUTHORIZED_RECORD_ACCESS');
+		}
+		
+		// Else (if authorized)
+		if( !isset( $this->userlive ))
+		{
+			$this->popdata();
+		}
+		return $this->userlive;
+	}
+	public function getItemId()
+	{
+		// Verify Access
+		if( ! $this->checkAccess() )
+		{
+			return JText::_('COM_MINITHEATRECM_MESSAGE_UNAUTHORIZED_RECORD_ACCESS');
+		}
+		
+		// Else (if authorized)
+		if( !isset( $this->itemid ))
+		{
+			$this->popdata();
+		}
+		return $this->itemid;
+	}
+	public function getRequestName()
+	{
+		// Verify Access
+		if( ! $this->checkAccess() )
+		{
+			return JText::_('COM_MINITHEATRECM_MESSAGE_UNAUTHORIZED_RECORD_ACCESS');
+		}
+		
+		// Else (if authorized)
+		if( !isset( $this->requestname ))
+		{
+			$this->popdata();
+		}
+		return $this->requestname;
+	}
+	public function getRequestDesc()
+	{
+		// Verify Access
+		if( ! $this->checkAccess() )
+		{
+			return JText::_('COM_MINITHEATRECM_MESSAGE_UNAUTHORIZED_RECORD_ACCESS');
+		}
+		
+		// Else (if authorized)
+		if( !isset( $this->requestdesc ))
+		{
+			$this->popdata();
+		}
+		return $this->requestdesc;
+	}
+	
+	// -
+	public function getItemState()
+	{
+		// Verify Access
+		if( ! $this->checkAccess() )
+		{
+			return false;
+		}
+		// Else (if authorized)
+		if( !isset( $this->itemstate ))
+		{
+			$this->popitem();
+		}
+		return $this->itemstate;
+	}
+	public function getItemName()
+	{
+		// Verify Access
+		if( ! $this->checkAccess() )
+		{
+			return JText::_('COM_MINITHEATRECM_MESSAGE_UNAUTHORIZED_RECORD_ACCESS');
+		}
+		
+		// Else (if authorized)
+		if( !isset( $this->itemname ))
+		{
+			$this->popitem();
+		}
+		return $this->itemname;
+	}
+
 }

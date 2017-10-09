@@ -12,10 +12,10 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * UlWizSource Controller
+ * EditListing Controller
  *
  * @since  0.0.9
  */
-class MiniTheatreCMControllerUlWizSource extends JControllerForm
+class MiniTheatreCMControllerEditListing extends JControllerForm
 {
 }

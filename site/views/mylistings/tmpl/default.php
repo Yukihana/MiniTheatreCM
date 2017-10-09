@@ -33,21 +33,22 @@ $rowindex=0;
 				<th width="4%" class="nowrap center">
 					<?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_NUM'); ?>
 				</th>
-				<th width="50%" class="no-wrap">
+				<th width="50%" class="nowrap">
 					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_TITLE', 'name'); ?>
 				</th>
 				<th width="40%" class="nowrap">
 					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_ITEM', 'item_id'); ?>
 				</th>
 				<th width="1%" class="nowrap center">
-					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_PUBLISHED', 'published'); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_LIVE', 'live'); ?>
 				</th>
 				<th width="5%" class="nowrap center">
 					<?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_ACTIONS') ;?>
 				</th>
+			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($this->iListings as $i => $row) : $link = JRoute::_('index.php?option=com_minitheatrecm&task=listingedit.edit&id=' . $row->id); ?>
+			<?php foreach ($this->iListings as $i => $row) : $link = JRoute::_('index.php?option=com_minitheatrecm&task=editlisting.edit&id=' . $row->id); ?>
 			<tr>
 				<td class="right">
 					<?php echo $rowindex++;?>
@@ -58,16 +59,25 @@ $rowindex=0;
 					</a>
 				</td>
 				<td>
-					<a href="<?php echo 'index.php?option=com_minitheatrecm&view=item&id='.$row->item_id;?>" title="Insert Item Name Here">
-						<?php echo 'Insert Item Name Here-('.$row->item_id.')'; ?>
+					<?php if( $row->item_id == 0 ): ?>
+						<?php echo '('.JText::_('COM_MINITHEATRECM_DICTIONARY_REQUESTED').') '.$row->request_name;?>
+						
+					<?php elseif ( isset( $this->iItemNames[$row->item_id] )): ?>
+					<a href="<?php echo 'index.php?option=com_minitheatrecm&view=item&id='.$row->item_id;?>" title="<?php echo JText::_('COM_MINITHEATRECM_MESSAGE_GOTOTHISITEM');?>">
+						<?php echo $this->iItemNames[$row->item_id];?>
 					</a>
+					
+					<?php else: ?>
+						<?php echo JText::_('COM_MINITHEATRECM_MESSAGE_ITEMMISSING').' (ID: '.$row->item_id.')';?>
+						
+					<?php endif;?>
 				</td>
 				<td class="center">
-					<?php echo JHtml::_('jgrid.published', $row->state, $i, 'mylistings.', true, 'cb'); ?>
+					<?php echo ( $row->item_id == 0 || !isset( $this->iItemNames[$row->item_id] )) ? 'N/A' : JText::_( ($row->live) ? 'JYES' : 'JNO' );?>
 				</td>
 				<td class="center" nowrap>
-					<a href="<?php echo 'index.php?option=com_minitheatrecm&view=editlisting&id='.$row->id; ?>">Edit</a>
-					<a href="<?php echo 'index.php?option=com_minitheatrecm&view=deletelisting&id='.$row->id; ?>">Delete</a>
+					<a href="<?php echo $link;?>" title="<?php echo JText::_('COM_MINITHEATRECM_MYLISTINGS_LEGEND_EDIT');?>"><span class="icon-pencil-2"></span></a>
+					<a href="<?php echo JRoute::_('index.php?option=com_minitheatrecm&view=deletelisting&id='.$row->id);?>" title="<?php echo JText::_('COM_MINITHEATRECM_MYLISTINGS_LEGEND_DELETE');?>"><span class="icon-trash"></span></a>
 				</td>
 			</tr>			
 			<?php endforeach; ?>
@@ -75,4 +85,3 @@ $rowindex=0;
 	</table>
 </form>
 <?php endif;?>
-<? /* php/iList should contain the rows as data */ ?>

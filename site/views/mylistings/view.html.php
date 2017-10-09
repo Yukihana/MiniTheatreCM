@@ -25,6 +25,7 @@ class MiniTheatreCMViewMyListings extends JViewLegacy
 		// Assign data to the view
 		$this->iLoggedIn	= $this->get('LoggedIn');
 		$this->iListings 	= $this->get('Listings');
+		$this->iItemNames	= $this->get('ItemNames');
 		$this->pagination	= $this->get('Pagination');
 		$this->iPageTitle 	= JText::_('COM_MINITHEATRECM_MYLISTINGS_HEADING');
 		
