@@ -18,68 +18,104 @@ defined('_JEXEC') or die('Restricted access');
  */
 class MiniTheatreCMModelItem extends JModelItem
 {
-	// Table Definitions
-	public function getWikiItemsTable($type = 'WikiItems', $prefix = 'MiniTheatreCMTable', $config = array())
+	// Table Definition
+	public function getTable($type = 'Items', $prefix = 'MiniTheatreCMTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
 	
-	// Storage Vars (Array, indices loaded individually, on demand)
-	protected $names;
-	protected $contents;
-
-	// Get Item Name
-	public function getItemName($id=1)
+	// Storage Vars
+	protected $loggedin;
+	protected $id;
+	protected $exists;
+	protected $itemname;
+	protected $itemcontent;
+	
+	// Data Authenticator and Loader
+	public function popdata()
 	{
-		if(!is_array($this->names))
+		// Load and verify Logged-In status
+		if( !isset( $this->loggedin ))
 		{
-			$this->names = array();
+			$this->loggedin = (JFactory::getUser()->get('id') != 0);
 		}
-
-		if (!isset($this->names[$id]))
+		if( !$this->loggedin )
 		{
-			// Request the selected id
-			$jinput = JFactory::getApplication()->input;
-			$id     = $jinput->get('id', 1, 'INT');
-
-			// Get a TableWikiItems instance
-			$table = $this->getWikiItemsTable();
-
-			// Load the message
-			$table->load($id);
-
-			// Assign the message
-			$this->names[$id] = $table->name;
+			return;
 		}
 		
-		return $this->names[$id];
+		// Load ID, check if record exists
+		$this->id = JFactory::getApplication()->input->get('id',0,'INT');
+		$table = $this->getTable();
+		if ( $this->id == 0 )
+		{
+			$this->exists = 0;
+		}
+		else
+		{
+			$this->exists = $table->load($this->id) ? 1 : 2;
+		}
+		if( $this->exists != 1 )
+		{
+			return;
+		}
+		
+		// Load Table Data
+		$this->itemname = $table->name;
+		$this->itemcontent = $table->content;
+		/*
+		 * Subsequently load other record data here
+		 */
+	}
+	
+	/**
+	 * Get Methods:
+	 * $loggedin, $id
+	 * $itemname, $itemcontent
+	 */
+	public function getLoggedIn()
+	{
+		if( !isset( $this->loggedin ))
+		{
+			$this->popdata();
+		}
+		return $this->loggedin;
+	}
+	public function getId()
+	{
+		if( !isset( $this->id ))
+		{
+			$this->popdata();
+		}
+		return $this->id;
+	}
+	public function getExists()
+	{
+		if( !isset( $this->exists ))
+		{
+			$this->popdata();
+		}
+		return $this->exists;
+	}
+	
+	// -
+	public function getItemName()
+	{
+		if( !isset( $this->itemname ))
+		{
+			$this->popdata();
+		}
+		return $this->itemname;
 	}
 	
 	// Get Item Content
-	public function getItemContent($id=1)
+	public function getItemContent()
 	{
-		if(!is_array($this->contents))
+		if( !isset( $this->itemcontent ))
 		{
-			$this->contents = array();
+			$this->popdata();
 		}
-
-		if (!isset($this->contents[$id]))
-		{
-			// Request the selected id
-			$jinput = JFactory::getApplication()->input;
-			$id     = $jinput->get('id', 1, 'INT');
-
-			// Get a TableWikiItems instance
-			$table = $this->getWikiItemsTable();
-
-			// Load the message
-			$table->load($id);
-
-			// Assign the message
-			$this->contents[$id] = $table->content;
-		}
-		
-		return $this->contents[$id];
+		return $this->itemcontent;
 	}
 	
 }

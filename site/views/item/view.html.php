@@ -27,9 +27,16 @@ class MiniTheatreCMViewItem extends JViewLegacy
 	 */
 	function display($tpl = null)
 	{
-		// Assign data to the view
-		$this->iTitle = $this->get('ItemName');
-		$this->iContent = $this->get('ItemContent');
+		// Authenticate
+		$this->LoggedIn = $this->get('LoggedIn');
+		$this->Id = $this->get('Id');
+		$this->Exists = $this->LoggedIn ? $this->get('Exists') : 0;
+		
+		if( $this->Exists == 1 )
+		{
+			$this->iName = $this->get('ItemName');
+			$this->iContent = $this->get('ItemContent');
+		}
 		
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
