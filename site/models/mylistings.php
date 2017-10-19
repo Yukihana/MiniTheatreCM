@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class MiniTheatreCMModelMyListings extends JModelItem //change to JModelItem if causing problems. This is legacy code.
+class MiniTheatreCMModelMyListings extends JModelList
 {
 	// Joomla API Table Load Header Method
 	public function getTable($type = 'Listings', $prefix = 'MiniTheatreCMTable', $config = array())
@@ -24,6 +24,7 @@ class MiniTheatreCMModelMyListings extends JModelItem //change to JModelItem if 
 		return JTable::getInstance($type, $prefix, $config);
 	}
 	
+	// Load Storage Data
 	protected $loggeduserid;
 	protected $listings;
 	protected $itemnames;
@@ -38,32 +39,32 @@ class MiniTheatreCMModelMyListings extends JModelItem //change to JModelItem if 
 	}
 	
 	// Method to load listings
-	private function poplistings()
+	protected function getListQuery()
 	{
 		if( !isset( $this->loggeduserid ))
 		{
 			$this->popuser();
 		}
 		
-		// Get a DB connection
+		// Load required records from the database
 		$db = JFactory::getDbo();
-		
-		// Do Query
 		$query = $db->getQuery(true);
 		$query->select($db->quoteName( array('id', 'name', 'author', 'item_id', 'live', 'request_name')));
 		$query->from($db->quoteName('#__mtcm_listings'));
 		$query->where($db->quoteName('author').'='.$this->loggeduserid);
 		$db->setQuery($query);
 		
-		// Load results
+		// Store and return results
 		$this->listings = $db->loadObjectList();
+		return $query;
 	}
 	
-	private function popitemnames()
+	//Method to load Associated Item Names
+	protected function popitemnames()
 	{
 		if( !isset( $this->listings ))
 		{
-			$this->poplistings();
+			$this->getListQuery();
 		}
 		if( !is_array( $this->itemnames ))
 		{
@@ -88,11 +89,7 @@ class MiniTheatreCMModelMyListings extends JModelItem //change to JModelItem if 
 		}
 	}
 	
-	/**
-	 * Get functions
-	 * - $UserId, $LoggedIn
-	 * - $Listings, $ItemNames
-	 */
+	// Get functions for $UserId, $LoggedIn, $ItemNames
 	public function getUserId()
 	{
 		if( !isset( $this->loggeduserid ))
@@ -108,15 +105,6 @@ class MiniTheatreCMModelMyListings extends JModelItem //change to JModelItem if 
 			$this->popuser();
 		}
 		return ($this->loggeduserid != 0);
-	}
-	
-	public function getListings()
-	{
-		if( !isset( $this->listings ))
-		{
-			$this->poplistings();
-		}
-		return $this->listings;
 	}
 	public function getItemNames()
 	{

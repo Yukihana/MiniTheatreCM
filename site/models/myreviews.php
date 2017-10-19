@@ -18,16 +18,18 @@ defined('_JEXEC') or die('Restricted access');
  */
 class MiniTheatreCMModelMyReviews extends JModelList
 {
-	// Load Storage Data
-	protected $loggeduserid;
-	protected $reviews;
-	protected $itemnames;
-	
 	// Joomla API Table Load Header Method
 	public function getTable($type = 'Reviews', $prefix = 'MiniTheatreCMTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
+	
+	// Load Storage Data
+	protected $loggeduserid;
+	protected $reviews;
+	protected $itemnames;
+	
+	
 		
 	/**
 	 * Constructor.
@@ -56,6 +58,7 @@ class MiniTheatreCMModelMyReviews extends JModelList
 		{
 			$this->popuser();
 		}
+		
 		// Load required records from the database
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
@@ -64,8 +67,8 @@ class MiniTheatreCMModelMyReviews extends JModelList
 		$query->where($db->quoteName('author').'='.$this->loggeduserid);
 		$db->setQuery($query);
 		
+		// Store and return results
 		$this->reviews = $db->loadObjectList();
-		
 		return $query;
 	}
 	

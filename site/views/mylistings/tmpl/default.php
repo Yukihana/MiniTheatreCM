@@ -15,12 +15,12 @@ $rowindex=0;
 
 <h3 class="page-header"><?php echo JText::_('COM_MINITHEATRECM_MYLISTINGS_HEADING');?></h3>
 
-<?php if ( ! $this->iLoggedIn ) : ?>
+<?php if ( ! $this->loggedin ) : ?>
 <div class="alert alert-warning">
 	<?php echo JText::_('JGLOBAL_YOU_MUST_LOGIN_FIRST'); ?>
 </div>
 
-<?php elseif (empty($this->iListings)) : ?>
+<?php elseif (empty($this->items)) : ?>
 <div class="alert alert-no-items">
 	<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 </div>
@@ -48,10 +48,10 @@ $rowindex=0;
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($this->iListings as $i => $row) : $link = JRoute::_('index.php?option=com_minitheatrecm&task=editlisting.edit&id=' . $row->id); ?>
+			<?php foreach ($this->items as $i => $row) : $link = JRoute::_('index.php?option=com_minitheatrecm&task=editlisting.edit&id=' . $row->id); ?>
 			<tr>
 				<td class="right">
-					<?php echo $rowindex++;?>
+					<?php echo $this->pagination->getRowOffset($i);?>
 				</td>					
 				<td>
 					<a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_MINITHEATRECM_MYLISTINGS_LEGEND_EDIT'); ?>">
@@ -62,9 +62,9 @@ $rowindex=0;
 					<?php if( $row->item_id == 0 ): ?>
 						<?php echo '('.JText::_('COM_MINITHEATRECM_DICTIONARY_REQUESTED').') '.$row->request_name;?>
 						
-					<?php elseif ( isset( $this->iItemNames[$row->item_id] )): ?>
+					<?php elseif ( isset( $this->itemnames[$row->item_id] )): ?>
 					<a href="<?php echo 'index.php?option=com_minitheatrecm&view=item&id='.$row->item_id;?>" title="<?php echo JText::_('COM_MINITHEATRECM_MESSAGE_GOTOTHISITEM');?>">
-						<?php echo $this->iItemNames[$row->item_id];?>
+						<?php echo $this->itemnames[$row->item_id];?>
 					</a>
 					
 					<?php else: ?>
@@ -73,7 +73,7 @@ $rowindex=0;
 					<?php endif;?>
 				</td>
 				<td class="center">
-					<?php echo ( $row->item_id == 0 || !isset( $this->iItemNames[$row->item_id] )) ? 'N/A' : JText::_( ($row->live) ? 'JYES' : 'JNO' );?>
+					<?php echo ( $row->item_id == 0 || !isset( $this->itemnames[$row->item_id] )) ? 'N/A' : JText::_( ($row->live) ? 'JYES' : 'JNO' );?>
 				</td>
 				<td class="center" nowrap>
 					<a href="<?php echo $link;?>" title="<?php echo JText::_('COM_MINITHEATRECM_MYLISTINGS_LEGEND_EDIT');?>"><span class="icon-pencil-2"></span></a>
