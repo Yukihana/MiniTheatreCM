@@ -12,24 +12,36 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * MyListings Model
+ * MyReviews List Model
  *
  * @since  0.0.1
  */
-class MiniTheatreCMModelMyListings extends JModelItem //change to JModelItem if causing problems. This is legacy code.
+class MiniTheatreCMModelMyReviews extends JModelList
 {
+	// Load Storage Data
+	protected $loggeduserid;
+	protected $reviews;
+	protected $itemnames;
+	
 	// Joomla API Table Load Header Method
-	public function getTable($type = 'Listings', $prefix = 'MiniTheatreCMTable', $config = array())
+	public function getTable($type = 'Reviews', $prefix = 'MiniTheatreCMTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
-	
-	protected $loggeduserid;
-	protected $listings;
-	protected $itemnames;
-	
+		
+	/**
+	 * Constructor.
+	 *
+	 * @param   array  $config  An optional associative array of configuration settings.
+	 *
+	 * @see     JController
+	 * @since   1.6
+	 */
+	 
+	// Will pop this later 
+	 
 	// Method to load user details
-	private function popuser()
+	protected function popuser()
 	{
 		if( !isset( $this->loggeduserid ))
 		{
@@ -37,33 +49,32 @@ class MiniTheatreCMModelMyListings extends JModelItem //change to JModelItem if 
 		}
 	}
 	
-	// Method to load listings
-	private function poplistings()
+	// Method to load records from the database
+	protected function getListQuery()
 	{
 		if( !isset( $this->loggeduserid ))
 		{
 			$this->popuser();
 		}
-		
-		// Get a DB connection
-		$db = JFactory::getDbo();
-		
-		// Do Query
+		// Load required records from the database
+		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
-		$query->select($db->quoteName( array('id', 'name', 'author', 'item_id', 'live', 'request_name')));
-		$query->from($db->quoteName('#__mtcm_listings'));
+		$query->select($db->quoteName( array('id','item_id','live','created','modified')));
+        $query->from($db->quoteName('#__mtcm_reviews'));
 		$query->where($db->quoteName('author').'='.$this->loggeduserid);
 		$db->setQuery($query);
 		
-		// Load results
-		$this->listings = $db->loadObjectList();
+		$this->reviews = $db->loadObjectList();
+		
+		return $query;
 	}
 	
-	private function popitemnames()
+	//Method to load Associated Item Names
+	protected function popitemnames()
 	{
-		if( !isset( $this->listings ))
+		if( !isset( $this->reviews ))
 		{
-			$this->poplistings();
+			$this->getListQuery();
 		}
 		if( !is_array( $this->itemnames ))
 		{
@@ -73,7 +84,7 @@ class MiniTheatreCMModelMyListings extends JModelItem //change to JModelItem if 
 		// Database connection
 		$table = $this->getTable('Items', 'MiniTheatreCMTable', array());
 		
-		foreach( $this->listings as $row )
+		foreach( $this->reviews as $row )
 		{
 			$id = $row->item_id;
 			
@@ -88,11 +99,7 @@ class MiniTheatreCMModelMyListings extends JModelItem //change to JModelItem if 
 		}
 	}
 	
-	/**
-	 * Get functions
-	 * - $UserId, $LoggedIn
-	 * - $Listings, $ItemNames
-	 */
+	// Get functions for $UserId, $LoggedIn, $ItemNames
 	public function getUserId()
 	{
 		if( !isset( $this->loggeduserid ))
@@ -108,15 +115,6 @@ class MiniTheatreCMModelMyListings extends JModelItem //change to JModelItem if 
 			$this->popuser();
 		}
 		return ($this->loggeduserid != 0);
-	}
-	
-	public function getListings()
-	{
-		if( !isset( $this->listings ))
-		{
-			$this->poplistings();
-		}
-		return $this->listings;
 	}
 	public function getItemNames()
 	{

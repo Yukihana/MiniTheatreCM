@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_metadatas` (
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Data: Listings, Reviews
+-- User Data: Listings, Reviews
 CREATE TABLE IF NOT EXISTS `#__mtcm_listings` (
 	`id`				INT(11)			NOT NULL AUTO_INCREMENT,
 	`name`				VARCHAR(255)	NOT NULL,
@@ -37,14 +37,18 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_listings` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `#__mtcm_reviews` (
-	`id`		INT(11)			NOT NULL AUTO_INCREMENT,
-	`name`		VARCHAR(255)	NOT NULL,
-	`content`	TEXT			NOT NULL DEFAULT '',
-	`state`		INT(10)			NOT NULL DEFAULT '1',
+	`id`			INT(11)			NOT NULL AUTO_INCREMENT,
+	`author`		INT(10)			NOT NULL DEFAULT '0',
+	`item_id`		INT(10)			NOT NULL DEFAULT '0',
+	`content`		TEXT			NOT NULL DEFAULT '',
+	`state`			INT(10)			NOT NULL DEFAULT '1',
+	`live`			BOOLEAN			NOT NULL DEFAULT '1',
+	`created`		TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
+	`modified`		DATETIME		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Items, Franchises
+-- Community Data: Items, Franchises
 CREATE TABLE IF NOT EXISTS `#__mtcm_items` (
 	`id`				INT(11)			NOT NULL AUTO_INCREMENT,
 	`name`				VARCHAR(255)	NOT NULL,
@@ -100,10 +104,47 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_franchises` (
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- Helpers: Genres
 CREATE TABLE IF NOT EXISTS `#__mtcm_genres` (
 	`id`		INT(11)			NOT NULL AUTO_INCREMENT,
 	`name`		VARCHAR(255)	NOT NULL,
 	`content`	TEXT			NOT NULL DEFAULT '',
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Ratings: Listings, Reviews, Items, Franchises
+CREATE TABLE IF NOT EXISTS `#__mtcm_ratings_listings` (
+	`id`			INT(11)			NOT NULL AUTO_INCREMENT,
+	`user_id`		INT(10)			NOT NULL DEFAULT '0',
+	`listing_id`	INT(10)			NOT NULL DEFAULT '0',
+	`rating`		TINYINT			NOT NULL DEFAULT '0',
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `#__mtcm_ratings_reviews` (
+	`id`			INT(11)			NOT NULL AUTO_INCREMENT,
+	`user_id`		INT(10)			NOT NULL DEFAULT '0',
+	`review_id`		INT(10)			NOT NULL DEFAULT '0',
+	`vote`			TINYINT			NOT NULL DEFAULT '0' COMMENT '1 for upvote, -1 for downvote, 0 for unvoted',
+	`reaction`		TINYINT			NOT NULL DEFAULT '0',
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `#__mtcm_ratings_items` (
+	`id`			INT(11)			NOT NULL AUTO_INCREMENT,
+	`user_id`		INT(10)			NOT NULL DEFAULT '0',
+	`item_id`		INT(10)			NOT NULL DEFAULT '0',
+	`rating`		TINYINT			NOT NULL DEFAULT '0',
+	`recommend`		BOOLEAN			NOT NULL DEFAULT '0',
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `#__mtcm_ratings_franchises` (
+	`id`			INT(11)			NOT NULL AUTO_INCREMENT,
+	`user_id`		INT(10)			NOT NULL DEFAULT '0',
+	`franchise_id`	INT(10)			NOT NULL DEFAULT '0',
+	`rating`		TINYINT			NOT NULL DEFAULT '0',
+	`recommend`		BOOLEAN			NOT NULL DEFAULT '0',
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -140,7 +181,16 @@ INSERT INTO `#__mtcm_listings` (`name`, `author`, `item_id`) VALUES
 ('Test Listing 11', 50, 1),
 ('Test Listing 10', 50, 2);
 
-
 INSERT INTO `#__mtcm_listings` (`name`, `author`, `request_name`, `request_desc`) VALUES
 ('No Item Listing 13', 42, 'Hellsblade', 'New requested anime example'),
 ('No Item Listing 14', 49, 'HellsbladeMega', 'New requested anime example');
+
+INSERT INTO `#__mtcm_reviews` (`author`, `item_id`) VALUES
+(42, 1),
+(43, 1),
+(49, 1),
+(50, 1),
+(42, 2),
+(43, 2),
+(49, 2),
+(50, 2);

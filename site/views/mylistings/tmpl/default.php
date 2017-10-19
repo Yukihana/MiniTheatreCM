@@ -13,7 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 $rowindex=0;
 ?>
 
-<h3 class="page-header"><?php echo $this->iPageTitle; ?></h3>
+<h3 class="page-header"><?php echo JText::_('COM_MINITHEATRECM_MYLISTINGS_HEADING');?></h3>
 
 <?php if ( ! $this->iLoggedIn ) : ?>
 <div class="alert alert-warning">

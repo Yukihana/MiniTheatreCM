@@ -11,32 +11,39 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-class MiniTheatreCMViewMyListings extends JViewLegacy
+/**
+ * MyReviews View
+ *
+ * @since  0.0.1
+ */
+ class MiniTheatreCMViewMyReviews extends JViewLegacy
 {
 	/**
-	 * Display the MyListings view
+	 * Display the MyReviews view
 	 *
 	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
 	 *
 	 * @return  void
 	 */
-	function display($tpl = null)
+	 function display($tpl = null)
 	{
-		// Assign data to the view
-		$this->iLoggedIn	= $this->get('LoggedIn');
-		$this->iListings 	= $this->get('Listings');
-		$this->iItemNames	= $this->get('ItemNames');
-		$this->pagination	= $this->get('Pagination');
+		
+		
+		// Assign data
+		$this->loggedin			= $this->get('LoggedIn');
+		$this->itemnames		= $this->get('ItemNames');
+		$this->items			= $this->get('Items');
+		$this->pagination		= $this->get('Pagination');
 		
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
-			JLog::add(implode('<br />', $errors), JLog::WARNING, 'jerror');
+			JError::raiseError(500, implode('<br />', $errors));
 
 			return false;
 		}
-
-		// Display the view
+		
+		// Display the template
 		parent::display($tpl);
 	}
 }
