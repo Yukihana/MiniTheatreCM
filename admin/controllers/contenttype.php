@@ -10,20 +10,12 @@
   
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+
 /**
- * MiniTheatreCM General Controller
+ * ContentType Controller
  *
- * @since  0.0.7
+ * @since  0.0.9
  */
-class MiniTheatreCMController extends JControllerLegacy
+class MiniTheatreCMControllerContentType extends JControllerForm
 {
-	/**
-	 * The default view for the display method.
-	 *
-	 * @var string
-	 * @since 12.2
-	 */
-	protected $default_view = 'contenttypes';
-	
-	/* TODO change this later to the default backend view */
 }

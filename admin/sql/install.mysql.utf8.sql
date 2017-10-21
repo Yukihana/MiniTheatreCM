@@ -149,6 +149,7 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_ratings_franchises` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Admin: UploadWizards
+-- Legacy Version
 CREATE TABLE IF NOT EXISTS `#__mtcm_admin_ulwiz` (
 	`id`		INT(11)			NOT NULL AUTO_INCREMENT,
 	`wname`		VARCHAR(25)		NOT NULL,
@@ -156,7 +157,28 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_admin_ulwiz` (
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- New Version (Add content types after deciding the mechanism)
+CREATE TABLE IF NOT EXISTS `#__mtcm_contenttypes` (
+	`id`				INT(10)			NOT NULL AUTO_INCREMENT,
+	`name`				VARCHAR(255)	NOT NULL DEFAULT '',
+	`metafields`		TEXT			NOT NULL DEFAULT '',
+	`state`				TINYINT(4)		NOT NULL DEFAULT '1',
+	`allow_request`		BOOLEAN			NOT NULL DEFAULT '0',
+	`author`			INT(10)			NOT NULL DEFAULT '0',
+	`recentedit`		INT(10)			NOT NULL DEFAULT '0',
+	`created`			TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
+	`modified`			DATETIME		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- Test Values, release version won't be using these.
+INSERT INTO `#__mtcm_contenttypes` (`name`, `author`) VALUES
+('Anime', 42),
+('Movie', 43);
+INSERT INTO `#__mtcm_contenttypes` (`name`) VALUES
+('Manga'),
+('Dorama');
+
 INSERT INTO `#__mtcm_admin_ulwiz` (`wname`) VALUES
 ('Anime'),
 ('Movie'),

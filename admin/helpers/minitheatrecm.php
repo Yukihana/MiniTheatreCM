@@ -34,7 +34,12 @@ abstract class MiniTheatreCMHelper extends JHelperContent
 			JText::_('COM_MINITHEATRECM_MANAGER_OVERVIEW_TITLE'),
 			'index.php?option=com_minitheatrecm&view=overview',
 			$submenu == 'overview'
-		);		
+		);
+		JHtmlSidebar::addEntry(
+			JText::_('COM_MINITHEATRECM_TITLE_CONTENTTYPES'),
+			'index.php?option=com_minitheatrecm&view=contenttypes',
+			$submenu == 'contenttypes'
+		);
 		JHtmlSidebar::addEntry(
 			JText::_('COM_MINITHEATRECM_MANAGER_LISTINGS_TITLE'),
 			'index.php?option=com_minitheatrecm&view=listings',
