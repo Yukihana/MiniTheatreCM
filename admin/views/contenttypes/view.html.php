@@ -30,6 +30,7 @@ defined('_JEXEC') or die('Restricted access');
 		$this->pagination		= $this->get('Pagination');
 		$this->state			= $this->get('State');
 		$this->names			= $this->get('Usernames');
+		$this->groups			= $this->get('Usergroups');
 		
 		//DebugData
 		$this->itemcount = count($this->items);

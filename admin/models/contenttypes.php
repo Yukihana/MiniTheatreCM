@@ -20,6 +20,7 @@ class MiniTheatreCMModelContentTypes extends JModelList
 {
 	//Storage Data
 	protected $usernames;
+	protected $usergroups;
 	
 	// SQL Query to load List Data
 	protected function getListQuery()
@@ -42,18 +43,45 @@ class MiniTheatreCMModelContentTypes extends JModelList
 			$this->usernames = array();
 		}
 		
-		// Check for all user-ids in author and recentedit fields
+		// Load all author and recentedit id data into a unique array
+		$userids = array();
 		foreach( $items as $item )
 		{
-			if( $item->author != 0 && !isset( $this->usernames[$item->author] ))
+			array_push( $userids, $item->author, $item->recentedit );
+		}
+		$userids = array_unique( $userids );
+		
+		// Check IDs vs User Table and load their names/usernames
+		$table = JUser::getTable();
+		foreach( $userids as $id )
+		{
+			if( $table->load( $id ))
 			{
-				$this->usernames[$item->author] = JFactory::getUser($item->author)->get('name');
-			}
-			if( $item->recentedit != 0 && !isset( $this->usernames[$item->recentedit] ))
-			{
-				$this->usernames[$item->recentedit] = JFactory::getUser($item->recentedit)->get('name');
+				$this->usernames[$id] = ($table->name != '') ? $table->username : $table->username;
 			}
 		}
+
+		// Return data
 		return $this->usernames;
+	}
+	
+	public function getUsergroups()
+	{
+		// Initialize Data
+		$items = $this->getItems();
+		if( !isset( $this->usergroups ))
+		{
+			$this->usergroups = array();
+		}
+		
+		// Check for associated user groups and fetch their names
+		foreach( $items as $item )
+		{
+			if( $item->access != 0 && !isset( $this->usergroups[$item->access] ))
+			{
+				$this->usergroups[$item->access] = JAccess::getGroupTitle($item->access);
+			}
+		}
+		return $this->usergroups;
 	}
 }
