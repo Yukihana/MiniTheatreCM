@@ -106,9 +106,14 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_franchises` (
 
 -- Helpers: Genres
 CREATE TABLE IF NOT EXISTS `#__mtcm_genres` (
-	`id`		INT(11)			NOT NULL AUTO_INCREMENT,
-	`name`		VARCHAR(255)	NOT NULL,
-	`content`	TEXT			NOT NULL DEFAULT '',
+	`id`			INT(11)			NOT NULL AUTO_INCREMENT,
+	`name`			VARCHAR(255)	NOT NULL,
+	`content`		TEXT			NOT NULL DEFAULT '',
+	`author`		INT(10)			NOT NULL DEFAULT '0',
+	`recentedit`	INT(10)			NOT NULL DEFAULT '0',
+	`state`			INT(10)			NOT NULL DEFAULT '1',
+	`created`		TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
+	`modified`		DATETIME		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -217,3 +222,12 @@ INSERT INTO `#__mtcm_reviews` (`author`, `item_id`) VALUES
 (43, 2),
 (49, 2),
 (50, 2);
+
+INSERT INTO `#__mtcm_genres` (`name`, `author`) VALUES
+('Fiction', 0),
+('Horror', 42),
+('Comedy', 43),
+('Ecchi', 65),
+('School', 49),
+('Drama', 50),
+('Romance', 100);

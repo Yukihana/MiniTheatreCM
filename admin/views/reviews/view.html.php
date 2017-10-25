@@ -26,10 +26,11 @@ class MiniTheatreCMViewReviews extends JViewLegacy
 	 * @return  void
 	 */
 	function display($tpl = null)
-	{/*
+	{
 		// Get data from the model
 		$this->items		= $this->get('Items');
 		$this->pagination	= $this->get('Pagination');
+		$this->users		= $this->get('Users');
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))

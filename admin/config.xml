@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	
+	<fieldset name="mtcm_perms" label="COM_MINITHEATRECM_DICTIONARY_PERMISSIONS" description="COM_MINITHEATRECM_CONFIG_DESC_PERMS">
+		<field name="submission_access" type="usergrouplist"
+			label="COM_MINITHEATRECM_CONFIG_SUBWIZACCESS_LABEL"
+			description="COM_MINITHEATRECM_CONFIG_SUBWIZACCESS_DESC"
+			checksuperusergroup="1"/>
+	</fieldset>
+	
+	<fieldset name="mtcm_admin" label="JADMINISTRATION" description="COM_MINITHEATRECM_CONFIG_DESC_ADMIN">
+		<field
+			name="overview_type" type="radio" default="1"
+			label="COM_MINITHEATRECM_CONFIG_OVERVIEWTYPE_LABEL"
+			description="COM_MINITHEATRECM_CONFIG_OVERVIEWTYPE_DESC"
+			class="btn-group btn-group-yesno"
+		>
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_BASIC</option>
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_DETAILED</option>
+		</field>
+	</fieldset>
+	
+</config>

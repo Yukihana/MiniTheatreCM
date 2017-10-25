@@ -4,13 +4,13 @@
     <name>COM_MINITHEATRECM</name>
 	
 	<!--Optional Content-->
-	<creationDate>24 August 2017</creationDate>
+	<creationDate>24/08/2017</creationDate>
 	<author>Yuki (RiA)</author>
 	<authorEmail>lilyflowerangel@gmail.com</authorEmail>
 	<authorUrl>http://fb.me/LilyflowerAngel</authorUrl>
 	<copyright>CherrySoft-X 2017, MiniTheatre 2017</copyright>
 	<license>GNU/GPL</license>
-	<version>0.0.11</version>
+	<version>0.0.12</version>
 	<description>COM_MINITHEATRECM_DESCRIPTION</description>
 	
 	<install> <!-- Runs on install -->
@@ -56,19 +56,25 @@
 	<administration>
 	    <!--Admin Menu Section-->
 	    <menu link="option=com_minitheatrecm">COM_MINITHEATRECM_MENU</menu>
+		<submenu>
+			<!--Note: Always escape '&' to '&amp'-->
+			<menu view="items">COM_MINITHEATRECM_MENU_ITEMS</menu>
+			
+		</submenu>
 		
 		<!--Backend Base Folder Manifest-->
 		<files folder="admin">
 		    <filename>index.html</filename>
 			<filename>minitheatrecm.php</filename>
 			<filename>controller.php</filename>
+			<filename>config.xml</filename>
 			
-			<folder>controllers</folder>			
+			<folder>controllers</folder>
+			<folder>helpers</folder>
 			<folder>models</folder>
 			<folder>sql</folder>
 			<folder>tables</folder>
 			<folder>views</folder>
-			<folder>helpers</folder>
 			
 		</files>
 		

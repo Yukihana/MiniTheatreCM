@@ -26,19 +26,29 @@ class MiniTheatreCMViewOverview extends JViewLegacy
 	 * @return  void
 	 */
 	function display($tpl = null)
-	{/*
+	{
+		// Include CCS & JS
+		$doc = JFactory::getDocument();
+		$doc->addStyleSheet( JUri::base().'components/com_minitheatrecm/views/overview/tmpl/default.css' );
+		
 		// Get data from the model
-		$this->items		= $this->get('Items');
-		$this->pagination	= $this->get('Pagination');
-
+		$this->layoutmode = $this->get('LayoutMode');
+		$this->itemsdata	= $this->get('ItemsData');
+		
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
 			JError::raiseError(500, implode('<br />', $errors));
 
 			return false;
-		}*/
+		}
 
+		// Set the Layout
+		if( $this->layoutmode == 1 )
+		{
+			$tpl = 'advanced';
+		}
+		
 		// Set the submenu
 		MiniTheatreCMHelper::addSubmenu('overview');
 		
@@ -58,8 +68,13 @@ class MiniTheatreCMViewOverview extends JViewLegacy
 	 */
 	protected function addToolBar()
 	{
-		$title = JText::_('COM_MINITHEATRECM_MANAGER_OVERVIEW_TITLE');
+		JToolbarHelper::title(
+			JText::_('COM_MINITHEATRECM_TITLE_OVERVIEW')
+			.' ('
+			.JText::_( ($this->layoutmode == 1) ? 'COM_MINITHEATRECM_DICTIONARY_DETAILED' : 'COM_MINITHEATRECM_DICTIONARY_BASIC' )
+			.')'
+			, 'chart' );
 		
-		JToolbarHelper::title($title, 'chart');		
+		JToolbarHelper::custom('overview.showdetails', 'refresh', 'refresh', 'Show-Hide', false);
 	}
 }

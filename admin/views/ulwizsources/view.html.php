@@ -99,6 +99,6 @@ defined('_JEXEC') or die('Restricted access');
 	protected function setDocument() 
 	{
 		$document = JFactory::getDocument();
-		$document->setTitle(JText::_('COM_MINITHEATRECM_DICTIONARY_ADMINISTRATION').' - '.JText::_('COM_MINITHEATRECM_GLOBAL_LONGTITLE'));
+		$document->setTitle(JText::_('JADMINISTRATION').' - '.JText::_('COM_MINITHEATRECM_GLOBAL_LONGTITLE'));
 	}
 }

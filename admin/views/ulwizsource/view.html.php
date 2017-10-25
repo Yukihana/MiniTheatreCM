@@ -100,7 +100,7 @@ class MiniTheatreCMViewUlWizSource extends JViewLegacy
 		$document = JFactory::getDocument();
 		$document->setTitle(
 			JText::_($isNew ? 'COM_MINITHEATRECM_ULWIZSOURCE_TITLE_NEW' : 'COM_MINITHEATRECM_ULWIZSOURCE_TITLE_EDIT').' - '.
-			JText::_('COM_MINITHEATRECM_DICTIONARY_ADMINISTRATION').' - '.
+			JText::_('JADMINISTRATION').' - '.
 			JText::_('COM_MINITHEATRECM_GLOBAL_TITLE')
 		);
 		$document->addScript(JURI::root() . $this->script);

@@ -31,7 +31,7 @@ abstract class MiniTheatreCMHelper extends JHelperContent
 	public static function addSubmenu($submenu) 
 	{
 		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_MANAGER_OVERVIEW_TITLE'),
+			JText::_('COM_MINITHEATRECM_TITLE_OVERVIEW'),
 			'index.php?option=com_minitheatrecm&view=overview',
 			$submenu == 'overview'
 		);

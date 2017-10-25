@@ -1,0 +1,54 @@
+/*Layout-Generic*/
+.mtcm-flex
+{
+	display: flex;
+	flex-wrap: wrap;
+}
+.mtcm-flexbetween
+{
+	display: flex;
+	justify-content: space-between;
+}
+
+/*Styles-1*/
+.mtcm-modstyle-1
+{
+	border-radius: 3pt;
+	border: 1pt solid #dedede;
+	background: linear-gradient(rgba(0,0,0,0.03), rgba(0,0,0,0.07));
+}
+.mtcm-modmetrics-1
+{
+	padding:0pt;
+	margin:3pt;
+}
+.mtcm-modfiller-1
+{
+	border-width: 0pt 1pt;
+	border-color:transparent;
+}
+.mtcm-modheader-1
+{
+	margin:6pt;
+}
+
+/*Specifics*/
+.mtcm-overview-container
+{
+	margin:3pt;
+}
+.mtcm-overview-cell
+{
+	flex-basis:180pt;
+	flex-grow:1;
+}
+.mtcm-overview-filler
+{
+	flex-basis:180pt;
+	flex-grow:1;
+}
+
+.mtcm-rating-cell
+{
+	width:174pt;
+}
