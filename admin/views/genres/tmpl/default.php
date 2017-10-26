@@ -27,28 +27,28 @@ defined('_JEXEC') or die('Restricted access');
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
-					<th width="2%" class="center">
+					<th width="3%" class="center">
 						<?php echo JHtml::_('grid.checkall'); ?>
 					</th>
-					<th width="5%" class="nowrap center">
+					<th width="7%" class="nowrap center">
 						<?php echo JHtml::_('grid.sort', 'JSTATUS', 'state') ;?>
 					</th>
-					<th width="40%" class="nowrap">
+					<th width="45%" class="nowrap">
 						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_TITLE', 'name') ;?>
 					</th>
-					<th width="5%" class="nowrap">
+					<th width="10%" class="nowrap">
 						<?php echo JHtml::_('grid.sort', 'JAUTHOR', 'author') ;?>
 					</th>
 					<th width="10%" class="nowrap">
 						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT', 'recentedit') ;?>
 					</th>
-					<th width="5%" class="nowrap">
+					<th width="10%" class="nowrap">
 						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_CREATED', 'created'); ?>
 					</th>
-					<th width="10%" class="nowrap center">
+					<th width="10%" class="nowrap">
 						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_MODIFIED', 'modified') ;?>
 					</th>
-					<th width="3%" class="nowrap right">
+					<th width="5%" class="nowrap" style="text-align:right;">
 						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_ID', 'id'); ?>
 					</th>
 				</tr>
@@ -101,13 +101,13 @@ defined('_JEXEC') or die('Restricted access');
 						
 						<?php endif;?>
 					</td>
-					<td class="small nowrap center hidden-phone">
+					<td class="small nowrap hidden-phone">
 						<?php echo $row->created; ?>
 					</td>
-					<td class="small nowrap center hidden-phone">
+					<td class="small nowrap hidden-phone">
 						<?php echo $row->modified; ?>
 					</td>
-					<td class="right hidden-phone">
+					<td class="hidden-phone" style="text-align:right;">
 						<?php echo $row->id; ?>
 					</td>
 				</tr>			

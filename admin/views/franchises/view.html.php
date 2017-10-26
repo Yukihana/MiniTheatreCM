@@ -26,10 +26,12 @@ class MiniTheatreCMViewFranchises extends JViewLegacy
 	 * @return  void
 	 */
 	function display($tpl = null)
-	{/*
+	{
 		// Get data from the model
 		$this->items		= $this->get('Items');
 		$this->pagination	= $this->get('Pagination');
+		$this->names		= $this->get('Usernames');
+		$this->groups		= $this->get('Usergroups');
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
@@ -37,7 +39,7 @@ class MiniTheatreCMViewFranchises extends JViewLegacy
 			JError::raiseError(500, implode('<br />', $errors));
 
 			return false;
-		}*/
+		}
 
 		// Set the submenu
 		MiniTheatreCMHelper::addSubmenu('franchises');
@@ -58,8 +60,20 @@ class MiniTheatreCMViewFranchises extends JViewLegacy
 	 */
 	protected function addToolBar()
 	{
-		$title = JText::_('COM_MINITHEATRECM_MANAGER_FRANCHISES_TITLE');
+		JToolbarHelper::title( JText::_('COM_MINITHEATRECM_MANAGER_GENRES_TITLE'), 'smiley-2');
+				
+		JToolbarHelper::addNew('franchise.add');
+		JToolbarHelper::editList('franchise.edit');
+		JToolbarHelper::publish('franchises.publish', 'JTOOLBAR_PUBLISH', true);
+		JToolbarHelper::unpublish('franchises.unpublish', 'JTOOLBAR_UNPUBLISH', true);		
+		JToolbarHelper::archiveList('franchises.archive');
+		/*
+		if($this->state->get('filter.published') == -2)
+			JToolbarHelper::deleteList('COM_MINITHEATRECM_GENRES_CONFIRMDELETE', 'franchises.delete', 'COM_MINITHEATRECM_DICTIONARY_PURGE');
+		else
+			JToolbarHelper::trash('franchises.trash');
+		*/
 		
-		JToolbarHelper::title($title, 'folder-close');		
+		JToolbarHelper::preferences('com_minitheatrecm');
 	}
 }

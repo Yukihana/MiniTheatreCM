@@ -21,7 +21,8 @@ class MiniTheatreCMModelOverview extends JModelList
 	// Method to check if Basic or Advanced
 	public function getLayoutMode()
 	{
-		$data = JComponentHelper::getParams('com_minitheatrecm')->get('overview_type');
+		$requestmode = JFactory::getApplication()->input->get('mode', 'default', 'STRING');
+		$data = JComponentHelper::getParams('com_minitheatrecm')->get('overview_start');
 		return $data;
 	}
 	

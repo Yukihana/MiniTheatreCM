@@ -68,5 +68,7 @@ defined('_JEXEC') or die('Restricted access');
 			JToolbarHelper::deleteList('COM_MINITHEATRECM_ULWIZSOURCES_CONFIRMDELETE', 'contenttypes.delete', 'COM_MINITHEATRECM_DICTIONARY_PURGE');
 		else
 			JToolbarHelper::trash('contenttypes.trash');
+		
+		JToolbarHelper::preferences('com_minitheatrecm');
 	}	
 }

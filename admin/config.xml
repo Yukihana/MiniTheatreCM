@@ -10,9 +10,9 @@
 	
 	<fieldset name="mtcm_admin" label="JADMINISTRATION" description="COM_MINITHEATRECM_CONFIG_DESC_ADMIN">
 		<field
-			name="overview_type" type="radio" default="1"
-			label="COM_MINITHEATRECM_CONFIG_OVERVIEWTYPE_LABEL"
-			description="COM_MINITHEATRECM_CONFIG_OVERVIEWTYPE_DESC"
+			name="overview_start" type="radio" default="1"
+			label="COM_MINITHEATRECM_CONFIG_OVERVIEWSTART_LABEL"
+			description="COM_MINITHEATRECM_OVERVIEWSTART_DESC"
 			class="btn-group btn-group-yesno"
 		>
 			<option value="1">COM_MINITHEATRECM_DICTIONARY_BASIC</option>
