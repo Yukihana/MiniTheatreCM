@@ -70,7 +70,7 @@ defined('_JEXEC') or die('Restricted access');
 	 */
 	protected function addToolBar()
 	{
-		$title = JText::_('COM_MINITHEATRECM_MANAGER_ULWIZSOURCES_TITLE');
+		$title = JText::_('COM_MINITHEATRECM_TITLE_ULWIZSOURCES');
 		if ($this->pagination->total)
 		{
 			$title .= "<span style='font-size: 0.5em; vertical-align: middle;'>(" . $this->pagination->total . ")</span>";
@@ -86,9 +86,8 @@ defined('_JEXEC') or die('Restricted access');
 			JToolbarHelper::deleteList('COM_MINITHEATRECM_ULWIZSOURCES_CONFIRMDELETE', 'ulwizsources.delete', 'COM_MINITHEATRECM_DICTIONARY_PURGE');
 		else
 			JToolbarHelper::trash('ulwizsources.trash');
-		/*
+		
 		JToolbarHelper::preferences('com_minitheatrecm');
-		*/
 	}
 	
 	/**

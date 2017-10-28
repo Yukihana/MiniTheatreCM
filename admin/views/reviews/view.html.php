@@ -38,7 +38,7 @@ class MiniTheatreCMViewReviews extends JViewLegacy
 			JError::raiseError(500, implode('<br />', $errors));
 
 			return false;
-		}*/
+		}
 
 		// Set the submenu
 		MiniTheatreCMHelper::addSubmenu('reviews');
@@ -58,9 +58,9 @@ class MiniTheatreCMViewReviews extends JViewLegacy
 	 * @since   1.6
 	 */
 	protected function addToolBar()
-	{
-		$title = JText::_('COM_MINITHEATRECM_MANAGER_REVIEWS_TITLE');
+	{		
+		JToolbarHelper::title( JText::_('COM_MINITHEATRECM_TITLE_REVIEWS'), 'heart' );
 		
-		JToolbarHelper::title($title, 'heart');		
+		JToolbarHelper::preferences('com_minitheatrecm');
 	}
 }

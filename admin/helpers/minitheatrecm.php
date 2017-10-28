@@ -36,37 +36,38 @@ abstract class MiniTheatreCMHelper extends JHelperContent
 			$submenu == 'overview'
 		);
 		JHtmlSidebar::addEntry(
+			JText::_('COM_MINITHEATRECM_TITLE_LISTINGS'),
+			'index.php?option=com_minitheatrecm&view=listings',
+			$submenu == 'listings'
+		);
+		JHtmlSidebar::addEntry(
+			JText::_('COM_MINITHEATRECM_TITLE_REVIEWS'),
+			'index.php?option=com_minitheatrecm&view=reviews',
+			$submenu == 'reviews'
+		);
+		JHtmlSidebar::addEntry(
+			JText::_('COM_MINITHEATRECM_TITLE_ITEMS'),
+			'index.php?option=com_minitheatrecm&view=items',
+			$submenu == 'items'
+		);
+		JHtmlSidebar::addEntry(
+			JText::_('COM_MINITHEATRECM_TITLE_FRANCHISES'),
+			'index.php?option=com_minitheatrecm&view=franchises',
+			$submenu == 'franchises'
+		);
+
+		JHtmlSidebar::addEntry(
+			JText::_('COM_MINITHEATRECM_TITLE_GENRES'),
+			'index.php?option=com_minitheatrecm&view=genres',
+			$submenu == 'genres'
+		);
+		JHtmlSidebar::addEntry(
 			JText::_('COM_MINITHEATRECM_TITLE_CONTENTTYPES'),
 			'index.php?option=com_minitheatrecm&view=contenttypes',
 			$submenu == 'contenttypes'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_MANAGER_LISTINGS_TITLE'),
-			'index.php?option=com_minitheatrecm&view=listings',
-			$submenu == 'listings'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_MANAGER_ITEMS_TITLE'),
-			'index.php?option=com_minitheatrecm&view=items',
-			$submenu == 'items'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_MANAGER_FRANCHISES_TITLE'),
-			'index.php?option=com_minitheatrecm&view=franchises',
-			$submenu == 'franchises'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_MANAGER_REVIEWS_TITLE'),
-			'index.php?option=com_minitheatrecm&view=reviews',
-			$submenu == 'reviews'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_MANAGER_GENRES_TITLE'),
-			'index.php?option=com_minitheatrecm&view=genres',
-			$submenu == 'genres'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_MANAGER_ULWIZSOURCES_TITLE'),
+			JText::_('COM_MINITHEATRECM_TITLE_ULWIZSOURCES'),
 			'index.php?option=com_minitheatrecm&view=ulwizsources',
 			$submenu == 'ulwizsources'
 		);

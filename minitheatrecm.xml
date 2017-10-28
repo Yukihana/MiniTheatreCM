@@ -40,6 +40,7 @@
 		<folder>views</folder>
 		<folder>models</folder>
 		<folder>controllers</folder>
+		<folder>helpers</folder>
 	</files>
 	
 	<!--Site Language Configuration-->
@@ -58,7 +59,13 @@
 	    <menu link="option=com_minitheatrecm">COM_MINITHEATRECM_MENU</menu>
 		<submenu>
 			<!--Note: Always escape '&' to '&amp'-->
-			<menu view="items">COM_MINITHEATRECM_MENU_ITEMS</menu>
+			<menu view="overview">COM_MINITHEATRECM_TITLE_OVERVIEW</menu>
+			<menu view="listings">COM_MINITHEATRECM_TITLE_LISTINGS</menu>
+			<menu view="reviews">COM_MINITHEATRECM_TITLE_REVIEWS</menu>
+			<menu view="items">COM_MINITHEATRECM_TITLE_ITEMS</menu>
+			<menu view="franchises">COM_MINITHEATRECM_TITLE_FRANCHISES</menu>
+			<menu view="genres">COM_MINITHEATRECM_TITLE_GENRES</menu>
+			<menu view="contenttypes">COM_MINITHEATRECM_TITLE_CONTENTTYPES</menu>
 			
 		</submenu>
 		

@@ -14,7 +14,7 @@ defined('_JEXEC') or die('Restricted access');
 
 <h3><?php echo JText::_('COM_MINITHEATRECM_EDITLISTING_HEADING'); ?></h3>
 
-<?php if( ! $this->iAuthorized ): ?>
+<?php if( ! $this->auth ): ?>
 <div class="alert">
 	<h4 class="alert-heading"><?php echo JText::_('JGLOBAL_AUTH_ACCESS_DENIED');?></h4>
 	<div class="alert-message">
@@ -25,29 +25,33 @@ defined('_JEXEC') or die('Restricted access');
 
 <?php else: ?>
 <div>
-	Listing Edit form to be loaded here. Available Data:
+	<p>Listing Data:</p>
 	<ol>
-		<li>Name: <?php echo $this->iListingName;?></li>
-		<li>Content: <?php echo $this->iListingContent;?></li>
-		<li>Information: <?php echo $this->iListingInfo;?></li>
-		<li>Last Modified On: <?php echo $this->iLastModified;?></li>
-		<li>Listing ID: <?php echo $this->iListingId;?></li>
-		<li>Live: <?php echo JText::_( $this->iUserLive ? 'JYES' : 'JNO' ); if($this->iItemState != 1) echo ' (N/A)';?></li>
-		<li>Author Name: <?php echo $this->iLoggedRealName;?></li>
-		
-		<?php if($this->iItemState == 0): ?>
+		<li><?php echo JText::_('JID')				.': '.$this->data->id;?></li>
+		<li><?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_NAME')			.': '.$this->data->name;?></li>
+		<li><?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_CONTENT')			.': '.$this->data->content;?></li>
+		<li><?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_INFORMATION')		.': '.$this->data->description;?></li>
+		<br/>
+		<li><?php echo JText::_('JAUTHOR')										.': '.$this->user->name;?></li>
+		<li><?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_LASTMODIFIEDON')	.': '.$this->data->modified;?></li>
+		<li><?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_LIVE')			.': '.JText::_( $this->data->live ? 'JYES' : 'JNO' );
+			if( $this->itemdata->state != 1 ) echo ' (N/A)';?></li>
+	</ol>
+	<p>Item Data:</p>
+	<ol>
+		<?php if($this->itemdata->state == 0): ?>
 		<li>Item State: <?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_REQUESTED');?></li>
-		<li>Requested Item: <?php echo $this->iRequestName;?></li>
-		<li>Requested Item Description: <?php echo $this->iRequestDesc;?></li>
+		<li>Requested Item: <?php echo $this->data->requestname;?></li>
+		<li>Requested Item Description: <?php echo $this->data->requestdesc;?></li>
 		
-		<?php elseif($this->iItemState == 1): ?>
+		<?php elseif($this->itemdata->state == 1): ?>
 		<li>Item State: <?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_EXISTS');?></li>
-		<li>Associated Item ID: <?php echo $this->iItemId;?></li>
-		<li>Associated Item Name: <?php echo $this->iItemName;?></li>
+		<li>Associated Item ID: <?php echo $this->itemdata->id;?></li>
+		<li>Associated Item Name: <?php echo $this->itemdata->name;?></li>
 		
 		<?php else: ?>
 		<li>Item State: <?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_MISSING');?></li>
-		<li>Associated Item ID: <?php echo $this->iItemId;?></li>
+		<li>Associated Item ID: <?php echo $this->itemdata->id;?></li>
 		<?php endif;?>
 	<ol>
 </div>

@@ -75,6 +75,8 @@ class MiniTheatreCMViewOverview extends JViewLegacy
 			.')'
 			, 'chart' );
 		
-		JToolbarHelper::custom('overview.showdetails', 'refresh', 'refresh', 'Show-Hide', false);
+		JToolbarHelper::preferences('com_minitheatrecm');
+		//JToolbarHelper::custom('overview.showdetails', 'refresh', 'refresh', 'Show-Hide', false);
+		
 	}
 }

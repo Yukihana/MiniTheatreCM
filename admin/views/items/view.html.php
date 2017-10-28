@@ -70,7 +70,7 @@ class MiniTheatreCMViewItems extends JViewLegacy
 	 */
 	protected function addToolBar()
 	{
-		$title = JText::_('COM_MINITHEATRECM_MANAGER_ITEMS_TITLE');
+		$title = JText::_('COM_MINITHEATRECM_TITLE_ITEMS');
 		if ($this->pagination->total)
 		{
 			$title .= "<span style='font-size: 0.5em; vertical-align: middle;'>(" . $this->pagination->total . ")</span>";
@@ -85,7 +85,9 @@ class MiniTheatreCMViewItems extends JViewLegacy
 		if($this->state->get('filter.published') == -2)
 			JToolbarHelper::deleteList('COM_MINITHEATRECM_ITEMS_CONFIRMDELETE', 'items.delete', 'COM_MINITHEATRECM_DICTIONARY_PURGE');
 		else
-			JToolbarHelper::trash('items.trash');		
+			JToolbarHelper::trash('items.trash');
+		
+		JToolbarHelper::preferences('com_minitheatrecm');
 	}
 	
 	/**

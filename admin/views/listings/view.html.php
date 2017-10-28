@@ -26,18 +26,20 @@ class MiniTheatreCMViewListings extends JViewLegacy
 	 * @return  void
 	 */
 	function display($tpl = null)
-	{/*
+	{
 		// Get data from the model
 		$this->items		= $this->get('Items');
 		$this->pagination	= $this->get('Pagination');
-
+		$this->names		= $this->get('Usernames');
+		$this->itemnames	= $this->get('Itemnames');
+		
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
 			JError::raiseError(500, implode('<br />', $errors));
 
 			return false;
-		}*/
+		}
 
 		// Set the submenu
 		MiniTheatreCMHelper::addSubmenu('listings');
@@ -58,8 +60,20 @@ class MiniTheatreCMViewListings extends JViewLegacy
 	 */
 	protected function addToolBar()
 	{
-		$title = JText::_('COM_MINITHEATRECM_MANAGER_LISTINGS_TITLE');
+		JToolbarHelper::title( JText::_('COM_MINITHEATRECM_TITLE_LISTINGS'), 'play-2');
+				
+		JToolbarHelper::addNew('listing.add');
+		JToolbarHelper::editList('listing.edit');
+		JToolbarHelper::publish('listings.publish', 'JTOOLBAR_PUBLISH', true);
+		JToolbarHelper::unpublish('listings.unpublish', 'JTOOLBAR_UNPUBLISH', true);		
+		JToolbarHelper::archiveList('listings.archive');
+		/*
+		if($this->state->get('filter.published') == -2)
+			JToolbarHelper::deleteList('COM_MINITHEATRECM_GENRES_CONFIRMDELETE', 'listings.delete', 'COM_MINITHEATRECM_DICTIONARY_PURGE');
+		else
+			JToolbarHelper::trash('listings.trash');
+		*/
 		
-		JToolbarHelper::title($title, 'list-2');		
+		JToolbarHelper::preferences('com_minitheatrecm');
 	}
 }

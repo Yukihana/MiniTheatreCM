@@ -60,7 +60,7 @@ class MiniTheatreCMViewFranchises extends JViewLegacy
 	 */
 	protected function addToolBar()
 	{
-		JToolbarHelper::title( JText::_('COM_MINITHEATRECM_MANAGER_GENRES_TITLE'), 'smiley-2');
+		JToolbarHelper::title( JText::_('COM_MINITHEATRECM_TITLE_FRANCHISES'), 'database');
 				
 		JToolbarHelper::addNew('franchise.add');
 		JToolbarHelper::editList('franchise.edit');

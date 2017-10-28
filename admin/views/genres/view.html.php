@@ -59,7 +59,7 @@ class MiniTheatreCMViewGenres extends JViewLegacy
 	 */
 	protected function addToolBar()
 	{
-		JToolbarHelper::title( JText::_('COM_MINITHEATRECM_MANAGER_GENRES_TITLE'), 'smiley-2');
+		JToolbarHelper::title( JText::_('COM_MINITHEATRECM_TITLE_GENRES'), 'smiley-2');
 				
 		JToolbarHelper::addNew('genre.add');
 		JToolbarHelper::editList('genre.edit');

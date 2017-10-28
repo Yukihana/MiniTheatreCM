@@ -23,19 +23,8 @@ abstract class MiniTheatreCMHelperModel
 	{
 		$result = array();
 		
-		// Load all author and recentedit id data into a unique array
-		$userids = array();
-		foreach( $items as $item )
-		{
-			foreach( $fields as $field )
-			{
-				if( isset( $item->$field ))
-				{
-					array_push( $userids, $item->$field );
-				}
-			}
-		}
-		$userids = array_unique( $userids );
+		// Load the values of the fields into an array and make it unique
+		$userids = self::getUniqueArray( $items, $fields );
 		
 		// Check IDs vs User Table and load their names/usernames
 		$table = JUser::getTable();
@@ -56,20 +45,9 @@ abstract class MiniTheatreCMHelperModel
 		$result = array();
 		
 		// Load the values of the fields into an array and make it unique
-		$ids = array();
-		foreach( $items as $item )
-		{
-			foreach( $fields as $field )
-			{
-				if( isset( $item->$field ))
-				{
-					array_push( $ids, $item->$field );
-				}
-			}
-		}
-		$ids = array_unique( $ids );
+		$ids = self::getUniqueArray( $items, $fields );
 		
-		// Check IDs vs User Table and load their names/usernames
+		// Check IDs vs Access groups and load them on success
 		foreach( $ids as $id )
 		{
 			$result[$id] = JAccess::getGroupTitle($id);
@@ -77,6 +55,44 @@ abstract class MiniTheatreCMHelperModel
 		
 		// Return data
 		return $result;
+	}
+	
+	public static function getItemnames( $items, $fields )
+	{
+		$result = array();
+		
+		// Load the values of the fields into an array and make it unique
+		$ids = self::getUniqueArray( $items, $fields );
+		
+		// Check IDs vs Items and load them on success
+		$table = JTable::getInstance('Items', 'MiniTheatreCMTable', array());
+		foreach( $ids as $id )
+		{
+			if( $table->load( $id ))
+			{
+				$result[$id] = $table->name;
+			}
+		}
+		
+		// Return data
+		return $result;
+	}
+	
+	//Kernel methods
+	private static function getUniqueArray( $items, $fields )
+	{
+		$data = array();
+		foreach( $items as $item )
+		{
+			foreach( $fields as $field )
+			{
+				if( isset( $item->$field ))
+				{
+					array_push( $data, $item->$field );
+				}
+			}
+		}
+		return array_unique( $data );
 	}
 }
  
