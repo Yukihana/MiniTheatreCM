@@ -15,11 +15,11 @@ defined('_JEXEC') or die('Restricted access');
 JLoader::Register('MiniTheatreCMHelperModel', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/model.php');
 
 /**
- * Listings Model
+ * Reviews Model
  *
  * @since  0.0.1
  */
-class MiniTheatreCMModelListings extends JModelList
+class MiniTheatreCMModelReviews extends JModelList
 {
 	// SQL Query to load List Data
 	protected function getListQuery()
@@ -27,7 +27,7 @@ class MiniTheatreCMModelListings extends JModelList
 		// Load required records from the database
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
-		$query->select('*')->from($db->quoteName('#__mtcm_listings'));
+		$query->select('*')->from($db->quoteName('#__mtcm_reviews'));
 		$db->setQuery($query);		
 		
 		return $query;
@@ -37,7 +37,7 @@ class MiniTheatreCMModelListings extends JModelList
 	{
 		return MiniTheatreCMHelperModel::getUsernames( $this->getItems(), array('author','recentedit') );
 	}
-
+	
 	public function getItemnames()
 	{
 		return MiniTheatreCMHelperModel::getItemnames( $this->getItems(), array('item_id') );

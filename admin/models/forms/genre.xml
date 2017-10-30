@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field 
+			name="id"
+			type="hidden"
+			/>
+		<field
+			name="name"
+			text="text"
+			label="COM_MINITHEATRECM_DICTIONARY_TITLE"
+			description="COM_MINITHEATRECM_FIELDDESC_GENRETITLE"
+			size="64"
+			class="inputbox"
+			required="true"
+			default=""
+			/>
+	</fieldset>
+</form>

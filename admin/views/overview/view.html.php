@@ -32,8 +32,10 @@ class MiniTheatreCMViewOverview extends JViewLegacy
 		$doc->addStyleSheet( JUri::base().'components/com_minitheatrecm/views/overview/tmpl/default.css' );
 		
 		// Get data from the model
-		$this->layoutmode = $this->get('LayoutMode');
+		$this->layoutmode	= $this->get('LayoutMode');
 		$this->itemsdata	= $this->get('ItemsData');
+		$this->meta			= $this->get('Version');
+		$this->clog			= $this->get('Changelogs');
 		
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))

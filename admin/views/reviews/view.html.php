@@ -30,7 +30,8 @@ class MiniTheatreCMViewReviews extends JViewLegacy
 		// Get data from the model
 		$this->items		= $this->get('Items');
 		$this->pagination	= $this->get('Pagination');
-		$this->users		= $this->get('Users');
+		$this->names		= $this->get('Usernames');
+		$this->itemnames	= $this->get('Itemnames');
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
@@ -61,6 +62,17 @@ class MiniTheatreCMViewReviews extends JViewLegacy
 	{		
 		JToolbarHelper::title( JText::_('COM_MINITHEATRECM_TITLE_REVIEWS'), 'heart' );
 		
+		JToolbarHelper::addNew('review.add');
+		JToolbarHelper::editList('review.edit');
+		JToolbarHelper::publish('reviews.publish', 'JTOOLBAR_PUBLISH', true);
+		JToolbarHelper::unpublish('reviews.unpublish', 'JTOOLBAR_UNPUBLISH', true);		
+		JToolbarHelper::archiveList('reviews.archive');
+		/*
+		if($this->state->get('filter.published') == -2)
+			JToolbarHelper::deleteList('COM_MINITHEATRECM_REVIEWS_CONFIRMDELETE', 'reviews.delete', 'COM_MINITHEATRECM_DICTIONARY_PURGE');
+		else
+			JToolbarHelper::trash('reviews.trash');
+		*/
 		JToolbarHelper::preferences('com_minitheatrecm');
 	}
 }

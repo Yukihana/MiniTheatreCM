@@ -11,6 +11,9 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+// Include the Lib/ModelHelper Static Class
+JLoader::Register('MiniTheatreCMHelperNfo', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/nfo.php');
+
 /**
  * Overview Model
  *
@@ -42,6 +45,14 @@ class MiniTheatreCMModelOverview extends JModelList
 		return $data;
 	}
 	
+	// Methods to load nfo data
+	public function getVersion()
+	{
+		return MiniTheatreCMHelperNfo::getVersion();
+	}
 	
-	
+	public function getChangelogs()
+	{
+		return MiniTheatreCMHelperNfo::getChangelogs();
+	}
 }

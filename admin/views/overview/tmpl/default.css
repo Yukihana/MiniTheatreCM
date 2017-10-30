@@ -1,16 +1,38 @@
-/*Layout-Generic*/
+.mtcm-inline
+{
+	display:inline;
+}
 .mtcm-flex
 {
 	display: flex;
 	flex-wrap: wrap;
+}
+.mtcm-flex-spread
+{
+	flex-grow: 1;
 }
 .mtcm-flexbetween
 {
 	display: flex;
 	justify-content: space-between;
 }
+.mtcm-clog
+{
+	border-radius: 3pt;
+	border: 1pt solid #dedede;
+	background: linear-gradient(rgba(0,0,0,0.03), rgba(0,0,0,0.07));
+}
 
 /*Styles-1*/
+.mtcm-modsep-1
+{
+	font-size:0;
+	padding:3pt;
+}
+.mtcm-modmargin-1
+{
+	margin:3pt;
+}
 .mtcm-modstyle-1
 {
 	border-radius: 3pt;
