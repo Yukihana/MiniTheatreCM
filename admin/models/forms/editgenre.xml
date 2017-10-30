@@ -7,13 +7,20 @@
 			/>
 		<field
 			name="name"
-			text="text"
+			type="text"
 			label="COM_MINITHEATRECM_DICTIONARY_TITLE"
 			description="COM_MINITHEATRECM_FIELDDESC_GENRETITLE"
 			size="64"
 			class="inputbox"
 			required="true"
 			default=""
+			/>
+		<field
+			name="content"
+			type="editor"
+			label="COM_MINITHEATRECM_DICTIONARY_DESCRIPTION"
+			description="COM_MINITHEATRECM_FIELDDESC_GENREDESC"
+			buttons="true"
 			/>
 	</fieldset>
 </form>

@@ -46,21 +46,42 @@ defined('_JEXEC') or die('Restricted access');
 		
 		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'roadmap', JText::_('COM_MINITHEATRECM_DICTIONARY_ROADMAP')); ?>
 			<div class="mtcm-flex">
-				<div id="mtcm-clog-left" class="mtcm-flex-spread">
-					<h2 class="page-header"><?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_CHANGELOG');?></h2>
+				<div id="mtcm-clog-left" class="mtcm-flex-spread mtcm-padding-3">
+					<h2 class="page-header"><?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_UPCOMINGTASKS');?></h2>
+					<div class="row-fluid mtcm-rmap-active">
+						<h3 class="module-title nav-header"><?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_ACTIVE');?></h3>
+						<ul class="row-striped">
+							<li class="row-fluid">sometext</li>
+							<li class="row-fluid">sometext</li>
+							<li class="row-fluid">sometext</li>
+						</ul>
+					</div>
 				</div>
 				
-				<div id="mtcm-clog-right" class="mtcm-flex-spread">
+				<div id="mtcm-clog-right" class="mtcm-flex-spread mtcm-padding-3">
 					<h2 class="page-header"><?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_CHANGELOG');?></h2>
-					<?php foreach($this->clog as $clog): ?>
-					<div class="mtcm-clog mtcm-margin-3" id="mtcm-clog-<?php echo $clog->id;?>">
-						<div>
-							<div class="pull-right small mtcm-clog-timestamp"><?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_UPDATED').': '.$clog->updated;?></div>
-							<h3 class="module-title nav-header"><?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_VERSION').' '.$clog->version;?></h3>
+					<div class="row-fluid">
+						<div class="btn-group">
+							<?php foreach(array('first', 'previous', 'next', 'last') as $navicon): ?>
+								<a class="btn btn-micro hasTooltip" id="clog-paging-<?php echo $navicon;?>" href="javascript:void(0);" 
+									onclick="javascript:mtcmPagerNav('mtcm-clog-','<?php echo $navicon;?>');" title="<?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_'.strtoupper($navicon));?>">
+									<span class="icon-<?php echo $navicon;?>"> </span>
+								</a>
+							<?php endforeach;?>
 						</div>
-						<ul class="row-striped"><?php foreach($clog->data as $data) echo '<li class="row-fluid">'.$data.'</li>';?></ul>
+						<div id="mtcm-clog-index" class="pull-right">Latest</div>
 					</div>
-					<?php endforeach;?>
+					<div id="mtcm-clog-pager" class="mtcm-padding-6v" activeindex="0" maxcount="<?php echo count($this->clog);?>">
+						<?php foreach($this->clog as $clog): ?>
+						<div class="mtcm-clog" <?php if($clog->id!=0) echo 'style="display:none;"';?> name="mtcm-clog-entry">
+							<div>
+								<div class="pull-right small mtcm-margin-6h"><?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_UPDATED').': '.$clog->updated;?></div>
+								<h3 class="module-title nav-header"><?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_VERSION').' '.$clog->version;?></h3>
+							</div>
+							<ul class="row-striped"><?php foreach($clog->data as $data) echo '<li class="row-fluid">'.$data.'</li>';?></ul>
+						</div>
+						<?php endforeach;?>
+					</div>
 				</div>
 				
 			</div>

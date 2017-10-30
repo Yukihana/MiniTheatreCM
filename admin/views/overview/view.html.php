@@ -30,6 +30,7 @@ class MiniTheatreCMViewOverview extends JViewLegacy
 		// Include CCS & JS
 		$doc = JFactory::getDocument();
 		$doc->addStyleSheet( JUri::base().'components/com_minitheatrecm/views/overview/tmpl/default.css' );
+		$doc->addScript( JUri::base().'components/com_minitheatrecm/views/overview/tmpl/default.js' );
 		
 		// Get data from the model
 		$this->layoutmode	= $this->get('LayoutMode');

@@ -1,3 +1,39 @@
+#0.0.12 A4~30-10-2017
+Added Custom Pagination to Admin/Overview/ChangeLog.
+Attempted the most basic use of forms on Admin/Genre.Edit to some success.
+Added helpers/html.php to help with layout rendering. Might move this to a admin/lib directory later.
+
+#0.0.12 A3~30-10-2017
+Added ChangeLog to Admin/Overview. Moving it over to advanced overview is pending.
+Added NFO folder for storing roadmap, planner, version, changelog and other metadata.
+Added helpers/nfo.php to act as a model for NFO data.
+Added layout to Admin/Reviews
+A few required changes done to database. Upgrade code hasn't been added. Prior uninstall required.
+
+#0.0.12 A2~28-10-2017
+Added Admin/Listings MVC table
+Fixed an error with Admin/Reviews (Layout still pending)
+Upgraded Site/EditListing to a better data-model.
+Added submenu items to the toolbar menu for the component.
+Added a basic frame for a site end model-helper class.
+
+#0.0.12 A1~26-10-2017
+Added a basic frame to Admin/Franchises.
+Upgraded Admin/Genres code to somewhat usable.
+Solified the implementation of the model helper class. Added basic code to it.
+
+#0.0.12~26-10-2017
+Added Global Configurations.
+Added a basic frame for Admin/Genres.
+Planned a basic implementation for a Model Helper class to optimize code efficiency.
+
+#0.0.11 X12~23-10-2017
+Added Admin/ContentType as a final replacement for ulwizsources.
+ContentType will act as the primary category system and also contain custom uploader code.
+Upgraded Site/MyListings to JModelList API over its previously inadequate JModelAdmin API.
+Added Site/MyReviews view-set with basic code.
+Minor upgrade for Site/Item to better, and current code.
+
 #0.0.11 X10~10-10-2017
 Added a basic framework for My-Listings, EditListing views on site-end.
 Added some translations.
