@@ -52,6 +52,8 @@
 	<media destination="com_minitheatrecm" folder="media">
 		<filename>index.html</filename>
 		<folder>images</folder>
+		<folder>js</folder>
+		<folder>css</folder>
 	</media>
 	
 	<administration>
@@ -66,6 +68,7 @@
 			<menu view="franchises">COM_MINITHEATRECM_MENU_FRANCHISES</menu>
 			<menu view="genres">COM_MINITHEATRECM_MENU_GENRES</menu>
 			<menu view="contenttypes">COM_MINITHEATRECM_MENU_CONTENTTYPES</menu>
+			<menu view="planner">COM_MINITHEATRECM_MENU_PLANNER</menu>
 			
 		</submenu>
 		
@@ -79,6 +82,7 @@
 			<folder>controllers</folder>
 			<folder>nfo</folder>
 			<folder>helpers</folder>
+			<folder>lib</folder>
 			<folder>models</folder>
 			<folder>sql</folder>
 			<folder>tables</folder>

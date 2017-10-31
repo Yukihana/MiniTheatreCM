@@ -10,5 +10,21 @@
   
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-?>
-BASIC VIEW SHOWN HERE
+
+/**
+ * Planner Model
+ *
+ * @since  0.0.1
+ */
+class MiniTheatreCMModelPlanner extends JModelList
+{
+	public function getChangelogs()
+	{
+		return MiniTheatreCMHelperNfo::getChangelogs();
+	}
+	
+	public function getTasks()
+	{
+		return MiniTheatreCMHelperNfo::getTasks();
+	}
+}

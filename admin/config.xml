@@ -10,9 +10,22 @@
 	
 	<fieldset name="mtcm_admin" label="JADMINISTRATION" description="COM_MINITHEATRECM_CONFIG_DESC_ADMIN">
 		<field
-			name="overview_start" type="radio" default="1"
-			label="COM_MINITHEATRECM_CONFIG_OVERVIEWSTART_LABEL"
-			description="COM_MINITHEATRECM_OVERVIEWSTART_DESC"
+			name="default_view" type="list" default="0"
+			label="COM_MINITHEATRECM_CONFIG_DEFAULTVIEW_LABEL"
+			description="COM_MINITHEATRECM_CONFIG_DEFAULTVIEW_DESC"
+		>
+			<option value="0">COM_MINITHEATRECM_TITLE_OVERVIEW</option>
+			<option value="1">COM_MINITHEATRECM_TITLE_LISTINGS</option>
+			<option value="2">COM_MINITHEATRECM_TITLE_REVIEWS</option>
+			<option value="3">COM_MINITHEATRECM_TITLE_ITEMS</option>
+			<option value="4">COM_MINITHEATRECM_TITLE_FRANCHISES</option>
+			<option value="5">COM_MINITHEATRECM_TITLE_GENRES</option>
+			<option value="6">COM_MINITHEATRECM_TITLE_CONTENTTYPES</option>
+		</field>
+		<field
+			name="overview_type" type="radio" default="1"
+			label="COM_MINITHEATRECM_CONFIG_OVERVIEWTYPE_LABEL"
+			description="COM_MINITHEATRECM_CONFIG_OVERVIEWTYPE_DESC"
 			class="btn-group btn-group-yesno"
 		>
 			<option value="1">COM_MINITHEATRECM_DICTIONARY_BASIC</option>

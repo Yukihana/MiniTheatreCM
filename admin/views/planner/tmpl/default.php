@@ -11,4 +11,5 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 ?>
-BASIC VIEW SHOWN HERE
+
+PLANNER DATA HERE

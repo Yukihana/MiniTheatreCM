@@ -11,8 +11,9 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-// Include the Lib/ModelHelper Static Class
+// Include Static Helper Classes
 JLoader::Register('MiniTheatreCMHelperNfo', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/nfo.php');
+JLoader::Register('MiniTheatreCMHelperConfig', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/config.php');
 
 /**
  * Overview Model
@@ -24,9 +25,7 @@ class MiniTheatreCMModelOverview extends JModelList
 	// Method to check if Basic or Advanced
 	public function getLayoutMode()
 	{
-		$requestmode = JFactory::getApplication()->input->get('mode', 'default', 'STRING');
-		$data = JComponentHelper::getParams('com_minitheatrecm')->get('overview_start');
-		return $data;
+		return MiniTheatreCMHelperConfig::getOverviewType();
 	}
 	
 	// Methods to get 'Items' Data
@@ -54,5 +53,10 @@ class MiniTheatreCMModelOverview extends JModelList
 	public function getChangelogs()
 	{
 		return MiniTheatreCMHelperNfo::getChangelogs();
+	}
+	
+	public function getTasks()
+	{
+		return MiniTheatreCMHelperNfo::getTasks();
 	}
 }

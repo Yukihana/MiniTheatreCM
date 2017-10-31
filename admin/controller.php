@@ -10,6 +10,9 @@
   
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+
+// Include static helper classes
+JLoader::Register('MiniTheatreCMHelperConfig', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/config.php');
 /**
  * MiniTheatreCM General Controller
  *
@@ -23,7 +26,5 @@ class MiniTheatreCMController extends JControllerLegacy
 	 * @var string
 	 * @since 12.2
 	 */
-	protected $default_view = 'contenttypes';
-	
-	/* TODO change this later to the default backend view */
+	protected $default_view = 'overview';
 }

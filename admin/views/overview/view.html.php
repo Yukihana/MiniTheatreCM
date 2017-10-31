@@ -37,6 +37,7 @@ class MiniTheatreCMViewOverview extends JViewLegacy
 		$this->itemsdata	= $this->get('ItemsData');
 		$this->meta			= $this->get('Version');
 		$this->clog			= $this->get('Changelogs');
+		$this->tasks		= $this->get('Tasks');
 		
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
@@ -47,7 +48,7 @@ class MiniTheatreCMViewOverview extends JViewLegacy
 		}
 
 		// Set the Layout
-		if( $this->layoutmode == 1 )
+		if( $this->layoutmode == 0 )
 		{
 			$tpl = 'advanced';
 		}

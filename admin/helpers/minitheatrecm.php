@@ -67,6 +67,11 @@ abstract class MiniTheatreCMHelper extends JHelperContent
 			$submenu == 'contenttypes'
 		);
 		JHtmlSidebar::addEntry(
+			JText::_('COM_MINITHEATRECM_TITLE_PLANNER'),
+			'index.php?option=com_minitheatrecm&view=planner',
+			$submenu == 'planner'
+		);
+		JHtmlSidebar::addEntry(
 			JText::_('COM_MINITHEATRECM_TITLE_ULWIZSOURCES'),
 			'index.php?option=com_minitheatrecm&view=ulwizsources',
 			$submenu == 'ulwizsources'

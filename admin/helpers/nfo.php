@@ -101,8 +101,65 @@ abstract class MiniTheatreCMHelperNfo
 		return $result;
 	}
 	
-	public static function getUpcoming()
+	public static function getTasks()
 	{
+		// Get file contents
+		try
+		{
+			$lines = file( JPATH_COMPONENT_ADMINISTRATOR . '/nfo/tasks.x' );
+		}
+		catch(Exception $e)
+		{
+			return array();
+		}
 		
+		$result = array();
+		$temp = new stdClass();
+		
+		// Parse into an array of stdClass types. One stdClass represent a changelog entry each.
+		foreach($lines as $line)
+		{
+			//Ignore empty lines
+			if( strlen(trim($line)) == 0 )
+			{
+				continue;
+			}
+			
+			// # denotes start of an entry
+			if( $line[0] == '#' )
+			{
+				// Register previous entry if exists
+				if( isset( $temp->name ))
+				{
+					array_push( $result, $temp );
+				}
+		
+				// Init new entry
+				$temp = new stdClass();
+				$temp->data = array();
+				
+				// Parse the line
+				$meta = explode( '~', $line );
+				$temp->name = str_replace( '#', '', $meta[0] );
+				$temp->icon = isset( $meta[1] ) ? $meta[1] : 'question';
+				if( isset( $meta[2] ))
+				{
+					// Tag can be used as the alternative display for tab name
+					$temp->tag = meta[2];
+				}
+			}
+			elseif( isset( $temp->name ))
+			{
+				array_push( $temp->data, $line );
+			}
+		}
+		
+		//Finish the job
+		if( isset( $temp->name ))
+		{
+			array_push( $result, $temp );
+		}
+		
+		return $result;
 	}
 }
