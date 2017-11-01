@@ -88,7 +88,7 @@ defined('_JEXEC') or die('Restricted access');
 						</div>
 						<div id="mtcm-clog-index" class="pull-right">Latest</div>
 					</div>
-					<div id="mtcm-clog-pager" class="mtcm-padding-6v" activeindex="0" maxcount="<?php echo count($this->clog);?>">
+					<div id="mtcm-clog-pager" class="mtcm-padding-6v" activeindex="0">
 						<?php foreach($this->clog as $clog): ?>
 						<div class="mtcm-clog" <?php if($clog->id!=0) echo 'style="display:none;"';?> name="mtcm-clog-entry">
 							<div>

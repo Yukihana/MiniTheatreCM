@@ -21,6 +21,10 @@ class MiniTheatreCMViewPlanner extends JViewLegacy
 	// Display
 	function display($tpl = null)
 	{
+		//Add data from the model
+		$this->tasks	= $this->get('Tasks');
+		$this->clog		= $this->get('Changelogs');
+		
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{

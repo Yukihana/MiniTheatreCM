@@ -1,14 +1,16 @@
 #active~star
-Work on admin/overview for both basic and advanced layouts,
-Show only latest changelog on basic view.
-Create Planner view
-Move changelog and roadmap data to planner view
-add tabbing input system to all tab based views
-Show only latest changelog on overview
+Remove bloat layout data from Overview.
+Add new tables for ratings.
+Add admin views for above tables.
 
 #pending~clock
-Add new tables for ratings
-add default view to global settings - Requires overrides
+Plan a new layout for Overview and Planner
+Show only latest changelog on overview
+Work on admin/overview for both basic and advanced layouts.
+Plan a maintenance view.
+Learn and implement custom tasks and post-processing.
 
 #postponed~flag
+add default view to global settings - Requires overrides
+Plan a new UI system for Submission wizard
 Delete UlwizSources after all functionality has been implemented on other views.

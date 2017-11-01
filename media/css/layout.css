@@ -1,0 +1,20 @@
+/**
+ * @package     MiniTheatre.Administrator
+ * @subpackage  com_minitheatrecm
+ *
+ * @copyright   CherrySoft-X 2017, MiniTheatre 2017
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @link        http://fb.me/LilyflowerAngel
+ */
+
+.mtcm-flex
+{
+	display: flex;
+	flex-wrap: wrap;
+}
+.mtcm-flex-spread-270
+{
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 270pt;
+}

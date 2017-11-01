@@ -1,3 +1,17 @@
+#0.0.12 B2~01-11-2017
+Created a paging API, added to library.
+Moved required JS and CSS to media directory.
+Optimized API calling and dependency syntax to simplify implementation.
+Created an 'include' API system for indexing and loading php/css/js files based on required tasks.
+Created a planner view and moved the changelog and roadmap data to here from 'overview'.
+Implemented the new paging API on the tasks and changelog psueodules: Success.
+Optimized a few sections using the new API.
+
+#0.0.12 B1~31-10-2017
+Styling added for Changelogs and Tasks.
+Started making changes for adding an API library.
+Started moving custom CSS and JS to designated media folders.
+
 #0.0.12 A4~30-10-2017
 Added Custom Pagination to Admin/Overview/ChangeLog.
 Attempted the most basic use of forms on Admin/Genre.Edit to some success.

@@ -11,6 +11,9 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+// Include the Lib/ModelHelper Static Class
+JLoader::Register('MiniTheatreCMHelperNfo', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/nfo.php');
+
 /**
  * Planner Model
  *

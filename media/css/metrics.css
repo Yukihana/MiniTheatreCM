@@ -1,0 +1,23 @@
+/**
+ * @package     MiniTheatre.Administrator
+ * @subpackage  com_minitheatrecm
+ *
+ * @copyright   CherrySoft-X 2017, MiniTheatre 2017
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @link        http://fb.me/LilyflowerAngel
+ */
+
+.mtcm-padding-3
+{
+	padding:3pt;
+}
+.mtcm-padding-6v
+{
+	padding-top:6pt;
+	padding-bottom:6pt;
+}
+.mtcm-margin-6h
+{
+	margin-left:6pt;
+	margin-right:6pt;
+}
