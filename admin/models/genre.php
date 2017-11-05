@@ -18,35 +18,15 @@ defined('_JEXEC') or die('Restricted access');
  */
 class MiniTheatreCMModelGenre extends JModelAdmin
 {
-	/**
-	 * Method to get a table object, load it if necessary.
-	 *
-	 * @param   string  $type    The table name. Optional.
-	 * @param   string  $prefix  The class prefix. Optional.
-	 * @param   array   $config  Configuration array for model. Optional.
-	 *
-	 * @return  JTable  A JTable object
-	 *
-	 * @since   1.6
-	 */
+	// Method to fetch JTable instances ($name: modelname, $prefix: class prefix, $config: optional configuration array)
 	public function getTable($type = 'Genres', $prefix = 'MiniTheatreCMTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
 	
-	/**
-	 * Method to get the record form.
-	 *
-	 * @param   array    $data      Data for the form.
-	 * @param   boolean  $loadData  True if the form is to load its own data (default case), false if not.
-	 *
-	 * @return  mixed    A JForm object on success, false on failure
-	 *
-	 * @since   1.6
-	 */
+	// Method to fetch form ($array: form-data, $loadData: load existing?), return [mixed] success? form-object : false.
 	public function getForm($data = array(), $loadData = true)
 	{
-		// Get the form.
 		$form = $this->loadForm(
 			'com_minitheatrecm.genre',
 			'editgenre',
@@ -64,13 +44,7 @@ class MiniTheatreCMModelGenre extends JModelAdmin
 		return $form;
 	}
 	
-	/**
-	 * Method to get the data that should be injected in the form.
-	 *
-	 * @return  mixed  The data for the form.
-	 *
-	 * @since   1.6
-	 */
+	// Method to get the data for the form
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.

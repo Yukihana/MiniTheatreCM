@@ -21,11 +21,11 @@ JLoader::Register('MiniTheatreCMHelperNfo', JPATH_COMPONENT_ADMINISTRATOR . '/he
  */
 class MiniTheatreCMModelPlanner extends JModelList
 {
+	// Helper Methods
 	public function getChangelogs()
 	{
 		return MiniTheatreCMHelperNfo::getChangelogs();
 	}
-	
 	public function getTasks()
 	{
 		return MiniTheatreCMHelperNfo::getTasks();

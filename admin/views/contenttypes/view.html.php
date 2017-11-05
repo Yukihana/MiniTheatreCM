@@ -18,7 +18,7 @@ defined('_JEXEC') or die('Restricted access');
  */
  class MiniTheatreCMViewContentTypes extends JViewLegacy
 {
-	// Display the template where $tpl = template file and return void
+	// Display the template ($tpl: template file)
 	function display($tpl = null)
 	{
 		// Get application
@@ -55,9 +55,10 @@ defined('_JEXEC') or die('Restricted access');
 		//$this->setDocument();
 	}
 	
+	// Add page header and toolbar buttons
 	protected function addToolBar()
 	{	
-		JToolbarHelper::title(JText::_('COM_MINITHEATRECM_TITLE_CONTENTTYPES'), 'basket');
+		JToolbarHelper::title( JText::_('COM_MINITHEATRECM_TITLE_CONTENTTYPES'), 'basket' );
 		
 		JToolbarHelper::addNew('contenttype.add');
 		JToolbarHelper::editList('contenttype.edit');

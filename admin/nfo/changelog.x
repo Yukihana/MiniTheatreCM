@@ -1,3 +1,12 @@
+#0.0.12 C~04-11-2017
+Fixed default_view global parameter.
+Removed bloat layout data from Overview.
+Added and Implemented a central indexing for tables at admin/meta/config.php.
+Added and Implemented ManagerFields renderer to help populate table-cells.
+Added JTable classes, SQL definitions and admin MVC lists for 'ratings'. (Reinstall required)
+Compacted method comments to optimize file sizes.
+Fixed irregular responsive columns for many manager views.
+
 #0.0.12 B2~01-11-2017
 Created a paging API, added to library.
 Moved required JS and CSS to media directory.

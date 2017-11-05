@@ -7,9 +7,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link        http://fb.me/LilyflowerAngel
  */
-  
+
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+
+// Include Dependencies
+JLoader::Register('MiniTheatreCMMetaConfig', JPATH_COMPONENT_ADMINISTRATOR . '/meta/config.php');
 
 /**
  * Franchises Table class
@@ -18,13 +21,9 @@ defined('_JEXEC') or die('Restricted access');
  */
 class MiniTheatreCMTableFranchises extends JTable
 {
-	/**
-	 * Constructor
-	 *
-	 * @param   JDatabaseDriver  &$db  A database connector object
-	 */
+	// Constructor ($db: database connector object)
 	function __construct(&$db)
 	{
-		parent::__construct('#__mtcm_franchises', 'id', $db);
+		parent::__construct(MiniTheatreCMMetaConfig::getTableName('franchises'), 'id', $db);
 	}
 }

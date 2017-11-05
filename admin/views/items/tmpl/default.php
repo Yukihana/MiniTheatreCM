@@ -11,6 +11,9 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+// Include Dependencies
+JLoader::Register('MiniTheatreCMLibHtmlManagerFields', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/managerfields.php');
+
 JHtml::_('formbehavior.chosen', 'select');
 
 $listOrder     = $this->escape($this->filter_order);
@@ -74,7 +77,7 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 						<?php echo JHtml::_('jgrid.published', $row->state, $i, 'items.', true, 'cb'); ?>
 					</td>					
 					<td>
-						<a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_MINITHEATRECM_ITEM_LEGEND_EDIT'); ?>">
+						<a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_MINITHEATRECM_LEGEND_EDIT_ITEM'); ?>">
 							<?php echo $row->name; ?>
 						</a>
 					</td>

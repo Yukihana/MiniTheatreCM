@@ -13,7 +13,8 @@ defined('_JEXEC') or die('Restricted access');
 
 // Include Static Helper Classes
 JLoader::Register('MiniTheatreCMHelperNfo', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/nfo.php');
-JLoader::Register('MiniTheatreCMHelperConfig', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/config.php');
+JLoader::Register('MiniTheatreCMMetaGlobal', JPATH_COMPONENT_ADMINISTRATOR . '/meta/global.php');
+JLoader::Register('MiniTheatreCMMetaConfig', JPATH_COMPONENT_ADMINISTRATOR . '/meta/config.php');
 
 /**
  * Overview Model
@@ -25,10 +26,10 @@ class MiniTheatreCMModelOverview extends JModelList
 	// Method to check if Basic or Advanced
 	public function getLayoutMode()
 	{
-		return MiniTheatreCMHelperConfig::getOverviewType();
+		return MiniTheatreCMMetaGlobal::getOverviewType();
 	}
 	
-	// Methods to get 'Items' Data
+	// Methods to get 'Items' Data (update code for this. Use arrays and foreach, individual is pain)
 	public function getItemsData()
 	{
 		//Init
@@ -37,24 +38,22 @@ class MiniTheatreCMModelOverview extends JModelList
 		
 		// Query - All
 		$query = $db->getQuery(true);
-		$query->select('COUNT(*)')->from($db->quoteName('#__mtcm_items'));
+		$query->select('COUNT(*)')->from($db->quoteName(MiniTheatreCMMetaConfig::getTableName('items')));
 		$db->setQuery($query);
 		$data["count"] = $db->loadResult();
 		
 		return $data;
 	}
 	
-	// Methods to load nfo data
+	// Helper Methods
 	public function getVersion()
 	{
 		return MiniTheatreCMHelperNfo::getVersion();
 	}
-	
 	public function getChangelogs()
 	{
 		return MiniTheatreCMHelperNfo::getChangelogs();
 	}
-	
 	public function getTasks()
 	{
 		return MiniTheatreCMHelperNfo::getTasks();

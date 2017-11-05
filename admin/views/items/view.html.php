@@ -18,13 +18,7 @@ defined('_JEXEC') or die('Restricted access');
  */
 class MiniTheatreCMViewItems extends JViewLegacy
 {
-	/**
-	 * Display the Items view
-	 *
-	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
-	 *
-	 * @return  void
-	 */
+	// Display the template ($tpl: template file)
 	function display($tpl = null)
 	{
 		// Get application
@@ -61,13 +55,7 @@ class MiniTheatreCMViewItems extends JViewLegacy
 		$this->setDocument();
 	}
 	
-	/**
-	 * Add the page title and toolbar.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.6
-	 */
+	// Add page header and toolbar buttons
 	protected function addToolBar()
 	{
 		$title = JText::_('COM_MINITHEATRECM_TITLE_ITEMS');
@@ -90,11 +78,7 @@ class MiniTheatreCMViewItems extends JViewLegacy
 		JToolbarHelper::preferences('com_minitheatrecm');
 	}
 	
-	/**
-	 * Method to set up the document properties
-	 *
-	 * @return void
-	 */
+	// Set up document properties
 	protected function setDocument() 
 	{
 		$document = JFactory::getDocument();

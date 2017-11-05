@@ -7,11 +7,11 @@ DROP TABLE IF EXISTS `#__mtcm_items`;
 DROP TABLE IF EXISTS `#__mtcm_franchises`;
 
 DROP TABLE IF EXISTS `#__mtcm_genres`;
+DROP TABLE IF EXISTS `#__mtcm_contenttypes`;
 
-DROP TABLE IF EXISTS `#__mtcm_ratings_listings`;
-DROP TABLE IF EXISTS `#__mtcm_ratings_reviews`;
-DROP TABLE IF EXISTS `#__mtcm_ratings_items`;
-DROP TABLE IF EXISTS `#__mtcm_ratings_franchises`;
+DROP TABLE IF EXISTS `#__mtcm_rating_listings`;
+DROP TABLE IF EXISTS `#__mtcm_rating_reviews`;
+DROP TABLE IF EXISTS `#__mtcm_rating_items`;
+DROP TABLE IF EXISTS `#__mtcm_rating_franchises`;
 
 DROP TABLE IF EXISTS `#__mtcm_admin_ulwiz`;
-DROP TABLE IF EXISTS `#__mtcm_contenttypes`;

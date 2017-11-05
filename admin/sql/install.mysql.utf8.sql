@@ -121,38 +121,47 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_genres` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Ratings: Listings, Reviews, Items, Franchises
-CREATE TABLE IF NOT EXISTS `#__mtcm_ratings_listings` (
+CREATE TABLE IF NOT EXISTS `#__mtcm_rating_listings` (
 	`id`			INT(11)			NOT NULL AUTO_INCREMENT,
-	`user_id`		INT(10)			NOT NULL DEFAULT '0',
-	`listing_id`	INT(10)			NOT NULL DEFAULT '0',
+	`target_id`		INT(10)			NOT NULL DEFAULT '0',
 	`rating`		TINYINT			NOT NULL DEFAULT '0',
+	`author`		INT(10)			NOT NULL DEFAULT '0',
+	`recentedit`	INT(10)			NOT NULL DEFAULT '0',
+	`created`		TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
+	`modified`		DATETIME		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `#__mtcm_ratings_reviews` (
+CREATE TABLE IF NOT EXISTS `#__mtcm_rating_reviews` (
 	`id`			INT(11)			NOT NULL AUTO_INCREMENT,
-	`user_id`		INT(10)			NOT NULL DEFAULT '0',
-	`review_id`		INT(10)			NOT NULL DEFAULT '0',
-	`vote`			TINYINT			NOT NULL DEFAULT '0' COMMENT '1 for upvote, -1 for downvote, 0 for unvoted',
-	`reaction`		TINYINT			NOT NULL DEFAULT '0',
+	`target_id`		INT(10)			NOT NULL DEFAULT '0',
+	`rating`		TINYINT			NOT NULL DEFAULT '0',
+	`author`		INT(10)			NOT NULL DEFAULT '0',
+	`recentedit`	INT(10)			NOT NULL DEFAULT '0',
+	`created`		TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
+	`modified`		DATETIME		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `#__mtcm_ratings_items` (
+CREATE TABLE IF NOT EXISTS `#__mtcm_rating_items` (
 	`id`			INT(11)			NOT NULL AUTO_INCREMENT,
-	`user_id`		INT(10)			NOT NULL DEFAULT '0',
-	`item_id`		INT(10)			NOT NULL DEFAULT '0',
+	`target_id`		INT(10)			NOT NULL DEFAULT '0',
 	`rating`		TINYINT			NOT NULL DEFAULT '0',
-	`recommend`		BOOLEAN			NOT NULL DEFAULT '0',
+	`author`		INT(10)			NOT NULL DEFAULT '0',
+	`recentedit`	INT(10)			NOT NULL DEFAULT '0',
+	`created`		TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
+	`modified`		DATETIME		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `#__mtcm_ratings_franchises` (
+CREATE TABLE IF NOT EXISTS `#__mtcm_rating_franchises` (
 	`id`			INT(11)			NOT NULL AUTO_INCREMENT,
-	`user_id`		INT(10)			NOT NULL DEFAULT '0',
-	`franchise_id`	INT(10)			NOT NULL DEFAULT '0',
+	`target_id`		INT(10)			NOT NULL DEFAULT '0',
 	`rating`		TINYINT			NOT NULL DEFAULT '0',
-	`recommend`		BOOLEAN			NOT NULL DEFAULT '0',
+	`author`		INT(10)			NOT NULL DEFAULT '0',
+	`recentedit`	INT(10)			NOT NULL DEFAULT '0',
+	`created`		TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
+	`modified`		DATETIME		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -181,23 +190,6 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_contenttypes` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Test Values, release version won't be using these.
-INSERT INTO `#__mtcm_contenttypes` (`name`, `author`) VALUES
-('Anime', 42),
-('Movie', 43);
-INSERT INTO `#__mtcm_contenttypes` (`name`) VALUES
-('Manga'),
-('Dorama');
-
-INSERT INTO `#__mtcm_admin_ulwiz` (`wname`) VALUES
-('Anime'),
-('Movie'),
-('Manga'),
-('Dorama');
-
-INSERT INTO `#__mtcm_items` (`name`,`content`) VALUES
-('Watashi No Koibito Wa Monster Desu', 'Description of the item <b>Watashi No Koibito Wa Monster Desu</b> goes here.'),
-('Killing Squad', 'Description of the item <b>Killing Squad</b> goes here.');
-
 INSERT INTO `#__mtcm_listings` (`name`, `author`, `item_id`) VALUES
 ('Test Listing 1', 42, 1),
 ('Test Listing 2', 42, 2),
@@ -226,6 +218,16 @@ INSERT INTO `#__mtcm_reviews` (`author`, `item_id`) VALUES
 (49, 2),
 (50, 2);
 
+INSERT INTO `#__mtcm_items` (`name`,`content`) VALUES
+('Watashi No Koibito Wa Monster Desu', 'Description of the item <b>Watashi No Koibito Wa Monster Desu</b> goes here.'),
+('Killing Squad', 'Description of the item <b>Killing Squad</b> goes here.');
+
+INSERT INTO `#__mtcm_franchises` (`name`, `access`, `author`, `recentedit`) VALUES
+('Killing Squad Franchise', 2, 42, 49),
+('Mahou Mahou', 3, 65, 43),
+('Mothership Stella', 54, 49, 61),
+('Tea Party', 0, 0, 0);
+
 INSERT INTO `#__mtcm_genres` (`name`, `author`) VALUES
 ('Fiction', 0),
 ('Horror', 42),
@@ -235,8 +237,55 @@ INSERT INTO `#__mtcm_genres` (`name`, `author`) VALUES
 ('Drama', 50),
 ('Romance', 100);
 
-INSERT INTO `#__mtcm_franchises` (`name`, `access`, `author`, `recentedit`) VALUES
-('Killing Squad Franchise', 2, 42, 49),
-('Mahou Mahou', 3, 65, 43),
-('Mothership Stella', 54, 49, 61),
-('Tea Party', 0, 0, 0);
+INSERT INTO `#__mtcm_contenttypes` (`name`, `author`) VALUES
+('Anime', 42),
+('Movie', 43);
+INSERT INTO `#__mtcm_contenttypes` (`name`) VALUES
+('Manga'),
+('Dorama');
+
+INSERT INTO `#__mtcm_admin_ulwiz` (`wname`) VALUES
+('Anime'),
+('Movie'),
+('Manga'),
+('Dorama');
+
+INSERT INTO `#__mtcm_rating_items` (`rating`, `author`, `target_id`) VALUES
+(11, 42, 1),
+(46, 43, 0),
+(45, 49, 2),
+(31, 50, 3),
+(78, 42, 2),
+(84, 43, 5),
+(68, 49, 2),
+(32, 50, 1);
+
+INSERT INTO `#__mtcm_rating_franchises` (`rating`, `author`, `target_id`) VALUES
+(11, 42, 1),
+(46, 43, 0),
+(45, 49, 2),
+(31, 50, 3),
+(78, 42, 2),
+(84, 43, 5),
+(68, 49, 2),
+(32, 50, 1);
+
+INSERT INTO `#__mtcm_rating_listings` (`rating`, `author`, `target_id`) VALUES
+(11, 42, 1),
+(46, 43, 0),
+(45, 49, 2),
+(31, 50, 3),
+(78, 42, 2),
+(84, 43, 5),
+(68, 49, 2),
+(32, 50, 1);
+
+INSERT INTO `#__mtcm_rating_reviews` (`rating`, `author`, `target_id`) VALUES
+(11, 42, 1),
+(46, 43, 0),
+(45, 49, 2),
+(31, 50, 3),
+(78, 42, 2),
+(84, 43, 5),
+(68, 49, 2),
+(32, 50, 1);

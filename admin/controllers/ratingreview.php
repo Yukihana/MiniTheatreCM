@@ -11,10 +11,11 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-abstract class MiniTheatreCMHelperHtml
+/**
+ * RatingReview Controller
+ *
+ * @since  0.0.9
+ */
+class MiniTheatreCMControllerRatingReview extends JControllerForm
 {
-	public static function navArrows($pager)
-	{
-		
-	}
 }

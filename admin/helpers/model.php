@@ -78,6 +78,27 @@ abstract class MiniTheatreCMHelperModel
 		return $result;
 	}
 	
+	public static function getFranchises( $items, $fields )
+	{
+		$result = array();
+		
+		// Load the values of the fields into an array and make it unique
+		$ids = self::getUniqueArray( $items, $fields );
+		
+		// Check IDs vs Items and load them on success
+		$table = JTable::getInstance('Franchises', 'MiniTheatreCMTable', array());
+		foreach( $ids as $id )
+		{
+			if( $table->load( $id ))
+			{
+				$result[$id] = $table->name;
+			}
+		}
+		
+		// Return data
+		return $result;
+	}
+	
 	//Kernel methods
 	private static function getUniqueArray( $items, $fields )
 	{

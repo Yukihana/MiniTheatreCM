@@ -18,17 +18,7 @@ defined('_JEXEC') or die('Restricted access');
  */
 class MiniTheatreCMControllerContentTypes extends JControllerAdmin
 {
-	/**
-	 * Proxy for getModel.
-	 *
-	 * @param   string  $name    The model name. Optional.
-	 * @param   string  $prefix  The class prefix. Optional.
-	 * @param   array   $config  Configuration array for model. Optional.
-	 *
-	 * @return  object  The model.
-	 *
-	 * @since   1.6
-	 */
+	// Override proxy for getModel ($name: modelname, $prefix: class prefix, $config: optional configuration array)
 	public function getModel($name = 'ContentType', $prefix = 'MiniTheatreCMModel', $config = array('ignore_request' => true))
 	{
 		$model = parent::getModel($name, $prefix, $config);

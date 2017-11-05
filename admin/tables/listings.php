@@ -11,6 +11,9 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+// Include Dependencies
+JLoader::Register('MiniTheatreCMMetaConfig', JPATH_COMPONENT_ADMINISTRATOR . '/meta/config.php');
+
 /**
  * Listings Table class
  *
@@ -18,13 +21,9 @@ defined('_JEXEC') or die('Restricted access');
  */
 class MiniTheatreCMTableListings extends JTable
 {
-	/**
-	 * Constructor
-	 *
-	 * @param   JDatabaseDriver  &$db  A database connector object
-	 */
+	// Constructor ($db: database connector object)
 	function __construct(&$db)
 	{
-		parent::__construct('#__mtcm_listings', 'id', $db);
+		parent::__construct(MiniTheatreCMMetaConfig::getTableName('listings'), 'id', $db);
 	}
 }

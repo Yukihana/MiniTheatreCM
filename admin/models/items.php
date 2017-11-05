@@ -11,21 +11,18 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+// Include Dependencies
+JLoader::Register('MiniTheatreCMHelperModel', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/model.php');
+JLoader::Register('MiniTheatreCMMetaConfig', JPATH_COMPONENT_ADMINISTRATOR . '/meta/config.php');
+
 /**
- * ItemList Model
+ * Items Model-List
  *
  * @since  0.0.1
  */
 class MiniTheatreCMModelItems extends JModelList
 {
-	/**
-	 * Constructor.
-	 *
-	 * @param   array  $config  An optional associative array of configuration settings.
-	 *
-	 * @see     JController
-	 * @since   1.6
-	 */
+	// Override proxy for the constructor ($config: optional configuration array)
 	public function __construct($config = array())
 	{
 		if (empty($config['filter_fields']))
@@ -39,11 +36,8 @@ class MiniTheatreCMModelItems extends JModelList
 
 		parent::__construct($config);
 	}
-	/**
-	 * Method to build an SQL query to load the list data.
-	 *
-	 * @return      string  An SQL query
-	 */
+	
+	// SQL Query to load List Data
 	protected function getListQuery()
 	{
 		// Initialize variables.
@@ -52,7 +46,7 @@ class MiniTheatreCMModelItems extends JModelList
 
 		// Create the base select statement.
 		$query->select('*')
-                ->from($db->quoteName('#__mtcm_items'));
+                ->from($db->quoteName(MiniTheatreCMMetaConfig::getTableName('items')));
 
 		// Filter: like / search
 		$search = $this->getState('filter.search');

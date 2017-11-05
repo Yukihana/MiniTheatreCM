@@ -18,13 +18,7 @@ defined('_JEXEC') or die('Restricted access');
  */
 class MiniTheatreCMViewOverview extends JViewLegacy
 {
-	/**
-	 * Display the Overview view
-	 *
-	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
-	 *
-	 * @return  void
-	 */
+	// Display the template ($tpl: template file)
 	function display($tpl = null)
 	{
 		// Include CCS & JS
@@ -50,7 +44,7 @@ class MiniTheatreCMViewOverview extends JViewLegacy
 		// Set the Layout
 		if( $this->layoutmode == 0 )
 		{
-			$tpl = 'advanced';
+			$tpl = 'detailed';
 		}
 		
 		// Set the submenu
@@ -63,24 +57,16 @@ class MiniTheatreCMViewOverview extends JViewLegacy
 		parent::display($tpl);
 	}
 	
-	/**
-	 * Add the page title and toolbar.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.6
-	 */
+	// Add page header and toolbar buttons
 	protected function addToolBar()
 	{
 		JToolbarHelper::title(
 			JText::_('COM_MINITHEATRECM_TITLE_OVERVIEW')
 			.' ('
-			.JText::_( ($this->layoutmode == 1) ? 'COM_MINITHEATRECM_DICTIONARY_DETAILED' : 'COM_MINITHEATRECM_DICTIONARY_BASIC' )
+			.JText::_( ($this->layoutmode == 1) ? 'COM_MINITHEATRECM_DICTIONARY_BASIC' : 'COM_MINITHEATRECM_DICTIONARY_DETAILED' )
 			.')'
-			, 'chart' );
+			, 'bars' );
 		
 		JToolbarHelper::preferences('com_minitheatrecm');
-		//JToolbarHelper::custom('overview.showdetails', 'refresh', 'refresh', 'Show-Hide', false);
-		
 	}
 }

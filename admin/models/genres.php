@@ -11,11 +11,12 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-// Include the Lib/ModelHelper Static Class
+// Include Dependencies
 JLoader::Register('MiniTheatreCMHelperModel', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/model.php');
+JLoader::Register('MiniTheatreCMMetaConfig', JPATH_COMPONENT_ADMINISTRATOR . '/meta/config.php');
 
 /**
- * Genres Model
+ * Genres Model-List
  *
  * @since  0.0.1
  */
@@ -27,7 +28,7 @@ class MiniTheatreCMModelGenres extends JModelList
 		// Load required records from the database
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
-		$query->select('*')->from($db->quoteName('#__mtcm_genres'));
+		$query->select('*')->from($db->quoteName(MiniTheatreCMMetaConfig::getTableName('genres')));
 		$db->setQuery($query);		
 		
 		return $query;

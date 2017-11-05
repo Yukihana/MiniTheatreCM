@@ -11,14 +11,17 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-abstract class MiniTheatreCMHelperConfig
+abstract class MiniTheatreCMMetaGlobal
 {
+	// Admin->Default View
 	public static function getDefaultView()
 	{
+		$id = JComponentHelper::getParams('com_minitheatrecm')->get('default_view');
 		$views = array('overview','listings','reviews','items','franchises','genres','contenttypes');
-		return $views[JComponentHelper::getParams('com_minitheatrecm')->get('default_view')];
+		return $views[empty($id)? 0:$id];
 	}
 	
+	// Admin->Overview Type
 	public static function getOverviewType()
 	{
 		return JComponentHelper::getParams('com_minitheatrecm')->get('overview_type');

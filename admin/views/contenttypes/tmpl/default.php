@@ -11,14 +11,15 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-
+// Include Dependencies
+JLoader::Register('MiniTheatreCMLibHtmlManagerFields', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/managerfields.php');
 ?>
 
 <form action="index.php?option=com_minitheatrecm&view=contenttypes" method="post" id="adminForm" name="adminForm">
 	<div id="j-sidebar-container" class="span2">
 		<?php echo JHtmlSidebar::render(); ?>
 	</div>
-	<div id="j-main-container" class="span10">	
+	<div id="j-main-container" class="span10">
 	
 		<?php if (empty($this->items)) : ?>
 		<div class="alert alert-no-items">
@@ -29,31 +30,31 @@ defined('_JEXEC') or die('Restricted access');
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
-					<th width="2%" class="center">
+					<th width="3%" class="center">
 						<?php echo JHtml::_('grid.checkall'); ?>
 					</th>
-					<th width="5%" class="nowrap center">
+					<th width="7%" class="nowrap center">
 						<?php echo JHtml::_('grid.sort', 'JSTATUS', 'state') ;?>
 					</th>
-					<th width="40%" class="nowrap">
-						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_TITLE', 'name') ;?>
+					<th width="35%" class="nowrap">
+						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_CONTENTTYPE', 'name') ;?>
 					</th>
 					<th width="10%" class="nowrap">
 						<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ACCESS', 'access') ;?>
 					</th>
-					<th width="10%" class="nowrap">
+					<th width="10%" class="nowrap hidden-phone">
 						<?php echo JHtml::_('grid.sort', 'JAUTHOR', 'author') ;?>
 					</th>
-					<th width="10%" class="nowrap">
+					<th width="10%" class="nowrap hidden-phone">
 						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT', 'recentedit') ;?>
 					</th>
-					<th width="10%" class="nowrap center">
+					<th width="10%" class="nowrap hidden-phone">
 						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_CREATED', 'created') ;?>
 					</th>
-					<th width="10%" class="nowrap center">
+					<th width="10%" class="nowrap hidden-phone">
 						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_MODIFIED', 'modified') ;?>
 					</th>
-					<th width="3%" class="right">
+					<th width="5%" class="nowrap hidden-phone" style="text-align:right;">
 						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_ID', 'id') ;?>
 					</th>
 				</tr>
@@ -72,7 +73,7 @@ defined('_JEXEC') or die('Restricted access');
 					<td class="center">
 						<?php echo JHtml::_('grid.id', $i, $row->id); ?>
 					</td>
-					<td class="center">
+					<td class="nowrap center">
 						<?php echo JHtml::_('jgrid.published', $row->state, $i, 'contenttypes.', true, 'cb'); ?>
 					</td>
 					<td>
@@ -80,62 +81,22 @@ defined('_JEXEC') or die('Restricted access');
 							<?php echo $row->name; ?>
 						</a>
 					</td>
-					<td class="small hidden-phone">
-						<?php if( $row->access == 0 || !isset( $this->groups[$row->access] ) ): ?>
-						<span class="hasTooltip" title="<?php echo JText::_('COM_MINITHEATRECM_MESSAGE_NOSUCHACCESS');?>">
-							<?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_ID').': '.$row->access;?>
-						</span>
-						
-						<?php else: ?>
-						<a class="hasTooltip" href="<?php echo JRoute::_('index.php?option=com_users&task=group.edit&id='.$row->access); ?>" title="<?php echo JText::_('JGRID_HEADING_ACCESS'); ?>">
-							<?php echo $this->groups[$row->access]; ?>
-						</a>
-						
-						<?php endif;?>
+					<td class="small nowrap">
+						<?php MiniTheatreCMLibHtmlManagerFields::getAccess($this->groups, $row->access);?>
 					</td>
-					<td class="small nowrap">					
-						<?php if( $row->author == 0): ?>
-						<span class="hasTooltip" title="<?php echo JText::_('COM_MINITHEATRECM_MESSAGE_USERZERO');?>">
-							<?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_NONE');?>
-						</span>
-						
-						<?php elseif( !isset($this->names[$row->author]) ): ?>
-						<span class="hasTooltip" title="<?php echo JText::_('COM_MINITHEATRECM_MESSAGE_NOSUCHUSER');?>">
-							<?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_ID').': '.$row->author;?>
-						</span>
-							
-						<?php else: ?>
-						<a class="hasTooltip" href="<?php echo JRoute::_('index.php?option=com_users&task=user.edit&id='.$row->author);?>" title="<?php echo JText::_('JAUTHOR');?>">
-							<?php echo $this->names[$row->author];?>
-						</a>
-						
-						<?php endif;?>
+					<td class="small nowrap hidden-phone">					
+						<?php MiniTheatreCMLibHtmlManagerFields::getUsername($this->names, $row->author);?>
 					</td>
 					<td class="small nowrap hidden-phone">
-						<?php if( $row->recentedit == 0 ): ?>
-						<span class="hasTooltip" title="<?php echo JText::_('COM_MINITHEATRECM_MESSAGE_USERZERO');?>">
-							<?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_NONE');?>
-						</span>
-						
-						<?php elseif( !isset( $this->names[$row->recentedit] )): ?>
-						<span class="hasTooltip" title="<?php echo JText::_('COM_MINITHEATRECM_MESSAGE_NOSUCHUSER');?>">
-							<?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_ID').': '.$row->recentedit;?>
-						</span>
-						
-						<?php else: ?>
-						<a class="hasTooltip" href="<?php echo JRoute::_('index.php?option=com_users&task=user.edit&id='.$row->recentedit);?>" title="<?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_RECENTEDIT');?>">
-							<?php echo $this->names[$row->recentedit];?>
-						</a>
-						
-						<?php endif;?>
+						<?php MiniTheatreCMLibHtmlManagerFields::getUsername($this->names, $row->recentedit, true);?>
 					</td>
-					<td class="small nowrap center hidden-phone">
+					<td class="small nowrap hidden-phone">
 						<?php echo $row->created; ?>
 					</td>
-					<td class="small nowrap center hidden-phone">
+					<td class="small nowrap hidden-phone">
 						<?php echo $row->modified; ?>
 					</td>
-					<td class="right hidden-phone">
+					<td class="nowrap hidden-phone" style="text-align:right;">
 						<?php echo $row->id; ?>
 					</td>
 				</tr>			

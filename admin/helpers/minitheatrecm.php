@@ -55,7 +55,6 @@ abstract class MiniTheatreCMHelper extends JHelperContent
 			'index.php?option=com_minitheatrecm&view=franchises',
 			$submenu == 'franchises'
 		);
-
 		JHtmlSidebar::addEntry(
 			JText::_('COM_MINITHEATRECM_TITLE_GENRES'),
 			'index.php?option=com_minitheatrecm&view=genres',
@@ -65,6 +64,26 @@ abstract class MiniTheatreCMHelper extends JHelperContent
 			JText::_('COM_MINITHEATRECM_TITLE_CONTENTTYPES'),
 			'index.php?option=com_minitheatrecm&view=contenttypes',
 			$submenu == 'contenttypes'
+		);
+		JHtmlSidebar::addEntry(
+			JText::_('COM_MINITHEATRECM_TITLE_RATINGITEMS'),
+			'index.php?option=com_minitheatrecm&view=ratingitems',
+			$submenu == 'ratingitems'
+		);
+		JHtmlSidebar::addEntry(
+			JText::_('COM_MINITHEATRECM_TITLE_RATINGFRANCHISES'),
+			'index.php?option=com_minitheatrecm&view=ratingfranchises',
+			$submenu == 'ratingfranchises'
+		);
+		JHtmlSidebar::addEntry(
+			JText::_('COM_MINITHEATRECM_TITLE_RATINGLISTINGS'),
+			'index.php?option=com_minitheatrecm&view=ratinglistings',
+			$submenu == 'ratinglistings'
+		);
+		JHtmlSidebar::addEntry(
+			JText::_('COM_MINITHEATRECM_TITLE_RATINGREVIEWS'),
+			'index.php?option=com_minitheatrecm&view=ratingreviews',
+			$submenu == 'ratingreviews'
 		);
 		JHtmlSidebar::addEntry(
 			JText::_('COM_MINITHEATRECM_TITLE_PLANNER'),

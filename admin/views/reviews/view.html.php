@@ -18,13 +18,7 @@ defined('_JEXEC') or die('Restricted access');
  */
 class MiniTheatreCMViewReviews extends JViewLegacy
 {
-	/**
-	 * Display the Reviews view
-	 *
-	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
-	 *
-	 * @return  void
-	 */
+	// Display the template ($tpl: template file)
 	function display($tpl = null)
 	{
 		// Get data from the model
@@ -51,16 +45,10 @@ class MiniTheatreCMViewReviews extends JViewLegacy
 		parent::display($tpl);
 	}
 	
-	/**
-	 * Add the page title and toolbar.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.6
-	 */
+	// Add page header and toolbar buttons
 	protected function addToolBar()
 	{		
-		JToolbarHelper::title( JText::_('COM_MINITHEATRECM_TITLE_REVIEWS'), 'heart' );
+		JToolbarHelper::title( JText::_('COM_MINITHEATRECM_TITLE_REVIEWS'), 'comments-2' );
 		
 		JToolbarHelper::addNew('review.add');
 		JToolbarHelper::editList('review.edit');

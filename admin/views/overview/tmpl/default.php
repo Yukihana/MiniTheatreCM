@@ -11,4 +11,12 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 ?>
-BASIC VIEW SHOWN HERE
+
+<form action="index.php?option=com_minitheatrecm&view=overview" method="post" id="adminForm" name="adminForm">
+	<div id="j-sidebar-container" class="span2">
+		<?php echo JHtmlSidebar::render(); ?>
+	</div>
+	<div id="j-main-container" class="span10">
+		BASIC VIEW SHOWN HERE
+	</div>
+</form>

@@ -11,6 +11,9 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+// Include Dependencies
+JLoader::Register('MiniTheatreCMMetaConfig', JPATH_COMPONENT_ADMINISTRATOR . '/meta/config.php');
+
 /**
  * UploadWizards Table class
  *
@@ -18,13 +21,9 @@ defined('_JEXEC') or die('Restricted access');
  */
 class MiniTheatreCMTableUploadWizards extends JTable
 {
-	/**
-	 * Constructor
-	 *
-	 * @param   JDatabaseDriver  &$db  A database connector object
-	 */
+	// Constructor ($db: database connector object)
 	function __construct(&$db)
 	{
-		parent::__construct('#__mtcm_admin_ulwiz', 'id', $db);
+		parent::__construct(MiniTheatreCMMetaConfig::getTableName('admin_ulwiz'), 'id', $db);
 	}
 }

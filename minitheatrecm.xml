@@ -68,6 +68,10 @@
 			<menu view="franchises">COM_MINITHEATRECM_MENU_FRANCHISES</menu>
 			<menu view="genres">COM_MINITHEATRECM_MENU_GENRES</menu>
 			<menu view="contenttypes">COM_MINITHEATRECM_MENU_CONTENTTYPES</menu>
+			<menu view="ratingitems">COM_MINITHEATRECM_MENU_RATINGITEMS</menu>
+			<menu view="ratingfranchises">COM_MINITHEATRECM_MENU_RATINGFRANCHISES</menu>
+			<menu view="ratinglistings">COM_MINITHEATRECM_MENU_RATINGLISTINGS</menu>
+			<menu view="ratingreviews">COM_MINITHEATRECM_MENU_RATINGREVIEWS</menu>
 			<menu view="planner">COM_MINITHEATRECM_MENU_PLANNER</menu>
 			
 		</submenu>
@@ -83,6 +87,7 @@
 			<folder>nfo</folder>
 			<folder>helpers</folder>
 			<folder>lib</folder>
+			<folder>meta</folder>
 			<folder>models</folder>
 			<folder>sql</folder>
 			<folder>tables</folder>
