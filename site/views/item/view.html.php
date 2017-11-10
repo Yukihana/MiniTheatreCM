@@ -18,24 +18,14 @@ defined('_JEXEC') or die('Restricted access');
  */
 class MiniTheatreCMViewItem extends JViewLegacy
 {
-	/**
-	 * Display the Item view
-	 *
-	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
-	 *
-	 * @return  void
-	 */
+	// Display the view ($tpl: template file)
 	function display($tpl = null)
 	{
 		// Authenticate
-		$this->LoggedIn = $this->get('LoggedIn');
-		$this->Id = $this->get('Id');
-		$this->Exists = $this->LoggedIn ? $this->get('Exists') : 0;
-		
-		if( $this->Exists == 1 )
+		$this->auth = $this->get('Access');
+		if( $this->auth == 0 )
 		{
-			$this->iName = $this->get('ItemName');
-			$this->iContent = $this->get('ItemContent');
+			$this->itemdata = $this->get('Itemdata');
 		}
 		
 		// Check for errors.

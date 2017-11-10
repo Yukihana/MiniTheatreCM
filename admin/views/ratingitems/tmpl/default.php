@@ -58,7 +58,7 @@ JLoader::Register('MiniTheatreCMLibHtmlManagerFields', JPATH_COMPONENT_ADMINISTR
 			</thead>
 			<tfoot>
 				<tr>
-					<td colspan="5">
+					<td colspan="8">
 						<?php echo $this->pagination->getListFooter(); ?>
 					</td>
 				</tr>

@@ -37,7 +37,7 @@ class JFormFieldItemList extends JFormFieldList
 		$db    = JFactory::getDBO();
 		$query = $db->getQuery(true);
 		$query->select('id,name');
-		$query->from('#__mtcm_wiki_items');
+		$query->from($db->quoteName('#__mtcm_items'));
 		$db->setQuery((string) $query);
 		$objlist = $db->loadObjectList();
 		
@@ -47,7 +47,7 @@ class JFormFieldItemList extends JFormFieldList
 		{
 			foreach ($objlist as $obj)
 			{
-				$options[] = JHtml::_('select.option', $obj->id, $obj->name."(catid_implement_pending)");
+				$options[] = JHtml::_('select.option', $obj->id, $obj->name);
 			}
 		}
 

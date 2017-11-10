@@ -3,15 +3,16 @@
 	
 	-ALTER TABLE and IF EXISTS don't go together
 	-Procedure: Create if absent, Alter to InnoDB, Truncate(where applicable), Data insertion
-	-Real world cases don't delete tables: disastrous obvious consequences like data deletion.
+	-Real world case don't delete tables: disastrous data-loss consequences.
+	-Delete contents of uninstall-sql once mainsite is up.
 */
 
 -- Metadata
-CREATE TABLE IF NOT EXISTS `#__mtcm_metadatas` (
-	`id`		INT(11)			NOT NULL AUTO_INCREMENT,
-	`metaname`	VARCHAR(255)	NOT NULL,
-	`metadata`	TEXT			NOT NULL DEFAULT '',
-	`metadesc`	TEXT			NOT NULL DEFAULT '',
+CREATE TABLE IF NOT EXISTS `#__mt_shared` (
+	`id`				INT(11)			NOT NULL AUTO_INCREMENT,
+	`name`				VARCHAR(255)	NOT NULL,
+	`content`			TEXT			NOT NULL DEFAULT '',
+	`description`		TEXT			NOT NULL DEFAULT '',
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -70,9 +71,10 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_items` (
 	`rating_sum`		INT(10)			UNSIGNED NOT NULL DEFAULT '0',
 	`rating_count`		INT(10)			UNSIGNED NOT NULL DEFAULT '0',
 	`hits`				INT(11)			UNSIGNED NOT NULL DEFAULT '0',
-	`created_on`		TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
-	`lastedit_by`		INT(10)			UNSIGNED NOT NULL DEFAULT '0',
-	`modified_on`		DATETIME		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	`author`			INT(10)			UNSIGNED NOT NULL DEFAULT '0',
+	`recentedit`		INT(10)			UNSIGNED NOT NULL DEFAULT '0',
+	`created`			TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
+	`modified`			DATETIME		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	`poll_listings`		BOOLEAN			NOT NULL DEFAULT '0',
 	`poll_reviews`		BOOLEAN			NOT NULL DEFAULT '0',
 	`cache_listings`	TEXT			NOT NULL DEFAULT '',
@@ -96,8 +98,8 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_franchises` (
 	`rating_sum`		INT(10)			UNSIGNED NOT NULL DEFAULT '0',
 	`rating_count`		INT(10)			UNSIGNED NOT NULL DEFAULT '0',
 	`hits`				INT(11)			UNSIGNED NOT NULL DEFAULT '0',
-	`author`			INT(10)			NOT NULL DEFAULT '0',
-	`recentedit`		INT(10)			NOT NULL DEFAULT '0',
+	`author`			INT(10)			UNSIGNED NOT NULL DEFAULT '0',
+	`recentedit`		INT(10)			UNSIGNED NOT NULL DEFAULT '0',
 	`created`			TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
 	`modified`			DATETIME		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	`poll_items`		BOOLEAN			NOT NULL DEFAULT '0',

@@ -25,97 +25,60 @@ class MiniTheatreCMModelItem extends JModelItem
 	}
 	
 	// Storage Vars
-	protected $loggedin;
-	protected $id;
-	protected $exists;
-	protected $itemname;
-	protected $itemcontent;
+	protected $itemdata;
 	
-	// Data Authenticator and Loader
-	public function popdata()
+	// Primary Loader (-1: not logged, 0: doesn't exist, 1: AOK) 
+	public function getAccess()
 	{
-		// Load and verify Logged-In status
-		if( !isset( $this->loggedin ))
+		// User check
+		$user = JFactory::getUser()->get('id');
+		if($user == 0)
 		{
-			$this->loggedin = (JFactory::getUser()->get('id') != 0);
-		}
-		if( !$this->loggedin )
-		{
-			return;
+			return 1;
 		}
 		
-		// Load ID, check if record exists
-		$this->id = JFactory::getApplication()->input->get('id',0,'INT');
+		// Input check
+		$id = JFactory::getApplication()->input->get('id',0,'INT');
+		if($id == 0)
+		{
+			return 2;
+		}
+		
+		// Record check
 		$table = $this->getTable();
-		if ( $this->id == 0 )
+		if( ! $table->load($id) )
 		{
-			$this->exists = 0;
-		}
-		else
-		{
-			$this->exists = $table->load($this->id) ? 1 : 2;
-		}
-		if( $this->exists != 1 )
-		{
-			return;
+			return 2;
 		}
 		
-		// Load Table Data
-		$this->itemname = $table->name;
-		$this->itemcontent = $table->content;
-		/*
-		 * Subsequently load other record data here
-		 */
+		// Check other status info (published)
+		if( $table->state != 1 )
+		{
+			return 2;
+		}
+		
+		// Assuming it's all good to go, load data
+		$this->itemdata = new stdClass();
+		$this->itemdata->id = $id;
+		$this->itemdata->name = $table->name;
+		$this->itemdata->synopsis = $table->content;
+		$this->itemdata->modified = $table->modified;
+		
+		return 0;
 	}
 	
-	/**
-	 * Get Methods:
-	 * $loggedin, $id
-	 * $itemname, $itemcontent
-	 */
-	public function getLoggedIn()
+	public function getItemdata()
 	{
-		if( !isset( $this->loggedin ))
+		// Initiate loader
+		if( !isset( $this->itemdata ))
 		{
-			$this->popdata();
+			$auth = $this->getAuthorisation();
+			if( $auth != 1)
+			{
+				return new stdClass();
+			}
 		}
-		return $this->loggedin;
+		
+		return $this->itemdata;
 	}
-	public function getId()
-	{
-		if( !isset( $this->id ))
-		{
-			$this->popdata();
-		}
-		return $this->id;
-	}
-	public function getExists()
-	{
-		if( !isset( $this->exists ))
-		{
-			$this->popdata();
-		}
-		return $this->exists;
-	}
-	
-	// -
-	public function getItemName()
-	{
-		if( !isset( $this->itemname ))
-		{
-			$this->popdata();
-		}
-		return $this->itemname;
-	}
-	
-	// Get Item Content
-	public function getItemContent()
-	{
-		if( !isset( $this->itemcontent ))
-		{
-			$this->popdata();
-		}
-		return $this->itemcontent;
-	}
-	
 }

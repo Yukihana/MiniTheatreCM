@@ -4,7 +4,7 @@
 		<field
 			name="search"
 			type="text"
-			label="COM_BANNERS_SEARCH_IN_TITLE"
+			label="COM_MINITHEATRECM_DICTIONARY_SEARCH"
 			hint="JSEARCH_FILTER"
 			class="js-stools-search-string"
 		/>

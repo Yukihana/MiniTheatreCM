@@ -1,3 +1,12 @@
+#0.0.12 D~10-11-2017
+Added a custom renderer for messages that can parse and translate arrays.
+Standardised sql table definition for items.
+Upgraded site/item code to conform to the new system.
+Added a basic tablayout to site/items. Pending actual design and content.
+Changed #__mtcm_metadatas to #__mt_shared, and updated tables.
+Fixed footer colspan values for all manager-list views.
+Upgraded admin/listings to use non tutorial filters.(not fully functional yet)
+
 #0.0.12 C~04-11-2017
 Fixed default_view global parameter.
 Removed bloat layout data from Overview.

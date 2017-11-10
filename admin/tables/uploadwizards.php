@@ -24,6 +24,6 @@ class MiniTheatreCMTableUploadWizards extends JTable
 	// Constructor ($db: database connector object)
 	function __construct(&$db)
 	{
-		parent::__construct(MiniTheatreCMMetaConfig::getTableName('admin_ulwiz'), 'id', $db);
+		parent::__construct(MiniTheatreCMMetaConfig::getTableName('ulwizsources'), 'id', $db);
 	}
 }

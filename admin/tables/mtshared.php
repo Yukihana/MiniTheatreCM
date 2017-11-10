@@ -19,11 +19,11 @@ JLoader::Register('MiniTheatreCMMetaConfig', JPATH_COMPONENT_ADMINISTRATOR . '/m
  *
  * @since  0.0.1
  */
-class MiniTheatreCMTableMetadatas extends JTable
+class MiniTheatreCMTableMtShared extends JTable
 {
 	// Constructor ($db: database connector object)
 	function __construct(&$db)
 	{
-		parent::__construct(MiniTheatreCMMetaConfig::getTableName('metadatas'), 'id', $db);
+		parent::__construct(MiniTheatreCMMetaConfig::getTableName('mtshared'), 'id', $db);
 	}
 }

@@ -45,8 +45,7 @@ class MiniTheatreCMModelItems extends JModelList
 		$query = $db->getQuery(true);
 
 		// Create the base select statement.
-		$query->select('*')
-                ->from($db->quoteName(MiniTheatreCMMetaConfig::getTableName('items')));
+		$query->select('*')->from($db->quoteName(MiniTheatreCMMetaConfig::getTableName('items')).' AS a');
 
 		// Filter: like / search
 		$search = $this->getState('filter.search');

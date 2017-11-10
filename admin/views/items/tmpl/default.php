@@ -51,14 +51,14 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 					<th width="1%" class="nowrap center">
 						<?php echo JHtml::_('searchtools.sort',  'JGRID_HEADING_ACCESS', 'access', $listDirn, $listOrder); ?>
 					</th>
-					<th width="2%">
+					<th width="2%" class="nowrap" style="text-align:right;">
 						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_ID', 'id', $listDirn, $listOrder) ;?>
 					</th>
 				</tr>
 			</thead>
 			<tfoot>
 				<tr>
-					<td colspan="5">
+					<td colspan="6">
 						<?php echo $this->pagination->getListFooter(); ?>
 					</td>
 				</tr>
@@ -84,7 +84,7 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 					<td class="center">
 						<?php echo $this->escape($row->access); ?>
 					</td>
-					<td class="right">
+					<td class="nowrap" style="text-align:right;">
 						<?php echo $row->id; ?>
 					</td>
 				</tr>			

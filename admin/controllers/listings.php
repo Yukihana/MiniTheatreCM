@@ -21,8 +21,6 @@ class MiniTheatreCMControllerListings extends JControllerAdmin
 	// Override proxy for getModel ($name: modelname, $prefix: class prefix, $config: optional configuration array)
 	public function getModel($name = 'Listing', $prefix = 'MiniTheatreCMModel', $config = array('ignore_request' => true))
 	{
-		$model = parent::getModel($name, $prefix, $config);
-
-		return $model;
+		return parent::getModel($name, $prefix, $config);
 	}
 }
