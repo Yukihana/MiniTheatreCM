@@ -12,7 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('MiniTheatreCMHelperModel', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/model.php');
+JLoader::Register('MiniTheatreCMLibMtModel', JPATH_COMPONENT_ADMINISTRATOR . '/lib/mt/model.php');
 JLoader::Register('MiniTheatreCMMetaConfig', JPATH_COMPONENT_ADMINISTRATOR . '/meta/config.php');
 
 /**
@@ -36,6 +36,6 @@ class MiniTheatreCMModelGenres extends JModelList
 	
 	public function getUsernames()
 	{
-		return MiniTheatreCMHelperModel::getUsernames( $this->getItems(), array('author','recentedit') );
+		return MiniTheatreCMLibMtModel::getUsernames( $this->getItems(), array('author','recentedit') );
 	}
 }

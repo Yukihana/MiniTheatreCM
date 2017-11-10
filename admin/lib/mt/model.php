@@ -10,14 +10,8 @@
   
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-
-/**
- * Static Helper class for Models
- *
- * Since 0.0.12
- */
  
-abstract class MiniTheatreCMHelperModel
+abstract class MiniTheatreCMLibMtModel
 {
 	public static function getUsernames( $items, $fields )
 	{

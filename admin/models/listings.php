@@ -13,7 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
 use Joomla\Utilities\ArrayHelper;
-JLoader::Register('MiniTheatreCMHelperModel', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/model.php');
+JLoader::Register('MiniTheatreCMLibMtModel', JPATH_COMPONENT_ADMINISTRATOR . '/lib/mt/model.php');
 JLoader::Register('MiniTheatreCMMetaConfig', JPATH_COMPONENT_ADMINISTRATOR . '/meta/config.php');
 
 /**
@@ -43,13 +43,27 @@ class MiniTheatreCMModelListings extends JModelList
 		parent::__construct($config);
 	}
 	
+	// Method to auto-populate the model state
+	protected function populateState($ordering = 'a.id', $direction = 'desc')
+	{
+		/*
+		 * Workaround to show sort-direction arrow on default column-header
+		 * When a specific sorting order is not provided. (aka default sorting)
+		 */
+		parent::populateState($ordering,$direction);
+	}
+	
 	// SQL Query to load List Data
 	protected function getListQuery()
 	{
 		// Load records from the database
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
-		$query->select('*')->from($db->quoteName(MiniTheatreCMMetaConfig::getTableName('listings')).' AS a');
+		
+		//$query->select('*')->
+		$query->select( 'a.id, a.name, a.state, a.item_id, a.author, a.recentedit, a.created, a.modified' )->
+			from($db->quoteName(MiniTheatreCMMetaConfig::getTableName('listings')).' AS a');
+		
 		
 		// Filter: like / search
 		$search = $this->getState('filter.search');
@@ -97,18 +111,6 @@ class MiniTheatreCMModelListings extends JModelList
 			$itemid = implode(',', $itemid);
 			$query->where('a.item_id IN (' . $itemid . ')');
 		}
-		/*
-		if (is_numeric($author))
-		{
-			$type = $this->getState('filter.author.include', true) ? '= ' : '<>';
-			$query->where('a.author ' . $type . (int) $author);
-		}
-		elseif (is_array($author))
-		{
-			$author = ArrayHelper::toInteger($author);
-			$author = implode(',', $author);
-			$query->where('a.author IN (' . $author . ')');
-		}*/
 		
 		// Add the list ordering clause.
 		$orderCol	= $this->state->get('list.ordering', 'a.id');
@@ -117,17 +119,16 @@ class MiniTheatreCMModelListings extends JModelList
 		$query->order($db->escape($orderCol) . ' ' . $db->escape($orderDirn));
 		
 		// Set the query and return
-		// $db->setQuery($query); ?? do i need this line? Doesn't look like it.
 		return $query;
 	}
 	
 	// Helper Methods
 	public function getUsernames()
 	{
-		return MiniTheatreCMHelperModel::getUsernames( $this->getItems(), array('author','recentedit') );
+		return MiniTheatreCMLibMtModel::getUsernames( $this->getItems(), array('author','recentedit') );
 	}
 	public function getItemnames()
 	{
-		return MiniTheatreCMHelperModel::getItemnames( $this->getItems(), array('item_id') );
+		return MiniTheatreCMLibMtModel::getItemnames( $this->getItems(), array('item_id') );
 	}
 }

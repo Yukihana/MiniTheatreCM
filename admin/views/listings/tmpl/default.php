@@ -20,8 +20,8 @@ JHtml::_('formbehavior.chosen', '.multipleAuthors', null, array('placeholder_tex
 JHtml::_('formbehavior.chosen', '.multipleItems', null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_FILTER_ITEM')));
 JHtml::_('formbehavior.chosen', 'select');
 
-$listOrder     = $this->escape($this->filter_order);
-$listDirn      = $this->escape($this->filter_order_Dir);
+$listOrder     = $this->escape($this->state->get('list.ordering'));
+$listDirn      = $this->escape($this->state->get('list.direction'));
 ?>
 
 <form action="index.php?option=com_minitheatrecm&view=listings" method="post" id="adminForm" name="adminForm">
@@ -48,28 +48,28 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 						<?php echo JHtml::_('grid.checkall'); ?>
 					</th>
 					<th width="7%" class="nowrap center">
-						<?php echo JHtml::_('grid.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder) ;?>
+						<?php echo JHtml::_('searchtools.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder) ;?>
 					</th>
 					<th width="25%" class="nowrap">
-						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_LISTING', 'a.name', $listDirn, $listOrder) ;?>
+						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_COLUMNHEADER_LISTINGNAME', 'a.name', $listDirn, $listOrder) ;?>
 					</th>
 					<th width="20%" class="nowrap">
-						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_ITEM', 'a.item_id', $listDirn, $listOrder) ;?>
+						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_DICTIONARY_ITEM', 'a.item_id', $listDirn, $listOrder) ;?>
 					</th>
 					<th width="10%" class="nowrap">
-						<?php echo JHtml::_('grid.sort', 'JAUTHOR', 'a.author', $listDirn, $listOrder) ;?>
+						<?php echo JHtml::_('searchtools.sort', 'JAUTHOR', 'a.author', $listDirn, $listOrder) ;?>
 					</th>
 					<th width="10%" class="nowrap hidden-phone">
-						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT', 'a.recentedit', $listDirn, $listOrder) ;?>
+						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT', 'a.recentedit', $listDirn, $listOrder) ;?>
 					</th>
 					<th width="10%" class="nowrap hidden-phone">
-						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_CREATED', 'a.created', $listDirn, $listOrder); ?>
+						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_DICTIONARY_CREATED', 'a.created', $listDirn, $listOrder); ?>
 					</th>
 					<th width="10%" class="nowrap hidden-phone">
-						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_MODIFIED', 'a.modified', $listDirn, $listOrder) ;?>
+						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_DICTIONARY_MODIFIED', 'a.modified', $listDirn, $listOrder) ;?>
 					</th>
 					<th width="5%" class="nowrap hidden-phone" style="text-align:right;">
-						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_ID', 'a.id', $listDirn, $listOrder); ?>
+						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_DICTIONARY_ID', 'a.id', $listDirn, $listOrder); ?>
 					</th>
 				</tr>
 			</thead>
@@ -122,12 +122,8 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 		</table>
 		<?php endif;?>
 		
-		<?php /*echo'<p class="small text-right">'.JText::sprintf('COM_MINITHEATRECM_MESSAGE_RESULTCOUNT', count($this->items), $this->pagination->total).'</p>';*/?>
-		
 		<?php echo JHtml::_('form.token'); ?>
 		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="boxchecked" value="0" />
-		<input type="hidden" name="filter_order" value="<?php echo $listOrder; ?>"/>
-		<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>"/>
 	</div>
 </form>

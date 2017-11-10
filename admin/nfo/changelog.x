@@ -1,3 +1,10 @@
+#0.0.12 D1~10-11-2017
+Fixed admin/listings fullordering not working.
+Fixed column header not showing directional arrow on default state.
+Added a lot of missing translations, cleaned up unused libraries.
+Write custom translations for fullordering. Make 'id desc' the default order.
+Add minitheatre folder to lib, and move mt specific helpers.
+
 #0.0.12 D~10-11-2017
 Added a custom renderer for messages that can parse and translate arrays.
 Standardised sql table definition for items.

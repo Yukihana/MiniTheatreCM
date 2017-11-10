@@ -1,32 +1,31 @@
 #active~star
-Added a lot of missing translations.
-
-#pending~clock
-Fix fullordering on admin/listings.
-Fix unable to publish/unpublish on admin/listings.
+Current:
 Add translations to Table Headers like 'Listing name' etc.
 Move view.html.php/page-header together with set-title into setDocument method.
-Populate form type views.
-Change non-list manager views to Form type (test if possible).
-Change ratings icon types based on the type of ratings used.
-Upgrade all views to use filters.
+Add systems: Badges, Legend Instructions, Global Notice.
+
+#pending~clock
+Fix unable to publish/unpublish on admin/listings.
 
 #postponed~flag
-Add a router, 'alias' fields to tables and admin/form views.
-Plan new layout for overview and planner, include legend instructions.
-Overview to show only latest changelog.
-Add a global notice system that shows on all admin/views.
-Add badges html renderer for 'showing x of y results', 'version', etc
-Post filter comment-compacting on views.
-Delete UlwizSources after all functionality has been implemented on other views.
-Add a maintenance view, use it to purge, refactor, and defragment datatables.
-
-#notes~lamp
-Publishing states (2 to -2): archived, published, unpublished, ??, marked for deletion.
-Initialize the MT_Users component.
-Learn and implement custom tasks and post-processing (try JModelForm->loadformdata).
+For all MVCs, add filter system, comment-compacting.
+Populate form type views.
 Plan a new UI system for Submission wizard
-Use a counter for ratings: rating_cache_counter, rating_cache_reset, rating_cache_value.
 
-#cancelled~trash
+#ideas~lamp
+Router, Alias fields, Psuedobase(Non SQL delivery class).
+Cache for ratings: tick, reset-marker, value.
+Overview, Planner, Manifest.
+Activity History, ID migration log.
+Maintenance, Error/Access-Log, Issues.
+
+#notes~tag-2
+Publishing states (2 to -2): archived, published, unpublished, ??, marked for deletion.
+Learn and implement custom tasks and post-processing (try JModelForm->loadformdata).
+Initialize the MT_Users component.
+
+#trashed~trash
 Override model/getItems using com_content/articles: Not required.
+Add error-log location to global configuration: Php can auto-fetch location.
+Delete UlwizSources: Only after all functionality is analysed and integrated.
+Add View-All checkbox option to tab/pager views: Impractical for these layouts.

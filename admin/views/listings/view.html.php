@@ -33,8 +33,6 @@ class MiniTheatreCMViewListings extends JViewLegacy
 		$this->itemnames		= $this->get('Itemnames');
 		$this->filterForm    	= $this->get('FilterForm');
 		$this->activeFilters 	= $this->get('ActiveFilters');
-		$this->filter_order 	= $this->state->get('list.ordering');
-		$this->filter_order_Dir = $this->state->get('list.direction');
 		
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
@@ -81,20 +79,5 @@ class MiniTheatreCMViewListings extends JViewLegacy
 		$title = JText::_('COM_MINITHEATRECM_TITLE_LISTINGS');
 		JToolbarHelper::title( $title, 'play-2' );
 		JFactory::getDocument()->setTitle($title.' - '.JText::_('COM_MINITHEATRECM_GLOBAL_LONGTITLE'));
-	}
-	
-	// Return an array of fields the table can be sorted by
-	protected function getSortFields()
-	{
-		return array(
-			'a.id'				=> JText::_('JGRID_HEADING_ID'),
-			'a.name'			=> JText::_('JGLOBAL_TITLE'),
-			'a.state'			=> JText::_('JSTATUS'),
-			'a.item_id'			=> JText::_('COM_MINITHEATRECM_DICTIONARY_ITEM'),
-			'a.author'			=> JText::_('JAUTHOR'),
-			'a.recentedit'		=> JText::_('COM_MINITHEATRECM_DICTIONARY_RECENTEDIT'),
-			'a.created'			=> JText::_('JDATE'),
-			'a.modified'		=> JText::_('COM_MINITHEATRECM_DICTIONARY_MODIFIED')
-		);
 	}
 }
