@@ -5,16 +5,16 @@
  *
  * @copyright   CherrySoft-X 2017, MiniTheatre 2017
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
- * @link        http://fb.me/LilyflowerAngel
+ * @link        http://minitheatre.org/
  */
   
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
 // Include Static Helper Classes
-JLoader::Register('MiniTheatreCMLibMtNfo', JPATH_COMPONENT_ADMINISTRATOR . '/lib/mt/nfo.php');
+JLoader::Register('MiniTheatreCMMetaNfo', JPATH_COMPONENT_ADMINISTRATOR . '/meta/nfo.php');
 JLoader::Register('MiniTheatreCMMetaGlobal', JPATH_COMPONENT_ADMINISTRATOR . '/meta/global.php');
-JLoader::Register('MiniTheatreCMMetaConfig', JPATH_COMPONENT_ADMINISTRATOR . '/meta/config.php');
+JLoader::Register('MiniTheatreCMMetaDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/meta/database.php');
 
 /**
  * Overview Model
@@ -38,7 +38,7 @@ class MiniTheatreCMModelOverview extends JModelList
 		
 		// Query - All
 		$query = $db->getQuery(true);
-		$query->select('COUNT(*)')->from($db->quoteName(MiniTheatreCMMetaConfig::getTableName('items')));
+		$query->select('COUNT(*)')->from($db->quoteName(MiniTheatreCMMetaDatabase::getTableName('items')));
 		$db->setQuery($query);
 		$data["count"] = $db->loadResult();
 		
@@ -48,14 +48,14 @@ class MiniTheatreCMModelOverview extends JModelList
 	// Helper Methods
 	public function getVersion()
 	{
-		return MiniTheatreCMLibMtNfo::getVersion();
+		return MiniTheatreCMMetaNfo::getVersionData();
 	}
 	public function getChangelogs()
 	{
-		return MiniTheatreCMLibMtNfo::getChangelogs();
+		return MiniTheatreCMMetaNfo::getChangelogs();
 	}
 	public function getTasks()
 	{
-		return MiniTheatreCMLibMtNfo::getTasks();
+		return MiniTheatreCMMetaNfo::getTasks();
 	}
 }

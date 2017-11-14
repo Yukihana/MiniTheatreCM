@@ -5,7 +5,7 @@
  *
  * @copyright   CherrySoft-X 2017, MiniTheatre 2017
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
- * @link        http://fb.me/LilyflowerAngel
+ * @link        http://minitheatre.org/
  */
 
 // No direct access to this file
@@ -29,6 +29,10 @@ MiniTheatreCMLibIncludeStyles::load();
 		
 		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'roadmap', JText::_('COM_MINITHEATRECM_DICTIONARY_ROADMAP')); ?>
 			ROADMAP DATA
+		<?php echo JHtml::_('bootstrap.endTab'); ?>
+		
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'manifest', JText::_('COM_MINITHEATRECM_DICTIONARY_MANIFEST')); ?>
+			MANIFEST DATA
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		
 		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'updates', JText::_('COM_MINITHEATRECM_DICTIONARY_UPDATES')); ?>

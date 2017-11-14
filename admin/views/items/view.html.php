@@ -5,7 +5,7 @@
  *
  * @copyright   CherrySoft-X 2017, MiniTheatre 2017
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
- * @link        http://fb.me/LilyflowerAngel
+ * @link        http://minitheatre.org/
  */
   
 // No direct access to this file
@@ -26,13 +26,16 @@ class MiniTheatreCMViewItems extends JViewLegacy
 		$context = "minitheatrecm.list.admin.item";
 		
 		// Get data from the model
+		$pretime			= microtime(true);
 		$this->items			= $this->get('Items');
+		$posttime			= microtime(true);
 		$this->pagination		= $this->get('Pagination');
 		$this->state			= $this->get('State');
 		$this->filter_order 	= $app->getUserStateFromRequest($context.'filter_order', 'filter_order', 'name', 'cmd');
 		$this->filter_order_Dir = $app->getUserStateFromRequest($context.'filter_order_Dir', 'filter_order_Dir', 'asc', 'cmd');
 		$this->filterForm    	= $this->get('FilterForm');
 		$this->activeFilters 	= $this->get('ActiveFilters');
+		$this->querytime	= $posttime - $pretime;
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
@@ -42,29 +45,23 @@ class MiniTheatreCMViewItems extends JViewLegacy
 			return false;
 		}
 
-		// Set the submenu
-		MiniTheatreCMHelper::addSubmenu('items');
-		
-		// Set the toolbar and number of found items
-		$this->addToolBar();
+		// Set up other UI elements
+		if ($this->getLayout() !== 'modal')
+		{
+			MiniTheatreCMHelper::addSubmenu('items');
+			$this->sidebar = JHtmlSidebar::render();
+			
+			$this->setDocument();
+			$this->addToolBar();
+		}
 		
 		// Display the template
 		parent::display($tpl);
-		
-		// Set the document
-		$this->setDocument();
 	}
 	
 	// Add page header and toolbar buttons
 	protected function addToolBar()
 	{
-		$title = JText::_('COM_MINITHEATRECM_TITLE_ITEMS');
-		if ($this->pagination->total)
-		{
-			$title .= "<span style='font-size: 0.5em; vertical-align: middle;'>(" . $this->pagination->total . ")</span>";
-		}
-		JToolbarHelper::title($title, 'file-2');
-		
 		JToolbarHelper::addNew('item.add');
 		JToolbarHelper::editList('item.edit');
 		JToolbarHelper::publish('items.publish', 'JTOOLBAR_PUBLISH', true);
@@ -78,10 +75,11 @@ class MiniTheatreCMViewItems extends JViewLegacy
 		JToolbarHelper::preferences('com_minitheatrecm');
 	}
 	
-	// Set up document properties
-	protected function setDocument() 
+	// Set page-header and document-title
+	protected function setDocument()
 	{
-		$document = JFactory::getDocument();
-		$document->setTitle(JText::_('JADMINISTRATION').' - '.JText::_('COM_MINITHEATRECM_GLOBAL_LONGTITLE'));
+		$title = JText::_('COM_MINITHEATRECM_TITLE_ITEMS');
+		JToolbarHelper::title( $title, 'file-2' );
+		JFactory::getDocument()->setTitle($title.' - '.JText::_('COM_MINITHEATRECM_GLOBAL_LONGTITLE'));
 	}
 }

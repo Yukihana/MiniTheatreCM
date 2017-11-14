@@ -5,32 +5,24 @@
  *
  * @copyright   CherrySoft-X 2017, MiniTheatre 2017
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
- * @link        http://fb.me/LilyflowerAngel
+ * @link        http://minitheatre.org/
  */
   
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
 // Class for accessing hard metadata
-abstract class MiniTheatreCMLibMtNfo
+abstract class MiniTheatreCMMetaNfo
 {
-	public static function getVersion()
+	public static function getVersionData()
 	{
-		$path	= JPATH_COMPONENT_ADMINISTRATOR . '/nfo/version.x';
-		$result = new stdClass();
+		$path	= JPATH_COMPONENT_ADMINISTRATOR . '/nfo/version.ini';
 		
-		try
-		{
-			// Get file contents
-			$lines	= file($path);
-			
-			// Attempt loading line by line
-			$result->version = $lines[0];
-			$result->updated = $lines[1];
-		}
-		catch(Exception $e)
-		{}
-		return $result;
+		try{ $params = parse_ini_file($path); }
+		catch(Exception $e){ return null; }
+		
+		// On success
+		return $params;
 	}
 	
 	public static function getChangelogs()

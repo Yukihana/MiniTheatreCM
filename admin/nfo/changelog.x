@@ -1,3 +1,13 @@
+#0.0.12 F~14-11-2017
+Version NFO upgraded to INI format.
+Moved '/lib/mt/nfo.php' to 'meta/nfo.php'.
+Added footer badge to manager html library and applied to all manager views.
+Updated all manager views to use 'setDocument()' for page header and titles.
+Added Manifest tab to Planner(Layout postponed till after structure planning).
+Moved tables' indices to XML and made required changes to the handler class.
+Change manifest.x to xml-type file.
+Implemented pluralisable translations for system messages.
+
 #0.0.12 E~13-11-2017
 Fixed 'publish' not working.
 Updated SQL definitions for all tables.
@@ -24,7 +34,7 @@ Upgraded admin/listings to use non tutorial filters.(not fully functional yet)
 #0.0.12 C~04-11-2017
 Fixed default_view global parameter.
 Removed bloat layout data from Overview.
-Added and Implemented a central indexing for tables at admin/meta/config.php.
+Added and Implemented a central indexing for tables at admin/meta/database.php.
 Added and Implemented ManagerFields renderer to help populate table-cells.
 Added JTable classes, SQL definitions and admin MVC lists for 'ratings'. (Reinstall required)
 Compacted method comments to optimize file sizes.

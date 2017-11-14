@@ -5,15 +5,60 @@
  *
  * @copyright   CherrySoft-X 2017, MiniTheatre 2017
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
- * @link        http://fb.me/LilyflowerAngel
+ * @link        http://minitheatre.org/
  */
   
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-abstract class MiniTheatreCMLibHtmlManagerFields
+// Include Dependencies
+JLoader::Register('MiniTheatreCMMetaNfo', JPATH_COMPONENT_ADMINISTRATOR . '/meta/nfo.php');
+
+abstract class MiniTheatreCMLibHtmlManager
 {
-	public static function getUsername($usernames = array(), $id = 0, $isrecentedit = false)
+	// Sections
+	public static function getListFooter($resultcount = null, $querytime = null)
+	{
+		// Open
+		$footer = '<div class="small" style="text-align:right;">';
+		
+		// ResultCount & QueryTime
+		if($resultcount != null)
+		{
+			$footer.= '<span class="nowrap disabled">'.JText::plural('COM_MINITHEATRECM_MESSAGE_RESULTCOUNT', $resultcount).'</span>';
+			
+			// Conditional Split #1
+			$footer.= '<span class="hidden-phone disabled"> &#8212; </span><br class="visible-phone"/>';
+		}
+		if($querytime != null)
+		{
+			$footer.= '<span class="nowrap disabled">'.JText::sprintf('COM_MINITHEATRECM_MESSAGE_QUERYTIME', $querytime).'</span>';
+			
+			// Conditional Split #2
+			$footer.= '<span class="hidden-phone disabled"> &#8212; </span><br class="visible-phone"/>';
+		}
+		
+		// Branding
+		$meta		= MiniTheatreCMMetaNfo::getVersionData();
+		$version	= isset($meta['version'])	? ' '.$meta['version']	: '';
+		$date		= isset($meta['date'])		? $meta['date']			: '0000-00-00';
+		$time		= isset($meta['time'])		? $meta['time']			: '00:00:00';
+		$timezone	= isset($meta['timezone'])	? $meta['timezone']		: 'UTC';
+		$link		= JRoute::_('index.php?option=com_minitheatrecm&view=planner&tabview=updates');
+		
+		$tooltip = JText::sprintf('COM_MINITHEATRECM_MESSAGE_VERSIONUPDATEDON', $date, $time, $timezone);
+				
+		//Branding
+		$footer.= '<a class="nowrap hasTooltip" title="'.$tooltip.'" href="'.$link.'">';
+		$footer.= JText::_('COM_MINITHEATRECM_GLOBAL_LONGTITLE').$version;
+		
+		// Close the containers & Return
+		$footer.= '</a></div>';
+		return $footer;
+	}
+	
+	// Fields
+	public static function getUsernameField($usernames = array(), $id = 0, $isrecentedit = false)
 	{
 		if( $id != 0 && isset( $usernames[$id] ))
 		{
@@ -27,7 +72,7 @@ abstract class MiniTheatreCMLibHtmlManagerFields
 		}
 	}
 	
-	public static function getFranchise($a = array(), $id = 0)
+	public static function getFranchiseField($a = array(), $id = 0)
 	{
 		if( $id != 0 && isset( $a[$id] ))
 		{
@@ -41,7 +86,7 @@ abstract class MiniTheatreCMLibHtmlManagerFields
 		}
 	}
 	
-	public static function getItem($a = array(), $id = 0)
+	public static function getItemField($a = array(), $id = 0)
 	{
 		if( $id != 0 && isset( $a[$id] ))
 		{
@@ -55,7 +100,7 @@ abstract class MiniTheatreCMLibHtmlManagerFields
 		}
 	}
 	
-	public static function getAccess($a = array(), $id = 0)
+	public static function getAccessField($a = array(), $id = 0)
 	{
 		if( $id != 0 && isset( $a[$id] ))
 		{

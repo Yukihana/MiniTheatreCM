@@ -1,0 +1,17 @@
+<tables>
+	<table id="listings"	address="#__mtcm_listings"/>
+	<table id="reviews"		address="#__mtcm_reviews"/>
+	
+	<table id="items"		address="#__mtcm_items"/>
+	<table id="franchises"	address="#__mtcm_franchises"/>
+	
+	<table id="genres"			address="#__mtcm_genres"/>
+	<table id="contenttypes"	address="#__mtcm_contenttypes"/>
+	
+	<table id="ratingitems"			address="#__mtcm_rating_items"/>
+	<table id="ratingfranchises"	address="#__mtcm_rating_franchises"/>
+	<table id="ratinglistings"		address="#__mtcm_rating_listings"/>
+	<table id="ratingreviews"		address="#__mtcm_rating_reviews"/>
+	
+	<table id="mtshared" address="#__mt_shared"/>
+</tables>

@@ -5,7 +5,7 @@
  *
  * @copyright   CherrySoft-X 2017, MiniTheatre 2017
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
- * @link        http://fb.me/LilyflowerAngel
+ * @link        http://minitheatre.org/
  */
   
 // No direct access to this file
@@ -14,7 +14,7 @@ defined('_JEXEC') or die('Restricted access');
 // Include Dependencies
 use Joomla\Utilities\ArrayHelper;
 JLoader::Register('MiniTheatreCMLibMtModel', JPATH_COMPONENT_ADMINISTRATOR . '/lib/mt/model.php');
-JLoader::Register('MiniTheatreCMMetaConfig', JPATH_COMPONENT_ADMINISTRATOR . '/meta/config.php');
+JLoader::Register('MiniTheatreCMMetaDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/meta/database.php');
 
 /**
  * Listings Model-List
@@ -62,7 +62,7 @@ class MiniTheatreCMModelListings extends JModelList
 		
 		//$query->select('*')->
 		$query->select( 'a.id, a.name, a.state, a.item_id, a.author, a.recentedit, a.created, a.modified' )->
-			from($db->quoteName(MiniTheatreCMMetaConfig::getTableName('listings')).' AS a');
+			from($db->quoteName(MiniTheatreCMMetaDatabase::getTableName('listings')).' AS a');
 		
 		
 		// Filter: like / search

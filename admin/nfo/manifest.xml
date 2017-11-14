@@ -1,0 +1,65 @@
+<manifest name="COM_MINITHEATRECM_GLOBAL_LONGTITLE">
+
+	<interface type="frontend">
+		
+	</interface>
+
+	<interface type="administration">
+		<list id="listings" group="listings" name="COM_MINITHEATRECM_TITLE_LISTINGS">
+			<feature type="list" status="done"/>
+			<feature type="search" status="done"/>
+			<feature type="order" status="partial"/>
+			<feature type="filter" status="partial"/>
+		</list>
+		<form id="listing" group="listings" name="COM_MINITHEATRECM_TITLE_LISTINGS">
+			<feature type="title-alias" status="done"/>
+			<feature type="description" status="done"/>
+			<feature type="links" status="pending"/>
+		</form>
+	</interface>
+	
+	<media>
+	</media>
+	<library>
+		<section name="html">
+			<function type="manager" name="getListFooter" description="Renders a footer for Manager List-views"/>
+		</section>
+	</library>
+	
+	<legend>
+		<states>
+			<state colour="blue">Done</state>
+			<state colour="teal">RevisionRequired</state>
+			<state colour="red">DebugRequired/ErrorState</state>
+			<state colour="green">WorkInProgress</state>
+			<state colour="orange">Pending</state>
+			<state colour="grey">Cancelled</state>
+		</states>
+	</legend>
+	
+	<unordered-data description="Human readable data from before conversion to XML. Kept till data has been assimilated to xml format.">
+		This data goes in Planner > Manifest
+
+		List of Layouts (ADMIN)
+
+		1. Overview
+		2. ContentTypes + Edit
+
+		4. Items + Edit
+		6. Franchises + Edit
+		8. Genres + Edit
+
+		10. Listings + Edit
+		12. Reviews + Edit
+
+		14. Ratings_Item + Edit
+		16. Ratings_Franchise + Edit
+		18. Ratings_Reviews + Edit
+		20. Ratings_Listings + Edit
+
+		21. Planner
+		22. Maintenance
+	</unordered-data>
+	
+</manifest>
+

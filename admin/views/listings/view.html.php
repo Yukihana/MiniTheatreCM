@@ -5,7 +5,7 @@
  *
  * @copyright   CherrySoft-X 2017, MiniTheatre 2017
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
- * @link        http://fb.me/LilyflowerAngel
+ * @link        http://minitheatre.org/
  */
   
 // No direct access to this file
@@ -26,13 +26,16 @@ class MiniTheatreCMViewListings extends JViewLegacy
 		$context	= 'com_minitheatrecm.listings.list.';
 		
 		// Get data from the model
+		$pretime				= microtime(true);
 		$this->items			= $this->get('Items');
+		$posttime				= microtime(true);
 		$this->pagination		= $this->get('Pagination');
 		$this->state			= $this->get('State');
 		$this->names			= $this->get('Usernames');
 		$this->itemnames		= $this->get('Itemnames');
 		$this->filterForm    	= $this->get('FilterForm');
 		$this->activeFilters 	= $this->get('ActiveFilters');
+		$this->querytime		= $posttime - $pretime;
 		
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
@@ -57,8 +60,6 @@ class MiniTheatreCMViewListings extends JViewLegacy
 	// Add toolbar buttons
 	protected function addToolBar()
 	{
-		JToolbarHelper::title( JText::_('COM_MINITHEATRECM_TITLE_LISTINGS'), 'play-2' );
-				
 		JToolbarHelper::addNew('listing.add');
 		JToolbarHelper::editList('listing.edit');
 		JToolbarHelper::publish('listings.publish', 'JTOOLBAR_PUBLISH', true);

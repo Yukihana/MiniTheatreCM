@@ -5,21 +5,25 @@
  *
  * @copyright   CherrySoft-X 2017, MiniTheatre 2017
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
- * @link        http://fb.me/LilyflowerAngel
+ * @link        http://minitheatre.org/
  */
   
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('MiniTheatreCMLibHtmlManagerFields', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/managerfields.php');
+JLoader::Register('MiniTheatreCMLibHtmlManager', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/manager.php');
 ?>
 
 <form action="index.php?option=com_minitheatrecm&view=ratingfranchises" method="post">
-	<div id="j-sidebar-container" class="span2">
-		<?php echo JHtmlSidebar::render();?>
-	</div>
-	<div id="j-main-container" class="span10">
+	<?php if (!empty( $this->sidebar)) : ?>
+		<div id="j-sidebar-container" class="span2">
+			<?php echo $this->sidebar; ?>
+		</div>
+		<div id="j-main-container" class="span10">
+	<?php else : ?>
+		<div id="j-main-container">
+	<?php endif; ?>
 		
 		<?php if (empty($this->items)) : ?>
 		<div class="alert alert-no-items">
@@ -76,13 +80,13 @@ JLoader::Register('MiniTheatreCMLibHtmlManagerFields', JPATH_COMPONENT_ADMINISTR
 						</a>
 					</td>
 					<td class="small nowrap">					
-						<?php MiniTheatreCMLibHtmlManagerFields::getItem($this->itemnames, $row->target_id);?>
+						<?php MiniTheatreCMLibHtmlManager::getItemField($this->itemnames, $row->target_id);?>
 					</td>
 					<td class="small nowrap">					
-						<?php MiniTheatreCMLibHtmlManagerFields::getUsername($this->names, $row->author);?>
+						<?php MiniTheatreCMLibHtmlManager::getUsernameField($this->names, $row->author);?>
 					</td>
 					<td class="small nowrap hidden-phone">
-						<?php MiniTheatreCMLibHtmlManagerFields::getUsername($this->names, $row->recentedit, true);?>
+						<?php MiniTheatreCMLibHtmlManager::getUsernameField($this->names, $row->recentedit, true);?>
 					</td>
 					<td class="small nowrap hidden-phone">
 						<?php echo $row->created; ?>
@@ -99,6 +103,8 @@ JLoader::Register('MiniTheatreCMLibHtmlManagerFields', JPATH_COMPONENT_ADMINISTR
 			</tbody>
 		</table>
 		<?php endif;?>
+		
+		<?php echo MiniTheatreCMLibHtmlManager::getListFooter($this->pagination->total, $this->querytime);?>
 		
 		<?php echo JHtml::_('form.token'); ?>
 		<input type="hidden" name="task" value="" />

@@ -5,14 +5,14 @@
  *
  * @copyright   CherrySoft-X 2017, MiniTheatre 2017
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
- * @link        http://fb.me/LilyflowerAngel
+ * @link        http://minitheatre.org/
  */
   
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('MiniTheatreCMLibHtmlManagerFields', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/managerfields.php');
+JLoader::Register('MiniTheatreCMLibHtmlManager', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/manager.php');
 
 JHtml::_('formbehavior.chosen', 'select');
 
@@ -21,10 +21,15 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 ?>
 
 <form action="index.php?option=com_minitheatrecm&view=items" method="post" id="adminForm" name="adminForm">
-	<div id="j-sidebar-container" class="span2">
-		<?php echo JHtmlSidebar::render();?>
-	</div>
-	<div id="j-main-container" class="span10">	
+	<?php if (!empty( $this->sidebar)) : ?>
+		<div id="j-sidebar-container" class="span2">
+			<?php echo $this->sidebar; ?>
+		</div>
+		<div id="j-main-container" class="span10">
+	<?php else : ?>
+		<div id="j-main-container">
+	<?php endif; ?>
+	
 		<?php echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this)); ?>
 	
 		<?php if (empty($this->items)) : ?>
@@ -92,7 +97,9 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 				
 			</tbody>
 		</table>
-		<?php endif;?>	
+		<?php endif;?>
+		
+		<?php echo MiniTheatreCMLibHtmlManager::getListFooter($this->pagination->total, $this->querytime);?>
 	
 		<?php echo JHtml::_('form.token'); ?>
 		<input type="hidden" name="task" value="" />
