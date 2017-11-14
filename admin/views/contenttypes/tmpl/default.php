@@ -37,7 +37,7 @@ JLoader::Register('MiniTheatreCMLibHtmlManagerFields', JPATH_COMPONENT_ADMINISTR
 						<?php echo JHtml::_('grid.sort', 'JSTATUS', 'state') ;?>
 					</th>
 					<th width="35%" class="nowrap">
-						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_CONTENTTYPE', 'name') ;?>
+						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_COLUMNHEADER_CONTENTTYPENAME', 'name') ;?>
 					</th>
 					<th width="10%" class="nowrap">
 						<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ACCESS', 'access') ;?>

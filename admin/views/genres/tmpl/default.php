@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
 JLoader::Register('MiniTheatreCMLibHtmlManagerFields', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/managerfields.php');
 ?>
 
-<form action="index.php?option=com_minitheatrecm&view=genres" method="post">
+<form action="index.php?option=com_minitheatrecm&view=genres" method="post" name="adminForm" id="adminForm">
 	<div id="j-sidebar-container" class="span2">
 		<?php echo JHtmlSidebar::render();?>
 	</div>
@@ -37,7 +37,7 @@ JLoader::Register('MiniTheatreCMLibHtmlManagerFields', JPATH_COMPONENT_ADMINISTR
 						<?php echo JHtml::_('grid.sort', 'JSTATUS', 'state') ;?>
 					</th>
 					<th width="45%" class="nowrap">
-						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_GENRE', 'name') ;?>
+						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_COLUMNHEADER_GENRENAME', 'name') ;?>
 					</th>
 					<th width="10%" class="nowrap">
 						<?php echo JHtml::_('grid.sort', 'JAUTHOR', 'author') ;?>

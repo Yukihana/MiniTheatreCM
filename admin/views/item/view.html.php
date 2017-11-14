@@ -102,9 +102,11 @@ class MiniTheatreCMViewItem extends JViewLegacy
 			JText::_('JADMINISTRATION').' - '.
 			JText::_('COM_MINITHEATRECM_GLOBAL_TITLE')
 		);
+		/*
 		$document->addScript(JURI::root() . $this->script);
 		$document->addScript(JURI::root() . "/administrator/components/com_minitheatrecm"
 		                                  . "/views/item/submitbutton.js");
 		JText::script('COM_MINITHEATRECM_ERROR_UNACCEPTABLE');
+		*/
 	}
 }

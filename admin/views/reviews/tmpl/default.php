@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
 JLoader::Register('MiniTheatreCMLibHtmlManagerFields', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/managerfields.php');
 ?>
 
-<form action="index.php?option=com_minitheatrecm&view=reviews" method="post">
+<form action="index.php?option=com_minitheatrecm&view=reviews" method="post" name="adminForm" id="adminForm">
 	<div id="j-sidebar-container" class="span2">
 		<?php echo JHtmlSidebar::render();?>
 	</div>
@@ -37,7 +37,7 @@ JLoader::Register('MiniTheatreCMLibHtmlManagerFields', JPATH_COMPONENT_ADMINISTR
 						<?php echo JHtml::_('grid.sort', 'JSTATUS', 'state') ;?>
 					</th>
 					<th width="25%" class="nowrap">
-						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_CAPTION', 'caption') ;?>
+						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_COLUMNHEADER_REVIEWNAME', 'caption') ;?>
 					</th>
 					<th width="20%" class="nowrap">
 						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_ITEM', 'item_id') ;?>
@@ -78,7 +78,7 @@ JLoader::Register('MiniTheatreCMLibHtmlManagerFields', JPATH_COMPONENT_ADMINISTR
 					</td>
 					<td>
 						<a class="hasTooltip" href="<?php echo $link; ?>" title="<?php echo JText::_('COM_MINITHEATRECM_LEGEND_EDIT_REVIEW'); ?>">
-							<?php echo $row->caption; ?>
+							<?php echo $row->name; ?>
 						</a>
 					</td>
 					<td class="small">

@@ -11,13 +11,8 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-/**
- * Static Helper class for Models
- *
- * Since 0.0.12
- */
- 
-abstract class MiniTheatreCMHelperNfo
+// Class for accessing hard metadata
+abstract class MiniTheatreCMLibMtNfo
 {
 	public static function getVersion()
 	{

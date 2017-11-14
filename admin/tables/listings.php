@@ -25,5 +25,6 @@ class MiniTheatreCMTableListings extends JTable
 	function __construct(&$db)
 	{
 		parent::__construct(MiniTheatreCMMetaConfig::getTableName('listings'), 'id', $db);
+		$this->setColumnAlias('published', 'state');
 	}
 }

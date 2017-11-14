@@ -11,23 +11,18 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-// Include the Lib/ModelHelper Static Class
-JLoader::Register('MiniTheatreCMLibMtNfo', JPATH_COMPONENT_ADMINISTRATOR . '/lib/mt/nfo.php');
-
 /**
- * Planner Model
+ * Reviews Controller
  *
  * @since  0.0.1
  */
-class MiniTheatreCMModelPlanner extends JModelList
+class MiniTheatreCMControllerReviews extends JControllerAdmin
 {
-	// Helper Methods
-	public function getChangelogs()
+	// Override proxy for getModel ($name: modelname, $prefix: class prefix, $config: optional configuration array)
+	public function getModel($name = 'Review', $prefix = 'MiniTheatreCMModel', $config = array('ignore_request' => true))
 	{
-		return MiniTheatreCMLibMtNfo::getChangelogs();
-	}
-	public function getTasks()
-	{
-		return MiniTheatreCMLibMtNfo::getTasks();
+		$model = parent::getModel($name, $prefix, $config);
+
+		return $model;
 	}
 }

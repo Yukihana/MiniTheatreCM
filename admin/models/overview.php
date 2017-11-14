@@ -12,7 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Static Helper Classes
-JLoader::Register('MiniTheatreCMHelperNfo', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/nfo.php');
+JLoader::Register('MiniTheatreCMLibMtNfo', JPATH_COMPONENT_ADMINISTRATOR . '/lib/mt/nfo.php');
 JLoader::Register('MiniTheatreCMMetaGlobal', JPATH_COMPONENT_ADMINISTRATOR . '/meta/global.php');
 JLoader::Register('MiniTheatreCMMetaConfig', JPATH_COMPONENT_ADMINISTRATOR . '/meta/config.php');
 
@@ -48,14 +48,14 @@ class MiniTheatreCMModelOverview extends JModelList
 	// Helper Methods
 	public function getVersion()
 	{
-		return MiniTheatreCMHelperNfo::getVersion();
+		return MiniTheatreCMLibMtNfo::getVersion();
 	}
 	public function getChangelogs()
 	{
-		return MiniTheatreCMHelperNfo::getChangelogs();
+		return MiniTheatreCMLibMtNfo::getChangelogs();
 	}
 	public function getTasks()
 	{
-		return MiniTheatreCMHelperNfo::getTasks();
+		return MiniTheatreCMLibMtNfo::getTasks();
 	}
 }

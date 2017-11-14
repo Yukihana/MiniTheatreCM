@@ -25,5 +25,6 @@ class MiniTheatreCMTableReviews extends JTable
 	function __construct(&$db)
 	{
 		parent::__construct(MiniTheatreCMMetaConfig::getTableName('reviews'), 'id', $db);
+		$this->setColumnAlias('published', 'state');
 	}
 }

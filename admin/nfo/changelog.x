@@ -1,3 +1,10 @@
+#0.0.12 E~13-11-2017
+Fixed 'publish' not working.
+Updated SQL definitions for all tables.
+Moved helpers/nfo.php to lib/mt/nfo.php.
+Added Admin/Listing form view.
+Added translations to Table Headers like 'COLUMNHEADER_LISTINGNAME'.
+
 #0.0.12 D1~10-11-2017
 Fixed admin/listings fullordering not working.
 Fixed column header not showing directional arrow on default state.

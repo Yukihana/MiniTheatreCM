@@ -46,7 +46,7 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 						<?php echo JHtml::_('searchtools.sort', 'JSTATUS', 'state', $listDirn, $listOrder); ?>
 					</th>
 					<th width="89%" class="no-wrap">
-						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_TITLE', 'name', $listDirn, $listOrder) ;?>
+						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_COLUMNHEADER_ITEMNAME', 'name', $listDirn, $listOrder) ;?>
 					</th>
 					<th width="1%" class="nowrap center">
 						<?php echo JHtml::_('searchtools.sort',  'JGRID_HEADING_ACCESS', 'access', $listDirn, $listOrder); ?>
@@ -74,7 +74,7 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 						<?php echo JHtml::_('grid.id', $i, $row->id); ?>
 					</td>
 					<td class="center">
-						<?php echo JHtml::_('jgrid.published', $row->state, $i, 'items.', true, 'cb'); ?>
+						<?php echo JHtml::_('jgrid.published', $row->state, $i, 'items.', true, 'cb', $row->publish_up, $row->publish_down); ?>
 					</td>					
 					<td>
 						<a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_MINITHEATRECM_LEGEND_EDIT_ITEM'); ?>">

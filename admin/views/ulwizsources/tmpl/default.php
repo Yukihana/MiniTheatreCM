@@ -22,6 +22,12 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 		<?php echo JHtmlSidebar::render(); ?>
 	</div>
 	<div id="j-main-container" class="span10">
+		<div class="alert">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<h4 class="alert-header">Legacy Manager View</h4>
+			<div class="alert-message">The old manager being used for tutorial purposes. To be removed before the release version.</div>
+		</div>
+	
 		<?php echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this)); ?>
 				
 		<?php if (empty($this->items)) : ?>

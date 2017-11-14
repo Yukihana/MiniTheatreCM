@@ -25,5 +25,6 @@ class MiniTheatreCMTableGenres extends JTable
 	function __construct(&$db)
 	{
 		parent::__construct(MiniTheatreCMMetaConfig::getTableName('genres'), 'id', $db);
+		$this->setColumnAlias('published', 'state');
 	}
 }
