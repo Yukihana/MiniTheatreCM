@@ -12,9 +12,9 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('MiniTheatreCMLibHtmlMessages', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/messages.php');
+JLoader::Register('NeonLibHtmlMessages', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/messages.php');
 
-abstract class MiniTheatreCMLibSiteErrorCheck
+abstract class NeonLibSiteErrorCheck
 {
 	public static function primaryError($errorcode = 0)
 	{
@@ -22,10 +22,10 @@ abstract class MiniTheatreCMLibSiteErrorCheck
 		{
 			case 1:
 				// Not Logged In
-				MiniTheatreCMLibHtmlMessages::showMessage('JGLOBAL_YOU_MUST_LOGIN_FIRST', false);
+				NeonLibHtmlMessages::showMessage('JGLOBAL_YOU_MUST_LOGIN_FIRST', false);
 				return;
 			case 2:
-				MiniTheatreCMLibHtmlMessages::showParsedMessage( 'COM_MINITHEATRECM_MESSAGEDATA_INVALIDPAGE', true, true, false, 'warning', 'COM_MINITHEATRECM_MESSAGE_NOTHINGTOSHOW');
+				NeonLibHtmlMessages::showParsedMessage( 'COM_MINITHEATRECM_MESSAGEDATA_INVALIDPAGE', true, true, false, 'warning', 'COM_MINITHEATRECM_MESSAGE_NOTHINGTOSHOW');
 				return;
 			default:
 				return;

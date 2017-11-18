@@ -13,7 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 
 JFactory::getDocument()->addScript( JUri::root().'media/com_minitheatrecm/js/navgroup.js' );
 
-abstract class MiniTheatreCMLibHtmlNavGroup
+abstract class NeonLibHtmlNavGroup
 {
 	public static function tabButtons($prefix = 'mtcm-', $items = array())
 	{

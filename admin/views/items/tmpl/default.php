@@ -12,7 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('MiniTheatreCMLibHtmlManager', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/manager.php');
+JLoader::Register('NeonLibHtmlManager', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/manager.php');
 
 JHtml::_('formbehavior.chosen', 'select');
 
@@ -99,7 +99,7 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 		</table>
 		<?php endif;?>
 		
-		<?php echo MiniTheatreCMLibHtmlManager::getListFooter($this->pagination->total, $this->querytime);?>
+		<?php echo NeonLibHtmlManager::getListFooter($this->pagination->total, $this->querytime);?>
 	
 		<?php echo JHtml::_('form.token'); ?>
 		<input type="hidden" name="task" value="" />

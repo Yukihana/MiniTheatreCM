@@ -1,0 +1,27 @@
+<progress>
+	<interface name="Administration">
+		<group name="List Views">
+			<section name="UI Layout" progress="90"/>
+			<section name="Data Model" progress="80"/>
+			<section name="Interconnect" progress="90%"/>
+			<section name="Distribution" progress="40%" comment="Distribution status of current-best code to all existing List Views."/>
+		</group>
+		<group name="Form Views">
+			<section name="UI Layout" progress="30%" comment="Development after ListViews are planned and distributed."/>
+			<section name="Data Model" progress="5%" comment="Very basic functionality at the moment."/>
+			<section name="Interconnect" progress="0%" comment="Most of the progress in this section would be during front-end development."/>
+			<section name="Distribution" progress="5%" comment="Distribution status of current-best code to all existing Form Views."/>
+		</group>
+		<group name="Alt Views" comment="Non-critical views like 'Overview', 'Planner', 'Maintenance', 'ActivityLog', etc.">
+			<!--Most of the sections here have development postponed till site's basic funtionality is up and running-->
+			<section name="Overview" progress="0%" status="postponed"/>
+			<section name="ActivityLog" progress="20%" status="postponed" comment="Required component MTUsers pending development."/>
+			<section name="Planner" progress="20%" status="as-needed"/>
+			<section name="Maintenance" progress="0%" status="postponed"/>
+		</group>
+	</interface>
+	
+	<interface name="Site">
+		<!--This section will be detailed after administration development is at Milestone - Alpha.-->
+	</interface>
+</progress>

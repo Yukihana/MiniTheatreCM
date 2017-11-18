@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
 	
-	<fieldset name="mtcm_perms" label="COM_MINITHEATRECM_DICTIONARY_PERMISSIONS" description="COM_MINITHEATRECM_CONFIG_DESC_PERMS">
+	<fieldset name="mtcm_perms" label="COM_MINITHEATRECM_CONFIGTAB_PERMS" description="COM_MINITHEATRECM_CONFIGTAB_PERMS_DESC">
 		<field name="submission_access" type="usergrouplist"
 			label="COM_MINITHEATRECM_CONFIG_SUBWIZACCESS_LABEL"
 			description="COM_MINITHEATRECM_CONFIG_SUBWIZACCESS_DESC"
 			checksuperusergroup="1"/>
 	</fieldset>
 	
-	<fieldset name="mtcm_admin" label="JADMINISTRATION" description="COM_MINITHEATRECM_CONFIG_DESC_ADMIN">
+	<fieldset name="mtcm_admin" label="COM_MINITHEATRECM_CONFIGTAB_ADMIN" description="COM_MINITHEATRECM_CONFIGTAB_ADMIN_DESC">
 		<field
 			name="default_view" type="list" default="0"
 			label="COM_MINITHEATRECM_CONFIG_DEFAULTVIEW_LABEL"
 			description="COM_MINITHEATRECM_CONFIG_DEFAULTVIEW_DESC"
-		>
+			>
 			<option value="0">COM_MINITHEATRECM_TITLE_OVERVIEW</option>
 			<option value="1">COM_MINITHEATRECM_TITLE_LISTINGS</option>
 			<option value="2">COM_MINITHEATRECM_TITLE_REVIEWS</option>
@@ -27,10 +27,81 @@
 			label="COM_MINITHEATRECM_CONFIG_OVERVIEWTYPE_LABEL"
 			description="COM_MINITHEATRECM_CONFIG_OVERVIEWTYPE_DESC"
 			class="btn-group btn-group-yesno"
-		>
+			>
 			<option value="1">COM_MINITHEATRECM_DICTIONARY_BASIC</option>
 			<option value="0">COM_MINITHEATRECM_DICTIONARY_DETAILED</option>
 		</field>
 	</fieldset>
 	
+	<fieldset name="mtcm_manager" label="COM_MINITHEATRECM_CONFIGTAB_MANAGER" description="COM_MINITHEATRECM_CONFIGTAB_MANAGER_DESC">
+		<field
+			name="links_user" type="radio" default="1"
+			label="COM_MINITHEATRECM_CONFIG_LINKS_USER"
+			description="COM_MINITHEATRECM_CONFIG_LINKS_DESC"
+			class="btn-group btn-group-yesno"
+			>
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_LINK</option>
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_TEXT</option>
+		</field>
+		<field
+			name="links_item" type="radio" default="1"
+			label="COM_MINITHEATRECM_CONFIG_LINKS_ITEM"
+			description="COM_MINITHEATRECM_CONFIG_LINKS_DESC"
+			class="btn-group btn-group-yesno"
+			>
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_LINK</option>
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_TEXT</option>
+		</field>
+		<field
+			name="links_franchise" type="radio" default="1"
+			label="COM_MINITHEATRECM_CONFIG_LINKS_FRANCHISE"
+			description="COM_MINITHEATRECM_CONFIG_LINKS_DESC"
+			class="btn-group btn-group-yesno"
+			>
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_LINK</option>
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_TEXT</option>
+		</field>
+		<field
+			name="links_access" type="radio" default="1"
+			label="COM_MINITHEATRECM_CONFIG_LINKS_ACCESS"
+			description="COM_MINITHEATRECM_CONFIG_LINKS_DESC"
+			class="btn-group btn-group-yesno"
+			>
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_LINK</option>
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_TEXT</option>
+		</field>
+	</fieldset>
+	
+	<fieldset name="mtcm_cache" label="COM_MINITHEATRECM_CONFIGTAB_CACHE" description="COM_MINITHEATRECM_CONFIGTAB_CACHE_DESC">
+		<field
+			name="ticks_items" type="integer"
+			first="1" last="999999"	default="100"
+			label="COM_MINITHEATRECM_CONFIG_TICKS_ITEMS"
+			description="COM_MINITHEATRECM_CONFIG_TICKS_DESC"
+			/>
+		<field
+			name="ticks_franchises" type="integer"
+			first="1" last="999999"	default="100"
+			label="COM_MINITHEATRECM_CONFIG_TICKS_FRANCHISES"
+			description="COM_MINITHEATRECM_CONFIG_TICKS_DESC"
+			/>
+		<field
+			name="ticks_listings" type="integer"
+			first="1" last="999999"	default="100"
+			label="COM_MINITHEATRECM_CONFIG_TICKS_LISTINGS"
+			description="COM_MINITHEATRECM_CONFIG_TICKS_DESC"
+			/>
+		<field
+			name="ticks_reviews" type="integer"
+			first="1" last="999999"	default="100"
+			label="COM_MINITHEATRECM_CONFIG_TICKS_REVIEWS"
+			description="COM_MINITHEATRECM_CONFIG_TICKS_DESC"
+			/>
+		<field
+			name="ticks_genres" type="integer"
+			first="1" last="999999"	default="100"
+			label="COM_MINITHEATRECM_CONFIG_TICKS_GENRES"
+			description="COM_MINITHEATRECM_CONFIG_TICKS_DESC"
+			/>
+	</fieldset>
 </config>

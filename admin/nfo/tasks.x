@@ -1,16 +1,26 @@
 #active~star
-Populate form type views.
-Add ActivityLog MVC.
-For all MVCs, add filter system, comment-compacting.
+
 
 #pending~clock
-Implement filter-dependent column visibility in manager views. (search & order both)
-Add extended ordering options hence.
-Cleanup and finalise all MVC list view codes for 'alpha' stage.
+New layout for Overview.
+Write code for Manifest.
+Add system: Legend Instructions.
+Add system: Global Notice.
+Plan splitting tasks using new type of categorisation.
+Split changelog data to files so to apply psuedo-pagination till psuedobase model class is ready.
 
 #postponed~flag
-Add systems: Legend Instructions, Global Notice.
-Write code for Manifest.
+Escape all helper methods (pending answer/solution).
+For all MVCs, add filter system, comment-compacting.
+Cleanup and finalise all MVC list view codes for 'alpha' stage.
+Remove MTmodelhelper, move to src model, use class inheritance.
+
+Form Mechanics Notes:
+Change translation for most-recent-editor to 'None' if author edits it most recently.
+Write handlers for rating an other cache methods.
+New layout and html-modules for Rating form views.
+Register new tasks to enable btn-group options.
+Site:
 Plan a new UI system for Submission wizard
 
 #ideas~lamp
@@ -21,6 +31,7 @@ Maintenance, Error/Access-Log.
 
 #notes~tag-2
 Publishing states (2 to -2): archived, published, unpublished, ??, marked for deletion.
+Allow only J<name> and JGLOBAL_<name> translations from core joomla.
 Reg task @ controller ctor. Then controller->taskname() calls model->taskname()[post processing].
 Add and Add to MT_Users: Issues, Feedback
 

@@ -37,7 +37,7 @@ class MiniTheatreCMViewItem extends JViewLegacy
 		// Get the Data
 		$this->form = $this->get('Form');
 		$this->item = $this->get('Item');
-		$this->script = $this->get('Script');
+		//$this->script = $this->get('Script');
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
@@ -46,7 +46,6 @@ class MiniTheatreCMViewItem extends JViewLegacy
 
 			return false;
 		}
-
 
 		// Set the toolbar
 		$this->addToolBar();

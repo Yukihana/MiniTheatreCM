@@ -1,3 +1,15 @@
+#0.0.12 G~17-11-2017
+Form views added for Item, Franchise, Content-type
+Added ActivityLog: SQL, Reg, Handler, MVC(Basic), and a placeholder template.
+Fixed 'trashed' items showing by default in a fresh session.
+Merged 'Author/RecentEdit', 'Created/Modified' and 'Hits/Votes' columns to show two-line data with ordering-states.
+Refactored Library namespace to be slightly smaller and more distinct from the rest of the classes.
+SQL and Columns/Data added to layout: Access, Alias, Rating, Vote, Hits. Fullordering added.
+Added Recent-editor (author) filter to search.
+Updated Component config to have manager-links and cache settings. Implementation pending.
+Added an intermediate model-class enhanced for List-models to extend from, and implemented to best Manager-Code.
+Updated SQL definitions to apply a cache_ticks field to relevant tables.
+
 #0.0.12 F~14-11-2017
 Version NFO upgraded to INI format.
 Moved '/lib/mt/nfo.php' to 'meta/nfo.php'.

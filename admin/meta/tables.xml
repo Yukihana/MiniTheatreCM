@@ -13,5 +13,7 @@
 	<table id="ratinglistings"		address="#__mtcm_rating_listings"/>
 	<table id="ratingreviews"		address="#__mtcm_rating_reviews"/>
 	
+	<table id="activitylog"		address="#__mtcm_activitylog"/>
+	
 	<table id="mtshared" address="#__mt_shared"/>
 </tables>

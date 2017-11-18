@@ -11,7 +11,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-abstract class MiniTheatreCMLibHtmlMessages
+abstract class NeonLibHtmlMessages
 {
 	public static function showMessage($message, $close = true, $level = 'warning', $caption = '')
 	{

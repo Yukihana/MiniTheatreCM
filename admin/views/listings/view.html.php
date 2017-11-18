@@ -33,6 +33,7 @@ class MiniTheatreCMViewListings extends JViewLegacy
 		$this->state			= $this->get('State');
 		$this->names			= $this->get('Usernames');
 		$this->itemnames		= $this->get('Itemnames');
+		$this->groups			= $this->get('Accessgroups');
 		$this->filterForm    	= $this->get('FilterForm');
 		$this->activeFilters 	= $this->get('ActiveFilters');
 		$this->querytime		= $posttime - $pretime;

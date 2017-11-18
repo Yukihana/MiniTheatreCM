@@ -12,10 +12,10 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('MiniTheatreCMLibSiteErrorCheck', JPATH_COMPONENT_ADMINISTRATOR . '/lib/site/errorcheck.php');
+JLoader::Register('NeonLibSiteErrorCheck', JPATH_COMPONENT_ADMINISTRATOR . '/lib/site/errorcheck.php');
 
 // Queue Errors
-MiniTheatreCMLibSiteErrorCheck::primaryError($this->auth);
+NeonLibSiteErrorCheck::primaryError($this->auth);
 ?>
 
 <?php if( $this->auth == 0 ):

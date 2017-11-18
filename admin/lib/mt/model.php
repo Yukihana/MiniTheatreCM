@@ -11,7 +11,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
  
-abstract class MiniTheatreCMLibMtModel
+abstract class NeonLibMtModel
 {
 	public static function getUsernames( $items, $fields )
 	{
@@ -34,7 +34,7 @@ abstract class MiniTheatreCMLibMtModel
 		return $result;
 	}
 	
-	public static function getUsergroups( $items, $fields )
+	public static function getAccessgroups( $items, $fields )
 	{
 		$result = array();
 		
@@ -49,6 +49,11 @@ abstract class MiniTheatreCMLibMtModel
 		
 		// Return data
 		return $result;
+	}
+	
+	public static function getUsergroups( $items, $fields )	// Deprecated
+	{
+		return self::getAccessgroups($items, $fields);
 	}
 	
 	public static function getItemnames( $items, $fields )

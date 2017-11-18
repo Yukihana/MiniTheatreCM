@@ -11,7 +11,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-abstract class MiniTheatreCMLibIncludeStyles
+abstract class NeonLibIncludeStyles
 {
 	public static function load( $styleset = 'default' )
 	{

@@ -12,16 +12,22 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('MiniTheatreCMLibHtmlManager', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/manager.php');
+JLoader::Register('NeonLibHtmlManager', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/manager.php');
 
 JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.multiselect');
+JHtml::_('formbehavior.chosen', '.multipleAccessLevels', null, array('placeholder_text_multiple' => JText::_('JOPTION_SELECT_ACCESS')));
 JHtml::_('formbehavior.chosen', '.multipleAuthors', null, array('placeholder_text_multiple' => JText::_('JOPTION_SELECT_AUTHOR')));
+JHtml::_('formbehavior.chosen', '.multipleRecentEditors', null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_FILTER_RECENTEDITOR')));
 JHtml::_('formbehavior.chosen', '.multipleItems', null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_FILTER_ITEM')));
 JHtml::_('formbehavior.chosen', 'select');
 
-$listOrder     = $this->escape($this->state->get('list.ordering'));
-$listDirn      = $this->escape($this->state->get('list.direction'));
+$listOrder		= $this->escape($this->state->get('list.ordering'));
+$listDirn		= $this->escape($this->state->get('list.direction'));
+
+$timestamporder = NeonLibHtmlManager::getTimestampOrder($listOrder);
+$editororder	= NeonLibHtmlManager::getEditorOrder($listOrder);
+$statsorder		= NeonLibHtmlManager::getStatsOrder($listOrder);
 ?>
 
 <form action="index.php?option=com_minitheatrecm&view=listings" method="post" id="adminForm" name="adminForm">
@@ -44,38 +50,41 @@ $listDirn      = $this->escape($this->state->get('list.direction'));
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
-					<th width="3%" class="center">
+					<th width="1%" class="center">
 						<?php echo JHtml::_('grid.checkall'); ?>
 					</th>
-					<th width="7%" class="nowrap center">
+					<th width="1%" class="nowrap center">
 						<?php echo JHtml::_('searchtools.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder) ;?>
 					</th>
-					<th width="25%" class="nowrap">
+					<th width="45%" class="nowrap">
 						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_COLUMNHEADER_LISTINGNAME', 'a.name', $listDirn, $listOrder) ;?>
 					</th>
-					<th width="20%" class="nowrap">
+					<th width="20%" class="nowrap hidden-phone">
 						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_DICTIONARY_ITEM', 'a.item_id', $listDirn, $listOrder) ;?>
 					</th>
-					<th width="10%" class="nowrap">
-						<?php echo JHtml::_('searchtools.sort', 'JAUTHOR', 'a.author', $listDirn, $listOrder) ;?>
+					<th width="10%" class="nowrap hidden-phone">
+						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_DICTIONARY_ACCESS', 'a.access', $listDirn, $listOrder) ;?>
 					</th>
 					<th width="10%" class="nowrap hidden-phone">
-						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT', 'a.recentedit', $listDirn, $listOrder) ;?>
+						<?php echo JHtml::_('searchtools.sort', NeonLibHtmlManager::getEditorHeader($editororder), (($editororder==2)?'a.recentedit':'a.author'), $listDirn, $listOrder);?>
 					</th>
 					<th width="10%" class="nowrap hidden-phone">
-						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_DICTIONARY_CREATED', 'a.created', $listDirn, $listOrder); ?>
+						<?php echo JHtml::_('searchtools.sort', NeonLibHtmlManager::getTimestampHeader($timestamporder), (($timestamporder==2)?'a.modified':'a.created'), $listDirn, $listOrder);?>
 					</th>
-					<th width="10%" class="nowrap hidden-phone">
-						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_DICTIONARY_MODIFIED', 'a.modified', $listDirn, $listOrder) ;?>
+					<th width="1%" class="nowrap hidden-phone">
+						<?php echo JHtml::_('searchtools.sort', NeonLibHtmlManager::getStatsHeader($statsorder), (($statsorder==2)?'a.votes':'a.hits'), $listDirn, $listOrder);?>
 					</th>
-					<th width="5%" class="nowrap hidden-phone" style="text-align:right;">
+					<th width="1%" class="nowrap hidden-phone">
+						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_DICTIONARY_RATING', 'a.rating', $listDirn, $listOrder) ;?>
+					</th>
+					<th width="1%" class="nowrap" style="text-align:right;">
 						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_DICTIONARY_ID', 'a.id', $listDirn, $listOrder); ?>
 					</th>
 				</tr>
 			</thead>
 			<tfoot>
 				<tr>
-					<td colspan="9">
+					<td colspan="10">
 						<?php echo $this->pagination->getListFooter(); ?>
 					</td>
 				</tr>
@@ -93,26 +102,34 @@ $listDirn      = $this->escape($this->state->get('list.direction'));
 						</div>
 					</td>
 					<td>
-						<a class="hasTooltip" href="<?php echo $link; ?>" title="<?php echo JText::_('COM_MINITHEATRECM_LEGEND_EDIT_LISTING'); ?>">
-							<?php echo $row->name; ?>
-						</a>
+						<div class="pull-left">
+							<a class="hasTooltip" href="<?php echo $link; ?>" title="<?php echo JText::_('COM_MINITHEATRECM_TOOLTIP_EDIT_LISTING'); ?>">
+								<?php echo $this->escape($row->name); ?>
+							</a>
+							<div class="small disabled muted hasTooltip" title="<?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_ALIAS');?>">
+								<?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_ALIAS').': '.$this->escape($row->alias);?>
+							</div>
+						</div>
 					</td>
-					<td class="small">
-						<?php MiniTheatreCMLibHtmlManager::getItemField($this->itemnames, $row->item_id);?>
-					</td>
-					<td class="small nowrap">					
-						<?php MiniTheatreCMLibHtmlManager::getUsernameField($this->names, $row->author);?>
-					</td>
-					<td class="small nowrap hidden-phone">
-						<?php MiniTheatreCMLibHtmlManager::getUsernameField($this->names, $row->recentedit, true);?>
-					</td>
-					<td class="small nowrap hidden-phone">
-						<?php echo $row->created; ?>
+					<td class="small hidden-phone">
+						<?php NeonLibHtmlManager::getItemField($this->itemnames, $row->item_id);?>
 					</td>
 					<td class="small nowrap hidden-phone">
-						<?php echo $row->modified; ?>
+						<?php NeonLibHtmlManager::getAccessField($this->groups, $row->access);?>
 					</td>
-					<td class="nowrap hidden-phone" style="text-align:right;">
+					<td class="hidden-phone">					
+						<?php echo NeonLibHtmlManager::getEditorCell($this->names, $row->author, $row->recentedit, $editororder);?>
+					</td>
+					<td class="hidden-phone">
+						<?php echo NeonLibHtmlManager::getTimestampCell($row->created, $row->modified, $timestamporder); ?>
+					</td>
+					<td class="<?php echo ($statsorder!=0)?'center':'';?> hidden-phone">
+						<?php echo NeonLibHtmlManager::getStatsCell($row->hits, $row->votes, $statsorder); ?>
+					</td>
+					<td class="center hidden-phone">
+						<?php echo NeonLibHtmlManager::getStarRatingCell($row->rating, true);?>
+					</td>
+					<td class="nowrap" style="text-align:right;">
 						<?php echo $row->id; ?>
 					</td>
 				</tr>			
@@ -122,7 +139,7 @@ $listDirn      = $this->escape($this->state->get('list.direction'));
 		</table>
 		<?php endif;?>
 		
-		<?php echo MiniTheatreCMLibHtmlManager::getListFooter($this->pagination->total, $this->querytime);?>
+		<?php echo NeonLibHtmlManager::getListFooter($this->pagination->total, $this->querytime);?>
 		
 		<?php echo JHtml::_('form.token'); ?>
 		<input type="hidden" name="task" value="" />

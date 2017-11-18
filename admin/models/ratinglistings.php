@@ -12,7 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('MiniTheatreCMLibMtModel', JPATH_COMPONENT_ADMINISTRATOR . '/lib/mt/model.php');
+JLoader::Register('NeonLibMtModel', JPATH_COMPONENT_ADMINISTRATOR . '/lib/mt/model.php');
 JLoader::Register('MiniTheatreCMMetaDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/meta/database.php');
 
 /**
@@ -37,10 +37,10 @@ class MiniTheatreCMModelRatingListings extends JModelList
 	// Helper Methods
 	public function getUsernames()
 	{
-		return MiniTheatreCMLibMtModel::getUsernames( $this->getItems(), array('author','recentedit') );
+		return NeonLibMtModel::getUsernames( $this->getItems(), array('author','recentedit') );
 	}
 	public function getItemnames()
 	{
-		return MiniTheatreCMLibMtModel::getItemnames( $this->getItems(), array('target_id') );
+		return NeonLibMtModel::getItemnames( $this->getItems(), array('target_id') );
 	}
 }

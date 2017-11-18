@@ -13,15 +13,14 @@ defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
 use Joomla\Utilities\ArrayHelper;
-JLoader::Register('MiniTheatreCMLibMtModel', JPATH_COMPONENT_ADMINISTRATOR . '/lib/mt/model.php');
-JLoader::Register('MiniTheatreCMMetaDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/meta/database.php');
+JLoader::Register('NeonModelList', JPATH_COMPONENT_ADMINISTRATOR . '/lib/src/modellist.php');
 
 /**
  * Listings Model-List
  *
  * @since  0.0.1
  */
-class MiniTheatreCMModelListings extends JModelList
+class MiniTheatreCMModelListings extends NeonModelList
 {
 	// Override proxy for the constructor ($config: optional configuration array)
 	public function __construct($config = array())
@@ -31,26 +30,21 @@ class MiniTheatreCMModelListings extends JModelList
 			$config['filter_fields'] = array(
 				'id',			'a.id',
 				'name',			'a.name',
+				'alias',		'a.alias',
 				'state',		'a.state',
 				'item_id',		'a.item_id',
+				'access',		'a.access',
 				'author',		'a.author',
 				'recentedit',	'a.recentedit',
 				'created',		'a.created',
-				'modified',		'a.modified'
+				'modified',		'a.modified',
+				'hits',			'a.hits',
+				'rating',		'a.rating',
+				'votes',		'a.votes'
 			);
 		}
 
 		parent::__construct($config);
-	}
-	
-	// Method to auto-populate the model state
-	protected function populateState($ordering = 'a.id', $direction = 'desc')
-	{
-		/*
-		 * Workaround to show sort-direction arrow on default column-header
-		 * When a specific sorting order is not provided. (aka default sorting)
-		 */
-		parent::populateState($ordering,$direction);
 	}
 	
 	// SQL Query to load List Data
@@ -59,15 +53,12 @@ class MiniTheatreCMModelListings extends JModelList
 		// Load records from the database
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
-		
-		//$query->select('*')->
-		$query->select( 'a.id, a.name, a.state, a.item_id, a.author, a.recentedit, a.created, a.modified' )->
+		$query->select( 'a.id, a.name, a.alias, a.state, a.item_id, a.access, a.author, a.recentedit, a.created, a.modified, a.hits, a.rating, a.votes' )->
 			from($db->quoteName(MiniTheatreCMMetaDatabase::getTableName('listings')).' AS a');
 		
 		
 		// Filter: like / search
 		$search = $this->getState('filter.search');
-		
 		if (!empty($search))
 		{
 			$like = $db->quote('%'.$search.'%');
@@ -76,14 +67,26 @@ class MiniTheatreCMModelListings extends JModelList
 		
 		// Filter by published state
 		$published = $this->getState('filter.state');
-
 		if (is_numeric($published))
 		{
 			$query->where('a.state = ' . (int) $published);
 		}
-		elseif ($published === '')
+		else
 		{
-			$query->where('(a.state = 0 OR a.state = 1)');
+			$query->where('(a.state IN (0,1))');
+		}
+		
+		// Filter by access
+		$access = $this->getState('filter.access');
+		if(is_numeric($access))
+		{
+			$access = array($access);
+		}
+		if(count($access) != 0)
+		{
+			$access = ArrayHelper::toInteger($access);
+			$access = implode(',', $access);
+			$query->where('a.access IN (' . $access . ')');
 		}
 		
 		// Filter by author
@@ -97,6 +100,19 @@ class MiniTheatreCMModelListings extends JModelList
 			$author = ArrayHelper::toInteger($author);
 			$author = implode(',', $author);
 			$query->where('a.author IN (' . $author . ')');
+		}
+		
+		// Filter by recentedit
+		$recentedit = $this->getState('filter.recentedit');
+		if(is_numeric($recentedit))
+		{
+			$recentedit = array($recentedit);
+		}
+		if(count($recentedit) != 0)
+		{
+			$recentedit = ArrayHelper::toInteger($recentedit);
+			$recentedit = implode(',', $recentedit);
+			$query->where('a.recentedit IN (' . $recentedit . ')');
 		}
 		
 		// Filter by item
@@ -122,13 +138,17 @@ class MiniTheatreCMModelListings extends JModelList
 		return $query;
 	}
 	
-	// Helper Methods
-	public function getUsernames()
+	// Secondary Data
+	public function getUsernames( $fields = array('author','recentedit') )
 	{
-		return MiniTheatreCMLibMtModel::getUsernames( $this->getItems(), array('author','recentedit') );
+		return parent::getUsernames( $fields );
 	}
-	public function getItemnames()
+	public function getItemnames( $fields = 'item_id' )
 	{
-		return MiniTheatreCMLibMtModel::getItemnames( $this->getItems(), array('item_id') );
+		return parent::getItemnames( $fields );
+	}
+	public function getAccessgroups( $fields = 'access' )
+	{
+		return parent::getAccessgroups( $fields );
 	}
 }

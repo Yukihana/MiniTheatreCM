@@ -12,6 +12,8 @@ DROP TABLE IF EXISTS `#__mtcm_rating_reviews`;
 DROP TABLE IF EXISTS `#__mtcm_rating_items`;
 DROP TABLE IF EXISTS `#__mtcm_rating_franchises`;
 
+DROP TABLE IF EXISTS `#__mtcm_activitylog`;
+
 -- ONETIME: 0.0.12.C to 0.0.12.C1
 DROP TABLE IF EXISTS `#__mtcm_metadatas`;
 

@@ -12,7 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('MiniTheatreCMLibHtmlManager', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/manager.php');
+JLoader::Register('NeonLibHtmlManager', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/manager.php');
 ?>
 
 <form action="index.php?option=com_minitheatrecm&view=ratingreviews" method="post">
@@ -80,13 +80,13 @@ JLoader::Register('MiniTheatreCMLibHtmlManager', JPATH_COMPONENT_ADMINISTRATOR .
 						</a>
 					</td>
 					<td class="small nowrap">					
-						<?php MiniTheatreCMLibHtmlManager::getFranchiseField($this->itemnames, $row->target_id);?>
+						<?php NeonLibHtmlManager::getFranchiseField($this->itemnames, $row->target_id);?>
 					</td>
 					<td class="small nowrap">					
-						<?php MiniTheatreCMLibHtmlManager::getUsernameField($this->names, $row->author);?>
+						<?php NeonLibHtmlManager::getUsernameField($this->names, $row->author);?>
 					</td>
 					<td class="small nowrap hidden-phone">
-						<?php MiniTheatreCMLibHtmlManager::getUsernameField($this->names, $row->recentedit, true);?>
+						<?php NeonLibHtmlManager::getUsernameField($this->names, $row->recentedit, true);?>
 					</td>
 					<td class="small nowrap hidden-phone">
 						<?php echo $row->created; ?>
@@ -104,7 +104,7 @@ JLoader::Register('MiniTheatreCMLibHtmlManager', JPATH_COMPONENT_ADMINISTRATOR .
 		</table>
 		<?php endif;?>
 		
-		<?php echo MiniTheatreCMLibHtmlManager::getListFooter($this->pagination->total, $this->querytime);?>
+		<?php echo NeonLibHtmlManager::getListFooter($this->pagination->total, $this->querytime);?>
 		
 		<?php echo JHtml::_('form.token'); ?>
 		<input type="hidden" name="task" value="" />

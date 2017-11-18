@@ -39,14 +39,15 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_listings` (
 	`publish_down`		DATETIME			NOT NULL,
 	`live`				BOOLEAN				NOT NULL DEFAULT '1',
 	
-	`hits`				INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
 	`author`			INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
 	`recentedit`		INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
 	`created`			TIMESTAMP			NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`modified`			DATETIME			NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	
-	`rating_cache`		INT(4) UNSIGNED		NOT NULL DEFAULT '0',
-	`rating_reset`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`hits`				INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
+	`cache_ticks`		INT(10) UNSIGNED	NOT NULL DEFAULT '0'	COMMENT 'Ticks since last cache update',
+	`rating`			INT(4) UNSIGNED		NOT NULL DEFAULT '0'	COMMENT 'Cache',
+	`votes`				INT(10) UNSIGNED	NOT NULL DEFAULT '0'	COMMENT 'Cache',
 	
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -70,15 +71,15 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_items` (
 	`publish_up`		DATETIME			NOT NULL,
 	`publish_down`		DATETIME			NOT NULL,
 	
-	`hits`				INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
 	`author`			INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
 	`recentedit`		INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
 	`created`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
 	`modified`			DATETIME			DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	
-	`featured`			TINYINT(3)			NOT NULL DEFAULT '0',
-	`rating_cache`		INT(4) UNSIGNED		NOT NULL DEFAULT '0',
-	`rating_reset`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`hits`				INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
+	`cache_ticks`		INT(10) UNSIGNED	NOT NULL DEFAULT '0'	COMMENT 'Ticks since last cache update',
+	`rating`			INT(4) UNSIGNED		NOT NULL DEFAULT '0'	COMMENT 'Cache',
+	`votes`				INT(10) UNSIGNED	NOT NULL DEFAULT '0'	COMMENT 'Cache',
 	
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -100,15 +101,15 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_franchises` (
 	`publish_up`		DATETIME			NOT NULL,
 	`publish_down`		DATETIME			NOT NULL,
 	
-	`hits`				INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
 	`author`			INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
 	`recentedit`		INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
 	`created`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
 	`modified`			DATETIME			DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	
-	`featured`			TINYINT(3)			NOT NULL DEFAULT '0',
-	`rating_cache`		INT(4) UNSIGNED		NOT NULL DEFAULT '0',
-	`rating_reset`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`hits`				INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
+	`cache_ticks`		INT(10) UNSIGNED	NOT NULL DEFAULT '0'	COMMENT 'Ticks since last cache update',
+	`rating`			INT(4) UNSIGNED		NOT NULL DEFAULT '0'	COMMENT 'Cache value',
+	`votes`				INT(10) UNSIGNED	NOT NULL DEFAULT '0'	COMMENT 'Cache value',
 	
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -123,11 +124,15 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_genres` (
 	`publish_up`		DATETIME			NOT NULL,
 	`publish_down`		DATETIME			NOT NULL,
 	
-	`hits`				INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
 	`author`			INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
 	`recentedit`		INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
 	`created`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
 	`modified`			DATETIME			DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	
+	`hits`				INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
+	`cache_ticks`		INT(10) UNSIGNED	NOT NULL DEFAULT '0'	COMMENT 'Ticks since last cache update',
+	`rating`			INT(4) UNSIGNED		NOT NULL DEFAULT '0'	COMMENT 'Cache value',
+	`votes`				INT(10) UNSIGNED	NOT NULL DEFAULT '0'	COMMENT 'Cache value',
 	
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -141,6 +146,7 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_reviews` (
 	`rating_p_h`		VARCHAR(255)		NOT NULL DEFAULT '',
 	`item_id`			INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
 	
+	`access`			INT(10)	UNSIGNED	NOT NULL DEFAULT '2',
 	`state`				TINYINT(3)			NOT NULL DEFAULT '1',
 	`publish_up`		DATETIME			NOT NULL,
 	`publish_down`		DATETIME			NOT NULL,
@@ -150,6 +156,10 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_reviews` (
 	`recentedit`		INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
 	`created`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
 	`modified`			DATETIME			DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	
+	`cache_ticks`		INT(10) UNSIGNED	NOT NULL DEFAULT '0'	COMMENT 'Ticks since last cache update',
+	`rating`			INT(4) UNSIGNED		NOT NULL DEFAULT '0'	COMMENT 'Cache value',
+	`votes`				INT(10) UNSIGNED	NOT NULL DEFAULT '0'	COMMENT 'Cache value',
 	
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -233,6 +243,23 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_contenttypes` (
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- Logging: Activity Log
+CREATE TABLE IF NOT EXISTS `#__mtcm_activitylog` (
+	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
+	`user_id`			INT(10)				NOT NULL DEFAULT '0'	COMMENT 'The user that invoked the activity',
+	`interface`			BOOLEAN				NOT NULL DEFAULT '0'	COMMENT 'Frontend(0), Administration(1)',
+	
+	`action`			TINYINT(4)			NOT NULL DEFAULT '0'	COMMENT 'The type of activity done by the user',
+	`target_type`		TINYINT(4)			NOT NULL DEFAULT '0'	COMMENT 'The primary type of record associated to the activity',
+	`target_id`			INT(10)				NOT NULL DEFAULT '0'	COMMENT 'The ID of the record primarily associated',
+	
+	`ip`				VARBINARY(16)		NOT NULL DEFAULT '0'	COMMENT 'IPv4/v6 address of the user (remote)',
+	`hostname`			VARCHAR(255)		NOT NULL DEFAULT ''		COMMENT 'The address used by the user to access this site',
+	`timestamp`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
+	
+	PRIMARY KEY(`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+	
 -- Legacy Upload Wizards Table, Used for Tutorial.
 CREATE TABLE IF NOT EXISTS `#__mtcm_admin_ulwiz` (
 	`id`		INT(10)			NOT NULL AUTO_INCREMENT,
@@ -242,27 +269,27 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_admin_ulwiz` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Test Values, release version won't be using these.
-INSERT INTO `#__mtcm_listings` (`name`, `author`, `item_id`) VALUES
-('Test Listing 1', 42, 1),
-('Test Listing 2', 42, 2),
-('Test Listing 3', 42, 1),
-('Item Listing 4', 42, 5),
-('Test Listing 5', 45, 2),
-('Test Listing 6', 45, 1),
-('Test Listing 7', 49, 2),
-('Test Listing 8', 49, 1),
-('Test Listing 9', 49, 2),
-('Missing Item Listing 10', 49, 6),
-('Test Listing 11', 50, 1),
-('Test Listing 12', 50, 2),
-('Test Listing 13', 45, 3),
-('Test Listing 14', 45, 4),
-('Test Listing 15', 42, 1),
-('Test Listing 16', 42, 2),
-('Test Listing 17', 42, 3),
-('Test Listing 18', 42, 4),
-('Test Listing 19', 42, 5),
-('Test Listing 20', 42, 6);
+INSERT INTO `#__mtcm_listings` (`name`, `author`, `item_id`, `rating`, `alias`) VALUES
+('Test Listing 1', 42, 1, 4, 'test-listing-1'),
+('Test Listing 2', 42, 2, 3, 'test-listing-2'),
+('Test Listing 3', 42, 1, 7, 'test-listing-3'),
+('Item Listing 4', 42, 5, 8, 'test-listing-4'),
+('Test Listing 5', 45, 2, 1, 'test-listing-5'),
+('Test Listing 6', 45, 1, 0, 'test-listing-6'),
+('Test Listing 7', 49, 2, 3, 'test-listing-7'),
+('Test Listing 8', 49, 1, 10, 'test-listing-8'),
+('Test Listing 9', 49, 2, 8, 'test-listing-9'),
+('Missing Item Listing 10', 49, 6, 2, 'test-listing-10'),
+('Test Listing 11', 50, 1, 8, 'test-listing-11'),
+('Test Listing 12', 50, 2, 2, 'test-listing-12'),
+('Test Listing 13', 45, 3, 6, 'test-listing-13'),
+('Test Listing 14', 45, 4, 3, 'test-listing-14'),
+('Test Listing 15', 42, 1, 5, 'test-listing-15'),
+('Test Listing 16', 42, 2, 8, 'test-listing-16'),
+('Test Listing 17', 42, 3, 9, 'test-listing-17'),
+('Test Listing 18', 42, 4, 2, 'test-listing-18'),
+('Test Listing 19', 42, 5, 5, 'test-listing-19'),
+('Test Listing 20', 42, 6, 4, 'test-listing-20');
 
 INSERT INTO `#__mtcm_listings` (`name`, `author`, `state`, `request_name`, `request_msg`) VALUES
 ('No Item Listing 21', 42, 0, 'Hellsblade', 'New requested anime example'),
@@ -278,12 +305,12 @@ INSERT INTO `#__mtcm_reviews` (`name`, `author`, `item_id`) VALUES
 ('No plot and characters suck', 49, 2),
 ('Give me back my time!', 50, 2);
 
-INSERT INTO `#__mtcm_items` (`name`,`content`) VALUES
-('Akuma ni kisuosareta', 'Description of the item <b>I was Kissed by the Devil</b> goes here.'),
-('Killing Squad', 'Description of the item <b>Killing Squad</b> goes here.'),
-('A Deck of Ten', ''),
-('Shinigami Usagi', ''),
-('Mori no Mura', '');
+INSERT INTO `#__mtcm_items` (`name`,`content`, `alias`) VALUES
+('Akuma ni kisuosareta', 'Description of the item <b>I was Kissed by the Devil</b> goes here.', 'akuma-ni-kisuosareta'),
+('Killing Squad', 'Description of the item <b>Killing Squad</b> goes here.', 'killing-squad'),
+('A Deck of Ten', '', 'a-deck-of-ten'),
+('Shinigami Usagi', '', 'shinigami-usagi'),
+('Mori no Mura', '', 'mori-no-mura');
 
 INSERT INTO `#__mtcm_franchises` (`name`, `access`, `author`, `recentedit`) VALUES
 ('Killing Squad Franchise', 2, 42, 49),
@@ -302,10 +329,9 @@ INSERT INTO `#__mtcm_genres` (`name`, `author`) VALUES
 
 INSERT INTO `#__mtcm_contenttypes` (`name`, `author`) VALUES
 ('Anime', 42),
-('Movie', 43);
-INSERT INTO `#__mtcm_contenttypes` (`name`) VALUES
-('Manga'),
-('Dorama');
+('Movie', 43),
+('Manga', 46),
+('Dorama', 0);
 
 INSERT INTO `#__mtcm_admin_ulwiz` (`wname`) VALUES
 ('Anime'),
@@ -352,3 +378,18 @@ INSERT INTO `#__mtcm_rating_reviews` (`rating`, `author`, `target_id`) VALUES
 (84, 43, 5),
 (68, 49, 2),
 (32, 50, 1);
+
+INSERT INTO `#__mtcm_activitylog` (`user_id`, `target_type`, `target_id`, `interface`) VALUES
+(42, 1, 2, 0),
+(43, 6, 3, 0),
+(46, 2, 5, 1),
+(45, 1, 7, 1),
+(42, 3, 2, 0),
+(43, 5, 6, 1),
+(42, 4, 2, 1),
+(47, 2, 4, 0),
+(43, 5, 4, 1),
+(50, 4, 2, 1),
+(49, 3, 3, 0),
+(63, 5, 2, 1),
+(61, 4, 8, 0);
