@@ -1,0 +1,7 @@
+<changelog>
+	<update version="0.0.12.A1" date="2017-10-26">
+		<task type="admin manager">Added a basic frame to Admin/Franchises.</task>
+		<task type="admin manager">Upgraded Admin/Genres code to somewhat usable.</task>
+		<task type="library">Solified the implementation of the model helper class. Added basic code to it.</task>
+	</update>
+</changelog>

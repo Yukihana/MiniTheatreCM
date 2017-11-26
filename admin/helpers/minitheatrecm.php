@@ -30,75 +30,30 @@ abstract class MiniTheatreCMHelper extends JHelperContent
 	 */	 
 	public static function addSubmenu($submenu) 
 	{
-		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_TITLE_OVERVIEW'),
-			'index.php?option=com_minitheatrecm&view=overview',
-			$submenu == 'overview'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_TITLE_ACTIVITYLOG'),
-			'index.php?option=com_minitheatrecm&view=activitylog',
-			$submenu == 'activitylog'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_TITLE_LISTINGS'),
-			'index.php?option=com_minitheatrecm&view=listings',
-			$submenu == 'listings'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_TITLE_REVIEWS'),
-			'index.php?option=com_minitheatrecm&view=reviews',
-			$submenu == 'reviews'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_TITLE_ITEMS'),
-			'index.php?option=com_minitheatrecm&view=items',
-			$submenu == 'items'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_TITLE_FRANCHISES'),
-			'index.php?option=com_minitheatrecm&view=franchises',
-			$submenu == 'franchises'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_TITLE_GENRES'),
-			'index.php?option=com_minitheatrecm&view=genres',
-			$submenu == 'genres'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_TITLE_CONTENTTYPES'),
-			'index.php?option=com_minitheatrecm&view=contenttypes',
-			$submenu == 'contenttypes'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_TITLE_RATINGITEMS'),
-			'index.php?option=com_minitheatrecm&view=ratingitems',
-			$submenu == 'ratingitems'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_TITLE_RATINGFRANCHISES'),
-			'index.php?option=com_minitheatrecm&view=ratingfranchises',
-			$submenu == 'ratingfranchises'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_TITLE_RATINGLISTINGS'),
-			'index.php?option=com_minitheatrecm&view=ratinglistings',
-			$submenu == 'ratinglistings'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_TITLE_RATINGREVIEWS'),
-			'index.php?option=com_minitheatrecm&view=ratingreviews',
-			$submenu == 'ratingreviews'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_TITLE_PLANNER'),
-			'index.php?option=com_minitheatrecm&view=planner',
-			$submenu == 'planner'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_MINITHEATRECM_TITLE_ULWIZSOURCES'),
-			'index.php?option=com_minitheatrecm&view=ulwizsources',
-			$submenu == 'ulwizsources'
-		);
+		// Load xml
+		$xml = simplexml_load_file( JPATH_COMPONENT_ADMINISTRATOR . '/cfg/sidebar.xml' );
+		
+		// Add menu items
+		foreach( $xml->menuitem as $menuitem )
+		{
+			$link = 'index.php?';
+			
+			// Parse attribs as $_GET vars
+			foreach( $menuitem->attributes() as $key=>$value )
+			{
+				if($key != 'label' && $key != 'matchstr')
+				{
+					$link.= NeonDataEscape::generic($key).'='.NeonDataEscape::generic($value).'&';
+				}
+			}
+			if( substr($link,-1) == '&' )
+			{
+				$link = substr( $link, 0, -1 );
+			}
+			
+			JHtmlSidebar::addEntry(
+				JText::_( $menuitem['label']), $link, $submenu == $menuitem['matchstr']
+			);
+		}
 	}
 }

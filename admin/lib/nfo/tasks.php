@@ -11,20 +11,10 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-abstract class MiniTheatreCMMetaDatabase
+abstract class NeonNfoTasks
 {
-	// Database-Table names
-	public static function getTableName($id)
+	public static function renderChangeLog($xml)
 	{
-		$xml = simplexml_load_file(JPATH_COMPONENT_ADMINISTRATOR .'/meta/tables.xml');
-		
-		foreach($xml->table as $table)
-		{
-			if( $table['id'] == $id )
-			{
-				return (string)$table['address'];
-			}
-		}
-		return null;
+		return file_get_contents($xml);
 	}
 }

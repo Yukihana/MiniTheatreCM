@@ -21,9 +21,20 @@ class MiniTheatreCMViewPlanner extends JViewLegacy
 	// Display
 	function display($tpl = null)
 	{
+		$app				= JFactory::getApplication();
+		$context			= 'com_minitheatrecm.planner.';
+		
 		//Add data from the model
-		$this->tasks	= $this->get('Tasks');
-		$this->clog		= $this->get('Changelogs');
+		$this->state		= $this->get('State');
+		
+		$this->cloglist		= $this->get('ChangeLogList');			// ChangeLogs list data
+		$this->clogdata		= $this->get('ChangeLog');				// active-clog: future, merge index with it.
+		$this->clogindex	= $app->getUserState($context.'clog.index',0);
+		
+		
+		
+		// Legacy
+		$this->tasks		= $this->get('Tasks');
 		
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
@@ -33,11 +44,15 @@ class MiniTheatreCMViewPlanner extends JViewLegacy
 			return false;
 		}
 
-		// Set the submenu
-		MiniTheatreCMHelper::addSubmenu('planner');
-		
-		// Set the toolbar and number of found items
-		$this->addToolBar();
+		// Set up other UI elements
+		if ($this->getLayout() !== 'modal')
+		{
+			MiniTheatreCMHelper::addSubmenu('planner');
+			$this->sidebar = JHtmlSidebar::render();
+			
+			$this->setDocument();
+			$this->addToolBar();
+		}
 		
 		// Display the template
 		parent::display($tpl);
@@ -49,5 +64,9 @@ class MiniTheatreCMViewPlanner extends JViewLegacy
 		JToolbarHelper::title( JText::_('COM_MINITHEATRECM_TITLE_PLANNER'), 'calendar' );
 		
 		JToolbarHelper::preferences('com_minitheatrecm');		
+	}
+	
+	protected function setDocument()
+	{
 	}
 }

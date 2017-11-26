@@ -21,22 +21,19 @@ class MiniTheatreCMViewItems extends JViewLegacy
 	// Display the template ($tpl: template file)
 	function display($tpl = null)
 	{
-		// Get application
-		$app = JFactory::getApplication();
-		$context = "minitheatrecm.list.admin.item";
-		
 		// Get data from the model
-		$pretime			= microtime(true);
+		$pretime				= microtime(true);
 		$this->items			= $this->get('Items');
-		$posttime			= microtime(true);
+		$posttime				= microtime(true);
 		$this->pagination		= $this->get('Pagination');
 		$this->state			= $this->get('State');
-		$this->filter_order 	= $app->getUserStateFromRequest($context.'filter_order', 'filter_order', 'name', 'cmd');
-		$this->filter_order_Dir = $app->getUserStateFromRequest($context.'filter_order_Dir', 'filter_order_Dir', 'asc', 'cmd');
+		$this->names			= $this->get('Usernames');
+		$this->franchises		= $this->get('Franchises');
+		$this->groups			= $this->get('Accessgroups');
 		$this->filterForm    	= $this->get('FilterForm');
 		$this->activeFilters 	= $this->get('ActiveFilters');
-		$this->querytime	= $posttime - $pretime;
-
+		$this->querytime		= $posttime - $pretime;
+		
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
@@ -67,6 +64,7 @@ class MiniTheatreCMViewItems extends JViewLegacy
 		JToolbarHelper::publish('items.publish', 'JTOOLBAR_PUBLISH', true);
 		JToolbarHelper::unpublish('items.unpublish', 'JTOOLBAR_UNPUBLISH', true);		
 		JToolbarHelper::archiveList('items.archive');
+		
 		if($this->state->get('filter.published') == -2)
 			JToolbarHelper::deleteList('COM_MINITHEATRECM_ITEMS_CONFIRMDELETE', 'items.delete', 'COM_MINITHEATRECM_DICTIONARY_PURGE');
 		else

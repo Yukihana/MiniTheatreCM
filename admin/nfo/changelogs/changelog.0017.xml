@@ -1,0 +1,11 @@
+<changelog>
+	<update version="0.0.12.C" date="2017-11-04">
+		<task type="config">Fixed default_view global parameter.</task>
+		<task type="admin misc">Removed bloat layout data from Overview.</task>
+		<task type="config">Added and Implemented a central indexing for tables at admin/meta/database.php.</task>
+		<task type="library">Added and Implemented ManagerFields renderer to help populate table-cells.</task>
+		<task type="database">Added JTable classes, SQL definitions and admin MVC lists for 'ratings'. (Reinstall required)</task>
+		<task type="admin misc">Compacted method comments to optimize file sizes.</task>
+		<task type="admin manager">Fixed irregular responsive columns for many manager views.</task>
+	</update>
+</changelog>

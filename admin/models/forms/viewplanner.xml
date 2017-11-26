@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field
+			name="changelogs"
+			type="changelogs"
+			label="COM_MINITHEATRECM_FIELD_CHANGELOGS"
+			description="COM_MINITHEATRECM_FIELD_CHANGELOGS_DESC"
+			default="0"
+			onchange="this.form.submit();"
+			/>
+	</fieldset>
+</form>

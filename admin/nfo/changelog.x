@@ -141,7 +141,7 @@ Rename Database-Table(s): Done
 
 #0.0.9~01-09-2017
 Several tutorials completed.
-Start of development alongside advanced tutorials
+Started development alongside advanced tutorials.
 
 #0.0.1~28-08-2017
-Start tutorial by using a basic 'Hello World' project.
+Started tutorial by using a basic 'Hello World' project.

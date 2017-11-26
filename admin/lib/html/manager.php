@@ -12,7 +12,8 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('MiniTheatreCMMetaNfo', JPATH_COMPONENT_ADMINISTRATOR . '/meta/nfo.php');
+JLoader::Register('NeonNfoLegacy', JPATH_COMPONENT_ADMINISTRATOR . '/lib/nfo/legacy.php');
+JLoader::Register('MiniTheatreCMCfgGlobal', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/global.php');
 
 abstract class NeonLibHtmlManager
 {
@@ -39,7 +40,7 @@ abstract class NeonLibHtmlManager
 		}
 		
 		// Branding & Version
-		$meta		= MiniTheatreCMMetaNfo::getVersionData();
+		$meta		= NeonNfoLegacy::getVersionData();
 		
 		$footer.= '<a class="nowrap hasTooltip" title="'
 				.JText::sprintf('COM_MINITHEATRECM_MESSAGE_VERSIONUPDATEDON', $meta['date'], $meta['time'], $meta['zone'])
@@ -49,7 +50,20 @@ abstract class NeonLibHtmlManager
 				
 		return $footer;
 	}
-	// Parsing Helpers
+	
+	// Filter-Ordering Parsers
+	public static function getFranchiseOrder($ordering = '')
+	{
+		if( strpos($ordering, 'franchise_name') !== false )
+		{
+			return 1;
+		}
+		elseif( strpos($ordering, 'franchise_id') !== false )
+		{
+			return 2;
+		}
+		else return 0;
+	}
 	public static function getEditorOrder($ordering = '')
 	{
 		if( strpos($ordering, 'author') !== false )
@@ -116,7 +130,69 @@ abstract class NeonLibHtmlManager
 		}
 	}
 	
+	// Fields-Double: NewType after db-joins implementation
+	public static function renderFranchiseCell($text, $id, $ordering = 0, $linkable = false)
+	{
+		/*
+		 * If Text = Null, Franchise doesn't exist.
+		 * Display muted 'None' if ID=0, else 'Missing/ID=x' if missing but ID!=0
+		 * Ordering: 0-default, 1-Name, 2-ID
+		 */
+		if($text == null)
+		{
+			$result = '<div><span class="hasTooltip muted disabled" title="'
+					.JText::sprintf( ($id == 0 ? 'COM_MINITHEATRECM_MESSAGE_FRANCHISEUNASSIGNED' : 'COM_MINITHEATRECM_MESSAGE_FRANCHISEMISSING'), $id )
+					.'">'.JText::_( $id == 0 ? 'COM_MINITHEATRECM_DICTIONARY_NONE' : 'COM_MINITHEATRECM_DICTIONARY_MISSING' ).'</span></div>';
+		}
+		elseif( $linkable )
+		{
+			$result = '<div><a class="hasTooltip small" title="'
+					.JText::_('COM_MINITHEATRECM_TOOLTIP_EDIT_FRANCHISE')
+					.'" href="index.php?option=com_minitheatrecm&task=franchise.edit&id='.$id
+					.'">'.$text.'</a></div>';
+		}
+		else
+		{
+			$result = '<div><span class="hasTooltip small" title="'
+					.JText::_('COM_MINITHEATRECM_TOOLTIP_TEXT_FRANCHISE')
+					.'">'.$text.'</span></div>';
+		}
+		
+		// Additional display on ordering by ID
+		if( $ordering == 2 )
+		{
+			$result.= '<div><span class="hasTooltip muted disabled italic" title="'
+						.JText::_('COM_MINITHEATRECM_TOOLTIP_ORDEREDBY_FRANCHISEID').'">'
+						.JText::sprintf('COM_MINITHEATRECM_MESSAGE_IDSTRING', $id)
+						.'</span></div>';
+		}
+		
+		return $result;
+	}
+	
+	// Fields-Single: NewType after db-joins implementation
+	public static function renderFranchiseField($text, $id, $linkable)
+	{
+		/*
+		if($linkable)
+		{
+			return
+				'<a class="small hasTooltip
+				.'href="index.php?option=com_minitheatrecm&task=franchise.edit&id="'.$id.'
+			;
+		}
+		else
+		{
+			return;
+		}
+		*/
+	}
+	
 	// Fields: Double
+	public static function getItemCtypeCell($itemnames = array(), $id = 0, $ctypes = array(), $cid = 0, $ordering = 0)
+	{
+		//TODO
+	}
 	public static function getEditorCell($usernames = array(), $author = 0, $recent = 0, $ordering = 0)
 	{
 		return '<div>'

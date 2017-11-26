@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_items` (
 	`urls`				VARCHAR(1023)		NOT NULL DEFAULT '',
 	`misc1`				VARCHAR(255)		NOT NULL DEFAULT '',
 	
-	`contenttype_id`	INT(10) UNSIGNED	NOT NULL DEFAULT '1',
+	`ctype_id`			INT(10) UNSIGNED	NOT NULL DEFAULT '1',
 	`franchise_id`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
 	`genres`			VARCHAR(1023)		NOT NULL DEFAULT '',
 	

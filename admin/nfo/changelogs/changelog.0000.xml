@@ -1,0 +1,5 @@
+<changelog>
+	<update version="0.0.1" date="2017-08-28">
+		<task type="tutorial">Started tutorial by using a basic 'Hello World' project.</task>
+	</update>
+</changelog>

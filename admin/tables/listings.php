@@ -12,7 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('MiniTheatreCMMetaDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/meta/database.php');
+JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/database.php');
 
 /**
  * Listings Table class
@@ -24,7 +24,7 @@ class MiniTheatreCMTableListings extends JTable
 	// Constructor ($db: database connector object)
 	function __construct(&$db)
 	{
-		parent::__construct(MiniTheatreCMMetaDatabase::getTableName('listings'), 'id', $db);
+		parent::__construct(NeonCfgDatabase::getTableName('listings'), 'id', $db);
 		$this->setColumnAlias('published', 'state');
 	}
 }

@@ -1,0 +1,7 @@
+<changelog>
+	<update version="0.0.12.B1" date="2017-10-31">
+		<task type="admin misc">Styling added for Changelogs and Tasks.</task>
+		<task type="library">Started making changes for adding an API library.</task>
+		<task type="media">Started moving custom CSS and JS to designated media folders.</task>
+	</update>
+</changelog>

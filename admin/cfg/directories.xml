@@ -1,0 +1,3 @@
+<filebase>
+	<files typename="changelogs" address="/nfo/changelogs" prefix="changelog." suffix=".xml"/>
+</filebase>

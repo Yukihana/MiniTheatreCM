@@ -18,15 +18,84 @@
 			>
 			<option value="">JOPTION_SELECT_PUBLISHED</option>
 		</field>
+		<field
+			name="access"
+			type="accesslevel"
+			label="JOPTION_FILTER_ACCESS"
+			description="JOPTION_FILTER_ACCESS_DESC"
+			multiple="true"
+			class="multipleAccessLevels"
+			onchange="this.form.submit();"
+		/>
+		<field
+			name="author"
+			type="author"
+			label="COM_MINITHEATRECM_FILTER_AUTHOR"
+			description="COM_MINITHEATRECM_FILTER_AUTHOR_DESC"
+			multiple="true"
+			class="multipleAuthors"
+			onchange="this.form.submit();"
+			>
+			<option value="0">JNONE</option>
+		</field>
+		<field
+			name="recentedit"
+			type="author"
+			label="COM_MINITHEATRECM_FILTER_RECENTEDIT"
+			description="COM_MINITHEATRECM_FILTER_RECENTEDIT_DESC"
+			multiple="true"
+			class="multipleRecentEditors"
+			onchange="this.form.submit();"
+			>
+			<option value="0">JNONE</option>
+		</field>
 	</fields>
 	<fields name="list">
 		<field
+			name="fullordering"
+			type="list"
+			label="COM_MINITHEATRECM_LIST_FULL_ORDERING"
+			description="COM_MINITHEATRECM_LIST_FULL_ORDERING_DESC"
+			onchange="this.form.submit();"
+			default="a.id DESC"
+			>
+			<option value="">JGLOBAL_SORT_BY</option>
+			<option value="a.id ASC">JGRID_HEADING_ID_ASC</option>
+			<option value="a.id DESC">JGRID_HEADING_ID_DESC</option>
+			<option value="a.name ASC">COM_MINITHEATRECM_ORDERING_NAME_ASC</option>
+			<option value="a.name DESC">COM_MINITHEATRECM_ORDERING_NAME_DSC</option>
+			<option value="a.ctype_id ASC">COM_MINITHEATRECM_ORDERING_CONTENTTYPE_ASC</option>
+			<option value="a.ctype_id DESC">COM_MINITHEATRECM_ORDERING_CONTENTTYPE_DSC</option>
+			<option value="a.alias ASC">COM_MINITHEATRECM_ORDERING_ALIAS_ASC</option>
+			<option value="a.alias DESC">COM_MINITHEATRECM_ORDERING_ALIAS_DSC</option>
+			<option value="a.state ASC">JSTATUS_ASC</option>
+			<option value="a.state DESC">JSTATUS_DESC</option>
+			<option value="a.franchise_id ASC">COM_MINITHEATRECM_ORDERING_FRANCHISE_ASC</option>
+			<option value="a.franchise_id DESC">COM_MINITHEATRECM_ORDERING_FRANCHISE_DSC</option>
+			<option value="a.access ASC">COM_MINITHEATRECM_ORDERING_ACCESS_ASC</option>
+			<option value="a.access DESC">COM_MINITHEATRECM_ORDERING_ACCESS_DSC</option>
+			<option value="a.author ASC">JAUTHOR_ASC</option>
+			<option value="a.author DESC">JAUTHOR_DESC</option>
+			<option value="a.recentedit ASC">COM_MINITHEATRECM_ORDERING_RECENTEDIT_ASC</option>
+			<option value="a.recentedit DESC">COM_MINITHEATRECM_ORDERING_RECENTEDIT_DSC</option>
+			<option value="a.created ASC">COM_MINITHEATRECM_ORDERING_CREATED_ASC</option>
+			<option value="a.created DESC">COM_MINITHEATRECM_ORDERING_CREATED_DSC</option>
+			<option value="a.modified ASC">COM_MINITHEATRECM_ORDERING_MODIFIED_ASC</option>
+			<option value="a.modified DESC">COM_MINITHEATRECM_ORDERING_MODIFIED_DSC</option>
+			<option value="a.hits ASC">COM_MINITHEATRECM_ORDERING_HITS_ASC</option>
+			<option value="a.hits DESC">COM_MINITHEATRECM_ORDERING_HITS_DSC</option>
+			<option value="a.votes ASC">COM_MINITHEATRECM_ORDERING_VOTES_ASC</option>
+			<option value="a.votes DESC">COM_MINITHEATRECM_ORDERING_VOTES_DSC</option>
+			<option value="a.rating ASC">COM_MINITHEATRECM_ORDERING_RATING_ASC</option>
+			<option value="a.rating DESC">COM_MINITHEATRECM_ORDERING_RATING_DSC</option>
+		</field>
+		<field
 			name="limit"
 			type="limitbox"
+			label="COM_MINITHEATRECM_LIST_LIMIT"
+			description="COM_MINITHEATRECM_LIST_LIMIT_DESC"
 			class="input-mini"
 			default="25"
-			label="COM_CONTENT_LIST_LIMIT"
-			description="COM_MINITHEATRECM_LIST_LIMIT_DESC"
 			onchange="this.form.submit();"
 		/>
 	</fields>

@@ -54,8 +54,7 @@ class MiniTheatreCMModelListings extends NeonModelList
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
 		$query->select( 'a.id, a.name, a.alias, a.state, a.item_id, a.access, a.author, a.recentedit, a.created, a.modified, a.hits, a.rating, a.votes' )->
-			from($db->quoteName(MiniTheatreCMMetaDatabase::getTableName('listings')).' AS a');
-		
+			from($db->quoteName(NeonCfgDatabase::getTableName('listings')).' AS a');
 		
 		// Filter: like / search
 		$search = $this->getState('filter.search');

@@ -21,10 +21,6 @@ class MiniTheatreCMViewListings extends JViewLegacy
 	// Display the template ($tpl: template file)
 	function display($tpl = null)
 	{
-		// Get application
-		$app		= JFactory::getApplication();
-		$context	= 'com_minitheatrecm.listings.list.';
-		
 		// Get data from the model
 		$pretime				= microtime(true);
 		$this->items			= $this->get('Items');

@@ -12,7 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Class for accessing hard metadata
-abstract class MiniTheatreCMMetaNfo
+abstract class NeonNfoLegacy
 {
 	public static function getVersionData()
 	{

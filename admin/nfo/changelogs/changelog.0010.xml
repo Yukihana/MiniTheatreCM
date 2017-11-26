@@ -1,0 +1,7 @@
+<changelog>
+	<update version="0.0.12" date="2017-10-26">
+		<task type="tutorial config">Added Global Configurations.</task>
+		<task type="admin manager">Added a basic frame for Admin/Genres.</task>
+		<task type="library">Planned a basic implementation for a Model Helper class to optimize code efficiency.</task>
+	</update>
+</changelog>

@@ -84,11 +84,11 @@
 			<filename>controller.php</filename>
 			<filename>config.xml</filename>
 			
+			<folder>cfg</folder>
 			<folder>controllers</folder>
 			<folder>nfo</folder>
 			<folder>helpers</folder>
 			<folder>lib</folder>
-			<folder>meta</folder>
 			<folder>models</folder>
 			<folder>sql</folder>
 			<folder>tables</folder>

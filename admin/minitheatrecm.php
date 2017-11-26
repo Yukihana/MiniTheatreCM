@@ -18,7 +18,8 @@ defined('_JEXEC') or die('Restricted access');
  */
 
 // Require helper file
-JLoader::register('MiniTheatreCMHelper', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/minitheatrecm.php'); 
+JLoader::register('MiniTheatreCMHelper', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/minitheatrecm.php');
+JLoader::register('NeonDataEscape', JPATH_COMPONENT_ADMINISTRATOR . '/lib/data/escape.php');
  
 // Get an instance of the controller prefixed by MiniTheatreCM
 $controller = JControllerLegacy::getInstance('MiniTheatreCM');

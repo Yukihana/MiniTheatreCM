@@ -11,7 +11,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-abstract class MiniTheatreCMMetaGlobal
+abstract class MiniTheatreCMCfgGlobal
 {
 	// Admin->Default View
 	public static function getDefaultView()
@@ -25,5 +25,11 @@ abstract class MiniTheatreCMMetaGlobal
 	public static function getOverviewType()
 	{
 		return JComponentHelper::getParams('com_minitheatrecm')->get('overview_type');
+	}
+	
+	// Manager Cell Links
+	public static function getManagerLinkable($id)
+	{
+		return JComponentHelper::getParams('com_minitheatrecm')->get('links_'.$id);
 	}
 }

@@ -12,7 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('MiniTheatreCMMetaDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/meta/database.php');
+JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/database.php');
 
 /**
  * Metadatas Table class
@@ -24,6 +24,6 @@ class MiniTheatreCMTableMtShared extends JTable
 	// Constructor ($db: database connector object)
 	function __construct(&$db)
 	{
-		parent::__construct(MiniTheatreCMMetaDatabase::getTableName('mtshared'), 'id', $db);
+		parent::__construct(NeonCfgDatabase::getTableName('mtshared'), 'id', $db);
 	}
 }

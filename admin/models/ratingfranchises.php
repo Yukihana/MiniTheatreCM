@@ -13,7 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
 JLoader::Register('NeonLibMtModel', JPATH_COMPONENT_ADMINISTRATOR . '/lib/mt/model.php');
-JLoader::Register('MiniTheatreCMMetaDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/meta/database.php');
+JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/database.php');
 
 /**
  * RatingFranchises Model-List
@@ -28,7 +28,7 @@ class MiniTheatreCMModelRatingFranchises extends JModelList
 		// Load records from the database
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
-		$query->select('*')->from($db->quoteName(MiniTheatreCMMetaDatabase::getTableName('ratingfranchises')));
+		$query->select('*')->from($db->quoteName(NeonCfgDatabase::getTableName('ratingfranchises')));
 		$db->setQuery($query);
 		
 		return $query;

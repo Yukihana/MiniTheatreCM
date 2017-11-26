@@ -1,0 +1,7 @@
+<changelog>
+	<update version="0.0.11.X10" date="2017-10-10">
+		<task type="site">Added a basic framework for My-Listings, EditListing views on site-end.</task>
+		<task type="translation">Added some translations.</task>
+		<task type="database">Added Database definition modifications as per requirements.</task>
+	</update>
+</changelog>

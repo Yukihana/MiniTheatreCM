@@ -1,0 +1,19 @@
+<database>
+	<table typename="listings"			address="#__mtcm_listings"/>
+	<table typename="reviews"			address="#__mtcm_reviews"/>
+	
+	<table typename="items"				address="#__mtcm_items"/>
+	<table typename="franchises"		address="#__mtcm_franchises"/>
+	
+	<table typename="genres"			address="#__mtcm_genres"/>
+	<table typename="contenttypes"		address="#__mtcm_contenttypes"/>
+	
+	<table typename="ratingitems"		address="#__mtcm_rating_items"/>
+	<table typename="ratingfranchises"	address="#__mtcm_rating_franchises"/>
+	<table typename="ratinglistings"	address="#__mtcm_rating_listings"/>
+	<table typename="ratingreviews"		address="#__mtcm_rating_reviews"/>
+	
+	<table typename="activitylog"		address="#__mtcm_activitylog"/>
+	
+	<table typename="mtshared" 			address="#__mt_shared"/>
+</database>

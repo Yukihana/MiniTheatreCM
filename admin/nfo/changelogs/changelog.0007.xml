@@ -1,0 +1,7 @@
+<changelog>
+	<update version="0.0.11.X7" date="2017-10-01">
+		<task type="admin">Added additional views.</task>
+		<task type="database">Planning actual database fields.</task>
+		<task type="admin">Trying to implement similar data onto other views.</task>
+	</update>
+</changelog>

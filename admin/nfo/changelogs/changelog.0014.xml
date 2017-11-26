@@ -1,0 +1,7 @@
+<changelog>
+	<update version="0.0.12.A4" date="2017-10-30">
+		<task type="admin misc">Added Custom Pagination to Admin/Overview/ChangeLog.</task>
+		<task type="admin form">Attempted the most basic use of forms on Admin/Genre.Edit to some success.</task>
+		<task type="library">Added helpers/html.php to help with layout rendering. Might move this to a admin/lib directory later.</task>
+	</update>
+</changelog>

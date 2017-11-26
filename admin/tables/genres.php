@@ -12,7 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('MiniTheatreCMMetaDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/meta/database.php');
+JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/database.php');
 
 /**
  * Genres Table class
@@ -24,7 +24,7 @@ class MiniTheatreCMTableGenres extends JTable
 	// Constructor ($db: database connector object)
 	function __construct(&$db)
 	{
-		parent::__construct(MiniTheatreCMMetaDatabase::getTableName('genres'), 'id', $db);
+		parent::__construct(NeonCfgDatabase::getTableName('genres'), 'id', $db);
 		$this->setColumnAlias('published', 'state');
 	}
 }

@@ -1,0 +1,11 @@
+<changelog>
+	<update version="0.0.12.B2" date="2017-11-01">
+		<task type="library">Created a paging API, added to library.</task>
+		<task type="library">Moved required JS and CSS to media directory.</task>
+		<task type="library">Optimized API calling and dependency syntax to simplify implementation.</task>
+		<task type="library">Created an 'include' API system for indexing and loading php/css/js files based on required tasks.</task>
+		<task type="library">Created a planner view and moved the changelog and roadmap data to here from 'overview'.</task>
+		<task type="library">Implemented the new paging API on the tasks and changelog psueodules: Success.</task>
+		<task type="library">Optimized a few sections using the new API.</task>
+	</update>
+</changelog>

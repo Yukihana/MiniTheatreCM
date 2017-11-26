@@ -12,9 +12,9 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Static Helper Classes
-JLoader::Register('MiniTheatreCMMetaNfo', JPATH_COMPONENT_ADMINISTRATOR . '/meta/nfo.php');
-JLoader::Register('MiniTheatreCMMetaGlobal', JPATH_COMPONENT_ADMINISTRATOR . '/meta/global.php');
-JLoader::Register('MiniTheatreCMMetaDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/meta/database.php');
+JLoader::Register('NeonNfoLegacy', JPATH_COMPONENT_ADMINISTRATOR . '/lib/nfo/legacy.php');
+JLoader::Register('MiniTheatreCMCfgGlobal', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/global.php');
+JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/database.php');
 
 /**
  * Overview Model
@@ -26,7 +26,7 @@ class MiniTheatreCMModelOverview extends JModelList
 	// Method to check if Basic or Advanced
 	public function getLayoutMode()
 	{
-		return MiniTheatreCMMetaGlobal::getOverviewType();
+		return MiniTheatreCMCfgGlobal::getOverviewType();
 	}
 	
 	// Methods to get 'Items' Data (update code for this. Use arrays and foreach, individual is pain)
@@ -38,7 +38,7 @@ class MiniTheatreCMModelOverview extends JModelList
 		
 		// Query - All
 		$query = $db->getQuery(true);
-		$query->select('COUNT(*)')->from($db->quoteName(MiniTheatreCMMetaDatabase::getTableName('items')));
+		$query->select('COUNT(*)')->from($db->quoteName(NeonCfgDatabase::getTableName('items')));
 		$db->setQuery($query);
 		$data["count"] = $db->loadResult();
 		
@@ -48,14 +48,14 @@ class MiniTheatreCMModelOverview extends JModelList
 	// Helper Methods
 	public function getVersion()
 	{
-		return MiniTheatreCMMetaNfo::getVersionData();
+		return NeonNfoLegacy::getVersionData();
 	}
 	public function getChangelogs()
 	{
-		return MiniTheatreCMMetaNfo::getChangelogs();
+		return NeonNfoLegacy::getChangelogs();
 	}
 	public function getTasks()
 	{
-		return MiniTheatreCMMetaNfo::getTasks();
+		return NeonNfoLegacy::getTasks();
 	}
 }

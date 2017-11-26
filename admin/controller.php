@@ -12,7 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include static helper classes
-JLoader::Register('MiniTheatreCMMetaGlobal', JPATH_COMPONENT_ADMINISTRATOR . '/meta/global.php');
+JLoader::Register('MiniTheatreCMCfgGlobal', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/global.php');
 /**
  * MiniTheatreCM General Controller
  *
@@ -30,7 +30,7 @@ class MiniTheatreCMController extends JControllerLegacy
 	
 	public function __construct($properties)
     {
-        $this->default_view = MiniTheatreCMMetaGlobal::getDefaultView();
+        $this->default_view = MiniTheatreCMCfgGlobal::getDefaultView();
 
         parent::__construct($properties);
     }

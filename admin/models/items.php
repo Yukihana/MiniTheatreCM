@@ -12,15 +12,15 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('NeonLibMtModel', JPATH_COMPONENT_ADMINISTRATOR . '/lib/mt/model.php');
-JLoader::Register('MiniTheatreCMMetaDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/meta/database.php');
+use Joomla\Utilities\ArrayHelper;
+JLoader::Register('NeonModelList', JPATH_COMPONENT_ADMINISTRATOR . '/lib/src/modellist.php');
 
 /**
  * Items Model-List
  *
  * @since  0.0.1
  */
-class MiniTheatreCMModelItems extends JModelList
+class MiniTheatreCMModelItems extends NeonModelList
 {
 	// Override proxy for the constructor ($config: optional configuration array)
 	public function __construct($config = array())
@@ -28,52 +28,57 @@ class MiniTheatreCMModelItems extends JModelList
 		if (empty($config['filter_fields']))
 		{
 			$config['filter_fields'] = array(
-				'id',
-				'name',
-				'published'
+				'id',			'a.id',
+				'name',			'a.name',
+				'alias',		'a.alias',
+				'state',		'a.state',
+				'franchise_id',	'a.franchise_id',
+				'access',		'a.access',
+				'author',		'a.author',
+				'recentedit',	'a.recentedit',
+				'created',		'a.created',
+				'modified',		'a.modified',
+				'hits',			'a.hits',
+				'rating',		'a.rating',
+				'votes',		'a.votes'
 			);
 		}
-
+		
 		parent::__construct($config);
 	}
 	
-	// SQL Query to load List Data
+	// Override proxy for the getListQuery method
 	protected function getListQuery()
 	{
-		// Initialize variables.
-		$db    = JFactory::getDbo();
-		$query = $db->getQuery(true);
-
-		// Create the base select statement.
-		$query->select('*')->from($db->quoteName(MiniTheatreCMMetaDatabase::getTableName('items')).' AS a');
-
-		// Filter: like / search
-		$search = $this->getState('filter.search');
+		// Query Config
+		$this->dbtable				= 'items';
+		$this->dbprefix				= 'a';
 		
-		if (!empty($search))
-		{
-			$like = $db->quote('%' . $search . '%');
-			$query->where('name LIKE ' . $like);
-		}
+		// Query Vars: select, join
+		$this->dbselect				= array('a.id', 'a.name', 'a.alias', 'a.state', 'a.franchise_id', 'a.access', 'a.author', 'a.recentedit', 'a.created', 'a.modified', 'a.hits', 'a.rating', 'a.votes');
+		$this->dbleftjoins			= array(
+										'b.name AS ctype_name'=> NeonCfgDatabase::getTableName('contenttypes').' AS b ON b.id = a.ctype_id',
+										'c.name AS franchise_name'=>NeonCfgDatabase::getTableName('franchises').' AS c ON c.id = a.franchise_id'
+										);
+										
+		// Query Vars: filters, order
+		$this->dbfilters_core		= array('search'=>'a.name', 'state'=>'a.state', 'access'=>'a.access');
+		$this->dbfilters_multi_int	= array ('author'=>'a.author', 'recentedit'=>'a.recentedit');
 		
-		// Filter by published state
-		$published = $this->getState('filter.published');
-
-		if (is_numeric($published))
-		{
-			$query->where('published = ' . (int) $published);
-		}
-		elseif ($published === '')
-		{
-			$query->where('(published IN (0, 1))');
-		}
-		
-		// Add the list ordering clause.
-		$orderCol	= $this->state->get('list.ordering', 'name');
-		$orderDirn 	= $this->state->get('list.direction', 'asc');
-
-		$query->order($db->escape($orderCol) . ' ' . $db->escape($orderDirn));
-		
-		return $query;
+		return parent::getListQuery();
+	}
+	
+	// Secondary Data (Legacy, to be removed)
+	public function getUsernames( $fields = array('author','recentedit') )
+	{
+		return parent::getUsernames( $fields );
+	}
+	public function getItemnames( $fields = 'item_id' )
+	{
+		return parent::getItemnames( $fields );
+	}
+	public function getAccessgroups( $fields = 'access' )
+	{
+		return parent::getAccessgroups( $fields );
 	}
 }
