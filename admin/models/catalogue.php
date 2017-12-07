@@ -12,14 +12,14 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Item Model
+ * Catalogue Model
  *
  * @since  0.0.1
  */
-class MiniTheatreCMModelItem extends JModelAdmin
+class MiniTheatreCMModelCatalogue extends JModelAdmin
 {
 	// Method to fetch JTable instances ($name: modelname, $prefix: class prefix, $config: optional configuration array)
-	public function getTable($type = 'Items', $prefix = 'MiniTheatreCMTable', $config = array())
+	public function getTable($type = 'Catalogues', $prefix = 'MiniTheatreCMTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -28,8 +28,8 @@ class MiniTheatreCMModelItem extends JModelAdmin
 	public function getForm($data = array(), $loadData = true)
 	{
 		$form = $this->loadForm(
-			'com_minitheatrecm.item',
-			'edititem',
+			'com_minitheatrecm.catalogue',
+			'editcatalogue',
 			array(
 				'control' => 'jform',
 				'load_data' => $loadData
@@ -49,7 +49,7 @@ class MiniTheatreCMModelItem extends JModelAdmin
 	{
 		// Check the session for previously entered form data.
 		$data = JFactory::getApplication()->getUserState(
-			'com_minitheatrecm.edit.edititem.data',
+			'com_minitheatrecm.edit.editcatalogue.data',
 			array()
 		);
 

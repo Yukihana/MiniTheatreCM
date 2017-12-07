@@ -62,7 +62,7 @@ class MiniTheatreCMModelEditListing extends JModelItem
 		
 		$data->id 			= $this->cache->id;
 		$data->live			= $this->cache->live;
-		$data->item_id		= $this->cache->item_id;
+		$data->catalogue_id		= $this->cache->catalogue_id;
 		
 		$data->name 		= $this->cache->name;
 		$data->content 		= $this->cache->content;
@@ -85,8 +85,8 @@ class MiniTheatreCMModelEditListing extends JModelItem
 		$table = $this->getTable( 'Items', 'MiniTheatreCMTable', array() );
 		
 		$data 				= new stdClass();
-		$data->id 			= $this->cache->item_id;
-		$data->state 		= $table->load( $this->cache->item_id ) ? 1 : -1;
+		$data->id 			= $this->cache->catalogue_id;
+		$data->state 		= $table->load( $this->cache->catalogue_id ) ? 1 : -1;
 		
 		if( $data->id == 0 )
 		{

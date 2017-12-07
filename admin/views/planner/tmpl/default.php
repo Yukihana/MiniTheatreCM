@@ -13,7 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
 JLoader::Register('NeonLibHtmlNavGroup', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/navgroup.php');
-JLoader::Register('NeonLibHtmlList', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/list.php');
+JLoader::Register('NeonHtmlList', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/list.php');
 JLoader::Register('NeonLibIncludeStyles', JPATH_COMPONENT_ADMINISTRATOR . '/lib/include/styles.php');
 
 NeonLibIncludeStyles::load();
@@ -49,7 +49,7 @@ $tabview	= $app->getUserState($context.'tabview', 'roadmap');
 			<div class="span6">
 				<?php NeonLibHtmlNavGroup::tabButtons('mtcm-tasks', $this->tasks);?>
 				<div id="mtcm-tasks-tabpanel" class="mtcm-padding-6v" activeindex="0">
-					<?php NeonLibHtmlList::listModTables($this->tasks, 'mtcm-tasks', array('data', 'name'), 'mtcm-modstyle-tasks', array(0), false);?>
+					<?php NeonHtmlList::listModTables($this->tasks, 'mtcm-tasks', array('data', 'name'), 'mtcm-modstyle-tasks', array(0), false);?>
 				</div>
 			</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>

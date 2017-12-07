@@ -16,8 +16,15 @@ defined('_JEXEC') or die('Restricted access');
  * $document = JFactory::getDocument();
  * $document->addStyleDeclaration('.icon-helloworld {background-image: url(../media/com_helloworld/images/Tux-16x16.png);}');
  */
+ 
+// Access check: is this user allowed to access the backend of this component?
+if (!JFactory::getUser()->authorise('core.manage', 'com_minitheatrecm'))
+{
+	throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'));
+}
 
-// Require helper file
+// Include Dependencies
+JLoader::discover('Neon', JPATH_COMPONENT_ADMINISTRATOR . '/lib/src');
 JLoader::register('MiniTheatreCMHelper', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/minitheatrecm.php');
 JLoader::register('NeonDataEscape', JPATH_COMPONENT_ADMINISTRATOR . '/lib/data/escape.php');
  

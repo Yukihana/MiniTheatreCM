@@ -12,7 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('NeonLibMtModel', JPATH_COMPONENT_ADMINISTRATOR . '/lib/mt/model.php');
+JLoader::Register('NeonMtModel', JPATH_COMPONENT_ADMINISTRATOR . '/lib/mt/model.php');
 JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/database.php');
 
 /**
@@ -37,10 +37,10 @@ class MiniTheatreCMModelRatingFranchises extends JModelList
 	// Helper Methods
 	public function getUsernames()
 	{
-		return NeonLibMtModel::getUsernames( $this->getItems(), array('author','recentedit') );
+		return NeonMtModel::getUsernames( $this->getItems(), array('author','recentedit') );
 	}
 	public function getFranchises()
 	{
-		return NeonLibMtModel::getFranchises( $this->getItems(), array('target_id') );
+		return NeonMtModel::getFranchises( $this->getItems(), array('target_id') );
 	}
 }

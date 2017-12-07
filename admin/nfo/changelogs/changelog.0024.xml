@@ -1,0 +1,10 @@
+<changelog>
+	<update version="0.0.12.I" date="2017-12-07" time="11:00" zone="UTC">
+		<task type="library">Several structural changes.</task>
+		<task type="manager">Several manager class code improvements (Genres still pending implementation).</task>
+		<task type="database">Several database updates to make space for metadata.</task>
+		<task type="forms">Several updates to form view code.</task>
+		<task type="misc">Preparing MAL and AniDB api for pulling initial catalogue data (JSON over AJAX).</task>
+		<task type="translation">Several updates and cleanups to translation.</task>
+	</update>
+</changelog>

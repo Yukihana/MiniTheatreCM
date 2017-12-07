@@ -14,22 +14,23 @@ defined('_JEXEC') or die('Restricted access');
 abstract class MiniTheatreCMCfgGlobal
 {
 	// Admin->Default View
-	public static function getDefaultView()
+	public static function getDefaultView($default = 'overview')
 	{
-		$id = JComponentHelper::getParams('com_minitheatrecm')->get('default_view');
-		$views = array('overview','listings','reviews','items','franchises','genres','contenttypes');
-		return $views[empty($id)? 0:$id];
+		$res = JComponentHelper::getParams('com_minitheatrecm')->get('default_view');
+		return (empty($res)? $default : $res);
 	}
 	
 	// Admin->Overview Type
-	public static function getOverviewType()
+	public static function getOverviewType($default = 0)
 	{
-		return JComponentHelper::getParams('com_minitheatrecm')->get('overview_type');
+		$res = JComponentHelper::getParams('com_minitheatrecm')->get('overview_type');
+		return ( empty($res)? $default : $res );
 	}
 	
 	// Manager Cell Links
-	public static function getManagerLinkable($id)
+	public static function getManagerLinkable($id, $default = false)
 	{
-		return JComponentHelper::getParams('com_minitheatrecm')->get('links_'.$id);
+		$res = JComponentHelper::getParams('com_minitheatrecm')->get('links_'.$id);
+		return ( empty($res)? $default : ($res=='link') );
 	}
 }

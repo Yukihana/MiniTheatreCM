@@ -12,25 +12,38 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('NeonNfoLegacy', JPATH_COMPONENT_ADMINISTRATOR . '/lib/nfo/legacy.php');
+JLoader::Register('MiniTheatreCMCfgMetadata', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/metadata.php');
 JLoader::Register('MiniTheatreCMCfgGlobal', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/global.php');
 
-abstract class NeonLibHtmlManager
+abstract class NeonHtmlManager
 {
 	// Sections
-	public static function getListFooter($resultcount = null, $querytime = null)
+	public static function getListFooter($resulttotal = null, $resultcount = null, $querytime = null)
 	{
 		// Open
 		$footer = '<div class="small" style="text-align:right;">';
 		
-		// ResultCount & QueryTime
-		if($resultcount != null)
+		// Results
+		if($resulttotal != null && $resultcount != null)
 		{
-			$footer.= '<span class="nowrap disabled">'.JText::plural('COM_MINITHEATRECM_MESSAGE_RESULTCOUNT', $resultcount).'</span>';
-			
-			// Conditional Split #1
-			$footer.= '<span class="hidden-phone disabled"> &#8212; </span><br class="visible-phone"/>';
+			$footer.= '<span class="nowrap disabled">'
+					.JText::plural('COM_MINITHEATRECM_MESSAGE_RESULTTOTALCOUNT', $resulttotal, $resultcount)
+					.'</span><span class="hidden-phone disabled"> &#8212; </span><br class="visible-phone"/>';
 		}
+		elseif($resulttotal != null)
+		{
+			$footer.= '<span class="nowrap disabled">'
+					.JText::plural('COM_MINITHEATRECM_MESSAGE_RESULTTOTAL', $resulttotal)
+					.'</span><span class="hidden-phone disabled"> &#8212; </span><br class="visible-phone"/>';
+		}
+		elseif($resultcount != null)
+		{
+			$footer.= '<span class="nowrap disabled">'
+					.JText::plural('COM_MINITHEATRECM_MESSAGE_RESULTCOUNT', $resultcount)
+					.'</span><span class="hidden-phone disabled"> &#8212; </span><br class="visible-phone"/>';
+		}
+		
+		// QueryTime
 		if($querytime != null)
 		{
 			$footer.= '<span class="nowrap disabled">'.JText::sprintf('COM_MINITHEATRECM_MESSAGE_QUERYTIME', $querytime).'</span>';
@@ -40,121 +53,86 @@ abstract class NeonLibHtmlManager
 		}
 		
 		// Branding & Version
-		$meta		= NeonNfoLegacy::getVersionData();
-		
+		$meta	= MiniTheatreCMCfgMetadata::getVersionData();
 		$footer.= '<a class="nowrap hasTooltip" title="'
-				.JText::sprintf('COM_MINITHEATRECM_MESSAGE_VERSIONUPDATEDON', $meta['date'], $meta['time'], $meta['zone'])
-				.'" href="'.JRoute::_('index.php?option=com_minitheatrecm&view=planner&tabview=updates').'">'
-				.JText::_('COM_MINITHEATRECM_GLOBAL_LONGTITLE').' '.$meta['version']
-				.'</a></div>';
-				
+					.JText::sprintf('COM_MINITHEATRECM_MESSAGE_VERSIONUPDATEDON', $meta['date'], $meta['time'], $meta['zone'])
+					.'" href="'.JRoute::_('index.php?option=com_minitheatrecm&view=planner&tabview=changelogs').'">'
+					.JText::_('COM_MINITHEATRECM_GLOBAL_LONGTITLE').' '.$meta['version']
+					.'</a></div>';
+	
+		// Return
 		return $footer;
 	}
 	
-	// Filter-Ordering Parsers
-	public static function getFranchiseOrder($ordering = '')
+	// Filter-Ordering Parser
+	public static function getOrdering( $fullorder, $defkey, $deftext, $columns )
 	{
-		if( strpos($ordering, 'franchise_name') !== false )
+		$res		= new stdClass();
+		
+		// Get Order-Index
+		$n = 1;
+		foreach($columns as $key=>$text)
 		{
-			return 1;
+			if( strpos( $fullorder, $key ) !== false )
+			{
+				$res->index = $n;
+				$res->order	= $key;
+				$res->text	= $text;
+				
+				return $res;
+			}
+			$n++;
 		}
-		elseif( strpos($ordering, 'franchise_id') !== false )
-		{
-			return 2;
-		}
-		else return 0;
-	}
-	public static function getEditorOrder($ordering = '')
-	{
-		if( strpos($ordering, 'author') !== false )
-		{
-			return 1;
-		}
-		elseif( strpos($ordering, 'recentedit') !== false )
-		{
-			return 2;
-		}
-		else return 0;
-	}
-	public static function getTimestampOrder($ordering = '')
-	{
-		if( strpos($ordering, 'created') !== false )
-		{
-			return 1;
-		}
-		elseif( strpos($ordering, 'modified') !== false )
-		{
-			return 2;
-		}
-		else return 0;
-	}
-	public static function getStatsOrder($ordering = '')
-	{
-		if( strpos($ordering, 'hits') !== false )
-		{
-			return 1;
-		}
-		elseif( strpos($ordering, 'votes') !== false )
-		{
-			return 2;
-		}
-		else return 0;
+		
+		// Default
+		$res->index	= 0;
+		$res->order	= $defkey;
+		$res->text	= $deftext;
+		
+		return $res;
 	}
 	
-	// Headers
-	public static function getEditorHeader($ordering = 0)
+	// Fields: Main
+	public static function renderMain($text, $link = null, $tooltip = 'COM_MINITHEATRECM_DICTIONARY_EDIT')
 	{
-		switch($ordering)
+		if( $link!=null )
 		{
-			case 1: return 'JAUTHOR';
-			case 2: return 'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT';
-			default: return 'COM_MINITHEATRECM_DICTIONARY_EDITORS';
+			return '<a class="hasTooltip" href="'.$link.'" title="'.JText::_($tooltip).'">'.$text.'</a>';
 		}
-	}
-	public static function getTimestampHeader($ordering = 0)
-	{
-		switch($ordering)
+		else
 		{
-			case 1: return 'COM_MINITHEATRECM_DICTIONARY_CREATED';
-			case 2: return 'COM_MINITHEATRECM_DICTIONARY_MODIFIED';
-			default: return 'COM_MINITHEATRECM_DICTIONARY_TIMESTAMPS';
-		}
-	}
-	public static function getStatsHeader($ordering = 0)
-	{
-		switch($ordering)
-		{
-			case 1: return 'JGLOBAL_HITS';
-			case 2: return 'JGLOBAL_VOTES';
-			default: return 'COM_MINITHEATRECM_DICTIONARY_STATS';
+			return '<span class="hasTooltip" title="'.JText::_($tooltip).'">'.$text.'</span>';
 		}
 	}
 	
-	// Fields-Double: NewType after db-joins implementation
-	public static function renderFranchiseCell($text, $id, $ordering = 0, $linkable = false)
+	public static function renderAlias($text)
 	{
-		/*
-		 * If Text = Null, Franchise doesn't exist.
-		 * Display muted 'None' if ID=0, else 'Missing/ID=x' if missing but ID!=0
-		 * Ordering: 0-default, 1-Name, 2-ID
-		 */
+		return '<span class="small disabled muted hasTooltip" title="'
+				.JText::_('COM_MINITHEATRECM_DICTIONARY_ALIAS').'">'
+				.JText::_('COM_MINITHEATRECM_DICTIONARY_ALIAS')
+				.': '.$text.'</span>';
+	}
+	
+	// Fields: Common
+	public static function renderAccessCell($text, $id, $linkable = false, $ordering = 0)
+	{
 		if($text == null)
 		{
 			$result = '<div><span class="hasTooltip muted disabled" title="'
-					.JText::sprintf( ($id == 0 ? 'COM_MINITHEATRECM_MESSAGE_FRANCHISEUNASSIGNED' : 'COM_MINITHEATRECM_MESSAGE_FRANCHISEMISSING'), $id )
+					.JText::sprintf( ($id == 0 ? 'COM_MINITHEATRECM_MESSAGE_UNASSIGNED_ACCESS' : 'COM_MINITHEATRECM_MESSAGE_MISSING_ACCESS'), $id )
 					.'">'.JText::_( $id == 0 ? 'COM_MINITHEATRECM_DICTIONARY_NONE' : 'COM_MINITHEATRECM_DICTIONARY_MISSING' ).'</span></div>';
 		}
 		elseif( $linkable )
 		{
 			$result = '<div><a class="hasTooltip small" title="'
-					.JText::_('COM_MINITHEATRECM_TOOLTIP_EDIT_FRANCHISE')
-					.'" href="index.php?option=com_minitheatrecm&task=franchise.edit&id='.$id
+					.JText::_('COM_MINITHEATRECM_TOOLTIP_EDIT_ACCESS')
+					.'" href="index.php?option=com_users&task=group.edit&id='.$id
 					.'">'.$text.'</a></div>';
 		}
 		else
 		{
 			$result = '<div><span class="hasTooltip small" title="'
-					.JText::_('COM_MINITHEATRECM_TOOLTIP_TEXT_FRANCHISE')
+					.JText::sprintf('COM_MINITHEATRECM_TOOLTIP_TEXT_ACCESS', $id)
 					.'">'.$text.'</span></div>';
 		}
 		
@@ -162,7 +140,7 @@ abstract class NeonLibHtmlManager
 		if( $ordering == 2 )
 		{
 			$result.= '<div><span class="hasTooltip muted disabled italic" title="'
-						.JText::_('COM_MINITHEATRECM_TOOLTIP_ORDEREDBY_FRANCHISEID').'">'
+						.JText::_('COM_MINITHEATRECM_TOOLTIP_ORDEREDBY_ACCESSID').'">'
 						.JText::sprintf('COM_MINITHEATRECM_MESSAGE_IDSTRING', $id)
 						.'</span></div>';
 		}
@@ -170,41 +148,70 @@ abstract class NeonLibHtmlManager
 		return $result;
 	}
 	
-	// Fields-Single: NewType after db-joins implementation
-	public static function renderFranchiseField($text, $id, $linkable)
+	public static function renderEditorCell($authname, $authuser, $authid,
+											$editname, $edituser, $editid,
+											$linkable, $ordering)
 	{
-		/*
-		if($linkable)
+		$result = '<div><div class="nowrap">';
+		
+		// Author Icon
+		$result.= '<span style="vertical-align:middle;" class="icon-user hasTooltip'.($ordering==1? '' : ' disabled muted')
+					.'"  title="'.JText::_('COM_MINITHEATRECM_DICTIONARY_AUTHOR').'"> </span>';
+				
+		// Author
+		if($authuser == null)
 		{
-			return
-				'<a class="small hasTooltip
-				.'href="index.php?option=com_minitheatrecm&task=franchise.edit&id="'.$id.'
-			;
+			$result.= '<span class="small disabled muted hasTooltip" title="'
+						.JText::sprintf( ($authid==0? 'COM_MINITHEATRECM_MESSAGE_UNASSIGNED_USER' : 'COM_MINITHEATRECM_MESSAGE_MISSING_USER'), $authid )
+						.'">'.JText::_( $authid==0? 'COM_MINITHEATRECM_DICTIONARY_NONE' : 'COM_MINITHEATRECM_DICTIONARY_MISSING' ).'</span>';
+		}
+		elseif($linkable)
+		{
+			$result.= '<a class="small hasTooltip" title="'
+						.JText::_('COM_MINITHEATRE_TOOLTIP_EDIT_AUTHOR')
+						.'" href="'.JRoute::_('index.php?option=com_users&task=user.edit&id='.$authid)
+						.'">'.self::_udn($authuser, $authname).'</a>';
 		}
 		else
 		{
-			return;
+			$result.= '<span class="small hasTooltip" title="'
+						.JText::sprintf('COM_MINITHEATRE_TOOLTIP_TEXT_AUTHOR', $authid)
+						.'">'.self::_udn($authuser, $authname).'</span>';
 		}
-		*/
+		
+		$result.= '</div><div class="nowrap">';
+		
+		// RecentEdit Icon
+		$result.= '<span style="vertical-align:middle;" class="icon-bookmark hasTooltip'.($ordering==2? '' : ' disabled muted')
+					.'"  title="'.JText::_('COM_MINITHEATRECM_DICTIONARY_MOSTRECENTEDITOR').'"> </span>';
+				
+		// RecentEdit
+		if($edituser == null)
+		{
+			$result.= '<span class="small disabled muted hasTooltip" title="'
+						.JText::sprintf( ($editid==0? 'COM_MINITHEATRECM_MESSAGE_UNASSIGNED_USER' : 'COM_MINITHEATRECM_MESSAGE_MISSING_USER'), $editid )
+						.'">'.JText::_( $editid==0? 'COM_MINITHEATRECM_DICTIONARY_NONE' : 'COM_MINITHEATRECM_DICTIONARY_MISSING' ).'</span>';
+		}
+		elseif($linkable)
+		{
+			$result.= '<a class="small hasTooltip" title="'
+						.JText::_('COM_MINITHEATRE_TOOLTIP_EDIT_RECENTEDIT')
+						.'" href="'.JRoute::_('index.php?option=com_users&task=user.edit&id='.$editid)
+						.'">'.self::_udn($edituser, $editname).'</a>';
+		}
+		else
+		{
+			$result.= '<span class="small hasTooltip" title="'
+						.JText::sprintf('COM_MINITHEATRE_TOOLTIP_TEXT_RECENTEDIT', $editid)
+						.'">'.self::_udn($edituser, $editname).'</span>';
+		}
+		
+		$result.= '</div></div>';
+		
+		return $result;
 	}
 	
-	// Fields: Double
-	public static function getItemCtypeCell($itemnames = array(), $id = 0, $ctypes = array(), $cid = 0, $ordering = 0)
-	{
-		//TODO
-	}
-	public static function getEditorCell($usernames = array(), $author = 0, $recent = 0, $ordering = 0)
-	{
-		return '<div>'
-				.'<div class="nowrap">'
-				.'<span class="icon-user'.($ordering==1?'':' disabled muted').'" style="vertical-align:middle;"> </span>'
-				.self::getUserCell($usernames, $author, false, true, $ordering!=1)
-				.'</div><div class="nowrap">'
-				.'<span class="icon-bookmark'.($ordering==2?'':' disabled muted').'" style="vertical-align:middle;"> </span>'
-				.self::getUserCell($usernames, $recent, true, true, $ordering!=2)
-				.'</div></div>';
-	}
-	public static function getTimestampCell($created = '', $modified = '', $ordering = 0)
+	public static function renderTimestampCell($created = '', $modified = '', $ordering = 0)
 	{
 		return '<div>'
 				.'<div class="nowrap hasTooltip" title="'.JText::_('COM_MINITHEATRECM_DICTIONARY_CREATED').'">'
@@ -215,7 +222,8 @@ abstract class NeonLibHtmlManager
 				.'<span class="small">'.$modified.'</span></div>'
 				.'</div>';
 	}
-	public static function getStatsCell($hits = '', $votes = '', $ordering = 0)
+	
+	public static function renderStatsCell($hits = '', $votes = '', $ordering = 0)
 	{
 		if($ordering == 1 || $ordering == 2)
 		{
@@ -233,80 +241,8 @@ abstract class NeonLibHtmlManager
 				.'</div>';
 		}
 	}
-	// Fields: Single
-	public static function getUserCell($usernames = array(), $id = 0, $isrecentedit = false, $smallstyle = false, $disabled = false)
-	{
-		if( $id != 0 && isset( $usernames[$id] ))
-		{
-			return '<a class="hasTooltip'.($smallstyle?' small':'').'" title="'
-					.JText::_($isrecentedit?'COM_MINITHEATRECM_DICTIONARY_MOSTRECENTEDITOR':'JAUTHOR')
-					.'" href="'.JRoute::_('index.php?option=com_users&task=user.edit&id='.$id).'">'
-					.$usernames[$id].'</a>';
-		}else{
-			return '<span class="hasTooltip'.($smallstyle?' small':'').($disabled?' disabled muted':'').'" title="'
-					.JText::_($isrecentedit?'COM_MINITHEATRECM_DICTIONARY_MOSTRECENTEDITOR':'JAUTHOR').': '
-					.JText::_( $id == 0 ? 'COM_MINITHEATRECM_MESSAGE_USERZERO' : 'COM_MINITHEATRECM_MESSAGE_NOSUCHUSER' ).'">'
-					.( $id == 0 ? JText::_('COM_MINITHEATRECM_DICTIONARY_NONE') : (JText::_('COM_MINITHEATRECM_DICTIONARY_ID').': '.$id) )
-					.'</span>';
-		}
-	}
-	public static function getUsernameField($usernames = array(), $id = 0, $isrecentedit = false)
-	{
-		if( $id != 0 && isset( $usernames[$id] ))
-		{
-			echo '<a class="hasTooltip" href="'.JRoute::_('index.php?option=com_users&task=user.edit&id='.$id).'" title="'.JText::_($isrecentedit?'COM_MINITHEATRECM_DICTIONARY_MOSTRECENTEDITOR':'JAUTHOR').'">'.$usernames[$id].'</a>';
-		}
-		else
-		{	
-			echo '<span class="hasTooltip" title="'.JText::_( $id == 0 ? 'COM_MINITHEATRECM_MESSAGE_USERZERO' : 'COM_MINITHEATRECM_MESSAGE_NOSUCHUSER' ).'">';
-			echo $id == 0 ? JText::_('COM_MINITHEATRECM_DICTIONARY_NONE') : (JText::_('COM_MINITHEATRECM_DICTIONARY_ID').': '.$id);
-			echo '</span>';
-		}
-	}
 	
-	public static function getFranchiseField($a = array(), $id = 0)
-	{
-		if( $id != 0 && isset( $a[$id] ))
-		{
-			echo '<a class="hasTooltip" href="'.JRoute::_('index.php?option=com_minitheatrecm&task=franchise.edit&id='.$id).'" title="'.JText::_('COM_MINITHEATRECM_DICTIONARY_FRANCHISE').'">'.$a[$id].'</a>';
-		}
-		else
-		{	
-			echo '<span class="hasTooltip" title="'.JText::_( $id == 0 ? 'COM_MINITHEATRECM_MESSAGE_FRANCHISEZERO' : 'COM_MINITHEATRECM_MESSAGE_NOSUCHFRANCHISE' ).'">';
-			echo $id == 0 ? JText::_('COM_MINITHEATRECM_DICTIONARY_NONE') : (JText::_('COM_MINITHEATRECM_DICTIONARY_ID').': '.$id);
-			echo '</span>';
-		}
-	}
-	
-	public static function getItemField($a = array(), $id = 0)
-	{
-		if( $id != 0 && isset( $a[$id] ))
-		{
-			echo '<a class="hasTooltip" href="'.JRoute::_('index.php?option=com_minitheatrecm&task=item.edit&id='.$id).'" title="'.JText::_('COM_MINITHEATRECM_DICTIONARY_ITEM').'">'.$a[$id].'</a>';
-		}
-		else
-		{	
-			echo '<span class="hasTooltip" title="'.JText::_( $id == 0 ? 'COM_MINITHEATRECM_MESSAGE_ITEMZERO' : 'COM_MINITHEATRECM_MESSAGE_NOSUCHITEM' ).'">';
-			echo $id == 0 ? JText::_('COM_MINITHEATRECM_DICTIONARY_NONE') : (JText::_('COM_MINITHEATRECM_DICTIONARY_ID').': '.$id);
-			echo '</span>';
-		}
-	}
-	
-	public static function getAccessField($a = array(), $id = 0)
-	{
-		if( $id != 0 && isset( $a[$id] ))
-		{
-			echo '<a class="hasTooltip" href="'.JRoute::_('index.php?option=com_users&task=group.edit&id='.$id).'" title="'.JText::_('JGRID_HEADING_ACCESS').'">'.$a[$id].'</a>';
-		}
-		else
-		{	
-			echo '<span class="hasTooltip" title="'.JText::_( $id == 0 ? 'COM_MINITHEATRECM_MESSAGE_ACCESSZERO' : 'COM_MINITHEATRECM_MESSAGE_NOSUCHACCESS' ).'">';
-			echo $id == 0 ? JText::_('COM_MINITHEATRECM_DICTIONARY_NONE') : (JText::_('COM_MINITHEATRECM_DICTIONARY_ID').': '.$id);
-			echo '</span>';
-		}
-	}
-	
-	public static function getStarRatingCell($value = 0, $twoline = false)
+	public static function renderStarRatingCell($value = 0, $twoline = false)
 	{
 		if($value<0) $value=0;
 		if($value>10) $value=10;
@@ -330,5 +266,77 @@ abstract class NeonLibHtmlManager
 		}
 		
 		return $stars.'</div>';
+	}
+	
+	// Fields: Connected
+	public static function renderFranchiseCell($text, $id, $linkable = false, $ordering = 0)
+	{
+		/*
+		 * If Text = Null, Franchise doesn't exist.
+		 * Display muted 'None' if ID=0, else 'Missing/ID=x' if missing but ID!=0
+		 * Ordering: 0-default, 1-Name, 2-ID
+		 */
+		if($text == null)
+		{
+			$result = '<div><span class="hasTooltip muted disabled" title="'
+					.JText::sprintf( ($id == 0 ? 'COM_MINITHEATRECM_MESSAGE_UNASSIGNED_FRANCHISE' : 'COM_MINITHEATRECM_MESSAGE_MISSING_FRANCHISE'), $id )
+					.'">'.JText::_( $id == 0 ? 'COM_MINITHEATRECM_DICTIONARY_NONE' : 'COM_MINITHEATRECM_DICTIONARY_MISSING' ).'</span></div>';
+		}
+		elseif( $linkable )
+		{
+			$result = '<div><a class="hasTooltip small" title="'
+					.JText::_('COM_MINITHEATRECM_TOOLTIP_EDIT_FRANCHISE')
+					.'" href="index.php?option=com_minitheatrecm&task=franchise.edit&id='.$id
+					.'">'.$text.'</a></div>';
+		}
+		else
+		{
+			$result = '<div><span class="hasTooltip small" title="'
+					.JText::sprintf('COM_MINITHEATRECM_TOOLTIP_TEXT_FRANCHISE', $id)
+					.'">'.$text.'</span></div>';
+		}
+		
+		// Additional display on ordering by ID
+		if( $ordering == 2 )
+		{
+			$result.= '<div><span class="hasTooltip muted disabled italic" title="'
+						.JText::_('COM_MINITHEATRECM_TOOLTIP_ORDEREDBY_FRANCHISEID').'">'
+						.JText::sprintf('COM_MINITHEATRECM_MESSAGE_IDSTRING', $id)
+						.'</span></div>';
+		}
+		
+		return $result;
+	}
+	
+	public static function renderCTypeIcon($text, $color = '#888888', $id = 0, $linkable = false)
+	{
+		if($linkable)
+		{
+			return '<a class="hasTooltip" title="'.$text.'" href="'
+					.JRoute::_('index.php?option=com_minitheatrecm&task=contenttype.edit&id='.$id)
+					.'"><span class="icon-circle" style="color:'.$color.';"> </span></a>';
+		}
+		else
+		{
+			return '<span class="hasTooltip icon-circle" style="color:'.$color.';" title="'.$text.'"> </span>';
+		}
+	}
+	
+	public static function renderGenreIcons($json, $linkable = false)
+	{
+		return $json;
+	}
+	
+	// Internal functions
+	private static function _udn($username, $name = '')
+	{
+		if($name != '')
+		{
+			return $name;
+		}
+		else
+		{
+			return $username;
+		}
 	}
 }

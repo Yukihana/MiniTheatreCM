@@ -37,7 +37,7 @@ $rowindex=0;
 					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_TITLE', 'name'); ?>
 				</th>
 				<th width="40%" class="nowrap">
-					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_ITEM', 'item_id'); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_ITEM', 'catalogue_id'); ?>
 				</th>
 				<th width="1%" class="nowrap center">
 					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_LIVE', 'live'); ?>
@@ -59,21 +59,21 @@ $rowindex=0;
 					</a>
 				</td>
 				<td>
-					<?php if( $row->item_id == 0 ): ?>
+					<?php if( $row->catalogue_id == 0 ): ?>
 						<?php echo '('.JText::_('COM_MINITHEATRECM_DICTIONARY_REQUESTED').') '.$row->request_name;?>
 						
-					<?php elseif ( isset( $this->itemnames[$row->item_id] )): ?>
-					<a href="<?php echo 'index.php?option=com_minitheatrecm&view=item&id='.$row->item_id;?>" title="<?php echo JText::_('COM_MINITHEATRECM_MESSAGE_GOTOTHISITEM');?>">
-						<?php echo $this->itemnames[$row->item_id];?>
+					<?php elseif ( isset( $this->itemnames[$row->catalogue_id] )): ?>
+					<a href="<?php echo 'index.php?option=com_minitheatrecm&view=item&id='.$row->catalogue_id;?>" title="<?php echo JText::_('COM_MINITHEATRECM_MESSAGE_GOTOTHISITEM');?>">
+						<?php echo $this->itemnames[$row->catalogue_id];?>
 					</a>
 					
 					<?php else: ?>
-						<?php echo JText::_('COM_MINITHEATRECM_MESSAGE_ITEMMISSING').' (ID: '.$row->item_id.')';?>
+						<?php echo JText::_('COM_MINITHEATRECM_MESSAGE_ITEMMISSING').' (ID: '.$row->catalogue_id.')';?>
 						
 					<?php endif;?>
 				</td>
 				<td class="center">
-					<?php echo ( $row->item_id == 0 || !isset( $this->itemnames[$row->item_id] )) ? 'N/A' : JText::_( ($row->live) ? 'JYES' : 'JNO' );?>
+					<?php echo ( $row->catalogue_id == 0 || !isset( $this->itemnames[$row->catalogue_id] )) ? 'N/A' : JText::_( ($row->live) ? 'JYES' : 'JNO' );?>
 				</td>
 				<td class="center" nowrap>
 					<a href="<?php echo $link;?>" title="<?php echo JText::_('COM_MINITHEATRECM_MYLISTINGS_LEGEND_EDIT');?>"><span class="icon-pencil-2"></span></a>

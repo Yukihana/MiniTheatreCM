@@ -12,10 +12,17 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Item Controller
+ * Catalogues Table class
  *
- * @since  0.0.9
+ * @since  0.0.1
  */
-class MiniTheatreCMControllerItem extends JControllerForm
+class MiniTheatreCMTableCatalogues extends NeonTable
 {
+	// Constructor ($db: database connector object)
+	function __construct(&$db)
+	{
+		parent::__construct(NeonCfgDatabase::getTableName('catalogues'), 'id', $db);
+		$this->setColumnAlias('published', 'state');
+		$this->setColumnAlias('title', 'name');
+	}
 }

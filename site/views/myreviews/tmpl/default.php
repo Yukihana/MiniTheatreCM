@@ -39,7 +39,7 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 					<?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_NUM'); ?>
 				</th>
 				<th width="50%" class="nowrap">
-					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_ITEM', 'item_id'); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_ITEM', 'catalogue_id'); ?>
 				</th>
 				<th width="20%" class="nowrap center">
 					<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_CREATED', 'created');?>
@@ -70,16 +70,16 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 					<?php echo $this->pagination->getRowOffset($i);?>
 				</td>
 				<td>
-					<?php if( $row->item_id == 0 ): ?>
+					<?php if( $row->catalogue_id == 0 ): ?>
 						<?php echo JText::_('COM_MINITHEATRECM_MESSAGE_INVALIDID');?>
 						
-					<?php elseif ( isset( $this->itemnames[$row->item_id] )): ?>
+					<?php elseif ( isset( $this->itemnames[$row->catalogue_id] )): ?>
 					<a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_MINITHEATRECM_MYREVIEWS_LEGEND_EDIT'); ?>">
-						<?php echo $this->itemnames[$row->item_id];?>
+						<?php echo $this->itemnames[$row->catalogue_id];?>
 					</a>
 					
 					<?php else: ?>
-						<?php echo JText::_('COM_MINITHEATRECM_MESSAGE_ITEMMISSING').' (ID: '.$row->item_id.')';?>
+						<?php echo JText::_('COM_MINITHEATRECM_MESSAGE_ITEMMISSING').' (ID: '.$row->catalogue_id.')';?>
 						
 					<?php endif;?>
 				</td>
@@ -90,10 +90,10 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 					<?php echo $row->modified; ?>
 				</td>
 				<td class="center">
-					<?php echo ( $row->item_id == 0 || !isset( $this->itemnames[$row->item_id] )) ? 'N/A' : JText::_( ($row->live) ? 'JYES' : 'JNO' );?>
+					<?php echo ( $row->catalogue_id == 0 || !isset( $this->itemnames[$row->catalogue_id] )) ? 'N/A' : JText::_( ($row->live) ? 'JYES' : 'JNO' );?>
 				</td>
 				<td class="nowrap center">
-					<a href="<?php echo 'index.php?option=com_minitheatrecm&view=item&id='.$row->item_id;?>" title="<?php echo JText::_('COM_MINITHEATRECM_MESSAGE_GOTOTHISITEM');?>"><span class="icon-out-2"></span></a>
+					<a href="<?php echo 'index.php?option=com_minitheatrecm&view=item&id='.$row->catalogue_id;?>" title="<?php echo JText::_('COM_MINITHEATRECM_MESSAGE_GOTOTHISITEM');?>"><span class="icon-out-2"></span></a>
 					<a href="<?php echo $link;?>" title="<?php echo JText::_('COM_MINITHEATRECM_MYREVIEWS_LEGEND_EDIT');?>"><span class="icon-pencil-2"></span></a>
 					<a href="<?php echo JRoute::_('index.php?option=com_minitheatrecm&view=deletereview&id='.$row->id);?>" title="<?php echo JText::_('COM_MINITHEATRECM_MYREVIEWS_LEGEND_DELETE');?>"><span class="icon-trash"></span></a>
 				</td>

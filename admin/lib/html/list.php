@@ -11,7 +11,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-abstract class NeonLibHtmlList
+abstract class NeonHtmlList
 {
 	// Prints a ModTable
 	public static function listModTable( $item, $fields = array('data','name','alt'), $styleclass = 'mtcm-mod-style', $name = '', $id = '', $visible = true )

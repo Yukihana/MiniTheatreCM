@@ -1,16 +1,28 @@
 <sidebar>
+	<!--Dashboard-->
 	<menuitem option="com_minitheatrecm"	view="overview"				matchstr="overview"				label="COM_MINITHEATRECM_TITLE_OVERVIEW"/>
 	<menuitem option="com_minitheatrecm"	view="activitylog"			matchstr="activitylog"			label="COM_MINITHEATRECM_TITLE_ACTIVITYLOG"/>
+	
+	<!--Content-->
 	<menuitem option="com_minitheatrecm"	view="listings"				matchstr="listings"				label="COM_MINITHEATRECM_TITLE_LISTINGS"/>
-	<menuitem option="com_minitheatrecm"	view="reviews"				matchstr="reviews"				label="COM_MINITHEATRECM_TITLE_REVIEWS"/>
-	<menuitem option="com_minitheatrecm"	view="items"				matchstr="items"				label="COM_MINITHEATRECM_TITLE_ITEMS"/>
+	<menuitem option="com_minitheatrecm"	view="catalogues"			matchstr="catalogues"			label="COM_MINITHEATRECM_TITLE_CATALOGUES"/>
 	<menuitem option="com_minitheatrecm"	view="franchises"			matchstr="franchises"			label="COM_MINITHEATRECM_TITLE_FRANCHISES"/>
 	<menuitem option="com_minitheatrecm"	view="genres"				matchstr="genres"				label="COM_MINITHEATRECM_TITLE_GENRES"/>
 	<menuitem option="com_minitheatrecm"	view="contenttypes"			matchstr="contenttypes"			label="COM_MINITHEATRECM_TITLE_CONTENTTYPES"/>
-	<menuitem option="com_minitheatrecm"	view="ratingitems"			matchstr="ratingitems"			label="COM_MINITHEATRECM_TITLE_RATINGITEMS"/>
-	<menuitem option="com_minitheatrecm"	view="ratingfranchises"		matchstr="ratingfranchises"		label="COM_MINITHEATRECM_TITLE_RATINGFRANCHISES"/>
-	<menuitem option="com_minitheatrecm"	view="ratinglistings"		matchstr="ratinglistings"		label="COM_MINITHEATRECM_TITLE_RATINGLISTINGS"/>
+	
+	<!--Ratings for User Contents-->
+	<menuitem option="com_minitheatrecm"	view="reviews"				matchstr="reviews"				label="COM_MINITHEATRECM_TITLE_REVIEWS"/>
 	<menuitem option="com_minitheatrecm"	view="ratingreviews"		matchstr="ratingreviews"		label="COM_MINITHEATRECM_TITLE_RATINGREVIEWS"/>
+	<menuitem option="com_minitheatrecm"	view="ratinglistings"		matchstr="ratinglistings"		label="COM_MINITHEATRECM_TITLE_RATINGLISTINGS"/>
+	
+	<!--Ratings from Community content-->
+	<menuitem option="com_minitheatrecm"	view="ratingcatalogues"		matchstr="ratingcatalogues"		label="COM_MINITHEATRECM_TITLE_RATINGCATALOGUES"/>
+	<menuitem option="com_minitheatrecm"	view="ratingfranchises"		matchstr="ratingfranchises"		label="COM_MINITHEATRECM_TITLE_RATINGFRANCHISES"/>
+	<menuitem option="com_minitheatrecm"	view="ratinggenres"			matchstr="ratinggenres"			label="COM_MINITHEATRECM_TITLE_RATINGGENRES"/>
+	
+	<!--Management-->
 	<menuitem option="com_minitheatrecm"	view="planner"				matchstr="planner"				label="COM_MINITHEATRECM_TITLE_PLANNER"/>
+	
+	<!--Legacy Objects-->
 	<menuitem option="com_minitheatrecm"	view="ulwizsources"			matchstr="ulwizsources"			label="COM_MINITHEATRECM_TITLE_ULWIZSOURCES"/>
 </sidebar>

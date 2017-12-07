@@ -49,7 +49,7 @@ class MiniTheatreCMModelMyListings extends JModelList
 		// Load required records from the database
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
-		$query->select($db->quoteName( array('id', 'name', 'author', 'item_id', 'live', 'request_name')));
+		$query->select($db->quoteName( array('id', 'name', 'author', 'catalogue_id', 'live', 'request_name')));
 		$query->from($db->quoteName('#__mtcm_listings'));
 		$query->where($db->quoteName('author').'='.$this->loggeduserid);
 		$db->setQuery($query);
@@ -76,9 +76,9 @@ class MiniTheatreCMModelMyListings extends JModelList
 		
 		foreach( $this->listings as $row )
 		{
-			$id = $row->item_id;
+			$id = $row->catalogue_id;
 			
-			// Check if a record exists for the item_id
+			// Check if a record exists for the catalogue_id
 			if( $table->load( $id ))
 			{
 				if( !isset( $this->itemnames[$id] ))

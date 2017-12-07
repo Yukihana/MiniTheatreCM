@@ -12,14 +12,14 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * RatingItems Controller
+ * Catalogues Controller
  *
  * @since  0.0.1
  */
-class MiniTheatreCMControllerRatingItems extends JControllerAdmin
+class MiniTheatreCMControllerCatalogues extends JControllerAdmin
 {
 	// Override proxy for getModel ($name: modelname, $prefix: class prefix, $config: optional configuration array)
-	public function getModel($name = 'RatingItem', $prefix = 'MiniTheatreCMModel', $config = array('ignore_request' => true))
+	public function getModel($name = 'Catalogue', $prefix = 'MiniTheatreCMModel', $config = array('ignore_request' => true))
 	{
 		$model = parent::getModel($name, $prefix, $config);
 

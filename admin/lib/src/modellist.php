@@ -55,7 +55,7 @@ class NeonModelList extends JModelList
 		// Load records from the database
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
-		$query->select( self::buildQuerySelectString( $this->dbselect ) );
+		$query->select( $this->buildQuerySelectString( $this->dbselect ) );
 		$query->from( $db->quoteName( NeonCfgDatabase::getTableName( $this->dbtable )).' AS '.$this->dbprefix );
 		
 		// Add Joins: Left
@@ -123,74 +123,6 @@ class NeonModelList extends JModelList
 			unset($fielddata);
 		}
 		
-		
-		
-		/*
-		// Filter by author
-		if( isset( $this->dbfilters['author'] ))
-		{
-			$author = $this->getState('filter.author');
-			if(is_numeric($author))
-			{
-				$author = array($author);
-			}
-			if(count($author) != 0)
-			{
-				$author = ArrayHelper::toInteger($author);
-				$author = implode(',', $author);
-				$query->where($this->dbfilters['author'].' IN ('.$author.')');
-			}
-		}
-		
-		// Filter by recentedit
-		if( isset( $this->dbfilters['recentedit'] ))
-		{
-			$recentedit = $this->getState('filter.recentedit');
-			if(is_numeric($recentedit))
-			{
-				$recentedit = array($recentedit);
-			}
-			if(count($recentedit) != 0)
-			{
-				$recentedit = ArrayHelper::toInteger($recentedit);
-				$recentedit = implode(',', $recentedit);
-				$query->where($this->dbfilters['recentedit'].' IN ('.$recentedit.')');
-			}
-		}
-		
-		// Filter by item
-		if( isset( $this->dbfilters['item'] ))
-		{
-			$itemid = $this->getState('filter.itemid');
-			if(is_numeric($itemid))
-			{
-				$itemid = array($itemid);
-			}
-			if(count($itemid) != 0)
-			{
-				$itemid = ArrayHelper::toInteger($itemid);
-				$itemid = implode(',', $itemid);
-				$query->where($this->dbfilters['item'].' IN ('.$itemid.')');
-			}
-		}
-		
-		// Filter by franchise
-		if( isset( $this->dbfilters['franchise'] ))
-		{
-			$itemid = $this->getState('filter.itemid');
-			if(is_numeric($itemid))
-			{
-				$itemid = array($itemid);
-			}
-			if(count($itemid) != 0)
-			{
-				$itemid = ArrayHelper::toInteger($itemid);
-				$itemid = implode(',', $itemid);
-				$query->where($this->dbfilters['franchise'].' IN ('.$itemid.')');
-			}
-		}
-		*/
-		
 		// Add the list ordering clause.
 		$orderCol	= $this->state->get('list.ordering', $this->dbordercol);
 		$orderDirn 	= $this->state->get('list.direction', $this->dborderdir);
@@ -198,125 +130,11 @@ class NeonModelList extends JModelList
 		$query->order($db->escape($orderCol) . ' ' . $db->escape($orderDirn));
 		
 		// Set the query and return
-		error_log($query->__tostring());
 		return $query;
 	}
 	
-	// Secondary Data Fetching Methods
-	public function getUsernames( $fields = 'author')
-	{
-		if( !is_array($fields) )
-		{
-			$fields = array( $fields );
-		}
-		$result = array();
-		
-		// Load the values of the fields into an array and make it unique
-		$userids = self::getUniqueArray( $this->getItems(), $fields );
-		
-		// Check IDs vs User Table and load their names/usernames
-		$table = JUser::getTable();
-		foreach( $userids as $id )
-		{
-			if( $table->load( $id ))
-			{
-				$result[$id] = ($table->name != '') ? $table->name : $table->username;
-			}
-		}
-		
-		// Return data
-		return $result;
-	}
-	
-	public function getAccessgroups( $fields = 'access' )
-	{
-		if( !is_array($fields) )
-		{
-			$fields = array( $fields );
-		}
-		$result = array();
-		
-		// Load the values of the fields into an array and make it unique
-		$ids = self::getUniqueArray( $this->getItems(), $fields );
-		
-		// Check IDs vs Access groups and load them on success
-		foreach( $ids as $id )
-		{
-			$result[$id] = JAccess::getGroupTitle($id);
-		}
-		
-		// Return data
-		return $result;
-	}
-	
-	public function getItemnames( $fields = 'item_id' )
-	{
-		if( !is_array($fields) )
-		{
-			$fields = array( $fields );
-		}
-		$result = array();
-		
-		// Load the values of the fields into an array and make it unique
-		$ids = self::getUniqueArray( $this->getItems(), $fields );
-		
-		// Check IDs vs Items and load them on success
-		$table = JTable::getInstance('Items', 'MiniTheatreCMTable', array());
-		foreach( $ids as $id )
-		{
-			if( $table->load( $id ))
-			{
-				$result[$id] = $table->name;
-			}
-		}
-		
-		// Return data
-		return $result;
-	}
-	
-	public function getFranchises( $fields = 'franchise_id' )
-	{
-		if( !is_array($fields) )
-		{
-			$fields = array( $fields );
-		}
-		$result = array();
-		
-		// Load the values of the fields into an array and make it unique
-		$ids = self::getUniqueArray( $this->getItems(), $fields );
-		
-		// Check IDs vs Items and load them on success
-		$table = JTable::getInstance('Franchises', 'MiniTheatreCMTable', array());
-		foreach( $ids as $id )
-		{
-			if( $table->load( $id ))
-			{
-				$result[$id] = $table->name;
-			}
-		}
-		
-		// Return data
-		return $result;
-	}
-	
-	//Kernel methods
-	private static function getUniqueArray( $items, $fields )
-	{
-		$data = array();
-		foreach( $items as $item )
-		{
-			foreach( $fields as $field )
-			{
-				if( isset( $item->$field ))
-				{
-					array_push( $data, $item->$field );
-				}
-			}
-		}
-		return array_unique( $data );
-	}
-	
-	private static function buildQuerySelectString($fields)
+	// Internal
+	protected function buildQuerySelectString($fields)
 	{
 		// Analyse and Format
 		if( $fields === '*' )

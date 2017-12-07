@@ -51,9 +51,10 @@
 	<!--Media Configuration-->
 	<media destination="com_minitheatrecm" folder="media">
 		<filename>index.html</filename>
-		<folder>images</folder>
 		<folder>js</folder>
 		<folder>css</folder>
+		<folder>images</folder>
+		<folder>cache</folder>
 	</media>
 	
 	<administration>
@@ -63,18 +64,24 @@
 			<!--Note: Always escape '&' to '&amp'-->
 			<menu view="overview">COM_MINITHEATRECM_MENU_OVERVIEW</menu>
 			<menu view="activitylog">COM_MINITHEATRECM_MENU_ACTIVITYLOG</menu>
-			<menu view="listings">COM_MINITHEATRECM_MENU_LISTINGS</menu>
-			<menu view="reviews">COM_MINITHEATRECM_MENU_REVIEWS</menu>
-			<menu view="items">COM_MINITHEATRECM_MENU_ITEMS</menu>
+			
+			<menu view="listings">COM_MINITHEATRECM_MENU_LISTINGS</menu>			
+			<menu view="catalogues">COM_MINITHEATRECM_MENU_CATALOGUES</menu>
 			<menu view="franchises">COM_MINITHEATRECM_MENU_FRANCHISES</menu>
 			<menu view="genres">COM_MINITHEATRECM_MENU_GENRES</menu>
 			<menu view="contenttypes">COM_MINITHEATRECM_MENU_CONTENTTYPES</menu>
-			<menu view="ratingitems">COM_MINITHEATRECM_MENU_RATINGITEMS</menu>
-			<menu view="ratingfranchises">COM_MINITHEATRECM_MENU_RATINGFRANCHISES</menu>
-			<menu view="ratinglistings">COM_MINITHEATRECM_MENU_RATINGLISTINGS</menu>
+			
+			<menu view="reviews">COM_MINITHEATRECM_MENU_REVIEWS</menu>
 			<menu view="ratingreviews">COM_MINITHEATRECM_MENU_RATINGREVIEWS</menu>
+			<menu view="ratinglistings">COM_MINITHEATRECM_MENU_RATINGLISTINGS</menu>
+			
+			<menu view="ratingcatalogues">COM_MINITHEATRECM_MENU_RATINGCATALOGUES</menu>
+			<menu view="ratingfranchises">COM_MINITHEATRECM_MENU_RATINGFRANCHISES</menu>
+			<menu view="ratinggenres">COM_MINITHEATRECM_MENU_RATINGGENRES</menu>
+			
 			<menu view="planner">COM_MINITHEATRECM_MENU_PLANNER</menu>
 			
+			<menu view="ulwizsources">COM_MINITHEATRECM_MENU_ULWIZSOURCES</menu>
 		</submenu>
 		
 		<!--Backend Base Folder Manifest-->
@@ -83,6 +90,7 @@
 			<filename>minitheatrecm.php</filename>
 			<filename>controller.php</filename>
 			<filename>config.xml</filename>
+			<filename>access.xml</filename>
 			
 			<folder>cfg</folder>
 			<folder>controllers</folder>

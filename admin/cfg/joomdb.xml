@@ -1,0 +1,4 @@
+<joomdb>
+	<table typename="users"		address="#__users"/>
+	<table typename="access"	address="#__usergroups"/>
+</joomdb>

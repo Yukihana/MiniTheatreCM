@@ -13,10 +13,25 @@ defined('_JEXEC') or die('Restricted access');
 
 abstract class NeonCfgDatabase
 {
-	// Database-Table names
+	// Component Database-Table names
 	public static function getTableName($typestr)
 	{
 		$xml = simplexml_load_file(JPATH_COMPONENT_ADMINISTRATOR .'/cfg/tables.xml');
+		
+		foreach($xml->table as $table)
+		{
+			if( $table['typename'] == $typestr )
+			{
+				return (string)$table['address'];
+			}
+		}
+		return null;
+	}
+	
+	// Joomla Database-Table names
+	public static function getJoomlaDB($typestr)
+	{
+		$xml = simplexml_load_file(JPATH_COMPONENT_ADMINISTRATOR .'/cfg/joomdb.xml');
 		
 		foreach($xml->table as $table)
 		{

@@ -12,7 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('NeonLibMtModel', JPATH_COMPONENT_ADMINISTRATOR . '/lib/mt/model.php');
+JLoader::Register('NeonMtModel', JPATH_COMPONENT_ADMINISTRATOR . '/lib/mt/model.php');
 JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/database.php');
 
 /**
@@ -37,10 +37,10 @@ class MiniTheatreCMModelFranchises extends JModelList
 	// Helper Methods
 	public function getUsernames()
 	{
-		return NeonLibMtModel::getUsernames( $this->getItems(), array('author','recentedit') );
+		return NeonMtModel::getUsernames( $this->getItems(), array('author','recentedit') );
 	}
 	public function getUsergroups()
 	{
-		return NeonLibMtModel::getUsergroups( $this->getItems(), array('access') );
+		return NeonMtModel::getUsergroups( $this->getItems(), array('access') );
 	}
 }

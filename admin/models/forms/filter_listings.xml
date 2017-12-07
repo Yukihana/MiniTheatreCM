@@ -29,8 +29,8 @@
 		<field
 			name="author"
 			type="author"
-			label="COM_MINITHEATRECM_FILTER_AUTHOR"
-			description="COM_MINITHEATRECM_FILTER_AUTHOR_DESC"
+			label="COM_MINITHEATRECM_HINT_SELECTAUTHOR"
+			description="COM_MINITHEATRECM_HINT_SELECTAUTHOR_DESC"
 			multiple="true"
 			class="multipleAuthors"
 			onchange="this.form.submit();"
@@ -40,8 +40,8 @@
 		<field
 			name="recentedit"
 			type="author"
-			label="COM_MINITHEATRECM_FILTER_RECENTEDIT"
-			description="COM_MINITHEATRECM_FILTER_RECENTEDIT_DESC"
+			label="COM_MINITHEATRECM_HINT_SELECTRECENTEDIT"
+			description="COM_MINITHEATRECM_HINT_SELECTRECENTEDIT_DESC"
 			multiple="true"
 			class="multipleRecentEditors"
 			onchange="this.form.submit();"
@@ -51,8 +51,8 @@
 		<field
 			name="itemid"
 			type="itemlist"
-			label="COM_MINITHEATRECM_FILTER_ITEM"
-			description="COM_MINITHEATRECM_FILTER_ITEM_DESC"
+			label="COM_MINITHEATRECM_HINT_SELECTITEM"
+			description="COM_MINITHEATRECM_HINT_SELECTITEM_DESC"
 			multiple="true"
 			class="multipleItems"
 			onchange="this.form.submit();"
@@ -78,8 +78,8 @@
 			<option value="a.alias DESC">COM_MINITHEATRECM_ORDERING_ALIAS_DSC</option>
 			<option value="a.state ASC">JSTATUS_ASC</option>
 			<option value="a.state DESC">JSTATUS_DESC</option>
-			<option value="a.item_id ASC">COM_MINITHEATRECM_ORDERING_ITEM_ASC</option>
-			<option value="a.item_id DESC">COM_MINITHEATRECM_ORDERING_ITEM_DSC</option>
+			<option value="a.catalogue_id ASC">COM_MINITHEATRECM_ORDERING_ITEM_ASC</option>
+			<option value="a.catalogue_id DESC">COM_MINITHEATRECM_ORDERING_ITEM_DSC</option>
 			<option value="a.access ASC">COM_MINITHEATRECM_ORDERING_ACCESS_ASC</option>
 			<option value="a.access DESC">COM_MINITHEATRECM_ORDERING_ACCESS_DSC</option>
 			<option value="a.author ASC">JAUTHOR_ASC</option>

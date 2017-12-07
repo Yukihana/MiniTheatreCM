@@ -12,11 +12,11 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Items View
+ * Catalogues View
  *
  * @since  0.0.1
  */
-class MiniTheatreCMViewItems extends JViewLegacy
+class MiniTheatreCMViewCatalogues extends JViewLegacy
 {
 	// Display the template ($tpl: template file)
 	function display($tpl = null)
@@ -25,14 +25,12 @@ class MiniTheatreCMViewItems extends JViewLegacy
 		$pretime				= microtime(true);
 		$this->items			= $this->get('Items');
 		$posttime				= microtime(true);
+		$this->querytime		= $posttime - $pretime;
+		
 		$this->pagination		= $this->get('Pagination');
 		$this->state			= $this->get('State');
-		$this->names			= $this->get('Usernames');
-		$this->franchises		= $this->get('Franchises');
-		$this->groups			= $this->get('Accessgroups');
 		$this->filterForm    	= $this->get('FilterForm');
 		$this->activeFilters 	= $this->get('ActiveFilters');
-		$this->querytime		= $posttime - $pretime;
 		
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
@@ -45,7 +43,7 @@ class MiniTheatreCMViewItems extends JViewLegacy
 		// Set up other UI elements
 		if ($this->getLayout() !== 'modal')
 		{
-			MiniTheatreCMHelper::addSubmenu('items');
+			MiniTheatreCMHelper::addSubmenu('catalogues');
 			$this->sidebar = JHtmlSidebar::render();
 			
 			$this->setDocument();
@@ -59,24 +57,27 @@ class MiniTheatreCMViewItems extends JViewLegacy
 	// Add page header and toolbar buttons
 	protected function addToolBar()
 	{
-		JToolbarHelper::addNew('item.add');
-		JToolbarHelper::editList('item.edit');
-		JToolbarHelper::publish('items.publish', 'JTOOLBAR_PUBLISH', true);
-		JToolbarHelper::unpublish('items.unpublish', 'JTOOLBAR_UNPUBLISH', true);		
-		JToolbarHelper::archiveList('items.archive');
+		JToolbarHelper::addNew('catalogue.add');
+		JToolbarHelper::editList('catalogue.edit');
+		JToolbarHelper::publish('catalogues.publish', 'JTOOLBAR_PUBLISH', true);
+		JToolbarHelper::unpublish('catalogues.unpublish', 'JTOOLBAR_UNPUBLISH', true);		
+		JToolbarHelper::archiveList('catalogues.archive');
 		
 		if($this->state->get('filter.published') == -2)
-			JToolbarHelper::deleteList('COM_MINITHEATRECM_ITEMS_CONFIRMDELETE', 'items.delete', 'COM_MINITHEATRECM_DICTIONARY_PURGE');
+			JToolbarHelper::deleteList('COM_MINITHEATRECM_CATALOGUES_CONFIRMDELETE', 'catalogues.delete', 'COM_MINITHEATRECM_DICTIONARY_PURGE');
 		else
-			JToolbarHelper::trash('items.trash');
+			JToolbarHelper::trash('catalogues.trash');
 		
-		JToolbarHelper::preferences('com_minitheatrecm');
+		if (JFactory::getUser()->authorise('core.admin', 'com_minitheatrecm'))
+		{
+			JToolbarHelper::preferences('com_minitheatrecm');
+		}
 	}
 	
 	// Set page-header and document-title
 	protected function setDocument()
 	{
-		$title = JText::_('COM_MINITHEATRECM_TITLE_ITEMS');
+		$title = JText::_('COM_MINITHEATRECM_TITLE_CATALOGUES');
 		JToolbarHelper::title( $title, 'file-2' );
 		JFactory::getDocument()->setTitle($title.' - '.JText::_('COM_MINITHEATRECM_GLOBAL_LONGTITLE'));
 	}

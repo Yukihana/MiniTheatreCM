@@ -12,19 +12,13 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/database.php');
+JLoader::Register('NeonControllerForm', JPATH_COMPONENT_ADMINISTRATOR . '/lib/src/controllerform.php');
 
 /**
- * Items Table class
+ * Catalogue Controller
  *
- * @since  0.0.1
+ * @since  0.0.9
  */
-class MiniTheatreCMTableItems extends JTable
+class MiniTheatreCMControllerCatalogue extends NeonControllerForm
 {
-	// Constructor ($db: database connector object)
-	function __construct(&$db)
-	{
-		parent::__construct(NeonCfgDatabase::getTableName('items'), 'id', $db);
-		$this->setColumnAlias('published', 'state');
-	}
 }

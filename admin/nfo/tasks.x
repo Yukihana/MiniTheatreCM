@@ -1,28 +1,34 @@
 #active~star
-Dir '/meta': Merge filebase and database. '/nfo.php' to '/lib/nfo/legacy.php' & '/global.php' to '/lib/cfg/global.php'.
-Psuedobase class: For better usability, added to library instead of integrating with model-base.
-Psuedobase directory configuration list added to /cfg/directories.xml
-Changelog data converted to individual xml files for psuedobase implementation test.
-Sidebar code: Hardcoded data moved to '/cfg/sidebar.xml'. Relative location of the xml file is still hardcoded.
-Structural rewrite completed for upgrade to Query-Joins optimizations.
-Filters are split into types using an inheritable interface on the source model-list.
+Added MVC/Catalogues and removed MVC/Items. (Refactors on other views pending)
+Complete rewrite of the component options and its handler class.
+Updated Menus and Configurations to prepare for upcoming changes.
+Manager HTML-renderer code has been re-written from scratch to match current manager code.
+Added filters: state,access, ctype,franchise, author,recentedit with respective field classes.
+Cleaned up 80 KBs of outdated library classes and data drivers.
 
 #pending~clock
-Refactoring ITEMS to CATALOGUES.
-verify additional filters fields on items.
+Write a view-list fieldtype referencing '/cfg/views.xml'
+Figure out Genre filter field and apply (Need SQL syntaces)
+Manager concept: Ctype after Name(same line), Line#2 alternates between alias/genres where required. Or 'Mouse over for genres'?
+- Genres cannot have a separate column, so they have to piggyback on other columns. Only choice: Main column.
+Add systems: Legend Instructions, Global Notice, ViewType specific DebugBox.
+
+Add MVC/RatingGenres.
+Fix MVC/RatingCatalogues.
+Rewrite and apply final manager code to all other manager views.
 add contenttype to listings under 'item', and on items beside the name in brackets(or not, perhaps grey-small)
+
+Non-critical:
 Write a new parser for nfo tasks: #section(no more translation), colour, icon, description
 complete renderer code for clog/tasks in '/lib/nfo/tasks.php'
-New layout for planner/tasks: 'css-grid' blocks auto arranged, colours kept in cfg/*.xml.
+New layout for planner/tasks: 'css-grid' blocks auto arranged.
 New layout for Overview.
 Write code for Manifest.
-Add system: Legend Instructions.
-Add system: Global Notice.
 Plan splitting tasks using new type of categorisation.
 add styling to psuedo-pagination table and selected item.
 
 #postponed~flag
-delete mt folder from lib by moving code to model-base
+Regroup global config after manager code is complete. (Remember: note/spacer field types can be used to imitate grouping visuals)
 Escape all helper methods (pending answer/solution).
 Plan code minimization on model function overrides now that a model base is present.
 For all MVCs, add filter system, comment-compacting.

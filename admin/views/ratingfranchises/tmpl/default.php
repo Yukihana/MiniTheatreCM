@@ -12,7 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('NeonLibHtmlManager', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/manager.php');
+JLoader::Register('NeonHtmlManager', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/manager.php');
 ?>
 
 <form action="index.php?option=com_minitheatrecm&view=ratingfranchises" method="post">
@@ -80,13 +80,13 @@ JLoader::Register('NeonLibHtmlManager', JPATH_COMPONENT_ADMINISTRATOR . '/lib/ht
 						</a>
 					</td>
 					<td class="small nowrap">					
-						<?php NeonLibHtmlManager::getFranchiseField($this->franchises, $row->target_id);?>
+						<?php NeonHtmlManager::getFranchiseField($this->franchises, $row->target_id);?>
 					</td>
 					<td class="small nowrap">					
-						<?php NeonLibHtmlManager::getUsernameField($this->names, $row->author);?>
+						<?php NeonHtmlManager::getUsernameField($this->names, $row->author);?>
 					</td>
 					<td class="small nowrap hidden-phone">
-						<?php NeonLibHtmlManager::getUsernameField($this->names, $row->recentedit, true);?>
+						<?php NeonHtmlManager::getUsernameField($this->names, $row->recentedit, true);?>
 					</td>
 					<td class="small nowrap hidden-phone">
 						<?php echo $row->created; ?>
@@ -104,7 +104,7 @@ JLoader::Register('NeonLibHtmlManager', JPATH_COMPONENT_ADMINISTRATOR . '/lib/ht
 		</table>
 		<?php endif;?>
 		
-		<?php echo NeonLibHtmlManager::getListFooter($this->pagination->total, $this->querytime);?>
+		<?php echo NeonHtmlManager::getListFooter($this->pagination->total, $this->querytime);?>
 		
 		<?php echo JHtml::_('form.token'); ?>
 		<input type="hidden" name="task" value="" />

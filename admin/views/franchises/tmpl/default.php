@@ -12,7 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('NeonLibHtmlManager', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/manager.php');
+JLoader::Register('NeonHtmlManager', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/manager.php');
 ?>
 
 <form action="index.php?option=com_minitheatrecm&view=franchises" method="post">
@@ -41,7 +41,7 @@ JLoader::Register('NeonLibHtmlManager', JPATH_COMPONENT_ADMINISTRATOR . '/lib/ht
 						<?php echo JHtml::_('grid.sort', 'JSTATUS', 'state') ;?>
 					</th>
 					<th width="35%" class="nowrap">
-						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_COLUMNHEADER_FRANCHISENAME', 'name') ;?>
+						<?php echo JHtml::_('grid.sort', 'COM_MINITHEATRECM_DICTIONARY_FRANCHISENAME', 'name') ;?>
 					</th>
 					<th width="10%" class="nowrap hidden-phone">
 						<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ACCESS', 'access') ;?>
@@ -86,13 +86,13 @@ JLoader::Register('NeonLibHtmlManager', JPATH_COMPONENT_ADMINISTRATOR . '/lib/ht
 						</a>
 					</td>
 					<td class="small nowrap hidden-phone">
-						<?php NeonLibHtmlManager::getAccessField($this->groups, $row->access);?>
+						<?php NeonHtmlManager::getAccessField($this->groups, $row->access);?>
 					</td>
 					<td class="small nowrap">					
-						<?php NeonLibHtmlManager::getUsernameField($this->names, $row->author);?>
+						<?php NeonHtmlManager::getUsernameField($this->names, $row->author);?>
 					</td>
 					<td class="small nowrap hidden-phone">
-						<?php NeonLibHtmlManager::getUsernameField($this->names, $row->recentedit, true);?>
+						<?php NeonHtmlManager::getUsernameField($this->names, $row->recentedit, true);?>
 					</td>
 					<td class="small nowrap hidden-phone">
 						<?php echo $row->created; ?>
@@ -110,7 +110,7 @@ JLoader::Register('NeonLibHtmlManager', JPATH_COMPONENT_ADMINISTRATOR . '/lib/ht
 		</table>
 		<?php endif;?>
 		
-		<?php echo NeonLibHtmlManager::getListFooter($this->pagination->total, $this->querytime);?>
+		<?php echo NeonHtmlManager::getListFooter($this->pagination->total, $this->querytime);?>
 		
 		<?php echo JHtml::_('form.token'); ?>
 		<input type="hidden" name="task" value="" />

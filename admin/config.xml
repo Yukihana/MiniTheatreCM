@@ -1,107 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
+	<fieldset name="mtcm_site" label="COM_MINITHEATRECM_DICTIONARY_SITE" description="COM_MINITHEATRECM_FIELD_DESC_SITE">
 	
-	<fieldset name="mtcm_perms" label="COM_MINITHEATRECM_CONFIGTAB_PERMS" description="COM_MINITHEATRECM_CONFIGTAB_PERMS_DESC">
+		<field type="note"
+			label="COM_MINITHEATRECM_DICTIONARY_PERMISSIONS"
+			description="COM_MINITHEATRECM_FIELD_DESC_SITEPERMS"/>
+			
 		<field name="submission_access" type="usergrouplist"
-			label="COM_MINITHEATRECM_CONFIG_SUBWIZACCESS_LABEL"
-			description="COM_MINITHEATRECM_CONFIG_SUBWIZACCESS_DESC"
-			checksuperusergroup="1"/>
-	</fieldset>
+			label="COM_MINITHEATRECM_DICTIONARY_UPLOADER"
+			description="COM_MINITHEATRECM_FIELD_DESC_ACCESSFEATURE"
+			checksuperusergroup="1" multiple="true" default="2"/>
+			
+	</fieldset>	
+	<fieldset name="mtcm_system" label="COM_MINITHEATRECM_DICTIONARY_SYSTEM" description="COM_MINITHEATRECM_FIELD_DESC_SYSTEM">
 	
-	<fieldset name="mtcm_admin" label="COM_MINITHEATRECM_CONFIGTAB_ADMIN" description="COM_MINITHEATRECM_CONFIGTAB_ADMIN_DESC">
 		<field
-			name="default_view" type="list" default="0"
-			label="COM_MINITHEATRECM_CONFIG_DEFAULTVIEW_LABEL"
-			description="COM_MINITHEATRECM_CONFIG_DEFAULTVIEW_DESC"
-			>
-			<option value="0">COM_MINITHEATRECM_TITLE_OVERVIEW</option>
-			<option value="1">COM_MINITHEATRECM_TITLE_LISTINGS</option>
-			<option value="2">COM_MINITHEATRECM_TITLE_REVIEWS</option>
-			<option value="3">COM_MINITHEATRECM_TITLE_ITEMS</option>
-			<option value="4">COM_MINITHEATRECM_TITLE_FRANCHISES</option>
-			<option value="5">COM_MINITHEATRECM_TITLE_GENRES</option>
-			<option value="6">COM_MINITHEATRECM_TITLE_CONTENTTYPES</option>
-		</field>
+			type="note"
+			label="COM_MINITHEATRECM_DICTIONARY_GLOBALMESSAGE"
+			description="COM_MINITHEATRECM_FIELD_DESC_GLOBALMESSAGE"/>
+			
 		<field
-			name="overview_type" type="radio" default="1"
-			label="COM_MINITHEATRECM_CONFIG_OVERVIEWTYPE_LABEL"
-			description="COM_MINITHEATRECM_CONFIG_OVERVIEWTYPE_DESC"
+			name="glomsg_header" type="text" default=""
+			label="COM_MINITHEATRECM_DICTIONARY_TITLE"
+			description="COM_MINITHEATRECM_FIELD_DESC_TITLE"
+			checksuperusergroup="1" />
+			
+		<field
+			name="glomsg_content" type="textarea" default=""
+			label="COM_MINITHEATRECM_DICTIONARY_CONTENT"
+			description="COM_MINITHEATRECM_FIELD_DESC_CONTENT"
+			checksuperusergroup="1" />
+			
+		<field
+			name="glomsg_sticky" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_STICKY"
+			description="COM_MINITHEATRECM_FIELD_DESC_STICKY"
 			class="btn-group btn-group-yesno"
-			>
-			<option value="1">COM_MINITHEATRECM_DICTIONARY_BASIC</option>
-			<option value="0">COM_MINITHEATRECM_DICTIONARY_DETAILED</option>
+			checksuperusergroup="1" >
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
 		</field>
+		
+		<field type="spacer" hr="true"/>
+		
+		<field type="note"
+			label="COM_MINITHEATRECM_DICTIONARY_DEBUG"
+			description="COM_MINITHEATRECM_FIELD_DESC_DEBUG" />
+			
+		<field
+			name="debug_manager" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_MANAGER"
+			description="COM_MINITHEATRECM_FIELD_DESC_DEBUGSECTION"
+			class="btn-group btn-group-yesno"
+			checksuperusergroup="1" >
+			<option value="1">JSHOW</option>
+			<option value="0">JHIDE</option>
+		</field>
+		
 	</fieldset>
+	<fieldset name="mtcm_admin" label="COM_MINITHEATRECM_DICTIONARY_ADMIN" description="COM_MINITHEATRECM_FIELD_DESC_ADMIN">
 	
-	<fieldset name="mtcm_manager" label="COM_MINITHEATRECM_CONFIGTAB_MANAGER" description="COM_MINITHEATRECM_CONFIGTAB_MANAGER_DESC">
 		<field
-			name="links_user" type="radio" default="1"
-			label="COM_MINITHEATRECM_CONFIG_LINKS_USER"
-			description="COM_MINITHEATRECM_CONFIG_LINKS_DESC"
-			class="btn-group btn-group-yesno"
-			>
-			<option value="1">COM_MINITHEATRECM_DICTIONARY_LINK</option>
-			<option value="0">COM_MINITHEATRECM_DICTIONARY_TEXT</option>
+			name="default_view" type="list" default="overview"
+			label="COM_MINITHEATRECM_DICTIONARY_DEFAULTVIEW"
+			description="COM_MINITHEATRECM_FIELD_DESC_DEFAULTVIEW"
+			checksuperusergroup="1" >
+			<option value="overview">COM_MINITHEATRECM_TITLE_OVERVIEW</option>
+			<option value="activitylog">COM_MINITHEATRECM_TITLE_ACTIVITYLOG</option>
+			
+			<option value="listings">COM_MINITHEATRECM_TITLE_LISTINGS</option>
+			<option value="catalogues">COM_MINITHEATRECM_TITLE_CATALOGUES</option>
+			<option value="franchises">COM_MINITHEATRECM_TITLE_FRANCHISES</option>
+			<option value="genres">COM_MINITHEATRECM_TITLE_GENRES</option>
+			<option value="contenttypes">COM_MINITHEATRECM_TITLE_CONTENTTYPES</option>
+			
+			<option value="reviews">COM_MINITHEATRECM_TITLE_REVIEWS</option>
+			<option value="ratingreviews">COM_MINITHEATRECM_TITLE_RATINGREVIEWS</option>
+			<option value="ratinglistings">COM_MINITHEATRECM_TITLE_RATINGLISTINGS</option>
+			
+			<option value="ratingcatalogues">COM_MINITHEATRECM_TITLE_RATINGCATALOGUES</option>
+			<option value="ratingfranchises">COM_MINITHEATRECM_TITLE_RATINGFRANCHISES</option>
+			<option value="ratinggenres">COM_MINITHEATRECM_TITLE_RATINGGENRES</option>
+			
+			<option value="planner">COM_MINITHEATRECM_TITLE_PLANNER</option>
 		</field>
+		
 		<field
-			name="links_item" type="radio" default="1"
-			label="COM_MINITHEATRECM_CONFIG_LINKS_ITEM"
-			description="COM_MINITHEATRECM_CONFIG_LINKS_DESC"
+			name="overview_type" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_OVERVIEWTYPE"
+			description="COM_MINITHEATRECM_FIELD_DESC_OVERVIEWTYPE"
 			class="btn-group btn-group-yesno"
-			>
-			<option value="1">COM_MINITHEATRECM_DICTIONARY_LINK</option>
-			<option value="0">COM_MINITHEATRECM_DICTIONARY_TEXT</option>
+			checksuperusergroup="1" >
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_DETAILED</option>
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_BASIC</option>
 		</field>
-		<field
-			name="links_franchise" type="radio" default="1"
-			label="COM_MINITHEATRECM_CONFIG_LINKS_FRANCHISE"
-			description="COM_MINITHEATRECM_CONFIG_LINKS_DESC"
-			class="btn-group btn-group-yesno"
-			>
-			<option value="1">COM_MINITHEATRECM_DICTIONARY_LINK</option>
-			<option value="0">COM_MINITHEATRECM_DICTIONARY_TEXT</option>
-		</field>
-		<field
-			name="links_access" type="radio" default="1"
-			label="COM_MINITHEATRECM_CONFIG_LINKS_ACCESS"
-			description="COM_MINITHEATRECM_CONFIG_LINKS_DESC"
-			class="btn-group btn-group-yesno"
-			>
-			<option value="1">COM_MINITHEATRECM_DICTIONARY_LINK</option>
-			<option value="0">COM_MINITHEATRECM_DICTIONARY_TEXT</option>
-		</field>
+		
 	</fieldset>
+	<fieldset name="mtcm_manager" label="COM_MINITHEATRECM_DICTIONARY_MANAGER" description="COM_MINITHEATRECM_FIELD_DESC_MANAGER">
 	
-	<fieldset name="mtcm_cache" label="COM_MINITHEATRECM_CONFIGTAB_CACHE" description="COM_MINITHEATRECM_CONFIGTAB_CACHE_DESC">
 		<field
-			name="ticks_items" type="integer"
-			first="1" last="999999"	default="100"
-			label="COM_MINITHEATRECM_CONFIG_TICKS_ITEMS"
-			description="COM_MINITHEATRECM_CONFIG_TICKS_DESC"
-			/>
+			name="genre_filter" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_GENRESFILTER"
+			description="COM_MINITHEATRECM_FIELD_DESC_GENREFILTER"
+			class="btn-group btn-group-yesno" >
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_COMBINED</option>
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_SPANNED</option>
+		</field>
+		
+		<field type="spacer" hr="true"/>
+		
+		<field type="note"
+			label="COM_MINITHEATRECM_DICTIONARY_LINKS"
+			description="COM_MINITHEATRECM_FIELD_DESC_MANAGERLINKS" />
+			
 		<field
-			name="ticks_franchises" type="integer"
-			first="1" last="999999"	default="100"
-			label="COM_MINITHEATRECM_CONFIG_TICKS_FRANCHISES"
-			description="COM_MINITHEATRECM_CONFIG_TICKS_DESC"
-			/>
+			name="links_user" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_USERS"
+			description="COM_MINITHEATRECM_FIELD_DESC_MANAGERLINKS"
+			class="btn-group btn-group-yesno" >
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_HYPERLINK</option>
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_PLAINTEXT</option>
+		</field>
+		
 		<field
-			name="ticks_listings" type="integer"
-			first="1" last="999999"	default="100"
-			label="COM_MINITHEATRECM_CONFIG_TICKS_LISTINGS"
-			description="COM_MINITHEATRECM_CONFIG_TICKS_DESC"
-			/>
+			name="links_access" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_ACCESSGROUPS"
+			description="COM_MINITHEATRECM_FIELD_DESC_MANAGERLINKS"
+			class="btn-group btn-group-yesno" >
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_HYPERLINK</option>
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_PLAINTEXT</option>
+		</field>
+		
 		<field
-			name="ticks_reviews" type="integer"
-			first="1" last="999999"	default="100"
-			label="COM_MINITHEATRECM_CONFIG_TICKS_REVIEWS"
-			description="COM_MINITHEATRECM_CONFIG_TICKS_DESC"
-			/>
+			name="links_catalogue" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_CATALOGUES"
+			description="COM_MINITHEATRECM_FIELD_DESC_MANAGERLINKS"
+			class="btn-group btn-group-yesno" >
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_HYPERLINK</option>
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_PLAINTEXT</option>
+		</field>
+		
 		<field
-			name="ticks_genres" type="integer"
-			first="1" last="999999"	default="100"
-			label="COM_MINITHEATRECM_CONFIG_TICKS_GENRES"
-			description="COM_MINITHEATRECM_CONFIG_TICKS_DESC"
-			/>
+			name="links_franchise" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_FRANCHISES"
+			description="COM_MINITHEATRECM_FIELD_DESC_MANAGERLINKS"
+			class="btn-group btn-group-yesno" >
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_HYPERLINK</option>
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_PLAINTEXT</option>
+		</field>
+		
+		<field
+			name="links_genre" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_GENRES"
+			description="COM_MINITHEATRECM_FIELD_DESC_MANAGERLINKS"
+			class="btn-group btn-group-yesno" >
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_HYPERLINK</option>
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_PLAINTEXT</option>
+		</field>
+		
+		<field
+			name="links_ctype" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_CONTENTTYPES"
+			description="COM_MINITHEATRECM_FIELD_DESC_MANAGERLINKS"
+			class="btn-group btn-group-yesno" >
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_HYPERLINK</option>
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_PLAINTEXT</option>
+		</field>
+		
 	</fieldset>
+	<fieldset name="mtcm_cache" label="COM_MINITHEATRECM_DICTIONARY_CACHE" description="COM_MINITHEATRECM_FIELD_DESC_CACHE">
+	
+		<field type="note"
+			label="COM_MINITHEATRECM_DICTIONARY_UPDATEINTERVAL"
+			description="COM_MINITHEATRECM_FIELD_DESC_TICKS" />
+		
+		<field
+			name="ticks_catalogues" type="number"
+			first="1" last="999999"	default="100"
+			label="COM_MINITHEATRECM_DICTIONARY_CATALOGUES"
+			description="COM_MINITHEATRECM_FIELD_DESC_TICKS" />
+			
+		<field
+			name="ticks_franchises" type="number"
+			first="1" last="999999"	default="100"
+			label="COM_MINITHEATRECM_DICTIONARY_FRANCHISES"
+			description="COM_MINITHEATRECM_FIELD_DESC_TICKS" />
+			
+		<field
+			name="ticks_listings" type="number"
+			first="1" last="999999"	default="100"
+			label="COM_MINITHEATRECM_DICTIONARY_LISTINGS"
+			description="COM_MINITHEATRECM_FIELD_DESC_TICKS" />
+			
+		<field
+			name="ticks_reviews" type="number"
+			first="1" last="999999"	default="100"
+			label="COM_MINITHEATRECM_DICTIONARY_REVIEWS"
+			description="COM_MINITHEATRECM_FIELD_DESC_TICKS" />
+			
+		<field
+			name="ticks_genres" type="number"
+			first="1" last="999999"	default="100"
+			label="COM_MINITHEATRECM_DICTIONARY_GENRES"
+			description="COM_MINITHEATRECM_FIELD_DESC_TICKS" />
+			
+	</fieldset>
+	<fieldset
+		name="permissions"
+		label="COM_MINITHEATRECM_DICTIONARY_PERMISSIONS"
+		description="COM_MINITHEATRECM_FIELD_DESC_COMACL" >
+		
+		<field
+			name="rules" type="rules"
+			label="COM_MINITHEATRECM_DICTIONARY_PERMISSIONS"
+			class="inputbox" validate="rules" filter="rules"
+			section="component" component="com_minitheatrecm" />
+			
+	</fieldset>	
 </config>

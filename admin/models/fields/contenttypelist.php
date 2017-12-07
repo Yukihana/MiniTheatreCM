@@ -11,21 +11,23 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+// Include Dependencies
 JFormHelper::loadFieldClass('list');
+JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/database.php');
 
 /**
- * ItemList Form Field class for the MiniTheatreCM component
+ * ContentTypeList Form Field class for the MiniTheatreCM component
  *
  * @since  0.0.1
  */
-class JFormFieldItemList extends JFormFieldList
+class JFormFieldContentTypeList extends JFormFieldList
 {
 	/**
 	 * The field type.
 	 *
 	 * @var         string
 	 */
-	protected $type = 'ItemList';
+	protected $type = 'ContentTypeList';
 
 	/**
 	 * Method to get a list of options for a list input.
@@ -37,7 +39,7 @@ class JFormFieldItemList extends JFormFieldList
 		$db    = JFactory::getDBO();
 		$query = $db->getQuery(true);
 		$query->select('id,name');
-		$query->from($db->quoteName('#__mtcm_items'));
+		$query->from($db->quoteName(NeonCfgDatabase::getTableName('contenttypes')));
 		$db->setQuery((string) $query);
 		$objlist = $db->loadObjectList();
 		

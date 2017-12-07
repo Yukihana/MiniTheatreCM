@@ -32,7 +32,7 @@ class MiniTheatreCMModelListings extends NeonModelList
 				'name',			'a.name',
 				'alias',		'a.alias',
 				'state',		'a.state',
-				'item_id',		'a.item_id',
+				'catalogue_id',		'a.catalogue_id',
 				'access',		'a.access',
 				'author',		'a.author',
 				'recentedit',	'a.recentedit',
@@ -53,7 +53,7 @@ class MiniTheatreCMModelListings extends NeonModelList
 		// Load records from the database
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
-		$query->select( 'a.id, a.name, a.alias, a.state, a.item_id, a.access, a.author, a.recentedit, a.created, a.modified, a.hits, a.rating, a.votes' )->
+		$query->select( 'a.id, a.name, a.alias, a.state, a.catalogue_id, a.access, a.author, a.recentedit, a.created, a.modified, a.hits, a.rating, a.votes' )->
 			from($db->quoteName(NeonCfgDatabase::getTableName('listings')).' AS a');
 		
 		// Filter: like / search
@@ -124,7 +124,7 @@ class MiniTheatreCMModelListings extends NeonModelList
 		{
 			$itemid = ArrayHelper::toInteger($itemid);
 			$itemid = implode(',', $itemid);
-			$query->where('a.item_id IN (' . $itemid . ')');
+			$query->where('a.catalogue_id IN (' . $itemid . ')');
 		}
 		
 		// Add the list ordering clause.
@@ -142,7 +142,7 @@ class MiniTheatreCMModelListings extends NeonModelList
 	{
 		return parent::getUsernames( $fields );
 	}
-	public function getItemnames( $fields = 'item_id' )
+	public function getItemnames( $fields = 'catalogue_id' )
 	{
 		return parent::getItemnames( $fields );
 	}

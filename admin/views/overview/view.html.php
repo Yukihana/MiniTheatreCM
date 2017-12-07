@@ -18,20 +18,14 @@ defined('_JEXEC') or die('Restricted access');
  */
 class MiniTheatreCMViewOverview extends JViewLegacy
 {
+	protected $layoutmode = 'basic';
+	
 	// Display the template ($tpl: template file)
 	function display($tpl = null)
 	{
-		// Include CCS & JS
-		$doc = JFactory::getDocument();
-		$doc->addStyleSheet( JUri::base().'components/com_minitheatrecm/views/overview/tmpl/default.css' );
-		$doc->addScript( JUri::base().'components/com_minitheatrecm/views/overview/tmpl/default.js' );
-		
-		// Get data from the model
-		$this->layoutmode	= $this->get('LayoutMode');
-		$this->itemsdata	= $this->get('ItemsData');
-		$this->meta			= $this->get('Version');
-		$this->clog			= $this->get('Changelogs');
-		$this->tasks		= $this->get('Tasks');
+		// Set the Layout
+		$this->layoutmode = $this->get('LayoutMode');
+		$tpl = ($this->layoutmode == 'basic')? null : $this->layoutmode;
 		
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
@@ -41,17 +35,15 @@ class MiniTheatreCMViewOverview extends JViewLegacy
 			return false;
 		}
 
-		// Set the Layout
-		if( $this->layoutmode == 0 )
+		// Set up other UI elements
+		if ($this->getLayout() !== 'modal')
 		{
-			$tpl = 'detailed';
+			MiniTheatreCMHelper::addSubmenu('overview');
+			$this->sidebar = JHtmlSidebar::render();
+			
+			$this->setDocument();
+			$this->addToolBar();
 		}
-		
-		// Set the submenu
-		MiniTheatreCMHelper::addSubmenu('overview');
-		
-		// Set the toolbar and number of found items
-		$this->addToolBar();
 		
 		// Display the template
 		parent::display($tpl);
@@ -60,13 +52,16 @@ class MiniTheatreCMViewOverview extends JViewLegacy
 	// Add page header and toolbar buttons
 	protected function addToolBar()
 	{
+		JToolbarHelper::preferences('com_minitheatrecm');
+	}
+	
+	protected function setDocument()
+	{
 		JToolbarHelper::title(
 			JText::_('COM_MINITHEATRECM_TITLE_OVERVIEW')
 			.' ('
-			.JText::_( ($this->layoutmode == 1) ? 'COM_MINITHEATRECM_DICTIONARY_BASIC' : 'COM_MINITHEATRECM_DICTIONARY_DETAILED' )
+			.JText::_( ($this->layoutmode == 'detailed') ? 'COM_MINITHEATRECM_DICTIONARY_DETAILED' : 'COM_MINITHEATRECM_DICTIONARY_BASIC' )
 			.')'
 			, 'bars' );
-		
-		JToolbarHelper::preferences('com_minitheatrecm');
 	}
 }

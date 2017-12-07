@@ -11,11 +11,15 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+// Include Dependencies
+JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/database.php');
+
 /**
- * RatingItem Controller
+ * Catalogues Table class
  *
- * @since  0.0.9
+ * @since  0.0.1
  */
-class MiniTheatreCMControllerRatingItem extends JControllerForm
+abstract class NeonTable extends JTable
 {
+	
 }

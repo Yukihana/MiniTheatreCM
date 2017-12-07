@@ -11,18 +11,19 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+// Include Dependencies
+JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/database.php');
+
 /**
- * Items Controller
+ * RatingCatalogues Table class
  *
  * @since  0.0.1
  */
-class MiniTheatreCMControllerItems extends JControllerAdmin
+class MiniTheatreCMTableRatingCatalogues extends JTable
 {
-	// Override proxy for getModel ($name: modelname, $prefix: class prefix, $config: optional configuration array)
-	public function getModel($name = 'Item', $prefix = 'MiniTheatreCMModel', $config = array('ignore_request' => true))
+	// Constructor ($db: database connector object)
+	function __construct(&$db)
 	{
-		$model = parent::getModel($name, $prefix, $config);
-
-		return $model;
+		parent::__construct(NeonCfgDatabase::getTableName('ratingcatalogues'), 'id', $db);
 	}
 }
