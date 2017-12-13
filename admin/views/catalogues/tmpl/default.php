@@ -120,12 +120,13 @@ $stats_col		= NeonHtmlManager::getOrdering($listOrder, 'a.hits', 'COM_MINITHEATR
 					<td>
 						<div class="pull-left">
 							<div>
-								<?php echo NeonHtmlManager::renderCTypeIcon($row->ctype_name, $row->ctype_color, $row->ctype, $ctypelink);?>
-								<?php echo NeonHtmlManager::renderMain($this->escape($row->name), $link);?>
+								<?php echo NeonHtmlManager::renderCTypeIcon($row->ctype_name, $row->ctype_color, $row->ctype, $ctypelink)
+											.' '.NeonHtmlManager::renderMain($this->escape($row->name), $link)
+											.' '.NeonHtmlManager::renderAltNames($this->escape($row->altnames));?>
 							</div>
 							<div class="hidden-phone">
-								<?php echo NeonHtmlManager::renderAlias($this->escape($row->alias));?>
-								<?php echo NeonHtmlManager::renderGenreIcons($row->genres_json, $genrelink);?>
+								<?php echo NeonHtmlManager::renderAlias($this->escape($row->alias))
+											.' '.NeonHtmlManager::renderGenreIcons($row->genres_json, $genrelink);?>
 							</div>
 						</div>
 					</td>
@@ -161,8 +162,6 @@ $stats_col		= NeonHtmlManager::getOrdering($listOrder, 'a.hits', 'COM_MINITHEATR
 		<?php endif;?>
 		
 		<?php echo NeonHtmlManager::getListFooter($this->pagination->total, count($this->items), $this->querytime);?>
-		
-		<?php echo 'debugbox: '.$listOrder.' - '.$franchise_col->order.' '.$franchise_col->index.' '.$franchise_col->text;?>
 		
 		<?php echo JHtml::_('form.token'); ?>
 		<input type="hidden" name="task" value="" />

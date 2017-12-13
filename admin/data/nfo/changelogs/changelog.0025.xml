@@ -1,0 +1,14 @@
+<changelog>
+	<update version="0.0.12.J" date="2017-12-13" time="12:00" zone="UTC">		
+		<task type="database">Several fields added to form view and database for Catalogues.</task>
+		<task type="manager">Upgraded manager-view 'search' to use multiple fields.</task>
+		<task type="manager">Several features added to the manager-renderer class.</task>
+		<task type="forms">Fixed custom list-fields not saving data. (multi-choice list still pending)</task>
+		<task type="library">Added source classes for db-list and xml-list type fields.</task>
+		<task type="misc">Several changes done to directory structure to implement xml-type field files.</task>
+		<task type="database">Add db-tables for Producers, Licensors, Studios, Actors, Staff, Roles.</task>
+		<task type="database">JTable classes added for: Producers, Licensors, Studios</task>
+		<task type="database">Field-type declaration for: Producers, Licensors, Studios</task>
+		<task type="translation">Added a lot of missing translations.</task>
+	</update>
+</changelog>

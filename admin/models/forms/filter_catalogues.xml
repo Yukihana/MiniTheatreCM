@@ -47,7 +47,7 @@
 			/>
 		<field
 			name="franchise"
-			type="franchiselist"
+			type="franchise"
 			label="COM_MINITHEATRECM_HINT_SELECTFRANCHISE"
 			description="COM_MINITHEATRECM_HINT_SELECTFRANCHISE_DESC"
 			multiple="true"
@@ -56,7 +56,7 @@
 			/>
 		<field
 			name="genre"
-			type="genrelist"
+			type="genre"
 			label="COM_MINITHEATRECM_HINT_SELECTGENRE"
 			description="COM_MINITHEATRECM_HINT_SELECTGENRE_DESC"
 			multiple="true"
@@ -65,7 +65,7 @@
 			/>
 		<field
 			name="contenttype"
-			type="contenttypelist"
+			type="contenttype"
 			label="COM_MINITHEATRECM_HINT_SELECTCONTENTTYPE"
 			description="COM_MINITHEATRECM_HINT_SELECTCONTENTTYPE_DESC"
 			multiple="true"

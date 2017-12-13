@@ -31,6 +31,7 @@ class NeonModelList extends JModelList
 	
 	protected $dbordercol			= 'a.id';
 	protected $dborderdir			= 'DESC';
+	protected $dbfilters_search		= null;
 	protected $dbfilters_core		= array();
 	protected $dbfilters_multi_int	= array();
 	
@@ -65,13 +66,13 @@ class NeonModelList extends JModelList
 		}
 		
 		// Filter by search
-		if( isset( $this->dbfilters_core['search'] ))
+		if( $this->dbfilters_search != null )
 		{
 			$search = $this->getState('filter.search');
 			if (!empty($search))
 			{
 				$like = $db->quote('%'.$search.'%');
-				$query->where($this->dbfilters_core['search'].' LIKE '.$like);
+				$query->where( $this->buildQueryLikeString($like, $this->dbfilters_search) );
 			}
 		}
 		
@@ -162,5 +163,30 @@ class NeonModelList extends JModelList
 		}
 		
 		return $result;
+	}
+	
+	protected function buildQueryLikeString($like, $fields)
+	{
+		if( is_string( $fields ))
+		{
+			$fields = array( $fields );
+		}
+		if( is_array( $fields ))
+		{
+			$result = null;
+			foreach( $fields as $field )
+			{
+				if( $result != null )
+				{
+					$result.= ' OR '.$field.' LIKE '.$like;
+				}
+				else
+				{
+					$result = $field.' LIKE '.$like;
+				}
+			}
+			return ($result != null)? '('.$result.')' : '';
+		}
+		return '';
 	}
 }

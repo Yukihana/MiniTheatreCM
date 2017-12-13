@@ -5,39 +5,56 @@
 
 -- Community Content: Catalogues, Franchises
 CREATE TABLE IF NOT EXISTS `#__mtcm_catalogues` (
-	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
-	`asset_id`			INT(10)				NOT NULL DEFAULT '0',
+	`id`				INT UNSIGNED		NOT NULL AUTO_INCREMENT,
+	`asset_id`			INT UNSIGNED		NOT NULL DEFAULT '0',
 	`name`				VARCHAR(255)		NOT NULL,
-	`alias`				VARCHAR(400)		NOT NULL DEFAULT ''		COMMENT 'SEF URI',
+	`alias`				VARCHAR(255)		NOT NULL DEFAULT ''		COMMENT 'SEF URI',
 	
-	`content`			TEXT				NOT NULL DEFAULT '',
-	`misc1`				VARCHAR(255)		NOT NULL DEFAULT '',
+	`content`			TEXT				NOT NULL DEFAULT ''		COMMENT 'The Synopsis, Summary or Description',
+	`altnames`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Alternate Titles',
+	`trivia`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Any trivia related to this title',
+	`editnote`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Editorial notes (Not to be displayed)',
 	
-	`offweb`			VARCHAR(255)		NOT NULL DEFAULT ''		COMMENT 'Official website',
-	`malurl`			VARCHAR(255)		NOT NULL DEFAULT ''		COMMENT 'My-Anime-List url',
-	`anidburl`			VARCHAR(255)		NOT NULL DEFAULT ''		COMMENT 'AniDB url',
-	`rellinks`			TEXT				NOT NULL DEFAULT ''		COMMENT 'Related links (Space delimited)',
-	`trailers`			TEXT				NOT NULL DEFAULT ''		COMMENT 'Trailer links (Space delimited)',
-	`relvids`			TEXT				NOT NULL DEFAULT ''		COMMENT 'Related videos (Space delimited)',
+	`duration`			INT	UNSIGNED		NOT NULL DEFAULT '0'	COMMENT 'Stored in seconds',
+	`count`				INT	UNSIGNED		NOT NULL DEFAULT '0'	COMMENT 'Episode count, Chapter count, etc.',
+	`agerating`			TINYINT UNSIGNED	NOT NULL DEFAULT '0'	COMMENT 'Index from XML-source: agerating.xml',
+	`airtype`			TINYINT UNSIGNED	NOT NULL DEFAULT '0'	COMMENT 'Index from XML-source: airtype.xml',
+	`airstatus`			TINYINT UNSIGNED	NOT NULL DEFAULT '0'	COMMENT 'Index from XML-source: airstatus.xml',
+	`airfrom`			DATE										COMMENT 'The date airing starts/started',
+	`airtill`			DATE										COMMENT 'The date airing stops/stopped',
 	
-	`ctype`				INT(10) UNSIGNED	NOT NULL DEFAULT '1',
-	`franchise`			INT(10) UNSIGNED	NOT NULL DEFAULT '0',
-	`genres`			VARCHAR(1023)		NOT NULL DEFAULT '',
+	`ctype`				INT	UNSIGNED		NOT NULL DEFAULT '1'	COMMENT 'Associated Content-type: Anime, Manga, Specials, Movie, Drama',
+	`franchise`			INT	UNSIGNED		NOT NULL DEFAULT '0'	COMMENT 'A group of related titles(catalogues) based on storyline',
+	`genres`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Multi-choice: Comma delimited indices',
+	`producers`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Multi-choice: Comma delimited indices',
+	`licensors`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Multi-choice: Comma delimited indices',
+	`studios`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Multi-choice: Comma delimited indices',
+	`actors`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Multi-choice: Comma delimited indices',
+	`staffpersons`		VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Multi-choice: Comma delimited indices',
 	
-	`access`			INT(10)	UNSIGNED	NOT NULL DEFAULT '2',
-	`state`				TINYINT(3)			NOT NULL DEFAULT '1',
+	`offweb`			VARCHAR(127)		NOT NULL DEFAULT ''		COMMENT 'Official website',
+	`malurl`			VARCHAR(127)		NOT NULL DEFAULT ''		COMMENT 'My-Anime-List url',
+	`anidburl`			VARCHAR(127)		NOT NULL DEFAULT ''		COMMENT 'AniDB url',
+	`annurl`			VARCHAR(127)		NOT NULL DEFAULT ''		COMMENT 'Anime News Network url',
+	`rellinks`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Related links (Newline delimited)',
+	`trailers`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Trailer links (Newline delimited)',
+	`relvids`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Related videos (Newline delimited)',
+	
+	`access`			INT UNSIGNED		NOT NULL DEFAULT '2',
+	`state`				TINYINT				NOT NULL DEFAULT '1',
 	`publish_up`		DATETIME			NOT NULL,
 	`publish_down`		DATETIME			NOT NULL,
 	
-	`author`			INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
-	`recentedit`		INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
-	`created`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
-	`modified`			DATETIME			DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	`author`			INT UNSIGNED		NOT NULL DEFAULT '0',
+	`recentedit`		INT UNSIGNED		NOT NULL DEFAULT '0',
+	`created`			TIMESTAMP			NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`modified`			DATETIME			NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	
-	`hits`				INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
-	`cache_ticks`		INT(10) UNSIGNED	NOT NULL DEFAULT '0'	COMMENT 'Ticks since last cache update',
-	`rating`			INT(4) UNSIGNED		NOT NULL DEFAULT '0'	COMMENT 'Cache',
-	`votes`				INT(10) UNSIGNED	NOT NULL DEFAULT '0'	COMMENT 'Cache',
+	`hits`				INT UNSIGNED		NOT NULL DEFAULT '0',
+	`cache_ticks`		INT UNSIGNED		NOT NULL DEFAULT '0'	COMMENT 'Ticks since last cache update',
+	`rating`			TINYINT UNSIGNED	NOT NULL DEFAULT '0'	COMMENT 'Cache',
+	`recommends`		INT UNSIGNED		NOT NULL DEFAULT '0'	COMMENT 'Cache',
+	`votes`				INT UNSIGNED		NOT NULL DEFAULT '0'	COMMENT 'Cache',
 	
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -118,6 +135,80 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_contenttypes` (
 	`state`				TINYINT(3)			NOT NULL DEFAULT '1'		COMMENT 'Whether Item-pages of this type are accessible',
 	`publish_up`		DATETIME			NOT NULL,
 	`publish_down`		DATETIME			NOT NULL,
+	
+	`author`			INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`recentedit`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`created`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
+	`modified`			DATETIME			DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Micro Content: Producers, Licensors, Studios, Actors, StaffPersons, Roles
+CREATE TABLE IF NOT EXISTS `#__mtcm_producers` (
+	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
+	`name`				VARCHAR(255)		NOT NULL,
+	
+	`author`			INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`recentedit`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`created`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
+	`modified`			DATETIME			DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `#__mtcm_licensors` (
+	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
+	`name`				VARCHAR(255)		NOT NULL,
+	
+	`author`			INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`recentedit`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`created`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
+	`modified`			DATETIME			DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `#__mtcm_studios` (
+	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
+	`name`				VARCHAR(255)		NOT NULL,
+	
+	`author`			INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`recentedit`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`created`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
+	`modified`			DATETIME			DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `#__mtcm_actors` (
+	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
+	`name`				VARCHAR(255)		NOT NULL,
+	
+	`author`			INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`recentedit`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`created`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
+	`modified`			DATETIME			DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `#__mtcm_staffpersonnel` (
+	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
+	`name`				VARCHAR(255)		NOT NULL,
+	`role`				TINYINT				NOT NULL DEFAULT '0',
+	
+	`author`			INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`recentedit`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`created`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
+	`modified`			DATETIME			DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `#__mtcm_staffroles` (
+	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
+	`name`				VARCHAR(255)		NOT NULL,
 	
 	`author`			INT(10) UNSIGNED	NOT NULL DEFAULT '0',
 	`recentedit`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',

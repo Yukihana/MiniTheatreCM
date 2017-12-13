@@ -16,30 +16,25 @@ JFormHelper::loadFieldClass('list');
 JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/database.php');
 
 /**
- * ContentTypeList Form Field class for the MiniTheatreCM component
+ * NeonFormFieldList source class for the MiniTheatreCM component
  *
  * @since  0.0.1
  */
-class JFormFieldContentTypeList extends JFormFieldList
+class NeonFormFieldList extends JFormFieldList
 {
-	/**
-	 * The field type.
-	 *
-	 * @var         string
-	 */
-	protected $type = 'ContentTypeList';
+	// Vars: Type Declaration, Select, DB-ID
+	protected $type = null;
+	
+	protected $dbselect = null;
+	protected $dbname = null;
 
-	/**
-	 * Method to get a list of options for a list input.
-	 *
-	 * @return  array  An array of JHtml options.
-	 */
+	// Method to get Options
 	protected function getOptions()
 	{
 		$db    = JFactory::getDBO();
 		$query = $db->getQuery(true);
-		$query->select('id,name');
-		$query->from($db->quoteName(NeonCfgDatabase::getTableName('contenttypes')));
+		$query->select($this->dbselect);
+		$query->from($db->quoteName(NeonCfgDatabase::getTableName($this->dbname)));
 		$db->setQuery((string) $query);
 		$objlist = $db->loadObjectList();
 		

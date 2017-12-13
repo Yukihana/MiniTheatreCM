@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
-	<fieldset name="mtcm_site" label="COM_MINITHEATRECM_DICTIONARY_SITE" description="COM_MINITHEATRECM_FIELD_DESC_SITE">
+	<fieldset name="mtcm_site" label="COM_MINITHEATRECM_DICTIONARY_SITE" description="COM_MINITHEATRECM_DESCRIPTION_SITE">
 	
 		<field type="note"
 			label="COM_MINITHEATRECM_DICTIONARY_PERMISSIONS"
-			description="COM_MINITHEATRECM_FIELD_DESC_SITEPERMS"/>
+			description="COM_MINITHEATRECM_DESCRIPTION_SITEPERMS"/>
 			
 		<field name="submission_access" type="usergrouplist"
 			label="COM_MINITHEATRECM_DICTIONARY_UPLOADER"
-			description="COM_MINITHEATRECM_FIELD_DESC_ACCESSFEATURE"
+			description="COM_MINITHEATRECM_DESCRIPTION_ACCESSFEATURE"
 			checksuperusergroup="1" multiple="true" default="2"/>
 			
 	</fieldset>	
-	<fieldset name="mtcm_system" label="COM_MINITHEATRECM_DICTIONARY_SYSTEM" description="COM_MINITHEATRECM_FIELD_DESC_SYSTEM">
+	<fieldset name="mtcm_system" label="COM_MINITHEATRECM_DICTIONARY_SYSTEM" description="COM_MINITHEATRECM_DESCRIPTION_SYSTEM">
 	
 		<field
 			type="note"
 			label="COM_MINITHEATRECM_DICTIONARY_GLOBALMESSAGE"
-			description="COM_MINITHEATRECM_FIELD_DESC_GLOBALMESSAGE"/>
+			description="COM_MINITHEATRECM_DESCRIPTION_GLOBALMESSAGE"/>
 			
 		<field
 			name="glomsg_header" type="text" default=""
 			label="COM_MINITHEATRECM_DICTIONARY_TITLE"
-			description="COM_MINITHEATRECM_FIELD_DESC_TITLE"
+			description="COM_MINITHEATRECM_DESCRIPTION_TITLE"
 			checksuperusergroup="1" />
 			
 		<field
 			name="glomsg_content" type="textarea" default=""
 			label="COM_MINITHEATRECM_DICTIONARY_CONTENT"
-			description="COM_MINITHEATRECM_FIELD_DESC_CONTENT"
+			description="COM_MINITHEATRECM_DESCRIPTION_CONTENT"
 			checksuperusergroup="1" />
 			
 		<field
 			name="glomsg_sticky" type="radio" default="0"
 			label="COM_MINITHEATRECM_DICTIONARY_STICKY"
-			description="COM_MINITHEATRECM_FIELD_DESC_STICKY"
+			description="COM_MINITHEATRECM_DESCRIPTION_STICKY"
 			class="btn-group btn-group-yesno"
 			checksuperusergroup="1" >
 			<option value="1">JYES</option>
@@ -45,12 +45,12 @@
 		
 		<field type="note"
 			label="COM_MINITHEATRECM_DICTIONARY_DEBUG"
-			description="COM_MINITHEATRECM_FIELD_DESC_DEBUG" />
+			description="COM_MINITHEATRECM_DESCRIPTION_DEBUG" />
 			
 		<field
 			name="debug_manager" type="radio" default="0"
 			label="COM_MINITHEATRECM_DICTIONARY_MANAGER"
-			description="COM_MINITHEATRECM_FIELD_DESC_DEBUGSECTION"
+			description="COM_MINITHEATRECM_DESCRIPTION_DEBUGSECTION"
 			class="btn-group btn-group-yesno"
 			checksuperusergroup="1" >
 			<option value="1">JSHOW</option>
@@ -58,12 +58,12 @@
 		</field>
 		
 	</fieldset>
-	<fieldset name="mtcm_admin" label="COM_MINITHEATRECM_DICTIONARY_ADMIN" description="COM_MINITHEATRECM_FIELD_DESC_ADMIN">
+	<fieldset name="mtcm_admin" label="COM_MINITHEATRECM_DICTIONARY_ADMIN" description="COM_MINITHEATRECM_DESCRIPTION_ADMIN">
 	
 		<field
 			name="default_view" type="list" default="overview"
 			label="COM_MINITHEATRECM_DICTIONARY_DEFAULTVIEW"
-			description="COM_MINITHEATRECM_FIELD_DESC_DEFAULTVIEW"
+			description="COM_MINITHEATRECM_DESCRIPTION_DEFAULTVIEW"
 			checksuperusergroup="1" >
 			<option value="overview">COM_MINITHEATRECM_TITLE_OVERVIEW</option>
 			<option value="activitylog">COM_MINITHEATRECM_TITLE_ACTIVITYLOG</option>
@@ -88,7 +88,7 @@
 		<field
 			name="overview_type" type="radio" default="0"
 			label="COM_MINITHEATRECM_DICTIONARY_OVERVIEWTYPE"
-			description="COM_MINITHEATRECM_FIELD_DESC_OVERVIEWTYPE"
+			description="COM_MINITHEATRECM_DESCRIPTION_OVERVIEWTYPE"
 			class="btn-group btn-group-yesno"
 			checksuperusergroup="1" >
 			<option value="1">COM_MINITHEATRECM_DICTIONARY_DETAILED</option>
@@ -96,12 +96,12 @@
 		</field>
 		
 	</fieldset>
-	<fieldset name="mtcm_manager" label="COM_MINITHEATRECM_DICTIONARY_MANAGER" description="COM_MINITHEATRECM_FIELD_DESC_MANAGER">
+	<fieldset name="mtcm_manager" label="COM_MINITHEATRECM_DICTIONARY_MANAGER" description="COM_MINITHEATRECM_DESCRIPTION_MANAGER">
 	
 		<field
 			name="genre_filter" type="radio" default="0"
 			label="COM_MINITHEATRECM_DICTIONARY_GENRESFILTER"
-			description="COM_MINITHEATRECM_FIELD_DESC_GENREFILTER"
+			description="COM_MINITHEATRECM_DESCRIPTION_GENREFILTER"
 			class="btn-group btn-group-yesno" >
 			<option value="1">COM_MINITHEATRECM_DICTIONARY_COMBINED</option>
 			<option value="0">COM_MINITHEATRECM_DICTIONARY_SPANNED</option>
@@ -111,12 +111,12 @@
 		
 		<field type="note"
 			label="COM_MINITHEATRECM_DICTIONARY_LINKS"
-			description="COM_MINITHEATRECM_FIELD_DESC_MANAGERLINKS" />
+			description="COM_MINITHEATRECM_DESCRIPTION_MANAGERLINKS" />
 			
 		<field
 			name="links_user" type="radio" default="0"
 			label="COM_MINITHEATRECM_DICTIONARY_USERS"
-			description="COM_MINITHEATRECM_FIELD_DESC_MANAGERLINKS"
+			description="COM_MINITHEATRECM_DESCRIPTION_MANAGERLINKS"
 			class="btn-group btn-group-yesno" >
 			<option value="1">COM_MINITHEATRECM_DICTIONARY_HYPERLINK</option>
 			<option value="0">COM_MINITHEATRECM_DICTIONARY_PLAINTEXT</option>
@@ -125,7 +125,7 @@
 		<field
 			name="links_access" type="radio" default="0"
 			label="COM_MINITHEATRECM_DICTIONARY_ACCESSGROUPS"
-			description="COM_MINITHEATRECM_FIELD_DESC_MANAGERLINKS"
+			description="COM_MINITHEATRECM_DESCRIPTION_MANAGERLINKS"
 			class="btn-group btn-group-yesno" >
 			<option value="1">COM_MINITHEATRECM_DICTIONARY_HYPERLINK</option>
 			<option value="0">COM_MINITHEATRECM_DICTIONARY_PLAINTEXT</option>
@@ -134,7 +134,7 @@
 		<field
 			name="links_catalogue" type="radio" default="0"
 			label="COM_MINITHEATRECM_DICTIONARY_CATALOGUES"
-			description="COM_MINITHEATRECM_FIELD_DESC_MANAGERLINKS"
+			description="COM_MINITHEATRECM_DESCRIPTION_MANAGERLINKS"
 			class="btn-group btn-group-yesno" >
 			<option value="1">COM_MINITHEATRECM_DICTIONARY_HYPERLINK</option>
 			<option value="0">COM_MINITHEATRECM_DICTIONARY_PLAINTEXT</option>
@@ -143,7 +143,7 @@
 		<field
 			name="links_franchise" type="radio" default="0"
 			label="COM_MINITHEATRECM_DICTIONARY_FRANCHISES"
-			description="COM_MINITHEATRECM_FIELD_DESC_MANAGERLINKS"
+			description="COM_MINITHEATRECM_DESCRIPTION_MANAGERLINKS"
 			class="btn-group btn-group-yesno" >
 			<option value="1">COM_MINITHEATRECM_DICTIONARY_HYPERLINK</option>
 			<option value="0">COM_MINITHEATRECM_DICTIONARY_PLAINTEXT</option>
@@ -152,7 +152,7 @@
 		<field
 			name="links_genre" type="radio" default="0"
 			label="COM_MINITHEATRECM_DICTIONARY_GENRES"
-			description="COM_MINITHEATRECM_FIELD_DESC_MANAGERLINKS"
+			description="COM_MINITHEATRECM_DESCRIPTION_MANAGERLINKS"
 			class="btn-group btn-group-yesno" >
 			<option value="1">COM_MINITHEATRECM_DICTIONARY_HYPERLINK</option>
 			<option value="0">COM_MINITHEATRECM_DICTIONARY_PLAINTEXT</option>
@@ -161,54 +161,54 @@
 		<field
 			name="links_ctype" type="radio" default="0"
 			label="COM_MINITHEATRECM_DICTIONARY_CONTENTTYPES"
-			description="COM_MINITHEATRECM_FIELD_DESC_MANAGERLINKS"
+			description="COM_MINITHEATRECM_DESCRIPTION_MANAGERLINKS"
 			class="btn-group btn-group-yesno" >
 			<option value="1">COM_MINITHEATRECM_DICTIONARY_HYPERLINK</option>
 			<option value="0">COM_MINITHEATRECM_DICTIONARY_PLAINTEXT</option>
 		</field>
 		
 	</fieldset>
-	<fieldset name="mtcm_cache" label="COM_MINITHEATRECM_DICTIONARY_CACHE" description="COM_MINITHEATRECM_FIELD_DESC_CACHE">
+	<fieldset name="mtcm_cache" label="COM_MINITHEATRECM_DICTIONARY_CACHE" description="COM_MINITHEATRECM_DESCRIPTION_CACHE">
 	
 		<field type="note"
 			label="COM_MINITHEATRECM_DICTIONARY_UPDATEINTERVAL"
-			description="COM_MINITHEATRECM_FIELD_DESC_TICKS" />
+			description="COM_MINITHEATRECM_DESCRIPTION_TICKS" />
 		
 		<field
 			name="ticks_catalogues" type="number"
 			first="1" last="999999"	default="100"
 			label="COM_MINITHEATRECM_DICTIONARY_CATALOGUES"
-			description="COM_MINITHEATRECM_FIELD_DESC_TICKS" />
+			description="COM_MINITHEATRECM_DESCRIPTION_TICKS" />
 			
 		<field
 			name="ticks_franchises" type="number"
 			first="1" last="999999"	default="100"
 			label="COM_MINITHEATRECM_DICTIONARY_FRANCHISES"
-			description="COM_MINITHEATRECM_FIELD_DESC_TICKS" />
+			description="COM_MINITHEATRECM_DESCRIPTION_TICKS" />
 			
 		<field
 			name="ticks_listings" type="number"
 			first="1" last="999999"	default="100"
 			label="COM_MINITHEATRECM_DICTIONARY_LISTINGS"
-			description="COM_MINITHEATRECM_FIELD_DESC_TICKS" />
+			description="COM_MINITHEATRECM_DESCRIPTION_TICKS" />
 			
 		<field
 			name="ticks_reviews" type="number"
 			first="1" last="999999"	default="100"
 			label="COM_MINITHEATRECM_DICTIONARY_REVIEWS"
-			description="COM_MINITHEATRECM_FIELD_DESC_TICKS" />
+			description="COM_MINITHEATRECM_DESCRIPTION_TICKS" />
 			
 		<field
 			name="ticks_genres" type="number"
 			first="1" last="999999"	default="100"
 			label="COM_MINITHEATRECM_DICTIONARY_GENRES"
-			description="COM_MINITHEATRECM_FIELD_DESC_TICKS" />
+			description="COM_MINITHEATRECM_DESCRIPTION_TICKS" />
 			
 	</fieldset>
 	<fieldset
 		name="permissions"
 		label="COM_MINITHEATRECM_DICTIONARY_PERMISSIONS"
-		description="COM_MINITHEATRECM_FIELD_DESC_COMACL" >
+		description="COM_MINITHEATRECM_DESCRIPTION_COMACL" >
 		
 		<field
 			name="rules" type="rules"

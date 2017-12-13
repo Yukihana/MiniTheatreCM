@@ -1,0 +1,3 @@
+<xmlfields>
+	<field typename="airstatus" address="/data/fields/airstatus.xml" />
+</xmlfields>

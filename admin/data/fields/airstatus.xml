@@ -1,0 +1,7 @@
+<airstatus>
+	<option value="0">None</option>
+	<option value="1">Ongoing</option>
+	<option value="2">Completed</option>
+	<option value="3">Announced</option>
+	<option value="4">Undeclared</option>
+</airstatus>

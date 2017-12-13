@@ -1,5 +1,5 @@
 <changelog>
-	<update version="0.0.12.H" date="2017-11-26">
+	<update version="0.0.12.H" date="2017-11-26" time="11:00" zone="UTC">
 		<task type="library">Dir '/meta': Merge filebase and database. '/nfo.php' to '/lib/nfo/legacy.php' & '/global.php' to '/lib/cfg/global.php'.</task>
 		<task type="library">Psuedobase class: For better usability, added to library instead of integrating with model-base.</task>
 		<task type="library">Psuedobase directory configuration list added to /cfg/directories.xml</task>

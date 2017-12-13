@@ -10,6 +10,10 @@
   
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+
+// Include Dependencies
+JLoader::Register('NeonHtmlForm', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/form.php');
+
 JHtml::_('behavior.formvalidator');
 JHtml::_('behavior.keepalive');
 JHtml::_('formbehavior.chosen', 'select');
@@ -17,23 +21,7 @@ JHtml::_('formbehavior.chosen', 'select');
 
 <form action="<?php echo JRoute::_('index.php?option=com_minitheatrecm&layout=edit&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="adminForm" class="form-validate">
 	
-	<?php /*
-	
-	<fieldset class="adminform">
-		<div class="control-group">
-			<div class="control-label"><?php echo $this->form->getLabel('name');?></div>
-			<div class="controls"><?php echo $this->form->getInput('name'); ?></div>
-		</div>
-	</fieldset>
-
-	<?php
-	/**
-	 * Supposedly works the same as the fieldset above but the code looks ambigious.
-	 * Will keep this commented till I understand how this actually works.
-	 */
-	
-	echo JLayoutHelper::render('joomla.edit.title_alias', $this);
-	?>
+	<?php echo JLayoutHelper::render('joomla.edit.title_alias', $this); ?>
 	
     <div class="form-horizontal">
 		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'desc')); ?>
@@ -46,23 +34,7 @@ JHtml::_('formbehavior.chosen', 'select');
 				</fieldset>
 			</div>
 			<div class="span3">
-				<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>
-				<hr/>
-				<fieldset class="form-vertical">
-					<?php echo $this->form->renderFieldset('associations'); ?>
-				</fieldset>
-			</div>
-		</div>
-		<?php echo JHtml::_('bootstrap.endTab'); ?>
-		
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'medialinks', JText::_('COM_MINITHEATRECM_DICTIONARY_MEDIAANDLINKS')); ?>
-		<div class="row-fluid">
-			<div class="span6">
-				
-			</div>
-			<div class="span6">
-				<?php echo $this->form->renderFieldset('websites');?>
-				<?php echo $this->form->renderFieldset('videos');?>
+				<?php echo $this->form->renderFieldset('metaglobal', array('class'=>'form-vertical')); ?>
 			</div>
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
@@ -70,7 +42,20 @@ JHtml::_('formbehavior.chosen', 'select');
 		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'metadata', JText::_('COM_MINITHEATRECM_DICTIONARY_METADATA')); ?>
 		<div class="row-fluid">
 			<div class="span6">
-				<?php echo $this->form->renderFieldset('metadata');?>
+				<?php echo $this->form->renderFieldset('airing');?>
+				<?php echo $this->form->renderFieldset('associations'); ?>
+			</div>
+			<div class="span6">
+				<?php echo $this->form->renderFieldset('links');?>
+				<?php echo $this->form->renderFieldset('videos');?>
+			</div>
+		</div>
+		<?php echo JHtml::_('bootstrap.endTab'); ?>
+		
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'medialinks', JText::_('COM_MINITHEATRECM_DICTIONARY_MEDIA')); ?>
+		<div class="row-fluid">
+			<div class="span6">
+				<!--Media here-->
 			</div>
 			<div class="span6">
 				<?php echo $this->form->renderFieldset('metatools');?>
@@ -81,20 +66,30 @@ JHtml::_('formbehavior.chosen', 'select');
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'options', JText::_('COM_MINITHEATRECM_DICTIONARY_OPTIONS')); ?>
+		
+		
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'publishing', JText::_('COM_MINITHEATRECM_DICTIONARY_PUBLISHING')); ?>
 		<div class="row-fluid">
 			<div class="span6">
 				<?php echo $this->form->renderFieldset('publishing'); ?>
+				<?php echo $this->form->renderField('id'); ?>
 			</div>
 			<div class="span6">
-				<?php echo $this->form->renderFieldset('super'); ?>
+				<?php echo NeonHtmlForm::renderStatsDisplay($this->item->hits, $this->item->votes, $this->item->rating, $this->item->recommends); ?>
+				<?php echo $this->form->renderFieldset('pubtools'); ?>
 			</div>
+		</div>
+		<?php echo JHtml::_('bootstrap.endTab'); ?>
+		
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'options', JText::_('COM_MINITHEATRECM_DICTIONARY_OPTIONS')); ?>
+		<div class="row-fluid">
+			
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		
 		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'permissions', JText::_('COM_MINITHEATRECM_DICTIONARY_PERMISSIONS')); ?>
 		<div class="row-fluid">
-		
+			<?php echo $this->form->getInput('rules'); ?>
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		

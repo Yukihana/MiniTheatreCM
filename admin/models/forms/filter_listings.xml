@@ -50,7 +50,7 @@
 		</field>
 		<field
 			name="itemid"
-			type="itemlist"
+			type="catalogue"
 			label="COM_MINITHEATRECM_HINT_SELECTITEM"
 			description="COM_MINITHEATRECM_HINT_SELECTITEM_DESC"
 			multiple="true"

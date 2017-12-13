@@ -94,7 +94,7 @@
 			
 			<folder>cfg</folder>
 			<folder>controllers</folder>
-			<folder>nfo</folder>
+			<folder>data</folder>
 			<folder>helpers</folder>
 			<folder>lib</folder>
 			<folder>models</folder>

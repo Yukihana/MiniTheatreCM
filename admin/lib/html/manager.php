@@ -105,6 +105,21 @@ abstract class NeonHtmlManager
 		}
 	}
 	
+	public static function renderAltNames($altnames)
+	{
+		if( empty( $altnames ))
+		{
+			return '';
+		}
+		else
+		{
+			return '<span class="icon-info-circle hasPopover disabled muted" title="'
+					.JText::_('COM_MINITHEATRECM_DICTIONARY_ALTERNATIVENAMES')
+					.'" data-placement="top" data-content="'
+					.nl2br($altnames).'"> </span>';
+		}
+	}
+	
 	public static function renderAlias($text)
 	{
 		return '<span class="small disabled muted hasTooltip" title="'
@@ -148,8 +163,8 @@ abstract class NeonHtmlManager
 		return $result;
 	}
 	
-	public static function renderEditorCell($authname, $authuser, $authid,
-											$editname, $edituser, $editid,
+	public static function renderEditorCell($authid, $authuser, $authname,
+											$editid, $edituser, $editname,
 											$linkable, $ordering)
 	{
 		$result = '<div><div class="nowrap">';
@@ -175,7 +190,7 @@ abstract class NeonHtmlManager
 		else
 		{
 			$result.= '<span class="small hasTooltip" title="'
-						.JText::sprintf('COM_MINITHEATRE_TOOLTIP_TEXT_AUTHOR', $authid)
+						.JText::sprintf('COM_MINITHEATRECM_TOOLTIP_TEXT_AUTHOR', $authid)
 						.'">'.self::_udn($authuser, $authname).'</span>';
 		}
 		

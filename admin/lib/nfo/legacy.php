@@ -14,6 +14,7 @@ defined('_JEXEC') or die('Restricted access');
 // Class for accessing NFO data
 abstract class NeonNfoLegacy
 {
+	/*
 	public static function getChangelogs()
 	{
 		// Get file contents
@@ -76,13 +77,14 @@ abstract class NeonNfoLegacy
 		
 		return $result;
 	}
+	*/
 	
 	public static function getTasks()
 	{
 		// Get file contents
 		try
 		{
-			$lines = file( JPATH_COMPONENT_ADMINISTRATOR . '/nfo/tasks.x' );
+			$lines = file( JPATH_COMPONENT_ADMINISTRATOR . '/data/nfo/tasks.x' );
 		}
 		catch(Exception $e)
 		{

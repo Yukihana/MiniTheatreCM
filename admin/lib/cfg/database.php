@@ -43,24 +43,40 @@ abstract class NeonCfgDatabase
 		return null;
 	}
 	
+	// Component XML-Field File Location
+	public static function getXmlFieldPath($typestr)
+	{
+		$xml = simplexml_load_file(JPATH_COMPONENT_ADMINISTRATOR .'/cfg/xmlfields.xml');
+		
+		foreach($xml->field as $field)
+		{
+			if( $field['typename'] == $typestr )
+			{
+				return JPATH_COMPONENT_ADMINISTRATOR . $field['address'];
+			}
+		}
+		return null;
+	}
+	
+	// Component Fileset Configuration
 	public static function getDirectoryCfg($typestr)
 	{
 		$xml = simplexml_load_file(JPATH_COMPONENT_ADMINISTRATOR .'/cfg/directories.xml');
 		
-		foreach($xml->files as $files)
+		foreach($xml->filebase as $filebase)
 		{
-			if( $files['typename'] == $typestr )
+			if( $filebase['typename'] == $typestr )
 			{
 				$result = new stdClass();
-				$result->typestr = $files['typename'];
-				if( !isset( $files['address'] ))
+				$result->typestr = $filebase['typename'];
+				if( !isset( $filebase['address'] ))
 				{
 					error_log('MTCM/DatabaseDriver/GetDirectory couldn\'t find an address field on the typestr: '.$typestr);
 					return null;
 				}
-				$result->address	= JPATH_COMPONENT_ADMINISTRATOR.(string)$files['address'];
-				$result->prefix		= isset($files['prefix'])? $files['prefix']:'';
-				$result->suffix		= isset($files['suffix'])? $files['suffix']:'';
+				$result->address	= JPATH_COMPONENT_ADMINISTRATOR.(string)$filebase['address'];
+				$result->prefix		= isset($filebase['prefix'])? $filebase['prefix']:'';
+				$result->suffix		= isset($filebase['suffix'])? $filebase['suffix']:'';
 				
 				return $result;
 			}

@@ -16,43 +16,28 @@ JFormHelper::loadFieldClass('list');
 JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/database.php');
 
 /**
- * ListingList Form Field class for the MiniTheatreCM component
+ * NeonFormFieldList source class for the MiniTheatreCM component
  *
  * @since  0.0.1
  */
-class JFormFieldListingList extends JFormFieldList
+class NeonFormXmlList extends JFormFieldList
 {
-	/**
-	 * The field type.
-	 *
-	 * @var         string
-	 */
-	protected $type = 'ListingList';
+	// Vars: Type Declaration, Field Xml-Name
+	protected $type = null;
+	protected $xmlname = null;
 
-	/**
-	 * Method to get a list of options for a list input.
-	 *
-	 * @return  array  An array of JHtml options.
-	 */
+	// Method to get Options
 	protected function getOptions()
 	{
-		$db    = JFactory::getDBO();
-		$query = $db->getQuery(true);
-		$query->select('id,name');
-		$query->from($db->quoteName(NeonCfgDatabase::getTableName('listings')));
-		$db->setQuery((string) $query);
-		$objlist = $db->loadObjectList();
+		$xml = simplexml_load_file( NeonCfgDatabase::getXmlFieldPath($this->xmlname) );
 		
 		$options  = array();
-
-		if ($objlist)
+		
+		foreach( $xml->option as $option )
 		{
-			foreach ($objlist as $obj)
-			{
-				$options[] = JHtml::_('select.option', $obj->id, $obj->name);
-			}
+			$options[] = JHtml::_('select.option', $option['value'], $option);
 		}
-
+		
 		$options = array_merge(parent::getOptions(), $options);
 
 		return $options;
