@@ -86,7 +86,7 @@ JLoader::Register('NeonHtmlManager', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/
 						</a>
 					</td>
 					<td class="small nowrap">
-						<?php NeonHtmlManager::getAccessField($this->groups, $row->access);?>
+						<?php echo NeonHtmlManager::renderAccessCell($row->access_name, $row->access);?>
 					</td>
 					<td class="small nowrap hidden-phone">					
 						<?php NeonHtmlManager::getUsernameField($this->names, $row->author);?>

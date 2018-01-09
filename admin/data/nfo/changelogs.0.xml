@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<changelogs>
+	<update version="0.0.1" date="2017-08-28">
+		<task type="tutorial">Started tutorial by using a basic 'Hello World' project.</task>
+	</update>
+	<update version="0.0.9" date="2017-09-01">
+		<task type="tutorial">Several tutorials completed.</task>
+		<task type="misc">Started development alongside advanced tutorials.</task>
+	</update>
+	<update version="0.0.9.R" date="2017-09-07">
+		<task type="misc">Start of repurposing contents to meet site requirements.</task>
+		<task type="misc">Refactored elements to match context.</task>
+		<task type="database">Renamed Database-Tables.</task>
+	</update>
+	<update version="0.0.10" date="2017-09-09">
+		<task type="tutorial">Tutorial: Added 'search' and 'filter' interfaces to management.</task>
+		<task type="translation">Several translations added and optimized.</task>
+	</update>
+	<update version="0.0.10.D" date="2017-09-11">
+		<task type="misc">Git: Added an updated git repo inclusive of major previous versions.</task>
+		<task type="admin manager">Applied: Publish, Unpublish, Archive, Trash options.</task>
+		<task type="misc translation">Several minor optimizations done to code and a few translations changed.</task>
+	</update>
+	<update version="0.0.11" date="2017-09-12">
+		<task type="tutorial">Tutorial: Add Verification. (I think they meant to say Validation).</task>
+		<task type="misc">Minor repurposing. Large one pending, perhaps. Database implementation pending.</task>
+		<task type="misc">Minor refactoring, translation changes. 1 pending.</task>
+		<task type="tutorial">Learnt how to use RegEx formatting, required for validation.</task>
+	</update>
+	<update version="0.0.11.X1" date="2017-09-18">
+		<task type="site">Added a few provisional blank views(frontend). MVC implementation pending.</task>
+		<task type="tutorial">Acquiring: SQL syntaces.</task>
+		<task type="database">Ditching tutorial based SQL schema for a more robust, relevant one.</task>
+		<task type="database">Added a few provisional tables to meet the projected tasks of this component.</task>
+		<task type="database">Upgrade existing 'MyISAM' data-tables(as in tutorials) to their InnoDB counterparts.</task>
+	</update>
+	<update version="0.0.11.X7" date="2017-10-01">
+		<task type="admin">Added additional views.</task>
+		<task type="database">Planning actual database fields.</task>
+		<task type="admin">Trying to implement similar data onto other views.</task>
+	</update>
+	<update version="0.0.11.X10" date="2017-10-10">
+		<task type="site">Added a basic framework for My-Listings, EditListing views on site-end.</task>
+		<task type="translation">Added some translations.</task>
+		<task type="database">Added Database definition modifications as per requirements.</task>
+	</update>
+	<update version="0.0.11.X12" date="2017-10-23">
+		<task type="admin">Added Admin/ContentType as a final replacement for ulwizsources.</task>
+		<task type="database">ContentType will act as the primary category system and also contain custom uploader code.</task>
+		<task type="site">Upgraded Site/MyListings to JModelList API over its previously inadequate JModelAdmin API.</task>
+		<task type="site">Added Site/MyReviews view-set with basic code.</task>
+		<task type="site">Minor upgrade for Site/Item to better, and current code.</task>
+	</update>
+	<update version="0.0.12" date="2017-10-26">
+		<task type="tutorial config">Added Global Configurations.</task>
+		<task type="admin manager">Added a basic frame for Admin/Genres.</task>
+		<task type="library">Planned a basic implementation for a Model Helper class to optimize code efficiency.</task>
+	</update>
+	<update version="0.0.12.A1" date="2017-10-26">
+		<task type="admin manager">Added a basic frame to Admin/Franchises.</task>
+		<task type="admin manager">Upgraded Admin/Genres code to somewhat usable.</task>
+		<task type="library">Solified the implementation of the model helper class. Added basic code to it.</task>
+	</update>
+	<update version="0.0.12.A2" date="2017-10-28">
+		<task type="admin manager">Added Admin/Listings MVC table</task>
+		<task type="admin manager">Fixed an error with Admin/Reviews (Layout still pending)</task>
+		<task type="site">Upgraded Site/EditListing to a better data-model.</task>
+		<task type="admin misc">Added submenu items to the toolbar menu for the component.</task>
+		<task type="library">Added a basic frame for a site end model-helper class.</task>
+	</update>
+	<update version="0.0.12.A3" date="2017-10-30">
+		<task type="admin misc">Added ChangeLog to Admin/Overview. Moving it over to advanced overview is pending.</task>
+		<task type="admin misc">Added NFO folder for storing roadmap, planner, version, changelog and other metadata.</task>
+		<task type="admin misc">Added helpers/nfo.php to act as a model for NFO data.</task>
+		<task type="admin manager">Added layout to Admin/Reviews</task>
+		<task type="admin database">A few required changes done to database. Upgrade code hasn't been added. Prior uninstall required.</task>
+	</update>
+	<update version="0.0.12.A4" date="2017-10-30">
+		<task type="admin misc">Added Custom Pagination to Admin/Overview/ChangeLog.</task>
+		<task type="admin form">Attempted the most basic use of forms on Admin/Genre.Edit to some success.</task>
+		<task type="library">Added helpers/html.php to help with layout rendering. Might move this to a admin/lib directory later.</task>
+	</update>
+	<update version="0.0.12.B1" date="2017-10-31">
+		<task type="admin misc">Styling added for Changelogs and Tasks.</task>
+		<task type="library">Started making changes for adding an API library.</task>
+		<task type="media">Started moving custom CSS and JS to designated media folders.</task>
+	</update>
+	<update version="0.0.12.B2" date="2017-11-01">
+		<task type="library">Created a paging API, added to library.</task>
+		<task type="library">Moved required JS and CSS to media directory.</task>
+		<task type="library">Optimized API calling and dependency syntax to simplify implementation.</task>
+		<task type="library">Created an 'include' API system for indexing and loading php/css/js files based on required tasks.</task>
+		<task type="library">Created a planner view and moved the changelog and roadmap data to here from 'overview'.</task>
+		<task type="library">Implemented the new paging API on the tasks and changelog psueodules: Success.</task>
+		<task type="library">Optimized a few sections using the new API.</task>
+	</update>
+</changelogs>

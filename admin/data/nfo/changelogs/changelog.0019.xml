@@ -1,9 +1,0 @@
-<changelog>
-	<update version="0.0.12.D1" date="2017-11-10">
-		<task type="admin manager">Fixed admin/listings fullordering not working.</task>
-		<task type="admin manager">Fixed column header not showing directional arrow on default state.</task>
-		<task type="library translation">Added a lot of missing translations, cleaned up unused libraries.</task>
-		<task type="admin manager">Write custom translations for fullordering. Make 'id desc' the default order.</task>
-		<task type="library">Add minitheatre folder to lib, and move mt specific helpers.</task>
-	</update>
-</changelog>

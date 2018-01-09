@@ -68,15 +68,15 @@ abstract class NeonCfgDatabase
 			if( $filebase['typename'] == $typestr )
 			{
 				$result = new stdClass();
-				$result->typestr = $filebase['typename'];
+				$result->typestr = strval($filebase['typename']);
 				if( !isset( $filebase['address'] ))
 				{
 					error_log('MTCM/DatabaseDriver/GetDirectory couldn\'t find an address field on the typestr: '.$typestr);
 					return null;
 				}
-				$result->address	= JPATH_COMPONENT_ADMINISTRATOR.(string)$filebase['address'];
-				$result->prefix		= isset($filebase['prefix'])? $filebase['prefix']:'';
-				$result->suffix		= isset($filebase['suffix'])? $filebase['suffix']:'';
+				$result->address	= JPATH_COMPONENT_ADMINISTRATOR . strval($filebase['address']);
+				$result->prefix		= isset($filebase['prefix'])? strval($filebase['prefix']):'';
+				$result->suffix		= isset($filebase['suffix'])? strval($filebase['suffix']):'';
 				
 				return $result;
 			}

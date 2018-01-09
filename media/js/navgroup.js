@@ -1,5 +1,6 @@
 function mtcmPagerNav(prefix,task)
 {
+	//change prefix to neon
 	var pager=document.getElementById(prefix+'-pagepanel');
 	var entries=document.getElementsByName(prefix+'-entry');
 	var indexer=document.getElementById(prefix+'-index');

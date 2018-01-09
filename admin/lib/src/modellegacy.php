@@ -22,35 +22,52 @@ JLoader::Register('NeonNfoLegacy', JPATH_COMPONENT_ADMINISTRATOR . '/lib/nfo/leg
  */
 class NeonModelLegacy extends JModelLegacy
 {
-	// Insecure forwarder: Not to be used for sensitive data
-	protected function forwardState($context, $sourcestate, $type, $default, $postname = null, $targetstate = null, $getname = null)
+	/*
+	 * Method to update State parameters
+	 *
+	 * @adstr		State-parameter address as string
+	 * @default		The default value to be used
+	 * @filter		The formatting filter to be used when retrieving get/post data
+	 * @param		(Optional) Specify Get/Post parameter string separately
+	 * @options		wd: Write default if state doesn't exist & get/post wasn't provided
+	 *				od: Overwrite with default if get/post wasn't provided
+	 */
+	protected function updateState($stateaddress, $default, $filter, $param = null, $options = '')
 	{
+		// Validate and Prepare
+		if( !is_string($stateaddress) || $stateaddress == '' )
+		{
+			return null;
+		}
+		if( !is_string($param) || $param == '' )
+		{
+			$address = explode('.', $stateaddress);
+			$param = $address[ (count($address)-1) ];
+		}
+		
+		// Retrieve and Compare
 		$app = JFactory::getApplication();
-
-		// Defaults
-		if( $targetstate == null )
+		$s = $app->getUserState($stateaddress, $default);
+		
+		if( strpos( $options, 'wd' ) && $s == $default )
 		{
-			$targetstate = $sourcestate;
+			$r = $default;
 		}
-		if( $postname == null )
+		if( $app->input->exists($param) )
 		{
-			$postname = $sourcestate;
+			$r = $app->input->get( $param, $default, $filter );
 		}
-		if( $getname == null )
+		elseif( strpos( $options, 'od' ))
 		{
-			$getname = $postname;
+			$r = $default;
 		}
 		
-		// Poll data
-		$state		= $app->getUserState($context.$sourcestate, (int)$default);
-		$post		= $app->input->post->get($postname, -1, $type);
-		$get		= $app->input->get->get($getname, -1, $type);
-		
-		// Analyse
-		$result = ($post != -1)? $post : $state;
-		$result = ($get != -1)? $get : $result;
-		
-		// Set the data
-		$app->setUserState($context.$targetstate, $result);
+		// Update and Return
+		if( isset( $r ))
+		{
+			$app->setUserState($stateaddress, $r);
+			return $r;
+		}
+		return $s;
 	}
 }

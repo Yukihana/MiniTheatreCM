@@ -23,17 +23,18 @@ JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/d
 class NeonFormFieldList extends JFormFieldList
 {
 	// Vars: Type Declaration, Select, DB-ID
-	protected $type = null;
+	protected $type			= null;
+	protected $dbname		= null;
 	
-	protected $dbselect = null;
-	protected $dbname = null;
-
+	protected $valuefield	= null;
+	protected $textfield	= null;
+	
 	// Method to get Options
 	protected function getOptions()
 	{
 		$db    = JFactory::getDBO();
 		$query = $db->getQuery(true);
-		$query->select($this->dbselect);
+		$query->select($this->getSelectClause($db));
 		$query->from($db->quoteName(NeonCfgDatabase::getTableName($this->dbname)));
 		$db->setQuery((string) $query);
 		$objlist = $db->loadObjectList();
@@ -51,5 +52,13 @@ class NeonFormFieldList extends JFormFieldList
 		$options = array_merge(parent::getOptions(), $options);
 
 		return $options;
+	}
+	
+	protected function getSelectClause(&$db)
+	{
+		$value = ( $this->valuefield != null )? $this->valuefield.' AS id' : 'id';
+		$text = ( $this->textfield != null )? $this->textfield.' AS name' : 'name';
+		
+		return $value.','.$text;
 	}
 }

@@ -12,7 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('NeonLibHtmlMessages', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/messages.php');
+JLoader::Register('NeonHtmlMessages', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/messages.php');
 
 abstract class NeonLibSiteErrorCheck
 {
@@ -22,10 +22,10 @@ abstract class NeonLibSiteErrorCheck
 		{
 			case 1:
 				// Not Logged In
-				NeonLibHtmlMessages::showMessage('JGLOBAL_YOU_MUST_LOGIN_FIRST', false);
+				echo NeonHtmlMessages::_('JGLOBAL_YOU_MUST_LOGIN_FIRST', false);
 				return;
 			case 2:
-				NeonLibHtmlMessages::showParsedMessage( 'COM_MINITHEATRECM_MESSAGEDATA_INVALIDPAGE', true, true, false, 'warning', 'COM_MINITHEATRECM_MESSAGE_NOTHINGTOSHOW');
+				NeonHtmlMessages::showParsedMessage( 'COM_MINITHEATRECM_MESSAGEDATA_INVALIDPAGE', true, true, false, 'warning', 'COM_MINITHEATRECM_MESSAGE_NOTHINGTOSHOW');
 				return;
 			default:
 				return;

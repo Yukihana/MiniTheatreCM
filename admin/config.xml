@@ -98,15 +98,46 @@
 	</fieldset>
 	<fieldset name="mtcm_manager" label="COM_MINITHEATRECM_DICTIONARY_MANAGER" description="COM_MINITHEATRECM_DESCRIPTION_MANAGER">
 	
+		<field type="note"
+			label="COM_MINITHEATRECM_DICTIONARY_FILTERING"
+			description="COM_MINITHEATRECM_DESCRIPTION_STRICTFILTER"/>
+	
 		<field
-			name="genre_filter" type="radio" default="0"
-			label="COM_MINITHEATRECM_DICTIONARY_GENRESFILTER"
-			description="COM_MINITHEATRECM_DESCRIPTION_GENREFILTER"
+			name="filter_genres" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_GENRES"
+			description="COM_MINITHEATRECM_DESCRIPTION_STRICTFILTER"
 			class="btn-group btn-group-yesno" >
-			<option value="1">COM_MINITHEATRECM_DICTIONARY_COMBINED</option>
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_STRICT</option>
 			<option value="0">COM_MINITHEATRECM_DICTIONARY_SPANNED</option>
 		</field>
 		
+		<field
+			name="filter_producers" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_PRODUCERS"
+			description="COM_MINITHEATRECM_DESCRIPTION_STRICTFILTER"
+			class="btn-group btn-group-yesno" >
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_STRICT</option>
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_SPANNED</option>
+		</field>
+		
+		<field
+			name="filter_licensors" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_LICENSORS"
+			description="COM_MINITHEATRECM_DESCRIPTION_STRICTFILTER"
+			class="btn-group btn-group-yesno" >
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_STRICT</option>
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_SPANNED</option>
+		</field>
+		
+		<field
+			name="filter_studios" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_STUDIOS"
+			description="COM_MINITHEATRECM_DESCRIPTION_STRICTFILTER"
+			class="btn-group btn-group-yesno" >
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_STRICT</option>
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_SPANNED</option>
+		</field>
+	
 		<field type="spacer" hr="true"/>
 		
 		<field type="note"

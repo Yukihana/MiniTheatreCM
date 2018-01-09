@@ -12,7 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::register('NeonNfoChangeLogs', JPATH_COMPONENT_ADMINISTRATOR.'/lib/nfo/changelogs.php');
+JLoader::register('NeonNfoVersionss', JPATH_COMPONENT_ADMINISTRATOR.'/lib/nfo/changelogs.php');
 JFormHelper::loadFieldClass('list');
 
 /**
@@ -29,7 +29,7 @@ class JFormFieldChangeLogs extends JFormFieldList
 	public function getOptions()
 	{
 		$options = array();
-		foreach(NeonNfoChangeLogs::getList() as $i=>$clog)
+		foreach(NeonNfoVersionss::getList() as $i=>$clog)
 		{
 			$options[] = JHtml::_('select.option', $i, $clog);
 		}

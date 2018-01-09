@@ -1,9 +1,0 @@
-<changelog>
-	<update version="0.0.12.E" date="2017-11-13">
-		<task type="admin manager">Fixed 'publish' not working.</task>
-		<task type="database">Updated SQL definitions for all tables.</task>
-		<task type="admin misc">Moved helpers/nfo.php to lib/mt/nfo.php.</task>
-		<task type="admin form">Added Admin/Listing form view.</task>
-		<task type="admin translation">Added translations to Table Headers like 'COLUMNHEADER_LISTINGNAME'.</task>
-	</update>
-</changelog>

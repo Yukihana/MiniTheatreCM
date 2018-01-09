@@ -1,6 +1,0 @@
-<changelog>
-	<update version="0.0.10" date="2017-09-09">
-		<task type="tutorial">Tutorial: Added 'search' and 'filter' interfaces to management.</task>
-		<task type="translation">Several translations added and optimized.</task>
-	</update>
-</changelog>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<parttype>
+	<option value="0">Chapter</option>
+	<option value="1">Episode</option>
+	<option value="2">Part</option>
+	<option value="3">Opening</option>
+	<option value="4">Ending</option>
+	<option value="5">Original Sound Track</option>
+</parttype>

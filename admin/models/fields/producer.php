@@ -19,6 +19,5 @@ defined('_JEXEC') or die('Restricted access');
 class JFormFieldProducer extends NeonFormFieldList
 {
 	protected $type			= 'Producer';
-	protected $dbselect		= 'id,name';
 	protected $dbname		= 'producers';
 }

@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_catalogues` (
 	`trivia`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Any trivia related to this title',
 	`editnote`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Editorial notes (Not to be displayed)',
 	
+	`specifics`			TEXT				NOT NULL DEFAULT ''		COMMENT 'Serialized: PartType, Index, Title, Synopsis',
 	`duration`			INT	UNSIGNED		NOT NULL DEFAULT '0'	COMMENT 'Stored in seconds',
 	`count`				INT	UNSIGNED		NOT NULL DEFAULT '0'	COMMENT 'Episode count, Chapter count, etc.',
 	`agerating`			TINYINT UNSIGNED	NOT NULL DEFAULT '0'	COMMENT 'Index from XML-source: agerating.xml',
@@ -23,14 +24,13 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_catalogues` (
 	`airfrom`			DATE										COMMENT 'The date airing starts/started',
 	`airtill`			DATE										COMMENT 'The date airing stops/stopped',
 	
+	`crew`				VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Serialized: crew-personnel, crew-roles',
 	`ctype`				INT	UNSIGNED		NOT NULL DEFAULT '1'	COMMENT 'Associated Content-type: Anime, Manga, Specials, Movie, Drama',
 	`franchise`			INT	UNSIGNED		NOT NULL DEFAULT '0'	COMMENT 'A group of related titles(catalogues) based on storyline',
 	`genres`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Multi-choice: Comma delimited indices',
 	`producers`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Multi-choice: Comma delimited indices',
 	`licensors`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Multi-choice: Comma delimited indices',
 	`studios`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Multi-choice: Comma delimited indices',
-	`actors`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Multi-choice: Comma delimited indices',
-	`staffpersons`		VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Multi-choice: Comma delimited indices',
 	
 	`offweb`			VARCHAR(127)		NOT NULL DEFAULT ''		COMMENT 'Official website',
 	`malurl`			VARCHAR(127)		NOT NULL DEFAULT ''		COMMENT 'My-Anime-List url',
@@ -144,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_contenttypes` (
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Micro Content: Producers, Licensors, Studios, Actors, StaffPersons, Roles
+-- Micro Content: Producers, Licensors, Studios
 CREATE TABLE IF NOT EXISTS `#__mtcm_producers` (
 	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
 	`name`				VARCHAR(255)		NOT NULL,
@@ -181,9 +181,23 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_studios` (
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `#__mtcm_actors` (
+-- Micro Content: Crew-personnel, Crew-roles
+CREATE TABLE IF NOT EXISTS `#__mtcm_crewpersonnel` (
 	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
-	`name`				VARCHAR(255)		NOT NULL,
+	
+	`firstname`			VARCHAR(255)		NOT NULL				COMMENT 'Roman/English Primary',
+	`middlename`		VARCHAR(255)		NOT NULL,
+	`lastname`			VARCHAR(255)		NOT NULL,
+	
+	`firstnative`		VARCHAR(255)		NOT NULL				COMMENT 'Native Unicode',
+	`middlenative`		VARCHAR(255)		NOT NULL,
+	`lastnative`		VARCHAR(255)		NOT NULL,
+	
+	`firstalt`			VARCHAR(255)		NOT NULL				COMMENT 'Alt Unicode (i.e. Hiragana)',
+	`middlealt`			VARCHAR(255)		NOT NULL,
+	`lastalt`			VARCHAR(255)		NOT NULL,
+	
+	`searchstrings`		VARCHAR(1023)		NOT NULL				COMMENT 'Additional names to help in search',
 	
 	`author`			INT(10) UNSIGNED	NOT NULL DEFAULT '0',
 	`recentedit`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
@@ -193,20 +207,7 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_actors` (
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `#__mtcm_staffpersonnel` (
-	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
-	`name`				VARCHAR(255)		NOT NULL,
-	`role`				TINYINT				NOT NULL DEFAULT '0',
-	
-	`author`			INT(10) UNSIGNED	NOT NULL DEFAULT '0',
-	`recentedit`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
-	`created`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
-	`modified`			DATETIME			DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	
-	PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE IF NOT EXISTS `#__mtcm_staffroles` (
+CREATE TABLE IF NOT EXISTS `#__mtcm_crewroles` (
 	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
 	`name`				VARCHAR(255)		NOT NULL,
 	
@@ -232,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_listings` (
 	`misc3`				VARCHAR(255)		NOT NULL DEFAULT ''		COMMENT 'audio, etc',
 	`misc4`				VARCHAR(255)		NOT NULL DEFAULT ''		COMMENT 'subs, etc',
 	
-	`catalogue_id`		INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
+	`catalogue`			INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
 	`request_name`		VARCHAR(255)		NOT NULL DEFAULT '',
 	`request_msg`		TEXT				NOT NULL DEFAULT '',
 	
@@ -262,7 +263,7 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_reviews` (
 	`content`			TEXT				NOT NULL DEFAULT '',
 	
 	`rating_p_h`		VARCHAR(255)		NOT NULL DEFAULT '',
-	`catalogue_id`		INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
+	`catalogue`			INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
 	
 	`access`			INT(10)	UNSIGNED	NOT NULL DEFAULT '2',
 	`state`				TINYINT(3)			NOT NULL DEFAULT '1',
@@ -353,7 +354,7 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_rating_genres` (
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Relational tables: Genres
+-- Relational Cache
 CREATE TABLE IF NOT EXISTS `#__mtcm_genre_catalogues` (
 	`id`			INT(10)				NOT NULL AUTO_INCREMENT,
 	
@@ -412,7 +413,7 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_admin_ulwiz` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Test Values, release version won't be using these.
-INSERT INTO `#__mtcm_listings` (`name`, `author`, `catalogue_id`, `rating`, `alias`) VALUES
+INSERT INTO `#__mtcm_listings` (`name`, `author`, `catalogue`, `rating`, `alias`) VALUES
 ('Test Listing 1', 42, 1, 4, 'test-listing-1'),
 ('Test Listing 2', 42, 2, 3, 'test-listing-2'),
 ('Test Listing 3', 42, 1, 7, 'test-listing-3'),
@@ -438,7 +439,7 @@ INSERT INTO `#__mtcm_listings` (`name`, `author`, `state`, `request_name`, `requ
 ('No Item Listing 21', 42, 0, 'Hellsblade', 'New requested anime example'),
 ('No Item Listing 22', 49, 0, 'HellsbladeMega', 'New requested anime example');
 
-INSERT INTO `#__mtcm_reviews` (`name`, `author`, `catalogue_id`) VALUES
+INSERT INTO `#__mtcm_reviews` (`name`, `author`, `catalogue`) VALUES
 ('Loving it!', 42, 1),
 ('Must watch. Very Under-rated!', 43, 1),
 ('Almost amazing', 49, 1),
@@ -482,7 +483,7 @@ INSERT INTO `#__mtcm_admin_ulwiz` (`wname`) VALUES
 ('Manga'),
 ('Dorama');
 
-INSERT INTO `#__mtcm_rating_items` (`rating`, `author`, `target_id`) VALUES
+INSERT INTO `#__mtcm_rating_catalogues` (`rating`, `author`, `target_id`) VALUES
 (11, 42, 1),
 (46, 43, 0),
 (45, 49, 2),
@@ -536,3 +537,28 @@ INSERT INTO `#__mtcm_activitylog` (`user_id`, `target_type`, `target_id`, `inter
 (49, 3, 3, 0),
 (63, 5, 2, 1),
 (61, 4, 8, 0);
+
+INSERT INTO `#__mtcm_studios` (`name`) VALUES
+('AkibaNix'),
+('AH1'),
+('PAM');
+
+INSERT INTO `#__mtcm_producers` (`name`) VALUES
+('Endox'),
+('Krayzon'),
+('SkyPer');
+
+INSERT INTO `#__mtcm_licensors` (`name`) VALUES
+('Actua USA'),
+('Kray NA'),
+('AniKix');
+
+INSERT INTO `#__mtcm_crewpersonnel` (`firstname`, `lastname`) VALUES
+('Minori', 'Tachibana'),
+('Kana', 'Uehara'),
+('Hitoshi', 'Akabane');
+
+INSERT INTO `#__mtcm_crewroles` (`name`) VALUES
+('Main Actor'),
+('Supporting Actress'),
+('Direction');

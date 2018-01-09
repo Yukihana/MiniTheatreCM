@@ -11,16 +11,12 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-// Include Dependencies
-JLoader::Register('NeonMtModel', JPATH_COMPONENT_ADMINISTRATOR . '/lib/mt/model.php');
-JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/database.php');
-
 /**
  * RatingFranchises Model-List
  *
  * @since  0.0.1
  */
-class MiniTheatreCMModelRatingFranchises extends JModelList
+class MiniTheatreCMModelRatingFranchises extends NeonModelList
 {
 	// SQL Query to load List Data
 	protected function getListQuery()
@@ -32,15 +28,5 @@ class MiniTheatreCMModelRatingFranchises extends JModelList
 		$db->setQuery($query);
 		
 		return $query;
-	}
-	
-	// Helper Methods
-	public function getUsernames()
-	{
-		return NeonMtModel::getUsernames( $this->getItems(), array('author','recentedit') );
-	}
-	public function getFranchises()
-	{
-		return NeonMtModel::getFranchises( $this->getItems(), array('target_id') );
 	}
 }

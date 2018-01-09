@@ -1,9 +1,0 @@
-<changelog>
-	<update version="0.0.12.A2" date="2017-10-28">
-		<task type="admin manager">Added Admin/Listings MVC table</task>
-		<task type="admin manager">Fixed an error with Admin/Reviews (Layout still pending)</task>
-		<task type="site">Upgraded Site/EditListing to a better data-model.</task>
-		<task type="admin misc">Added submenu items to the toolbar menu for the component.</task>
-		<task type="library">Added a basic frame for a site end model-helper class.</task>
-	</update>
-</changelog>

@@ -13,6 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
 JLoader::Register('NeonHtmlManager', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/manager.php');
+JLoader::Register('MiniTheatreCMCfgGlobal', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/global.php');
 
 JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.multiselect');
@@ -115,7 +116,7 @@ $statsorder		= NeonHtmlManager::getStatsOrder($listOrder);
 						<?php NeonHtmlManager::getItemField($this->itemnames, $row->catalogue_id);?>
 					</td>
 					<td class="small nowrap hidden-phone">
-						<?php NeonHtmlManager::getAccessField($this->groups, $row->access);?>
+						<?php echo NeonHtmlManager::renderAccessCell($row->access_name, $row->access);?>
 					</td>
 					<td class="hidden-phone">					
 						<?php echo NeonHtmlManager::getEditorCell($this->names, $row->author, $row->recentedit, $editororder);?>

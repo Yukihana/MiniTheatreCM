@@ -39,15 +39,25 @@ JHtml::_('formbehavior.chosen', 'select');
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'metadata', JText::_('COM_MINITHEATRECM_DICTIONARY_METADATA')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'details', JText::_('COM_MINITHEATRECM_DICTIONARY_DETAILS')); ?>
 		<div class="row-fluid">
-			<div class="span6">
-				<?php echo $this->form->renderFieldset('airing');?>
-				<?php echo $this->form->renderFieldset('associations'); ?>
+			<div class="span9">
+				<?php echo $this->form->getInput('specifics'); ?>
 			</div>
-			<div class="span6">
-				<?php echo $this->form->renderFieldset('links');?>
-				<?php echo $this->form->renderFieldset('videos');?>
+			<div class="span3">
+				<?php echo $this->form->renderFieldset('airing', array('class'=>'form-vertical')); ?>
+			</div>
+		</div>
+		<?php echo JHtml::_('bootstrap.endTab'); ?>
+		
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'production', JText::_('COM_MINITHEATRECM_DICTIONARY_PRODUCTION')); ?>
+		<div class="row-fluid">
+			<div class="span9">
+				<?php echo $this->form->getInput('crew'); ?>
+			</div>
+			<div class="span3">
+				<?php echo $this->form->renderFieldset('categorisation', array('class'=>'form-vertical')); ?>
+				<?php echo $this->form->renderFieldset('production', array('class'=>'form-vertical')); ?>
 			</div>
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
@@ -58,15 +68,11 @@ JHtml::_('formbehavior.chosen', 'select');
 				<!--Media here-->
 			</div>
 			<div class="span6">
-				<?php echo $this->form->renderFieldset('metatools');?>
-				<div class="controls">
-					<a href="#" class="btn btn-inverse"><?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_FETCH');?></a>
-				</div>
+				<?php echo $this->form->renderFieldset('links');?>
+				<?php echo $this->form->renderFieldset('videos'); ?>
 			</div>
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
-		
-		
 		
 		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'publishing', JText::_('COM_MINITHEATRECM_DICTIONARY_PUBLISHING')); ?>
 		<div class="row-fluid">
@@ -83,7 +89,14 @@ JHtml::_('formbehavior.chosen', 'select');
 		
 		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'options', JText::_('COM_MINITHEATRECM_DICTIONARY_OPTIONS')); ?>
 		<div class="row-fluid">
-			
+			<div class="span6">
+			</div>
+			<div class="span6">
+				<?php echo $this->form->getInput('metatools'); ?>
+				<div class="controls">
+					<a href="#" class="btn btn-inverse"><?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_FETCH');?></a>
+				</div>
+			</div>
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		

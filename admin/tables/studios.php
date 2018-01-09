@@ -18,9 +18,5 @@ defined('_JEXEC') or die('Restricted access');
  */
 class MiniTheatreCMTableStudios extends NeonTable
 {
-	// Constructor ($db: database connector object)
-	function __construct(&$db)
-	{
-		parent::__construct(NeonCfgDatabase::getTableName('studios'), 'id', $db);
-	}
+	protected $dbname = 'studios';
 }

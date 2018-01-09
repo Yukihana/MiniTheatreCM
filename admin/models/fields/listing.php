@@ -19,6 +19,5 @@ defined('_JEXEC') or die('Restricted access');
 class JFormFieldListing extends NeonFormFieldList
 {
 	protected $type			= 'Listing';
-	protected $dbselect		= 'id,name';
 	protected $dbname		= 'listings';
 }

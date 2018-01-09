@@ -12,9 +12,8 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('NeonModelLegacy', JPATH_COMPONENT_ADMINISTRATOR . '/lib/src/modellegacy.php');
-JLoader::Register('NeonNfoFilebase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/nfo/filebase.php');
-JLoader::Register('NeonNfoTasks', JPATH_COMPONENT_ADMINISTRATOR . '/lib/nfo/tasks.php');
+JLoader::Register('NeonNfoVersions', JPATH_COMPONENT_ADMINISTRATOR . '/lib/nfo/versions.php');
+JLoader::Register('NeonNfoChangelog', JPATH_COMPONENT_ADMINISTRATOR . '/lib/nfo/changelog.php');
 
 /**
  * Planner Model
@@ -23,40 +22,73 @@ JLoader::Register('NeonNfoTasks', JPATH_COMPONENT_ADMINISTRATOR . '/lib/nfo/task
  */
 class MiniTheatreCMModelPlanner extends NeonModelLegacy
 {
-	protected $cloglist;
+	protected $versions_list;
+	protected $version_marker = 'ver';
 	
 	public function populateState()
 	{
-		$this->forwardState('com_minitheatrecm.planner.', 'tabview', 'CMD', 'roadmap');
-		// Clog
-		$this->forwardState('com_minitheatrecm.planner.clog.', 'index', 'INT', 0, 'clogindex' );
-		$this->forwardState('com_minitheatrecm.planner.clog.', 'limitstart', 'INT', 0, 'cloglimitstart' );
+		$this->updateState('com_minitheatrecm.planner.'.$this->version_marker.'.limitstart', 0, 'INT', $this->version_marker.'limitstart' );
 		
 		parent::populateState();
 	}
 	
-	// ChangeLogs
-	public function getChangeLogList()
+	// TabState Intuitive
+	public function getUpdateType()
 	{
-		if( !isset( $this->cloglist ))
+		$app = JFactory::getApplication();
+		$u = $app->input->get('update', '', 'CMD');
+		trim($u, '.');
+		$u = explode('.', $u, 2);			
+		if( !empty($u[0]) )
 		{
-			$this->cloglist = NeonNfoFilebase::getList('changelogs');
+			if( in_array($u[0],array('roadmap','manifest','tasks','changelog')) && isset($u[1]) )
+			{
+				$app->setUserState( 'com_minitheatrecm.planner.'.$u[0], $u[1] );
+			}
+			return $u[0];
 		}
-		
-		$limitstart = JFactory::getApplication()->getUserState('com_minitheatrecm.planner.clog.limitstart', 0);
-		return NeonNfoFilebase::getListQuery($this->cloglist, (int)$limitstart, 'clog');
+		return null;
 	}
 	
-	public function getChangeLog()
+	// Versions
+	protected function initializeVData()
 	{
-		if( !isset( $this->cloglist ))
+		if( !isset( $this->versions_list ))
 		{
-			$this->cloglist = NeonNfoFilebase::getList('changelogs');
+			$this->versions_list = NeonNfoVersions::getList();
 		}
+	}
+	public function getVOptions()
+	{
+		$this->initializeVData();
+		return NeonNfoVersions::getOptions($this->versions_list);
+	}
+	public function getVList()
+	{
+		$this->initializeVData();
+		$limitstart = JFactory::getApplication()->getUserState('com_minitheatrecm.planner.'.$this->version_marker.'.limitstart', 0);
+		return NeonNfoVersions::getListQuery($this->versions_list, $limitstart, false);
+	}
+	public function getVPagination()
+	{
+		// Initialise
+		$this->initializeVData();
+		JLoader::import('joomla.html.pagination');
 		
-		$id = JFactory::getApplication()->getUserState('com_minitheatrecm.planner.clog.index', 0);
-		return NeonNfoTasks::renderChangeLog( NeonNfoFilebase::getFilePath($this->cloglist, $id) );
+		// Prepare data
+		$app		= JFactory::getApplication();
+		$limitstart	= $app->getUserState('com_minitheatrecm.planner.'.$this->version_marker.'.limitstart', 0);
+		$limit		= $app->get('list_limit');
+		$total		= count( $this->versions_list );
+		
+		// Build and return
+		return new JPagination( $total, $limitstart, $limit, $this->version_marker );
 	}
 	
-
+	// Data: Changelog
+	public function getChangelog()
+	{
+		$id = JFactory::getApplication()->getUserState('com_minitheatrecm.planner.changelog', 0);
+		return NeonNfoChangelog::get($id);
+	}
 }

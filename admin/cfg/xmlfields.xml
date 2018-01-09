@@ -1,3 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <xmlfields>
+	<field typename="agerating" address="/data/fields/agerating.xml" />
+	<field typename="airtype" address="/data/fields/airtype.xml" />
 	<field typename="airstatus" address="/data/fields/airstatus.xml" />
+	<field typename="parttype" address="/data/fields/parttype.xml" />
 </xmlfields>

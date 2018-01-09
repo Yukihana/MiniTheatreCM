@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <views>
 	<view type="custom" value="overview">COM_MINITHEATRECM_TITLE_OVERVIEW</view>
 </views>

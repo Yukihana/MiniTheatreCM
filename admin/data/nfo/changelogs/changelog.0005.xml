@@ -1,8 +1,0 @@
-<changelog>
-	<update version="0.0.11" date="2017-09-12">
-		<task type="tutorial">Tutorial: Add Verification. (I think they meant to say Validation).</task>
-		<task type="misc">Minor repurposing. Large one pending, perhaps. Database implementation pending.</task>
-		<task type="misc">Minor refactoring, translation changes. 1 pending.</task>
-		<task type="tutorial">Learnt how to use RegEx formatting, required for validation.</task>
-	</update>
-</changelog>

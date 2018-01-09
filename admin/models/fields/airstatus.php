@@ -12,7 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * CatalogueList Form Field class for the MiniTheatreCM component
+ * AirStatus Xml Field class for the MiniTheatreCM component
  *
  * @since  0.0.1
  */

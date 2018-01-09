@@ -11,42 +11,41 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-abstract class NeonLibHtmlMessages
+abstract class NeonHtmlMessages
 {
-	public static function showMessage($message, $close = true, $level = 'warning', $caption = '')
+	public static function _($message = null, $caption = null, $close = true, $level = 'warning')
 	{
-		// Translate
-		if( $caption != '')
-		{
-			$caption = JText::_($caption);
-		}
-		$message = JText::_($message);
-		
 		// Open Container
-		echo '<div class="alert alert-'.$level.'">';
+		$r = '<div class="alert alert-'.$level.'">';
 		
 		// Close button
 		if( $close )
 		{
-			echo '<button type="button" class="close" data-dismiss="alert">×</button>';
+			$r.= '<button type="button" class="close" data-dismiss="alert">×</button>';
 		}
 		
 		// Header
-		if( $caption != '' )
+		if( is_string( $caption ))
 		{
-			echo '<h4 class="alert-heading">'.$caption.'</h4>';
+			$r.= '<h4 class="alert-heading">'.$caption.'</h4>';
 		}
 		
-		// Content
-		echo '<div class="alert-message">'.$message.'</div>';
-		
+		// Message
+		if( is_string( $message ))
+		{
+			$r.= '<div class="alert-message">'.$message.'</div>';
+		}
+
 		// Close container
-		echo '</div>';
+		$r.= '</div>';
+		
+		// Return
+		return $r;
 	}
 	public static function showParsedMessage($message, $pre = false, $post = false, $close = true, $level = 'warning', $caption = '', $delimiter = '~')
 	{
 		$r = self::formatCompound($message, $pre, $post, $delimiter);
-		self::showMessage($r, $close, $level, $caption);
+		return self::_($r, $close, $level, $caption);
 	}
 	public static function formatCompound($message, $pre = false, $post = false, $delimiter = '~')
 	{
@@ -61,7 +60,7 @@ abstract class NeonLibHtmlMessages
 			$a = array();
 			foreach($message as $s)
 			{
-				array_push($a, JText::_($s));
+				$a[] = JText::_($s);
 			}
 		}
 		else
@@ -79,13 +78,13 @@ abstract class NeonLibHtmlMessages
 			{
 				$head =	$s;
 			}
-			else if($i==$n-1 && $n>2 && $post)
+			elseif($i==$n-1 && $n>2 && $post)
 			{
 				$foot = $s;
 			}
 			else
 			{
-				array_push($b, $s);
+				$b[] = $s;
 			}
 			$i++;
 		}

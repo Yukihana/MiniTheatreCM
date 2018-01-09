@@ -13,8 +13,5 @@ defined('_JEXEC') or die('Restricted access');
 
 abstract class NeonNfoTasks
 {
-	public static function renderChangeLog($xml)
-	{
-		return file_get_contents($xml);
-	}
+	
 }

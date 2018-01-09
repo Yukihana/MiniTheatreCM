@@ -92,6 +92,7 @@
 			<filename>config.xml</filename>
 			<filename>access.xml</filename>
 			
+			<folder>cache</folder>
 			<folder>cfg</folder>
 			<folder>controllers</folder>
 			<folder>data</folder>

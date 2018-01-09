@@ -1,9 +1,0 @@
-<changelog>
-	<update version="0.0.12.A3" date="2017-10-30">
-		<task type="admin misc">Added ChangeLog to Admin/Overview. Moving it over to advanced overview is pending.</task>
-		<task type="admin misc">Added NFO folder for storing roadmap, planner, version, changelog and other metadata.</task>
-		<task type="admin misc">Added helpers/nfo.php to act as a model for NFO data.</task>
-		<task type="admin manager">Added layout to Admin/Reviews</task>
-		<task type="admin database">A few required changes done to database. Upgrade code hasn't been added. Prior uninstall required.</task>
-	</update>
-</changelog>

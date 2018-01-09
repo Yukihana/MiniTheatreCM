@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<changelogs>
+	<update version="0.0.12.C">
+		<task type="config">Fixed default_view global parameter.</task>
+		<task type="admin misc">Removed bloat layout data from Overview.</task>
+		<task type="config">Added and Implemented a central indexing for tables at admin/meta/database.php.</task>
+		<task type="library">Added and Implemented ManagerFields renderer to help populate table-cells.</task>
+		<task type="database">Added JTable classes, SQL definitions and admin MVC lists for 'ratings'. (Reinstall required)</task>
+		<task type="admin misc">Compacted method comments to optimize file sizes.</task>
+		<task type="admin manager">Fixed irregular responsive columns for many manager views.</task>
+	</update>
+	<update version="0.0.12.D">
+		<task type="library">Added a custom renderer for messages that can parse and translate arrays.</task>
+		<task type="database">Standardised sql table definition for items.</task>
+		<task type="site">Upgraded site/item code to conform to the new system.</task>
+		<task type="site">Added a basic tablayout to site/items. Pending actual design and content.</task>
+		<task type="database">Changed #__mtcm_metadatas to #__mt_shared, and updated tables.</task>
+		<task type="admin manager">Fixed footer colspan values for all manager-list views.</task>
+		<task type="admin manager">Upgraded admin/listings to use non tutorial filters.(not fully functional yet)</task>
+	</update>
+	<update version="0.0.12.D1">
+		<task type="admin manager">Fixed admin/listings fullordering not working.</task>
+		<task type="admin manager">Fixed column header not showing directional arrow on default state.</task>
+		<task type="library translation">Added a lot of missing translations, cleaned up unused libraries.</task>
+		<task type="admin manager">Write custom translations for fullordering. Make 'id desc' the default order.</task>
+		<task type="library">Add minitheatre folder to lib, and move mt specific helpers.</task>
+	</update>
+	<update version="0.0.12.E">
+		<task type="admin manager">Fixed 'publish' not working.</task>
+		<task type="database">Updated SQL definitions for all tables.</task>
+		<task type="admin misc">Moved helpers/nfo.php to lib/mt/nfo.php.</task>
+		<task type="admin form">Added Admin/Listing form view.</task>
+		<task type="admin translation">Added translations to Table Headers like 'COLUMNHEADER_LISTINGNAME'.</task>
+	</update>
+	<update version="0.0.12.F">
+		<task type="admin misc">Version NFO upgraded to INI format.</task>
+		<task type="library">Moved '/lib/mt/nfo.php' to 'meta/nfo.php'.</task>
+		<task type="admin manager">Added footer badge to manager html library and applied to all manager views.</task>
+		<task type="admin manager">Updated all manager views to use 'setDocument()' for page header and titles.</task>
+		<task type="admin misc">Added Manifest tab to Planner(Layout postponed till after structure planning).</task>
+		<task type="config">Moved tables' indices to XML and made required changes to the handler class.</task>
+		<task type="admin misc">Change manifest.x to xml-type file.</task>
+		<task type="admin translation">Implemented pluralisable translations for system messages.</task>
+	</update>
+	<update version="0.0.12.G">
+		<task type="form">Form views added for Item, Franchise, Content-type.</task>
+		<task type="misc">Added ActivityLog MVC(Basic), and a placeholder template.</task>
+		<task type="database">Registered the table for ActivityLog, and added some dummy test data.</task>
+		<task type="manager">Fixed 'trashed' items showing by default in a fresh session.</task>
+		<task type="manager">Merged 'Author/RecentEdit', 'Created/Modified' and 'Hits/Votes' columns to show two-line data with ordering-states.</task>
+		<task type="library">Refactored Library namespace to be slightly smaller and more distinct from the rest of the classes.</task>
+		<task type="manager">SQL and Columns/Data added to layout: Access, Alias, Rating, Vote, Hits. Fullordering added.</task>
+		<task type="manager">Added Recent-editor (author) filter to search.</task>
+		<task type="config">Updated Component config to have manager-links and cache settings. Implementation pending.</task>
+		<task type="library">Added an intermediate model-class enhanced for List-models to extend from, and implemented to best Manager-Code.</task>
+		<task type="database">Updated SQL definitions to apply a cache_ticks field to relevant tables.</task>
+	</update>
+	<update version="0.0.12.H">
+		<task type="library">Dir '/meta': Merge filebase and database. '/nfo.php' to '/lib/nfo/legacy.php' &amp; '/global.php' to '/lib/cfg/global.php'.</task>
+		<task type="library">Psuedobase class: For better usability, added to library instead of integrating with model-base.</task>
+		<task type="library">Psuedobase directory configuration list added to /cfg/directories.xml</task>
+		<task type="misc">Changelog data converted to individual xml files for psuedobase implementation test.</task>
+		<task type="config">Sidebar code: Hardcoded data moved to '/cfg/sidebar.xml'. Relative location of the xml file is still hardcoded.</task>
+		<task type="library">Structural rewrite completed for upgrade to Query-Joins optimizations.</task>
+		<task type="library">Filters are split into types using an inheritable interface on the source model-list.</task>
+	</update>
+	<update version="0.0.12.I">
+		<task type="library">Several structural changes.</task>
+		<task type="manager">Several manager class code improvements (Genres still pending implementation).</task>
+		<task type="database">Several database updates to make space for metadata.</task>
+		<task type="forms">Several updates to form view code.</task>
+		<task type="misc">Preparing MAL and AniDB api for pulling initial catalogue data (JSON over AJAX).</task>
+		<task type="translation">Several updates and cleanups to translation.</task>
+	</update>
+	<update version="0.0.12.J">		
+		<task type="database">Several fields added to form view and database for Catalogues.</task>
+		<task type="manager">Upgraded manager-view 'search' to use multiple fields.</task>
+		<task type="manager">Several features added to the manager-renderer class.</task>
+		<task type="forms">Fixed custom list-fields not saving data. (multi-choice list still pending)</task>
+		<task type="library">Added source classes for db-list and xml-list type fields.</task>
+		<task type="misc">Several changes done to directory structure to implement xml-type field files.</task>
+		<task type="database">Add db-tables for Producers, Licensors, Studios, Actors, Staff, Roles.</task>
+		<task type="database">JTable classes added for: Producers, Licensors, Studios</task>
+		<task type="database">Field-type declaration for: Producers, Licensors, Studios</task>
+		<task type="translation">Added a lot of missing translations.</task>
+	</update>
+	<update version="0.0.12.K">
+		<task type="forms">ModelAdmin and Table source class added with multichoice API support. (Multichoice save/load fixed)</task>
+		<task type="forms">Table/Repeatable/Subform API implemented for Crew(Personnel and Roles) and Episodic-Details.</task>
+		<task type="config">Registered and implemented a few XML fields: 'agerating' and 'airtype' following 'airstatus' in the previous subversion.</task>
+		<task type="library">Cleaned up MTHELPER-dependent code from model-list classes. (The view codes are still broken and will be fixed after genres-json code upgrade)</task>
+		<task type="config">Added registry for media storage.</task>
+		<task type="library">Added a version-history indexing registry and handler class.</task>
+		<task type="library">Added a dedicated changelog-data handler class and merged the data into a glob-split series of xml subfiles.</task>
+		<task type="misc">Schematised all unschematised XML files.</task>
+		<task type="library">Generic ajax script for content is ready for deploying.</task>
+		<task type="library">Partially upgraded the profiling based file-list fetcher.</task>
+		<task type="misc">Changelogs AJAX with fallback fully functional in MVC/Planner (Minor bugs may remain).</task>
+		<task type="library">Several misc changes to the library files.</task>
+	</update>
+</changelogs>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <sidebar>
 	<!--Dashboard-->
 	<menuitem option="com_minitheatrecm"	view="overview"				matchstr="overview"				label="COM_MINITHEATRECM_TITLE_OVERVIEW"/>

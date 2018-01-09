@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<airtype>
+	<option value="0">None</option>
+	<option value="1">OVA</option>
+	<option value="2">TV</option>
+</airtype>

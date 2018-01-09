@@ -1,7 +1,0 @@
-<changelog>
-	<update version="0.0.9.R" date="2017-09-07">
-		<task type="misc">Start of repurposing contents to meet site requirements.</task>
-		<task type="misc">Refactored elements to match context.</task>
-		<task type="database">Renamed Database-Tables.</task>
-	</update>
-</changelog>

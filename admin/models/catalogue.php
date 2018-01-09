@@ -16,48 +16,15 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class MiniTheatreCMModelCatalogue extends JModelAdmin
+class MiniTheatreCMModelCatalogue extends NeonModelAdmin
 {
+	protected $userstatestring	= 'com_minitheatrecm.edit.editcatalogue.data';
+	protected $formname			= 'com_minitheatrecm.catalogue';
+	protected $formxml			= 'editcatalogue';
+	
 	// Method to fetch JTable instances ($name: modelname, $prefix: class prefix, $config: optional configuration array)
 	public function getTable($type = 'Catalogues', $prefix = 'MiniTheatreCMTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
-	}
-	
-	// Method to fetch form ($array: form-data, $loadData: load existing?), return [mixed] success? form-object : false.
-	public function getForm($data = array(), $loadData = true)
-	{
-		$form = $this->loadForm(
-			'com_minitheatrecm.catalogue',
-			'editcatalogue',
-			array(
-				'control' => 'jform',
-				'load_data' => $loadData
-			)
-		);
-
-		if (empty($form))
-		{
-			return false;
-		}
-
-		return $form;
-	}
-	
-	// Method to get the data for the form
-	protected function loadFormData()
-	{
-		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState(
-			'com_minitheatrecm.edit.editcatalogue.data',
-			array()
-		);
-
-		if (empty($data))
-		{
-			$data = $this->getItem();
-		}
-
-		return $data;
 	}
 }

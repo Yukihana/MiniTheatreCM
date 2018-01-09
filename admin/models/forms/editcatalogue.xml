@@ -73,21 +73,29 @@
 			hint="COM_MINITHEATRECM_HINT_NOSITEDISPLAY" />
 		
 	</fieldset>
+	<fieldset name="manifestfieldset">
+		
+		<field name="specifics" type="subform" multiple="true"
+			formsource="subspecifics" min="1" layout="joomla.form.field.subform.repeatable-table"
+			label="COM_MINITHEATRECM_DICTIONARY_MANIFEST" 
+			description="COM_MINITHEATRECM_DESCRIPTION_PARTSMANIFEST" />
+		
+	</fieldset>
 	<fieldset name="airing">
-	
-		<field type="note"
-			label="COM_MINITHEATRECM_DICTIONARY_AIRING"
-			description="COM_MINITHEATRECM_DESCRIPTION_AIRING" />
 			
 		<field name="count" type="number"
 			label="COM_MINITHEATRECM_DICTIONARY_COUNT"
 			description="COM_MINITHEATRECM_DESCRIPTION_CONTENTCOUNT" />
-			
+		
 		<field name="duration" type="number"
 			label="COM_MINITHEATRECM_DICTIONARY_DURATION"
 			description="COM_MINITHEATRECM_DESCRIPTION_CONTENTDURATION" />
 			
-		<field name="airtype" type="number"
+		<field name="agerating" type="agerating"
+			label="COM_MINITHEATRECM_DICTIONARY_AGERATING"
+			description="COM_MINITHEATRECM_DESCRIPTION_AGERATING" />
+			
+		<field name="airtype" type="airtype"
 			label="COM_MINITHEATRECM_DICTIONARY_AIRTYPE"
 			description="COM_MINITHEATRECM_DESCRIPTION_AIRTYPE" />	
 		
@@ -103,14 +111,18 @@
 			label="COM_MINITHEATRECM_DICTIONARY_AIRTILL"
 			description="COM_MINITHEATRECM_DESCRIPTION_AIREDTILL" />
 			
-		<field type="spacer" hr="true"/>
-	
 	</fieldset>
-	<fieldset name="associations">
+	<fieldset name="crewfieldset">
 	
-		<field type="note"
-			label="COM_MINITHEATRECM_DICTIONARY_ASSOCIATIONS"
-			description="COM_MINITHEATRECM_DESCRIPTION_ASSOCIATIONS" />
+		<field name="crew" type="subform" multiple="true"
+			formsource="subcrew" min="1" layout="joomla.form.field.subform.repeatable-table"
+			label="COM_MINITHEATRECM_DICTIONARY_CREW"
+			description="COM_MINITHEATRECM_DESCRIPTION_CREW" />
+			
+		<field type="spacer" hr="true"/>
+			
+	</fieldset>
+	<fieldset name="categorisation">
 	
 		<field
 			name="franchise" type="franchise"
@@ -120,7 +132,7 @@
 		</field>
 			
 		<field
-			name="ctype" type="contenttype"
+			name="ctype" type="ctype"
 			label="COM_MINITHEATRECM_DICTIONARY_CONTENTTYPE"
 			description="COM_MINITHEATRECM_DESCRIPTION_CONTENTTYPE" >
 			<option value="0">COM_MINITHEATRECM_DICTIONARY_NONE</option>
@@ -131,8 +143,29 @@
 			label="COM_MINITHEATRECM_DICTIONARY_GENRES"
 			description="COM_MINITHEATRECM_DESCRIPTION_GENRES" />
 			
-		<field type="spacer" hr="true"/>
+		<field type="spacer"/>
+	
+	</fieldset>
+	<fieldset name="production">
 			
+		<field
+			name="producers" type="producer" multiple="true"
+			label="COM_MINITHEATRECM_DICTIONARY_PRODUCERS"
+			description="COM_MINITHEATRECM_DESCRIPTION_PRODUCERS" />
+			
+		<field
+			name="licensors" type="licensor" multiple="true"
+			label="COM_MINITHEATRECM_DICTIONARY_LICENSORS"
+			description="COM_MINITHEATRECM_DESCRIPTION_LICENSORS" />
+		
+		<field
+			name="studios" type="studio" multiple="true"
+			label="COM_MINITHEATRECM_DICTIONARY_STUDIOS"
+			description="COM_MINITHEATRECM_DESCRIPTION_STUDIOS" />
+		
+	</fieldset>
+	<fieldset name="media">
+	
 	</fieldset>
 	<fieldset name="links">
 	
@@ -193,51 +226,6 @@
 			
 		<field type="spacer" hr="true"/>
 			
-	</fieldset>
-	<fieldset name="media">
-	
-	</fieldset>
-	<fieldset name="metatools">
-	
-		<field type="note"
-			label="COM_MINITHEATRECM_DICTIONARY_EXTERNALSOURCES"
-			description="COM_MINITHEATRECM_DESCRIPTION_FETCHEXT" />
-			
-		<field name="_getdp" type="list" default="1"
-			label="COM_MINITHEATRECM_DICTIONARY_COVERIMAGE"
-			description="COM_MINITHEATRECM_DESCRIPTION_FETCHMODE"
-			class="btn-group btn-group-yesno" >
-			<option value="0">COM_MINITHEATRECM_DICTIONARY_NONE</option>
-			<option value="1">COM_MINITHEATRECM_DICTIONARY_FILL</option>
-			<option value="2">COM_MINITHEATRECM_DICTIONARY_OVERWRITE</option>
-		</field>
-		
-		<field name="_getdesc" type="list" default="1"
-			label="COM_MINITHEATRECM_DICTIONARY_DESCRIPTION"
-			description="COM_MINITHEATRECM_DESCRIPTION_FETCHMODE"
-			class="btn-group btn-group-yesno" >
-			<option value="0">COM_MINITHEATRECM_DICTIONARY_NONE</option>
-			<option value="1">COM_MINITHEATRECM_DICTIONARY_FILL</option>
-			<option value="2">COM_MINITHEATRECM_DICTIONARY_OVERWRITE</option>
-		</field>
-		
-		<field name="_getmeta" type="list" default="1"
-			label="COM_MINITHEATRECM_DICTIONARY_METADATA"
-			description="COM_MINITHEATRECM_DESCRIPTION_FETCHMODE"
-			class="btn-group btn-group-yesno" >
-			<option value="0">COM_MINITHEATRECM_DICTIONARY_NONE</option>
-			<option value="1">COM_MINITHEATRECM_DICTIONARY_FILL</option>
-			<option value="2">COM_MINITHEATRECM_DICTIONARY_OVERWRITE</option>
-		</field>
-		
-		<field name="_dbsource" type="list" default="0"
-			label="COM_MINITHEATRECM_DICTIONARY_SOURCE"
-			description="COM_MINITHEATRECM_DESCRIPTION_EXTDBSRC" >
-			<option value="0">COM_MINITHEATRECM_DICTIONARY_ANIDB</option>
-			<option value="1">COM_MINITHEATRECM_DICTIONARY_ANN</option>
-			<option value="2">COM_MINITHEATRECM_DICTIONARY_MAL</option>
-		</field>
-		
 	</fieldset>
 	<fieldset name="publishing">
 	
@@ -317,6 +305,13 @@
 			<option value="1">COM_MINITHEATRECM_DICTIONARY_IGNORE</option>
 		</field>
 		
+	</fieldset>
+	<fieldset name="metatoolsfieldset">
+	
+		<field name="metatools" type="subform" formsource="submetafetch"
+			label="COM_MINITHEATRECM_DICTIONARY_CREW"
+			description="COM_MINITHEATRECM_DESCRIPTION_CREW" />
+	
 	</fieldset>
 	<fieldset name="perms">
 	

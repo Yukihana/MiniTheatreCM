@@ -11,16 +11,12 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-// Include Dependencies
-JLoader::Register('NeonMtModel', JPATH_COMPONENT_ADMINISTRATOR . '/lib/mt/model.php');
-JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/database.php');
-
 /**
  * Genres Model-List
  *
  * @since  0.0.1
  */
-class MiniTheatreCMModelGenres extends JModelList
+class MiniTheatreCMModelGenres extends NeonModelList
 {
 	// SQL Query to load List Data
 	protected function getListQuery()
@@ -32,10 +28,5 @@ class MiniTheatreCMModelGenres extends JModelList
 		$db->setQuery($query);		
 		
 		return $query;
-	}
-	
-	public function getUsernames()
-	{
-		return NeonMtModel::getUsernames( $this->getItems(), array('author','recentedit') );
 	}
 }

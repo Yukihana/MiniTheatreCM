@@ -1,9 +1,0 @@
-<changelog>
-	<update version="0.0.11.X1" date="2017-09-18">
-		<task type="site">Added a few provisional blank views(frontend). MVC implementation pending.</task>
-		<task type="tutorial">Acquiring: SQL syntaces.</task>
-		<task type="database">Ditching tutorial based SQL schema for a more robust, relevant one.</task>
-		<task type="database">Added a few provisional tables to meet the projected tasks of this component.</task>
-		<task type="database">Upgrade existing 'MyISAM' data-tables(as in tutorials) to their InnoDB counterparts.</task>
-	</update>
-</changelog>

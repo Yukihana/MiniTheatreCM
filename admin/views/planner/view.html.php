@@ -18,20 +18,21 @@ defined('_JEXEC') or die('Restricted access');
  */
 class MiniTheatreCMViewPlanner extends JViewLegacy
 {
-	// Display
+	// Display the template ($tpl: template file)
 	function display($tpl = null)
 	{
 		$app				= JFactory::getApplication();
 		$context			= 'com_minitheatrecm.planner.';
 		
-		//Add data from the model
+		// Get data from the model
 		$this->state		= $this->get('State');
+		$this->utype		= $this->get('UpdateType');
 		
-		$this->cloglist		= $this->get('ChangeLogList');			// ChangeLogs list data
-		$this->clogdata		= $this->get('ChangeLog');				// active-clog: future, merge index with it.
-		$this->clogindex	= $app->getUserState($context.'clog.index',0);
-		
-		
+		// Versions and Changelog
+		$this->vlist		= $this->get('VList');			// ChangeLogs list data
+		$this->vpagination	= $this->get('VPagination');
+		$this->voptions		= $this->get('VOptions');		// Data for the phone version of the list
+		$this->changelog	= $this->get('Changelog');		// Initial Data and Non-Ajax Fallback
 		
 		// Legacy
 		$this->tasks		= $this->get('Tasks');
@@ -54,6 +55,9 @@ class MiniTheatreCMViewPlanner extends JViewLegacy
 			$this->addToolBar();
 		}
 		
+		// Add scripts
+		
+		
 		// Display the template
 		parent::display($tpl);
 	}
@@ -68,5 +72,6 @@ class MiniTheatreCMViewPlanner extends JViewLegacy
 	
 	protected function setDocument()
 	{
+		JFactory::getDocument()->addScript( JUri::root().'media/com_minitheatrecm/js/ajaxgeneric.js' );
 	}
 }

@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <tables>
-	<table typename="listings"			address="#__mtcm_listings"/>
 	<table typename="catalogues"		address="#__mtcm_catalogues"/>
 	<table typename="franchises"		address="#__mtcm_franchises"/>
 	<table typename="genres"			address="#__mtcm_genres"/>
@@ -8,11 +8,14 @@
 	<table typename="producers"			address="#__mtcm_producers"/>
 	<table typename="licensors"			address="#__mtcm_licensors"/>
 	<table typename="studios"			address="#__mtcm_studios"/>
+	<table typename="crewpersonnel"		address="#__mtcm_crewpersonnel"/>
+	<table typename="crewroles"			address="#__mtcm_crewroles"/>
 	
+	<table typename="listings"			address="#__mtcm_listings"/>
 	<table typename="reviews"			address="#__mtcm_reviews"/>
+	
 	<table typename="ratingreviews"		address="#__mtcm_rating_reviews"/>
 	<table typename="ratinglistings"	address="#__mtcm_rating_listings"/>
-	
 	<table typename="ratingitems"		address="#__mtcm_rating_items"/>
 	<table typename="ratingfranchises"	address="#__mtcm_rating_franchises"/>
 	<table typename="ratinggenres"		address="#__mtcm_rating_genres"/>

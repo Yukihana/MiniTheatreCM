@@ -11,16 +11,12 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-// Include dependencies
-JLoader::Register('NeonMtModel', JPATH_COMPONENT_ADMINISTRATOR . '/lib/mt/model.php');
-JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/database.php');
-
 /**
  * Reviews Model-List
  *
  * @since  0.0.1
  */
-class MiniTheatreCMModelReviews extends JModelList
+class MiniTheatreCMModelReviews extends NeonModelList
 {
 	// SQL Query to load List Data
 	protected function getListQuery()
@@ -32,15 +28,5 @@ class MiniTheatreCMModelReviews extends JModelList
 		$db->setQuery($query);		
 		
 		return $query;
-	}
-	
-	// Helper Methods
-	public function getUsernames()
-	{
-		return NeonMtModel::getUsernames( $this->getItems(), array('author','recentedit') );
-	}
-	public function getItemnames()
-	{
-		return NeonMtModel::getItemnames( $this->getItems(), array('catalogue_id') );
 	}
 }

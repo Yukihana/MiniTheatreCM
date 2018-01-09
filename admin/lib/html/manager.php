@@ -12,8 +12,9 @@
 defined('_JEXEC') or die('Restricted access');
 
 // Include Dependencies
-JLoader::Register('MiniTheatreCMCfgMetadata', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/metadata.php');
 JLoader::Register('MiniTheatreCMCfgGlobal', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/global.php');
+JLoader::Register('NeonNfoVersions', JPATH_COMPONENT_ADMINISTRATOR . '/lib/nfo/versions.php');
+JLoader::Register('NeonDataCache', JPATH_COMPONENT_ADMINISTRATOR . '/lib/data/cache.php');
 
 abstract class NeonHtmlManager
 {
@@ -52,14 +53,22 @@ abstract class NeonHtmlManager
 			$footer.= '<span class="hidden-phone disabled"> &#8212; </span><br class="visible-phone"/>';
 		}
 		
-		// Branding & Version
-		$meta	= MiniTheatreCMCfgMetadata::getVersionData();
+		// Cache
+		$cache = NeonDataCache::get('mgfootver.ini', 'INI');
+		if( $cache == null || $cache['version'] != NeonNfoVersions::getCurrent() )
+		{
+			$vdata = NeonNfoVersions::getData();
+			$cache = array( 'version'=> $vdata->version, 'date'=> $vdata->date,	'time'=> $vdata->time, 'zone'=> $vdata->zone );
+			NeonDataCache::set($cache, 'mgfootver.ini', 'INI');
+		}
+		
+		// Render
 		$footer.= '<a class="nowrap hasTooltip" title="'
-					.JText::sprintf('COM_MINITHEATRECM_MESSAGE_VERSIONUPDATEDON', $meta['date'], $meta['time'], $meta['zone'])
+					.JText::sprintf('COM_MINITHEATRECM_MESSAGE_VERSIONUPDATEDON', $cache['date'], $cache['time'], $cache['zone'])
 					.'" href="'.JRoute::_('index.php?option=com_minitheatrecm&view=planner&tabview=changelogs').'">'
-					.JText::_('COM_MINITHEATRECM_GLOBAL_LONGTITLE').' '.$meta['version']
+					.JText::_('COM_MINITHEATRECM_GLOBAL_LONGTITLE').' '.$cache['version']
 					.'</a></div>';
-	
+		
 		// Return
 		return $footer;
 	}
@@ -131,7 +140,7 @@ abstract class NeonHtmlManager
 	// Fields: Common
 	public static function renderAccessCell($text, $id, $linkable = false, $ordering = 0)
 	{
-		if($text == null)
+		if($text === null)
 		{
 			$result = '<div><span class="hasTooltip muted disabled" title="'
 					.JText::sprintf( ($id == 0 ? 'COM_MINITHEATRECM_MESSAGE_UNASSIGNED_ACCESS' : 'COM_MINITHEATRECM_MESSAGE_MISSING_ACCESS'), $id )
@@ -174,7 +183,7 @@ abstract class NeonHtmlManager
 					.'"  title="'.JText::_('COM_MINITHEATRECM_DICTIONARY_AUTHOR').'"> </span>';
 				
 		// Author
-		if($authuser == null)
+		if($authuser === null)
 		{
 			$result.= '<span class="small disabled muted hasTooltip" title="'
 						.JText::sprintf( ($authid==0? 'COM_MINITHEATRECM_MESSAGE_UNASSIGNED_USER' : 'COM_MINITHEATRECM_MESSAGE_MISSING_USER'), $authid )
@@ -201,7 +210,7 @@ abstract class NeonHtmlManager
 					.'"  title="'.JText::_('COM_MINITHEATRECM_DICTIONARY_MOSTRECENTEDITOR').'"> </span>';
 				
 		// RecentEdit
-		if($edituser == null)
+		if($edituser === null)
 		{
 			$result.= '<span class="small disabled muted hasTooltip" title="'
 						.JText::sprintf( ($editid==0? 'COM_MINITHEATRECM_MESSAGE_UNASSIGNED_USER' : 'COM_MINITHEATRECM_MESSAGE_MISSING_USER'), $editid )
@@ -291,7 +300,7 @@ abstract class NeonHtmlManager
 		 * Display muted 'None' if ID=0, else 'Missing/ID=x' if missing but ID!=0
 		 * Ordering: 0-default, 1-Name, 2-ID
 		 */
-		if($text == null)
+		if($text === null)
 		{
 			$result = '<div><span class="hasTooltip muted disabled" title="'
 					.JText::sprintf( ($id == 0 ? 'COM_MINITHEATRECM_MESSAGE_UNASSIGNED_FRANCHISE' : 'COM_MINITHEATRECM_MESSAGE_MISSING_FRANCHISE'), $id )

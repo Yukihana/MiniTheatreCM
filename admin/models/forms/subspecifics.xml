@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="indexing">
+	
+		<field name="type" type="parttype"
+			label="COM_MINITHEATRECM_DICTIONARY_TYPE"
+			description="COM_MINITHEATRECM_DESCRIPTION_PARTTYPE" >
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_NONE</option>
+		</field>
+		
+		<field name="index" type="text" size="10"
+			label="COM_MINITHEATRECM_DICTIONARY_INDEX"
+			description="COM_MINITHEATRECM_DESCRIPTION_PARTINDEX" />
+			
+	</fieldset>
+	<fieldset name="synopsis">
+	
+		<field name="title" type="text"
+			label="COM_MINITHEATRECM_DICTIONARY_TITLE"
+			description="COM_MINITHEATRECM_DESCRIPTION_PARTTITLE" />
+			
+		<field name="desc" type="textarea"
+			label="COM_MINITHEATRECM_DICTIONARY_DESCRIPTION"
+			description="COM_MINITHEATRECM_DESCRIPTION_PARTDESC" />
+		
+	</fieldset>
+</form>

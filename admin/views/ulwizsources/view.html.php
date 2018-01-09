@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
- class MiniTheatreCMViewUlWizSources extends JViewLegacy
+class MiniTheatreCMViewUlWizSources extends JViewLegacy
 {
 	/**
 	 * Display the UlWizSources view

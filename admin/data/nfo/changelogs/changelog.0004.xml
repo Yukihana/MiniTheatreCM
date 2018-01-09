@@ -1,7 +1,0 @@
-<changelog>
-	<update version="0.0.10.D" date="2017-09-11">
-		<task type="misc">Git: Added an updated git repo inclusive of major previous versions.</task>
-		<task type="admin manager">Applied: Publish, Unpublish, Archive, Trash options.</task>
-		<task type="misc translation">Several minor optimizations done to code and a few translations changed.</task>
-	</update>
-</changelog>

@@ -1,9 +1,0 @@
-<changelog>
-	<update version="0.0.11.X12" date="2017-10-23">
-		<task type="admin">Added Admin/ContentType as a final replacement for ulwizsources.</task>
-		<task type="database">ContentType will act as the primary category system and also contain custom uploader code.</task>
-		<task type="site">Upgraded Site/MyListings to JModelList API over its previously inadequate JModelAdmin API.</task>
-		<task type="site">Added Site/MyReviews view-set with basic code.</task>
-		<task type="site">Minor upgrade for Site/Item to better, and current code.</task>
-	</update>
-</changelog>

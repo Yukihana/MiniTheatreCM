@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<images>
+	<imgbase typename="catalogues_original" address="/images/" prefix="cat_orig." suffix=".jpg" height="1920" width="1080"/>
+</images>

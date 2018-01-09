@@ -18,11 +18,9 @@ defined('_JEXEC') or die('Restricted access');
  */
 class MiniTheatreCMTableCatalogues extends NeonTable
 {
-	// Constructor ($db: database connector object)
-	function __construct(&$db)
-	{
-		parent::__construct(NeonCfgDatabase::getTableName('catalogues'), 'id', $db);
-		$this->setColumnAlias('published', 'state');
-		$this->setColumnAlias('title', 'name');
-	}
+	protected $dbname	= 'catalogues';
+	
+	protected $dbalias	= array('published'=>'state', 'title'=>'name');
+	protected $dbconcat	= array( 'genres'=>'csv', 'producers'=>'csv', 'licensors'=>'csv', 'studios'=>'csv',
+								'crew'=>'sar', 'specifics'=>'sar' );
 }

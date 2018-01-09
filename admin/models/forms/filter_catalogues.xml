@@ -65,7 +65,7 @@
 			/>
 		<field
 			name="contenttype"
-			type="contenttype"
+			type="ctype"
 			label="COM_MINITHEATRECM_HINT_SELECTCONTENTTYPE"
 			description="COM_MINITHEATRECM_HINT_SELECTCONTENTTYPE_DESC"
 			multiple="true"
