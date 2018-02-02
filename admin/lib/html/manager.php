@@ -131,10 +131,14 @@ abstract class NeonHtmlManager
 	
 	public static function renderAlias($text)
 	{
-		return '<span class="small disabled muted hasTooltip" title="'
-				.JText::_('COM_MINITHEATRECM_DICTIONARY_ALIAS').'">'
-				.JText::_('COM_MINITHEATRECM_DICTIONARY_ALIAS')
-				.': '.$text.'</span>';
+		if( !empty( $text ))
+		{
+			return '<span class="small disabled muted hasTooltip" title="'
+					.JText::_('COM_MINITHEATRECM_DICTIONARY_ALIAS').'">'
+					.JText::_('COM_MINITHEATRECM_DICTIONARY_ALIAS')
+					.': '.$text.'</span>';
+		}
+		return '';
 	}
 	
 	// Fields: Common
@@ -331,7 +335,44 @@ abstract class NeonHtmlManager
 		
 		return $result;
 	}
-	
+	public static function renderCatalogueCell($text, $id, $linkable = false, $ordering = 0)
+	{
+		/*
+		 * If Text = Null, Catalogue doesn't exist.
+		 * Display muted 'None' if ID=0, else 'Missing/ID=x' if missing but ID!=0
+		 * Ordering: 0-default, 1-Name, 2-ID
+		 */
+		if($text === null)
+		{
+			$result = '<div><span class="hasTooltip muted disabled" title="'
+					.JText::sprintf( ($id == 0 ? 'COM_MINITHEATRECM_MESSAGE_UNASSIGNED_CATALOGUE' : 'COM_MINITHEATRECM_MESSAGE_MISSING_CATALOGUE'), $id )
+					.'">'.JText::_( $id == 0 ? 'COM_MINITHEATRECM_DICTIONARY_NONE' : 'COM_MINITHEATRECM_DICTIONARY_MISSING' ).'</span></div>';
+		}
+		elseif( $linkable )
+		{
+			$result = '<div><a class="hasTooltip small" title="'
+					.JText::_('COM_MINITHEATRECM_TOOLTIP_EDIT_CATALOGUE')
+					.'" href="index.php?option=com_minitheatrecm&task=catalogue.edit&id='.$id
+					.'">'.$text.'</a></div>';
+		}
+		else
+		{
+			$result = '<div><span class="hasTooltip small" title="'
+					.JText::sprintf('COM_MINITHEATRECM_TOOLTIP_TEXT_CATALOGUE', $id)
+					.'">'.$text.'</span></div>';
+		}
+		
+		// Additional display on ordering by ID
+		if( $ordering == 2 )
+		{
+			$result.= '<div><span class="hasTooltip muted disabled italic" title="'
+						.JText::_('COM_MINITHEATRECM_TOOLTIP_ORDEREDBY_CATALOGUEID').'">'
+						.JText::sprintf('COM_MINITHEATRECM_MESSAGE_IDSTRING', $id)
+						.'</span></div>';
+		}
+		
+		return $result;
+	}
 	public static function renderCTypeIcon($text, $color = '#888888', $id = 0, $linkable = false)
 	{
 		if($linkable)

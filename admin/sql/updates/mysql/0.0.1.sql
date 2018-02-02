@@ -1,9 +1,9 @@
 /*
-	Yuki's Notes:
-	-Delete contents of uninstall-sql once mainsite is up.
-*/
-
--- Community Content: Catalogues, Franchises
+ * Community Content
+ * 
+ * - Catalogues, Franchises
+ * - Genres
+ */
 CREATE TABLE IF NOT EXISTS `#__mtcm_catalogues` (
 	`id`				INT UNSIGNED		NOT NULL AUTO_INCREMENT,
 	`asset_id`			INT UNSIGNED		NOT NULL DEFAULT '0',
@@ -66,6 +66,10 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_franchises` (
 	`alias`				VARCHAR(400)		NOT NULL DEFAULT ''		COMMENT 'SEF URI',
 	
 	`content`			TEXT				NOT NULL DEFAULT '',
+	`altnames`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Alternate Titles',
+	`trivia`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Any trivia related to this title',
+	`editnote`			VARCHAR(1023)		NOT NULL DEFAULT ''		COMMENT 'Editorial notes (Not to be displayed)',
+	
 	`website`			VARCHAR(255)		NOT NULL DEFAULT '',
 	`urls`				VARCHAR(1023)		NOT NULL DEFAULT '',
 	`misc1`				VARCHAR(255)		NOT NULL DEFAULT '',
@@ -144,60 +148,28 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_contenttypes` (
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Micro Content: Producers, Licensors, Studios
-CREATE TABLE IF NOT EXISTS `#__mtcm_producers` (
+/*
+ * Production:
+ *
+ * - Crew-Members, Crew-Roles, Organisations
+ */
+CREATE TABLE IF NOT EXISTS `#__mtcm_crewmembers` (
 	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
-	`name`				VARCHAR(255)		NOT NULL,
+	`alias`				VARCHAR(400)		NOT NULL DEFAULT ''			COMMENT 'SEF URI',
 	
-	`author`			INT(10) UNSIGNED	NOT NULL DEFAULT '0',
-	`recentedit`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
-	`created`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
-	`modified`			DATETIME			DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	
-	PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE IF NOT EXISTS `#__mtcm_licensors` (
-	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
-	`name`				VARCHAR(255)		NOT NULL,
-	
-	`author`			INT(10) UNSIGNED	NOT NULL DEFAULT '0',
-	`recentedit`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
-	`created`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
-	`modified`			DATETIME			DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	
-	PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE IF NOT EXISTS `#__mtcm_studios` (
-	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
-	`name`				VARCHAR(255)		NOT NULL,
-	
-	`author`			INT(10) UNSIGNED	NOT NULL DEFAULT '0',
-	`recentedit`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
-	`created`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
-	`modified`			DATETIME			DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	
-	PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Micro Content: Crew-personnel, Crew-roles
-CREATE TABLE IF NOT EXISTS `#__mtcm_crewpersonnel` (
-	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
-	
-	`firstname`			VARCHAR(255)		NOT NULL				COMMENT 'Roman/English Primary',
+	`firstname`			VARCHAR(255)		NOT NULL					COMMENT 'Roman/English Primary',
 	`middlename`		VARCHAR(255)		NOT NULL,
 	`lastname`			VARCHAR(255)		NOT NULL,
 	
-	`firstnative`		VARCHAR(255)		NOT NULL				COMMENT 'Native Unicode',
+	`firstnative`		VARCHAR(255)		NOT NULL					COMMENT 'Native Unicode',
 	`middlenative`		VARCHAR(255)		NOT NULL,
 	`lastnative`		VARCHAR(255)		NOT NULL,
 	
-	`firstalt`			VARCHAR(255)		NOT NULL				COMMENT 'Alt Unicode (i.e. Hiragana)',
+	`firstalt`			VARCHAR(255)		NOT NULL					COMMENT 'Alt Unicode (i.e. Hiragana)',
 	`middlealt`			VARCHAR(255)		NOT NULL,
 	`lastalt`			VARCHAR(255)		NOT NULL,
 	
-	`searchstrings`		VARCHAR(1023)		NOT NULL				COMMENT 'Additional names to help in search',
+	`searchstrings`		VARCHAR(1023)		NOT NULL					COMMENT 'Additional names to help in search',
 	
 	`author`			INT(10) UNSIGNED	NOT NULL DEFAULT '0',
 	`recentedit`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
@@ -210,6 +182,7 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_crewpersonnel` (
 CREATE TABLE IF NOT EXISTS `#__mtcm_crewroles` (
 	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
 	`name`				VARCHAR(255)		NOT NULL,
+	`alias`				VARCHAR(400)		NOT NULL DEFAULT ''			COMMENT 'SEF URI',
 	
 	`author`			INT(10) UNSIGNED	NOT NULL DEFAULT '0',
 	`recentedit`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
@@ -219,7 +192,24 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_crewroles` (
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- User Content: Listings, Reviews
+CREATE TABLE IF NOT EXISTS `#__mtcm_organisations` (
+	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
+	`name`				VARCHAR(255)		NOT NULL,
+	`alias`				VARCHAR(400)		NOT NULL DEFAULT ''			COMMENT 'SEF URI',
+	
+	`author`			INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`recentedit`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`created`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
+	`modified`			DATETIME			DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*
+ * User content
+ * 
+ * - Listings, Reviews
+ */
 CREATE TABLE IF NOT EXISTS `#__mtcm_listings` (
 	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
 	`asset_id`			INT(10)				NOT NULL DEFAULT '0',
@@ -260,9 +250,10 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_reviews` (
 	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
 	`asset_id`			INT(10)				NOT NULL DEFAULT '0',
 	`name`				VARCHAR(255)		NOT NULL,
+	`alias`				VARCHAR(400)		NOT NULL DEFAULT ''		COMMENT 'SEF URI',
+	
 	`content`			TEXT				NOT NULL DEFAULT '',
 	
-	`rating_p_h`		VARCHAR(255)		NOT NULL DEFAULT '',
 	`catalogue`			INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
 	
 	`access`			INT(10)	UNSIGNED	NOT NULL DEFAULT '2',
@@ -276,19 +267,27 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_reviews` (
 	`created`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
 	`modified`			DATETIME			DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	
-	`cache_ticks`		INT(10) UNSIGNED	NOT NULL DEFAULT '0'	COMMENT 'Ticks since last cache update',
-	`rating`			INT(4) UNSIGNED		NOT NULL DEFAULT '0'	COMMENT 'Cache value',
-	`votes`				INT(10) UNSIGNED	NOT NULL DEFAULT '0'	COMMENT 'Cache value',
-	
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Relational Tables: Ratings
-CREATE TABLE IF NOT EXISTS `#__mtcm_rating_reviews` (
+/*
+ * Ratings
+ * 
+ * - Catalogues, Franchises, Genres
+ * - Listings, Reviews
+ */
+CREATE TABLE IF NOT EXISTS `#__mtcm_rating_catalogues` (
 	`id`			INT(10)				NOT NULL AUTO_INCREMENT,
-	`rating`		TINYINT(4)			NOT NULL DEFAULT '0',
+	`catalogue`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
 	
-	`target_id`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`recommend`		BOOLEAN				NOT NULL DEFAULT '0',
+	`rating`		VARCHAR(255)		NOT NULL DEFAULT '0'	COMMENT 'Decide on expanding this',
+	`note`			VARCHAR(255)		NOT NULL DEFAULT '',
+	
+	`access`		INT(10)	UNSIGNED	NOT NULL DEFAULT '2',
+	`state`			TINYINT(3)			NOT NULL DEFAULT '1',
+	`publish_up`	DATETIME			NOT NULL,
+	`publish_down`	DATETIME			NOT NULL,
 	
 	`author`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
 	`recentedit`	INT(10) UNSIGNED	NOT NULL DEFAULT '0',
@@ -300,9 +299,15 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_rating_reviews` (
 
 CREATE TABLE IF NOT EXISTS `#__mtcm_rating_listings` (
 	`id`			INT(10)				NOT NULL AUTO_INCREMENT,
-	`rating`		TINYINT(4)			NOT NULL DEFAULT '0',
+	`listing`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
 	
-	`target_id`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`liked`			BOOLEAN				NOT NULL DEFAULT '0'	COMMENT 'Like / Dislike',
+	`note`			VARCHAR(255)		NOT NULL DEFAULT '',
+	
+	`access`		INT(10)	UNSIGNED	NOT NULL DEFAULT '2',
+	`state`			TINYINT(3)			NOT NULL DEFAULT '1',
+	`publish_up`	DATETIME			NOT NULL,
+	`publish_down`	DATETIME			NOT NULL,
 	
 	`author`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
 	`recentedit`	INT(10) UNSIGNED	NOT NULL DEFAULT '0',
@@ -312,11 +317,16 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_rating_listings` (
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `#__mtcm_rating_catalogues` (
+CREATE TABLE IF NOT EXISTS `#__mtcm_rating_reviews` (
 	`id`			INT(10)				NOT NULL AUTO_INCREMENT,
-	`rating`		TINYINT(4)			NOT NULL DEFAULT '0',
+	`review`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
 	
-	`target_id`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	`note`			VARCHAR(255)		NOT NULL DEFAULT '',
+	
+	`access`		INT(10)	UNSIGNED	NOT NULL DEFAULT '2',
+	`state`			TINYINT(3)			NOT NULL DEFAULT '1',
+	`publish_up`	DATETIME			NOT NULL,
+	`publish_down`	DATETIME			NOT NULL,
 	
 	`author`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
 	`recentedit`	INT(10) UNSIGNED	NOT NULL DEFAULT '0',
@@ -328,9 +338,14 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_rating_catalogues` (
 
 CREATE TABLE IF NOT EXISTS `#__mtcm_rating_franchises` (
 	`id`			INT(10)				NOT NULL AUTO_INCREMENT,
-	`rating`		TINYINT(4)			NOT NULL DEFAULT '0',
-	
 	`target_id`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	
+	`note`			VARCHAR(255)		NOT NULL DEFAULT '',
+	
+	`access`		INT(10)	UNSIGNED	NOT NULL DEFAULT '2',
+	`state`			TINYINT(3)			NOT NULL DEFAULT '1',
+	`publish_up`	DATETIME			NOT NULL,
+	`publish_down`	DATETIME			NOT NULL,
 	
 	`author`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
 	`recentedit`	INT(10) UNSIGNED	NOT NULL DEFAULT '0',
@@ -342,9 +357,14 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_rating_franchises` (
 
 CREATE TABLE IF NOT EXISTS `#__mtcm_rating_genres` (
 	`id`			INT(10)				NOT NULL AUTO_INCREMENT,
-	`rating`		TINYINT(4)			NOT NULL DEFAULT '0',
-	
 	`target_id`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
+	
+	`note`			VARCHAR(255)		NOT NULL DEFAULT '',
+	
+	`access`		INT(10)	UNSIGNED	NOT NULL DEFAULT '2',
+	`state`			TINYINT(3)			NOT NULL DEFAULT '1',
+	`publish_up`	DATETIME			NOT NULL,
+	`publish_down`	DATETIME			NOT NULL,
 	
 	`author`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
 	`recentedit`	INT(10) UNSIGNED	NOT NULL DEFAULT '0',
@@ -412,7 +432,12 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_admin_ulwiz` (
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Test Values, release version won't be using these.
+/*
+ * Test Values
+ *
+ * - Only for debug versions
+ * - To be removed in release editions
+ */
 INSERT INTO `#__mtcm_listings` (`name`, `author`, `catalogue`, `rating`, `alias`) VALUES
 ('Test Listing 1', 42, 1, 4, 'test-listing-1'),
 ('Test Listing 2', 42, 2, 3, 'test-listing-2'),
@@ -483,45 +508,25 @@ INSERT INTO `#__mtcm_admin_ulwiz` (`wname`) VALUES
 ('Manga'),
 ('Dorama');
 
-INSERT INTO `#__mtcm_rating_catalogues` (`rating`, `author`, `target_id`) VALUES
+INSERT INTO `#__mtcm_rating_catalogues` (`rating`, `author`, `catalogue`) VALUES
 (11, 42, 1),
 (46, 43, 0),
 (45, 49, 2),
 (31, 50, 3),
-(78, 42, 2),
+(78, 42, 9),
 (84, 43, 5),
 (68, 49, 2),
 (32, 50, 1);
 
-INSERT INTO `#__mtcm_rating_franchises` (`rating`, `author`, `target_id`) VALUES
-(11, 42, 1),
-(46, 43, 0),
-(45, 49, 2),
-(31, 50, 3),
-(78, 42, 2),
-(84, 43, 5),
-(68, 49, 2),
-(32, 50, 1);
-
-INSERT INTO `#__mtcm_rating_listings` (`rating`, `author`, `target_id`) VALUES
-(11, 42, 1),
-(46, 43, 0),
-(45, 49, 2),
-(31, 50, 3),
-(78, 42, 2),
-(84, 43, 5),
-(68, 49, 2),
-(32, 50, 1);
-
-INSERT INTO `#__mtcm_rating_reviews` (`rating`, `author`, `target_id`) VALUES
-(11, 42, 1),
-(46, 43, 0),
-(45, 49, 2),
-(31, 50, 3),
-(78, 42, 2),
-(84, 43, 5),
-(68, 49, 2),
-(32, 50, 1);
+INSERT INTO `#__mtcm_rating_listings` (`liked`, `author`, `listing`) VALUES
+(1, 42, 1),
+(1, 43, 0),
+(0, 49, 42),
+(1, 50, 3),
+(0, 42, 9),
+(0, 43, 32),
+(1, 49, 14),
+(0, 50, 1);
 
 INSERT INTO `#__mtcm_activitylog` (`user_id`, `target_type`, `target_id`, `interface`) VALUES
 (42, 1, 2, 0),
@@ -538,22 +543,18 @@ INSERT INTO `#__mtcm_activitylog` (`user_id`, `target_type`, `target_id`, `inter
 (63, 5, 2, 1),
 (61, 4, 8, 0);
 
-INSERT INTO `#__mtcm_studios` (`name`) VALUES
+INSERT INTO `#__mtcm_organisations` (`name`) VALUES
 ('AkibaNix'),
 ('AH1'),
-('PAM');
-
-INSERT INTO `#__mtcm_producers` (`name`) VALUES
+('PAM'),
 ('Endox'),
 ('Krayzon'),
-('SkyPer');
-
-INSERT INTO `#__mtcm_licensors` (`name`) VALUES
+('SkyPer'),
 ('Actua USA'),
 ('Kray NA'),
 ('AniKix');
 
-INSERT INTO `#__mtcm_crewpersonnel` (`firstname`, `lastname`) VALUES
+INSERT INTO `#__mtcm_crewmembers` (`firstname`, `lastname`) VALUES
 ('Minori', 'Tachibana'),
 ('Kana', 'Uehara'),
 ('Hitoshi', 'Akabane');

@@ -13,7 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 
 ?>
 
-<form action="index.php?option=com_minitheatrecm&view=activitylog" method="post" id="adminForm" name="adminForm">
+<form action="index.php?option=com_minitheatrecm&view=activitylog" method="post" id="adminForm" name="adminForm" class="clearfix">
 	<?php if (!empty( $this->sidebar)) : ?>
 		<div id="j-sidebar-container" class="span2">
 			<?php echo $this->sidebar; ?>

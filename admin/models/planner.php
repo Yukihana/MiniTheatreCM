@@ -88,7 +88,11 @@ class MiniTheatreCMModelPlanner extends NeonModelLegacy
 	// Data: Changelog
 	public function getChangelog()
 	{
-		$id = JFactory::getApplication()->getUserState('com_minitheatrecm.planner.changelog', 0);
-		return NeonNfoChangelog::get($id);
+		$id = JFactory::getApplication()->getUserState('com_minitheatrecm.planner.changelog', null);
+		$clog = new stdClass();
+		$clog->meta = NeonNfoVersions::getData($id);
+		$clog->tasks = NeonNfoChangelog::get($id);
+		
+		return $clog;
 	}
 }

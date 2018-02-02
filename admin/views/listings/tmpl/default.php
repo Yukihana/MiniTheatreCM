@@ -17,21 +17,35 @@ JLoader::Register('MiniTheatreCMCfgGlobal', JPATH_COMPONENT_ADMINISTRATOR . '/li
 
 JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.multiselect');
-JHtml::_('formbehavior.chosen', '.multipleAccessLevels', null, array('placeholder_text_multiple' => JText::_('JOPTION_SELECT_ACCESS')));
-JHtml::_('formbehavior.chosen', '.multipleAuthors', null, array('placeholder_text_multiple' => JText::_('JOPTION_SELECT_AUTHOR')));
-JHtml::_('formbehavior.chosen', '.multipleRecentEditors', null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTRECENTEDITOR')));
-JHtml::_('formbehavior.chosen', '.multipleItems', null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTITEM')));
+JHtml::_('formbehavior.chosen', '.multipleItems',			null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTITEM')));
+JHtml::_('formbehavior.chosen', '.multipleAuthors',			null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTAUTHOR')));
+JHtml::_('formbehavior.chosen', '.multipleAccesses',		null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTACCESS')));
+JHtml::_('formbehavior.chosen', '.multipleCatalogues',		null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTCATALOGUE')));
+JHtml::_('formbehavior.chosen', '.multipleRecentEditors',	null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTRECENTEDITOR')));
 JHtml::_('formbehavior.chosen', 'select');
 
 $listOrder		= $this->escape($this->state->get('list.ordering'));
 $listDirn		= $this->escape($this->state->get('list.direction'));
 
-$timestamporder = NeonHtmlManager::getTimestampOrder($listOrder);
-$editororder	= NeonHtmlManager::getEditorOrder($listOrder);
-$statsorder		= NeonHtmlManager::getStatsOrder($listOrder);
+$accesslink		= MiniTheatreCMCfgGlobal::getManagerLinkable('access');
+$userlink		= MiniTheatreCMCfgGlobal::getManagerLinkable('user');
+$genrelink		= MiniTheatreCMCfgGlobal::getManagerLinkable('genre');
+$cataloguelink	= MiniTheatreCMCfgGlobal::getManagerLinkable('catalogue');
+$ctypelink		= MiniTheatreCMCfgGlobal::getManagerLinkable('contenttype');
+
+$catalogue_col	= NeonHtmlManager::getOrdering($listOrder, 't.name', 'COM_MINITHEATRECM_DICTIONARY_CATALOGUE',
+					array('t.name'=>'COM_MINITHEATRECM_DICTIONARY_CATALOGUENAME','a.catalogue'=>'COM_MINITHEATRECM_DICTIONARY_CATALOGUEID'));
+$access_col		= NeonHtmlManager::getOrdering($listOrder, 'gp.title', 'COM_MINITHEATRECM_DICTIONARY_ACCESS',
+					array('gp.title'=>'COM_MINITHEATRECM_DICTIONARY_ACCESSGROUP','a.access'=>'COM_MINITHEATRECM_DICTIONARY_ACCESSID'));
+$editor_col		= NeonHtmlManager::getOrdering($listOrder, 'a.author', 'COM_MINITHEATRECM_DICTIONARY_EDITORS',
+					array('a.author'=>'COM_MINITHEATRECM_DICTIONARY_AUTHOR', 'a.recentedit'=>'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT'));
+$timestamp_col	= NeonHtmlManager::getOrdering($listOrder, 'a.created', 'COM_MINITHEATRECM_DICTIONARY_TIMESTAMPS',
+					array('a.created'=>'COM_MINITHEATRECM_DICTIONARY_CREATED', 'a.modified'=>'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT'));
+$stats_col		= NeonHtmlManager::getOrdering($listOrder, 'a.hits', 'COM_MINITHEATRECM_DICTIONARY_STATS',
+					array('a.hits'=>'COM_MINITHEATRECM_DICTIONARY_HITS', 'a.votes'=>'COM_MINITHEATRECM_DICTIONARY_VOTES'));
 ?>
 
-<form action="index.php?option=com_minitheatrecm&view=listings" method="post" id="adminForm" name="adminForm">
+<form action="index.php?option=com_minitheatrecm&view=listings" method="post" id="adminForm" name="adminForm" class="clearfix">
 	<?php if (!empty( $this->sidebar)) : ?>
 		<div id="j-sidebar-container" class="span2">
 			<?php echo $this->sidebar; ?>
@@ -55,25 +69,25 @@ $statsorder		= NeonHtmlManager::getStatsOrder($listOrder);
 						<?php echo JHtml::_('grid.checkall'); ?>
 					</th>
 					<th width="1%" class="nowrap center">
-						<?php echo JHtml::_('searchtools.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder) ;?>
+						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_DICTIONARY_STATUS', 'a.state', $listDirn, $listOrder) ;?>
 					</th>
 					<th width="45%" class="nowrap">
-						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_DICTIONARY_LISTINGNAME', 'a.name', $listDirn, $listOrder) ;?>
+						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_MAINCOLUMN_LISTING', 'a.name', $listDirn, $listOrder) ;?>
 					</th>
 					<th width="20%" class="nowrap hidden-phone">
-						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_DICTIONARY_ITEM', 'a.catalogue_id', $listDirn, $listOrder) ;?>
+						<?php echo JHtml::_('searchtools.sort', $catalogue_col->text, $catalogue_col->order, $listDirn, $listOrder) ;?>
 					</th>
 					<th width="10%" class="nowrap hidden-phone">
-						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_DICTIONARY_ACCESS', 'a.access', $listDirn, $listOrder) ;?>
+						<?php echo JHtml::_('searchtools.sort', $access_col->text, $access_col->order, $listDirn, $listOrder) ;?>
 					</th>
 					<th width="10%" class="nowrap hidden-phone">
-						<?php echo JHtml::_('searchtools.sort', NeonHtmlManager::getEditorHeader($editororder), (($editororder==2)?'a.recentedit':'a.author'), $listDirn, $listOrder);?>
+						<?php echo JHtml::_('searchtools.sort', $editor_col->text, $editor_col->order, $listDirn, $listOrder);?>
 					</th>
 					<th width="10%" class="nowrap hidden-phone">
-						<?php echo JHtml::_('searchtools.sort', NeonHtmlManager::getTimestampHeader($timestamporder), (($timestamporder==2)?'a.modified':'a.created'), $listDirn, $listOrder);?>
+						<?php echo JHtml::_('searchtools.sort', $timestamp_col->text, $timestamp_col->order, $listDirn, $listOrder);?>
 					</th>
 					<th width="1%" class="nowrap hidden-phone">
-						<?php echo JHtml::_('searchtools.sort', NeonHtmlManager::getStatsHeader($statsorder), (($statsorder==2)?'a.votes':'a.hits'), $listDirn, $listOrder);?>
+						<?php echo JHtml::_('searchtools.sort', $stats_col->text, $stats_col->order, $listDirn, $listOrder);?>
 					</th>
 					<th width="1%" class="nowrap hidden-phone">
 						<?php echo JHtml::_('searchtools.sort', 'COM_MINITHEATRECM_DICTIONARY_RATING', 'a.rating', $listDirn, $listOrder) ;?>
@@ -99,36 +113,40 @@ $statsorder		= NeonHtmlManager::getStatsOrder($listOrder);
 					</td>
 					<td class="nowrap center">
 						<div class="btn-group">
-							<?php echo JHtml::_('jgrid.published', $row->state, $i, 'listings.', true, 'cb'); ?>
+							<?php echo JHtml::_('jgrid.published', $row->state, $i, 'listings.', true, 'cb', $row->publish_up, $row->publish_down); ?>
 						</div>
 					</td>
 					<td>
 						<div class="pull-left">
-							<a class="hasTooltip" href="<?php echo $link; ?>" title="<?php echo JText::_('COM_MINITHEATRECM_TOOLTIP_EDIT_LISTING'); ?>">
-								<?php echo $this->escape($row->name); ?>
-							</a>
-							<div class="small disabled muted hasTooltip" title="<?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_ALIAS');?>">
-								<?php echo JText::_('COM_MINITHEATRECM_DICTIONARY_ALIAS').': '.$this->escape($row->alias);?>
+							<div>
+								<?php echo NeonHtmlManager::renderCTypeIcon($row->ctype_name, $row->ctype_color, $row->ctype, $ctypelink)
+											.' '.NeonHtmlManager::renderMain($this->escape($row->name), $link, 'COM_MINITHEATRECM_TOOLTIP_EDIT_LISTING'); ?>
+							</div>
+							<div class="hidden-phone">
+								<?php echo NeonHtmlManager::renderAlias($this->escape($row->alias));?>
 							</div>
 						</div>
 					</td>
 					<td class="small hidden-phone">
-						<?php NeonHtmlManager::getItemField($this->itemnames, $row->catalogue_id);?>
+						<?php echo NeonHtmlManager::renderCatalogueCell($row->catalogue_name, $row->catalogue, $cataloguelink, $catalogue_col->index);?>
 					</td>
 					<td class="small nowrap hidden-phone">
-						<?php echo NeonHtmlManager::renderAccessCell($row->access_name, $row->access);?>
+						<?php echo NeonHtmlManager::renderAccessCell($row->access_name, $row->access, $accesslink, $access_col->index);?>
 					</td>
 					<td class="hidden-phone">					
-						<?php echo NeonHtmlManager::getEditorCell($this->names, $row->author, $row->recentedit, $editororder);?>
+						<?php echo NeonHtmlManager::renderEditorCell(
+							$row->author,		$row->author_user,		$row->author_name,
+							$row->recentedit,	$row->recentedit_user,	$row->recentedit_name,
+							$userlink, $editor_col->index);?>
 					</td>
 					<td class="hidden-phone">
-						<?php echo NeonHtmlManager::getTimestampCell($row->created, $row->modified, $timestamporder); ?>
+						<?php echo NeonHtmlManager::renderTimestampCell($row->created, $row->modified, $timestamp_col->index); ?>
 					</td>
-					<td class="<?php echo ($statsorder!=0)?'center':'';?> hidden-phone">
-						<?php echo NeonHtmlManager::getStatsCell($row->hits, $row->votes, $statsorder); ?>
+					<td class="<?php echo ($stats_col->index!=0)?'center':'';?> hidden-phone">
+						<?php echo NeonHtmlManager::renderStatsCell($row->hits, $row->votes, $stats_col->index); ?>
 					</td>
 					<td class="center hidden-phone">
-						<?php echo NeonHtmlManager::getStarRatingCell($row->rating, true);?>
+						<?php echo NeonHtmlManager::renderStarRatingCell($row->rating, true);?>
 					</td>
 					<td class="nowrap" style="text-align:right;">
 						<?php echo $row->id; ?>
@@ -140,7 +158,7 @@ $statsorder		= NeonHtmlManager::getStatsOrder($listOrder);
 		</table>
 		<?php endif;?>
 		
-		<?php echo NeonHtmlManager::getListFooter($this->pagination->total, $this->querytime);?>
+		<?php echo NeonHtmlManager::getListFooter($this->pagination->total, count($this->items), $this->querytime);?>
 		
 		<?php echo JHtml::_('form.token'); ?>
 		<input type="hidden" name="task" value="" />

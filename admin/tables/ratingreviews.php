@@ -19,11 +19,9 @@ JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/d
  *
  * @since  0.0.1
  */
-class MiniTheatreCMTableRatingReviews extends JTable
+class MiniTheatreCMTableRatingReviews extends NeonTable
 {
-	// Constructor ($db: database connector object)
-	function __construct(&$db)
-	{
-		parent::__construct(NeonCfgDatabase::getTableName('ratingreviews'), 'id', $db);
-	}
+	protected $dbname = 'ratingcatalogues';
+	
+	protected $dbalias	= array('published'=>'state');
 }

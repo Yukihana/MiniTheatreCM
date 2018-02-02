@@ -16,43 +16,11 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class MiniTheatreCMViewCatalogues extends JViewLegacy
+class MiniTheatreCMViewCatalogues extends NeonViewManager
 {
-	// Display the template ($tpl: template file)
-	function display($tpl = null)
-	{
-		// Get data from the model
-		$pretime				= microtime(true);
-		$this->items			= $this->get('Items');
-		$posttime				= microtime(true);
-		$this->querytime		= $posttime - $pretime;
-		
-		$this->pagination		= $this->get('Pagination');
-		$this->state			= $this->get('State');
-		$this->filterForm    	= $this->get('FilterForm');
-		$this->activeFilters 	= $this->get('ActiveFilters');
-		
-		// Check for errors.
-		if (count($errors = $this->get('Errors')))
-		{
-			JError::raiseError(500, implode('<br />', $errors));
-
-			return false;
-		}
-
-		// Set up other UI elements
-		if ($this->getLayout() !== 'modal')
-		{
-			MiniTheatreCMHelper::addSubmenu('catalogues');
-			$this->sidebar = JHtmlSidebar::render();
-			
-			$this->setDocument();
-			$this->addToolBar();
-		}
-		
-		// Display the template
-		parent::display($tpl);
-	}
+	protected $ui_submenu	= 'catalogues';
+	protected $ui_title		= 'COM_MINITHEATRECM_TITLE_CATALOGUES';
+	protected $ui_icon		= 'file-2';
 	
 	// Add page header and toolbar buttons
 	protected function addToolBar()
@@ -72,13 +40,5 @@ class MiniTheatreCMViewCatalogues extends JViewLegacy
 		{
 			JToolbarHelper::preferences('com_minitheatrecm');
 		}
-	}
-	
-	// Set page-header and document-title
-	protected function setDocument()
-	{
-		$title = JText::_('COM_MINITHEATRECM_TITLE_CATALOGUES');
-		JToolbarHelper::title( $title, 'file-2' );
-		JFactory::getDocument()->setTitle($title.' - '.JText::_('COM_MINITHEATRECM_GLOBAL_LONGTITLE'));
 	}
 }

@@ -16,48 +16,11 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class MiniTheatreCMViewContentTypes extends JViewLegacy
+class MiniTheatreCMViewContentTypes extends NeonViewManager
 {
-	// Display the template ($tpl: template file)
-	function display($tpl = null)
-	{
-		// Get application
-		//$app = JFactory::getApplication();
-		//$context = "minitheatrecm.list.admin.contenttype";
-		
-		// Get data from the model here
-		$pretime			= microtime(true);
-		$this->items			= $this->get('Items');
-		$posttime			= microtime(true);
-		$this->pagination		= $this->get('Pagination');
-		$this->state			= $this->get('State');
-		$this->names			= $this->get('Usernames');
-		$this->groups			= $this->get('Usergroups');
-		$this->querytime	= $posttime - $pretime;
-		
-		//DebugData
-		$this->itemcount = count($this->items);
-		
-		// Queue Errors
-		if (count($errors = $this->get('Errors')))
-		{
-			JError::raiseError(500, implode('<br />', $errors));
-			return false;
-		}
-
-		// Set up other UI elements
-		if ($this->getLayout() !== 'modal')
-		{
-			MiniTheatreCMHelper::addSubmenu('contenttypes');
-			$this->sidebar = JHtmlSidebar::render();
-			
-			$this->setDocument();
-			$this->addToolBar();
-		}
-		
-		// Display the template
-		parent::display($tpl);
-	}
+	protected $ui_submenu	= 'contenttypes';
+	protected $ui_title		= 'COM_MINITHEATRECM_TITLE_CONTENTTYPES';
+	protected $ui_icon		= 'basket';
 	
 	// Add page header and toolbar buttons
 	protected function addToolBar()
@@ -68,18 +31,13 @@ class MiniTheatreCMViewContentTypes extends JViewLegacy
 		JToolbarHelper::unpublish('contenttypes.unpublish', 'JTOOLBAR_UNPUBLISH', true);		
 		JToolbarHelper::archiveList('contenttypes.archive');
 		if($this->state->get('filter.published') == -2)
-			JToolbarHelper::deleteList('COM_MINITHEATRECM_ULWIZSOURCES_CONFIRMDELETE', 'contenttypes.delete', 'COM_MINITHEATRECM_DICTIONARY_PURGE');
+			JToolbarHelper::deleteList('COM_MINITHEATRECM_CONTENTTYPES_CONFIRMDELETE', 'contenttypes.delete', 'COM_MINITHEATRECM_DICTIONARY_PURGE');
 		else
 			JToolbarHelper::trash('contenttypes.trash');
 		
-		JToolbarHelper::preferences('com_minitheatrecm');
-	}
-	
-	// Set page-header and document-title
-	protected function setDocument()
-	{
-		$title = JText::_('COM_MINITHEATRECM_TITLE_CONTENTTYPES');
-		JToolbarHelper::title( $title, 'basket' );
-		JFactory::getDocument()->setTitle($title.' - '.JText::_('COM_MINITHEATRECM_GLOBAL_LONGTITLE'));
+		if (JFactory::getUser()->authorise('core.admin', 'com_minitheatrecm'))
+		{
+			JToolbarHelper::preferences('com_minitheatrecm');
+		}
 	}
 }

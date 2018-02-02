@@ -139,9 +139,10 @@
 		</field>
 			
 		<field
-			name="genres" type="genre" multiple="true"
+			name="genres" type="genre"
 			label="COM_MINITHEATRECM_DICTIONARY_GENRES"
-			description="COM_MINITHEATRECM_DESCRIPTION_GENRES" />
+			description="COM_MINITHEATRECM_DESCRIPTION_GENRES"
+			multiple="true" class="multipleGenres" />
 			
 		<field type="spacer"/>
 	
@@ -149,19 +150,22 @@
 	<fieldset name="production">
 			
 		<field
-			name="producers" type="producer" multiple="true"
+			name="producers" type="producer"
 			label="COM_MINITHEATRECM_DICTIONARY_PRODUCERS"
-			description="COM_MINITHEATRECM_DESCRIPTION_PRODUCERS" />
+			description="COM_MINITHEATRECM_DESCRIPTION_PRODUCERS"
+			multiple="true" class="multipleProducers" />
 			
 		<field
-			name="licensors" type="licensor" multiple="true"
+			name="licensors" type="licensor"
 			label="COM_MINITHEATRECM_DICTIONARY_LICENSORS"
-			description="COM_MINITHEATRECM_DESCRIPTION_LICENSORS" />
+			description="COM_MINITHEATRECM_DESCRIPTION_LICENSORS"
+			multiple="true" class="multipleLicensors" />
 		
 		<field
-			name="studios" type="studio" multiple="true"
+			name="studios" type="studio"
 			label="COM_MINITHEATRECM_DICTIONARY_STUDIOS"
-			description="COM_MINITHEATRECM_DESCRIPTION_STUDIOS" />
+			description="COM_MINITHEATRECM_DESCRIPTION_STUDIOS"
+			multiple="true" class="multipleStudios" />
 		
 	</fieldset>
 	<fieldset name="media">

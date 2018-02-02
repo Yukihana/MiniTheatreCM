@@ -97,14 +97,45 @@ abstract class NeonNfoChangelog
 	}
 	
 	// Render changelog data (XML/Version)
-	public static function render($xml)
+	public static function render($changelog)
 	{
-		$result = '<h4>'.$xml['version'].'</h4>';
-		foreach($xml->task as $task)
+		// Begin + Header
+		$r = '<div class="well well-small" style="border: 1pt solid #dedede; background: linear-gradient(rgba(0,0,0,0.03), rgba(0,0,0,0.07)); padding-left:0px; padding-right:0px;">'
+			.'<h2 class="module-title nav-header" style="padding-left:6pt; padding-right:6pt;">'.JText::sprintf('COM_MINITHEATRECM_SPRINTF_VERSIONTEXT', $changelog->meta->version).'</h2>';
+		
+		// Body
+		$r.= '<table class="table table-striped table-hover" style="margin-bottom:0px;border-bottom-width:1px;">'
+			.'<thead style="font-size:0;display:none;"><tr><th width="1%"> </th><th width="99%"> </th></tr></thead><tbody>';
+		foreach($changelog->tasks->task as $task)
 		{
-			$result.= '<div>'.$task.'</div>';
+			$r.= '<tr><td class="center">'.self::renderTaskBadge($task['type']).'</td>'
+				.'<td>'.strval($task).'</td></tr>';
 		}
-		return $result;
+		
+		// Footer
+		$r.= '</tbody><tfoot><tr><td colspan="2" style="text-align:right; font-style:italics;" class="small disabled">';
+		
+		if($changelog->meta !== null)
+		{
+			$vdate = isset( $changelog->meta->date )? $changelog->meta->date : '0000-00-00';
+			$vtime = isset( $changelog->meta->time )? $changelog->meta->time : '00:00';
+			$vzone = isset( $changelog->meta->zone )? $changelog->meta->zone : 'UTC';
+			$r.= JText::sprintf('COM_MINITHEATRECM_SPRINTF_CHANGELOGADDEDON', $vdate, $vtime, $vzone);
+		}
+		
+		// Finish
+		$r.= '</td></tr></tfoot></table></div>';
+		
+		return $r;
+	}
+	
+	public static function renderTaskBadge($type)
+	{
+		$colors = array( 'manager'=>'389', 'database'=>'383', 'forms'=>'f91');
+		$type = strtolower( $type );
+		$color = isset( $colors[$type] )? $colors[$type] : '999';
+		
+		return '<span class="small badge" style="text-transform:uppercase; font-weight:bold; background-color:#'.$color.';">'.$type.'</span>';
 	}
 	
 	// Internal ---

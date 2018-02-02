@@ -15,6 +15,7 @@ defined('_JEXEC') or die('Restricted access');
 JLoader::Register('MiniTheatreCMCfgSettings', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/settings.php');
 JLoader::Register('NeonHtmlMessages', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/messages.php');
 JLoader::Register('NeonNfoChangelog', JPATH_COMPONENT_ADMINISTRATOR . '/lib/nfo/changelog.php');
+JLoader::Register('NeonNfoNotebook', JPATH_COMPONENT_ADMINISTRATOR . '/lib/nfo/notebook.php');
 
 // Tabs: To be removed after full ajax implementation
 if( empty($this->utype))
@@ -47,7 +48,7 @@ JFactory::getDocument()->addScriptDeclaration('
 ');
 ?>
 
-<form action="index.php?option=com_minitheatrecm&view=planner" method="post" name="adminForm" id="adminForm">
+<form action="index.php?option=com_minitheatrecm&view=planner" method="post" id="adminForm" name="adminForm" class="clearfix">
 	<?php if (!empty( $this->sidebar)) : ?>
 		<div id="j-sidebar-container" class="span2">
 			<?php echo $this->sidebar; ?>
@@ -67,11 +68,18 @@ JFactory::getDocument()->addScriptDeclaration('
 				MANIFEST DATA
 			<?php echo JHtml::_('bootstrap.endTab'); ?>
 			
-			<?php echo JHtml::_('bootstrap.addTab', 'mtcmplanner', 'task', JText::_('COM_MINITHEATRECM_DICTIONARY_TASKS')); ?>
-				TASKS DATA
+			<?php echo JHtml::_('bootstrap.addTab', 'mtcmplanner', 'notebook', JText::_('COM_MINITHEATRECM_DICTIONARY_NOTEBOOK')); ?>
+				<div class="span6">
+					<?php echo NeonNfoNotebook::renderTodo(); ?>
+				</div>
+				<div class="span6">
+					<?php echo NeonNfoNotebook::renderIdeas(); ?>
+					<?php echo NeonNfoNotebook::renderResearch(); ?>
+					<?php echo NeonNfoNotebook::renderNotes(); ?>
+				</div>
 			<?php echo JHtml::_('bootstrap.endTab'); ?>
 			
-			<?php echo JHtml::_('bootstrap.addTab', 'mtcmplanner', 'changelog', JText::_('COM_MINITHEATRECM_DICTIONARY_CHANGELOGS')); ?>
+			<?php echo JHtml::_('bootstrap.addTab', 'mtcmplanner', 'versions', JText::_('COM_MINITHEATRECM_DICTIONARY_VERSIONS')); ?>
 				<div class="span6 jmoddiv hidden-phone">
 					<table class="table table-striped table-hover">
 						<thead>
@@ -128,7 +136,7 @@ JFactory::getDocument()->addScriptDeclaration('
 					<div class="visible-phone">
 						<?php echo JHtml::_('select.genericlist', $this->voptions, 'clogindex', array('onchange' => 'listjax(\'clogindex\', \'index.php?option=com_minitheatrecm&task=planner.view&format=raw&update=changelog.\');', 'class' => 'input-xlarge'), 'value', 'text', $changelog_id, 'clogindex'); ?>
 					</div>
-					<div id="clog_ajax" class="well">
+					<div id="clog_ajax">
 						<?php echo ( $this->changelog != null ) ? NeonNfoChangelog::render($this->changelog) : NeonHtmlMessages::_('COM_MINITHEATRECM_MESSAGE_PROVIDEVALIDID', 'COM_MINITHEATRECM_MESSAGE_404', false, 'warning'); ?>
 					</div>
 				</div>
@@ -136,6 +144,6 @@ JFactory::getDocument()->addScriptDeclaration('
 			
 			<?php echo JHtml::_('bootstrap.endTabSet'); ?>
 		</div>
-		<div>Debug = <?php echo $deftab?></div>
+		<div>Debug = <?php echo $deftab;?></div>
 	</div>
 </form>

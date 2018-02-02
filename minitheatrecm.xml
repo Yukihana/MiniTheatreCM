@@ -65,19 +65,19 @@
 			<menu view="overview">COM_MINITHEATRECM_MENU_OVERVIEW</menu>
 			<menu view="activitylog">COM_MINITHEATRECM_MENU_ACTIVITYLOG</menu>
 			
-			<menu view="listings">COM_MINITHEATRECM_MENU_LISTINGS</menu>			
+			<menu view="listings">COM_MINITHEATRECM_MENU_LISTINGS</menu>		
+			<menu view="reviews">COM_MINITHEATRECM_MENU_REVIEWS</menu>
+			
 			<menu view="catalogues">COM_MINITHEATRECM_MENU_CATALOGUES</menu>
 			<menu view="franchises">COM_MINITHEATRECM_MENU_FRANCHISES</menu>
 			<menu view="genres">COM_MINITHEATRECM_MENU_GENRES</menu>
 			<menu view="contenttypes">COM_MINITHEATRECM_MENU_CONTENTTYPES</menu>
 			
-			<menu view="reviews">COM_MINITHEATRECM_MENU_REVIEWS</menu>
-			<menu view="ratingreviews">COM_MINITHEATRECM_MENU_RATINGREVIEWS</menu>
-			<menu view="ratinglistings">COM_MINITHEATRECM_MENU_RATINGLISTINGS</menu>
+			<menu view="crewmembers">COM_MINITHEATRECM_MENU_CREWMEMBERS</menu>
+			<menu view="crewroles">COM_MINITHEATRECM_MENU_CREWROLES</menu>
+			<menu view="organisations">COM_MINITHEATRECM_MENU_ORGANISATIONS</menu>
 			
-			<menu view="ratingcatalogues">COM_MINITHEATRECM_MENU_RATINGCATALOGUES</menu>
-			<menu view="ratingfranchises">COM_MINITHEATRECM_MENU_RATINGFRANCHISES</menu>
-			<menu view="ratinggenres">COM_MINITHEATRECM_MENU_RATINGGENRES</menu>
+			<menu view="ratings">COM_MINITHEATRECM_MENU_RATINGS</menu>
 			
 			<menu view="planner">COM_MINITHEATRECM_MENU_PLANNER</menu>
 			
@@ -92,7 +92,6 @@
 			<filename>config.xml</filename>
 			<filename>access.xml</filename>
 			
-			<folder>cache</folder>
 			<folder>cfg</folder>
 			<folder>controllers</folder>
 			<folder>data</folder>
@@ -113,22 +112,13 @@
 		
 	</administration>
 	
-	<!--Tutorial Manifest
-	Tutorial: Backend Actions
-	Notes: field-type (also same.php in fields folder)
-	Notes: Avoid underscores in Class Names, only use in translations/db-table. Not even the table class.
-	Notes: Nomenclature is strict. reference strings(variables) for classnames should match the classname.
-	Notes: Classname Capitalization doesn't matter against variables. (usually)
-	Notes: MVC are a set by naming. One of each (if)needed.
-	Notes: Backend naming convention( plural for list page, singular for edit page ).
-	
-	Issue #1
-		Failed: Menu Settings only show an integer "1" in the form field.
-		Fix: Do not use underscores in classnames when referenced by a variable.
-	Issue #2
-		Failed: Backend controller targetting to and from.
-		Fix: MVC are a set. One of each when needed, and of the same name.
-			Convention: List page named in plural. Edit page named the same in singular.
+	<!--Tutorial Notes:
+		Field-type (also same.php in fields folder)
+		For class names, only camel casing is allowed.
+		Nomenclature is strict. reference strings(variables) for classnames should match the classname.
+		Classname Capitalization doesn't matter against variables. (usually)
+		MVC are a set by naming. One of each (if)needed.
+		Backend naming convention( plural for list page, singular for edit page ).
 	-->
 	
 </extension>

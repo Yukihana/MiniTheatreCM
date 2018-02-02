@@ -19,4 +19,6 @@ defined('_JEXEC') or die('Restricted access');
 class MiniTheatreCMTableLicensors extends NeonTable
 {
 	protected $dbname = 'licensors';
+	
+	protected $dbalias	= array('published'=>'state', 'title'=>'name');
 }

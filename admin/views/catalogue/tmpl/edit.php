@@ -14,12 +14,16 @@ defined('_JEXEC') or die('Restricted access');
 // Include Dependencies
 JLoader::Register('NeonHtmlForm', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/form.php');
 
-JHtml::_('behavior.formvalidator');
 JHtml::_('behavior.keepalive');
+JHtml::_('behavior.formvalidator');
+JHtml::_('formbehavior.chosen', '.multipleGenres',			null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTGENRE')));
+JHtml::_('formbehavior.chosen', '.multipleStudios',			null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTSTUDIO')));
+JHtml::_('formbehavior.chosen', '.multipleProducers',		null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTPRODUCER')));
+JHtml::_('formbehavior.chosen', '.multipleLicensors',		null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTLICENSOR')));
 JHtml::_('formbehavior.chosen', 'select');
 ?>
 
-<form action="<?php echo JRoute::_('index.php?option=com_minitheatrecm&layout=edit&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="adminForm" class="form-validate">
+<form action="<?php echo JRoute::_('index.php?option=com_minitheatrecm&layout=edit&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="adminForm" class="form-validate clearfix">
 	
 	<?php echo JLayoutHelper::render('joomla.edit.title_alias', $this); ?>
 	

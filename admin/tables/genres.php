@@ -19,12 +19,9 @@ JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/d
  *
  * @since  0.0.1
  */
-class MiniTheatreCMTableGenres extends JTable
+class MiniTheatreCMTableGenres extends NeonTable
 {
-	// Constructor ($db: database connector object)
-	function __construct(&$db)
-	{
-		parent::__construct(NeonCfgDatabase::getTableName('genres'), 'id', $db);
-		$this->setColumnAlias('published', 'state');
-	}
+	protected $dbname	= 'genres';
+	
+	protected $dbalias	= array('published'=>'state', 'title'=>'name');
 }

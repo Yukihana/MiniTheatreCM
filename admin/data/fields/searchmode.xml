@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<searchmode>
+	<option value="0">COM_MINITHEATRECM_DICTIONARY_ONEPERRECORD</option>
+	<option value="1">COM_MINITHEATRECM_DICTIONARY_ALLPERRECORD</option>
+</searchmode>

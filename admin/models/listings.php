@@ -24,19 +24,32 @@ class MiniTheatreCMModelListings extends NeonModelList
 		if (empty($config['filter_fields']))
 		{
 			$config['filter_fields'] = array(
-				'id',			'a.id',
-				'name',			'a.name',
-				'alias',		'a.alias',
-				'state',		'a.state',
-				'catalogue',	'a.catalogue',
-				'access',		'a.access',
-				'author',		'a.author',
-				'recentedit',	'a.recentedit',
-				'created',		'a.created',
-				'modified',		'a.modified',
-				'hits',			'a.hits',
-				'rating',		'a.rating',
-				'votes',		'a.votes'
+				'id',				'a.id',
+				'name',				'a.name',
+				'alias',			'a.alias',
+				
+				'catalogue',		'a.catalogue',
+				'catalogue_name',	't.name',
+				'ctype',			't.ctype',
+				'ctype_name',		'c.name',
+				
+				'state',			'a.state',
+				'access_name', 		'gp.title',
+				'access',			'a.access',
+				
+				'author_name',		'u1.name',
+				'author_user',		'u1.username',
+				'author',			'a.author',
+				'recentedit_name',	'u2.name',
+				'recentedit_user',	'u2.username',
+				'recentedit',		'a.recentedit',
+				
+				'created',			'a.created',
+				'modified',			'a.modified',
+				
+				'hits',				'a.hits',
+				'rating',			'a.rating',
+				'votes',			'a.votes'
 			);
 		}
 
@@ -51,18 +64,28 @@ class MiniTheatreCMModelListings extends NeonModelList
 		$this->dbprefix				= 'a';
 		
 		// Query Vars: select, join
-		$this->dbselect				= array('a.id', 'a.name', 'a.alias', 'a.state', 'a.catalogue', 'a.access', 'a.author', 'a.recentedit', 'a.created', 'a.modified', 'a.hits', 'a.rating', 'a.votes');
+		$this->dbselect				= array('a.id', 'a.name', 'a.alias', 'a.catalogue', 'a.access', 'a.state', 'a.publish_up', 'a.publish_down', 'a.author', 'a.recentedit', 'a.created', 'a.modified', 'a.hits', 'a.rating', 'a.votes');
 		$this->dbleftjoins			= array(
-										'c.ctype as ctype'
-											=> NeonCfgDatabase::getTableName('catalogues').' AS c ON c.id = a.catalogue',
-										't.name as ctype_name'
-											=> NeonCfgDatabase::getTableName('contenttypes').' AS t ON t.id = c.ctype'
+										't.name AS catalogue_name'
+											=> NeonCfgDatabase::getTableName('catalogues').' AS t ON t.id = a.catalogue',
+											
+										'c.id AS ctype, c.name AS ctype_name, c.color AS ctype_color'
+											=> NeonCfgDatabase::getTableName('contenttypes').' AS c ON c.id = t.ctype',
+											
+										'u1.name AS author_name, u1.username AS author_user'
+											=> NeonCfgDatabase::getJoomlaDB('users').' AS u1 ON u1.id = a.author',
+											
+										'u2.name AS recentedit_name, u2.username AS recentedit_user'
+											=> NeonCfgDatabase::getJoomlaDB('users').' AS u2 ON u2.id = a.recentedit',
+											
+										'gp.title AS access_name'
+											=> NeonCfgDatabase::getJoomlaDB('access').' AS gp ON gp.id = a.access'
 										);
 		
 		// Query Vars: filters, order
 		$this->dbfilters_search		= array('a.name', 'a.alias');
 		$this->dbfilters_core		= array('state'=>'a.state', 'access'=>'a.access');
-		$this->dbfilters_multi_int	= array('author'=>'a.author', 'recentedit'=>'a.recentedit', 'contenttype'=>'c.ctype');
+		$this->dbfilters_multi_int	= array('author'=>'a.author', 'recentedit'=>'a.recentedit', 'catalogue'=>'a.catalogue', 'contenttype'=>'c.ctype');
 		
 		return parent::getListQuery();
 	}

@@ -1,16 +1,20 @@
+/*
+	Yuki's Notes:
+	-Delete contents of uninstall-sql once mainsite is up.
+*/
+
 -- Content
 DROP TABLE IF EXISTS `#__mtcm_catalogues`;
 DROP TABLE IF EXISTS `#__mtcm_franchises`;
 DROP TABLE IF EXISTS `#__mtcm_genres`;
 DROP TABLE IF EXISTS `#__mtcm_contenttypes`;
+
 DROP TABLE IF EXISTS `#__mtcm_listings`;
 DROP TABLE IF EXISTS `#__mtcm_reviews`;
 
 -- Metadata
-DROP TABLE IF EXISTS `#__mtcm_producers`;
-DROP TABLE IF EXISTS `#__mtcm_licensors`;
-DROP TABLE IF EXISTS `#__mtcm_studios`;
-DROP TABLE IF EXISTS `#__mtcm_crewpersonnel`;
+DROP TABLE IF EXISTS `#__mtcm_organisations`;
+DROP TABLE IF EXISTS `#__mtcm_crewmembers`;
 DROP TABLE IF EXISTS `#__mtcm_crewroles`;
 
 -- Ratings

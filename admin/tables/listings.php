@@ -11,20 +11,14 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-// Include Dependencies
-JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/database.php');
-
 /**
  * Listings Table class
  *
  * @since  0.0.1
  */
-class MiniTheatreCMTableListings extends JTable
+class MiniTheatreCMTableListings extends NeonTable
 {
-	// Constructor ($db: database connector object)
-	function __construct(&$db)
-	{
-		parent::__construct(NeonCfgDatabase::getTableName('listings'), 'id', $db);
-		$this->setColumnAlias('published', 'state');
-	}
+	protected $dbname	= 'listings';
+	
+	protected $dbalias	= array('published'=>'state', 'title'=>'name');
 }

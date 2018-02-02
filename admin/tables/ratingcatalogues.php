@@ -11,19 +11,14 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-// Include Dependencies
-JLoader::Register('NeonCfgDatabase', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/database.php');
-
 /**
  * RatingCatalogues Table class
  *
  * @since  0.0.1
  */
-class MiniTheatreCMTableRatingCatalogues extends JTable
+class MiniTheatreCMTableRatingCatalogues extends NeonTable
 {
-	// Constructor ($db: database connector object)
-	function __construct(&$db)
-	{
-		parent::__construct(NeonCfgDatabase::getTableName('ratingcatalogues'), 'id', $db);
-	}
+	protected $dbname = 'ratingcatalogues';
+	
+	protected $dbalias	= array('published'=>'state');
 }

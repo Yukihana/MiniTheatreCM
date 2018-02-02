@@ -6,16 +6,14 @@
 			type="text"
 			label="COM_MINITHEATRECM_DICTIONARY_SEARCH"
 			hint="JSEARCH_FILTER"
-			class="js-stools-search-string"
-		/>
+			class="js-stools-search-string" />
 		<field
 			name="state"
 			type="status"
 			label="JOPTION_SELECT_PUBLISHED"
 			statuses="0,1"
 			description="JOPTION_SELECT_PUBLISHED_DESC"
-			onchange="this.form.submit();"
-			>
+			onchange="this.form.submit();" >
 			<option value="">JOPTION_SELECT_PUBLISHED</option>
 		</field>
 		<field
@@ -25,8 +23,7 @@
 			description="JOPTION_FILTER_ACCESS_DESC"
 			multiple="true"
 			class="multipleAccesses"
-			onchange="this.form.submit();"
-			/>
+			onchange="this.form.submit();" />
 		<field
 			name="author"
 			type="author"
@@ -34,8 +31,7 @@
 			description="COM_MINITHEATRECM_HINT_SELECTAUTHOR_DESC"
 			multiple="true"
 			class="multipleAuthors"
-			onchange="this.form.submit();"
-			/>
+			onchange="this.form.submit();" />
 		<field
 			name="recentedit"
 			type="author"
@@ -43,8 +39,7 @@
 			description="COM_MINITHEATRECM_HINT_SELECTRECENTEDIT_DESC"
 			multiple="true"
 			class="multipleRecentEditors"
-			onchange="this.form.submit();"
-			/>
+			onchange="this.form.submit();" />
 		<field
 			name="franchise"
 			type="franchise"
@@ -52,8 +47,7 @@
 			description="COM_MINITHEATRECM_HINT_SELECTFRANCHISE_DESC"
 			multiple="true"
 			class="multipleFranchises"
-			onchange="this.form.submit();"
-			/>
+			onchange="this.form.submit();" />
 		<field
 			name="genre"
 			type="genre"
@@ -61,8 +55,7 @@
 			description="COM_MINITHEATRECM_HINT_SELECTGENRE_DESC"
 			multiple="true"
 			class="multipleGenres"
-			onchange="this.form.submit();"
-			/>
+			onchange="this.form.submit();" />
 		<field
 			name="contenttype"
 			type="ctype"
@@ -70,8 +63,7 @@
 			description="COM_MINITHEATRECM_HINT_SELECTCONTENTTYPE_DESC"
 			multiple="true"
 			class="multipleContentTypes"
-			onchange="this.form.submit();"
-			/>
+			onchange="this.form.submit();" />
 	</fields>
 	<fields name="list">
 		<field
@@ -80,8 +72,7 @@
 			label="COM_MINITHEATRECM_LIST_FULL_ORDERING"
 			description="COM_MINITHEATRECM_LIST_FULL_ORDERING_DESC"
 			onchange="this.form.submit();"
-			default="a.id DESC"
-			>
+			default="a.id DESC" >
 			<option value="">JGLOBAL_SORT_BY</option>
 			
 			<option value="a.id ASC">COM_MINITHEATRECM_ORDERING_ID_ASC</option>
@@ -94,28 +85,28 @@
 			<option value="a.alias ASC">COM_MINITHEATRECM_ORDERING_ALIAS_ASC</option>
 			<option value="a.alias DESC">COM_MINITHEATRECM_ORDERING_ALIAS_DSC</option>
 			
-			<option value="a.ctype_name ASC">COM_MINITHEATRECM_ORDERING_CONTENTTYPE_ASC</option>
-			<option value="a.ctype_name DESC">COM_MINITHEATRECM_ORDERING_CONTENTTYPE_DSC</option>
-			<option value="a.ctype_id ASC">COM_MINITHEATRECM_ORDERING_CONTENTTYPEID_ASC</option>
-			<option value="a.ctype_id DESC">COM_MINITHEATRECM_ORDERING_CONTENTTYPEID_DSC</option>
+			<option value="c.name ASC">COM_MINITHEATRECM_ORDERING_CONTENTTYPE_ASC</option>
+			<option value="c.name DESC">COM_MINITHEATRECM_ORDERING_CONTENTTYPE_DSC</option>
+			<option value="a.ctype ASC">COM_MINITHEATRECM_ORDERING_CONTENTTYPEID_ASC</option>
+			<option value="a.ctype DESC">COM_MINITHEATRECM_ORDERING_CONTENTTYPEID_DSC</option>
 			
 			<option value="f.name ASC">COM_MINITHEATRECM_ORDERING_FRANCHISE_ASC</option>
 			<option value="f.name DESC">COM_MINITHEATRECM_ORDERING_FRANCHISE_DSC</option>
-			<option value="a.franchise_id ASC">COM_MINITHEATRECM_ORDERING_FRANCHISEID_ASC</option>
-			<option value="a.franchise_id DESC">COM_MINITHEATRECM_ORDERING_FRANCHISEID_DSC</option>
+			<option value="a.franchise ASC">COM_MINITHEATRECM_ORDERING_FRANCHISEID_ASC</option>
+			<option value="a.franchise DESC">COM_MINITHEATRECM_ORDERING_FRANCHISEID_DSC</option>
 			
 			<option value="gp.title ASC">COM_MINITHEATRECM_ORDERING_ACCESS_ASC</option>
 			<option value="gp.title DESC">COM_MINITHEATRECM_ORDERING_ACCESS_DSC</option>
 			<option value="a.access ASC">COM_MINITHEATRECM_ORDERING_ACCESSID_ASC</option>
 			<option value="a.access DESC">COM_MINITHEATRECM_ORDERING_ACCESSID_DSC</option>
 			
-			<option value="a.author_name ASC">COM_MINITHEATRECM_ORDERING_AUTHOR_ASC</option>
-			<option value="a.author_name DESC">COM_MINITHEATRECM_ORDERING_AUTHOR_DSC</option>
+			<option value="u1.name ASC">COM_MINITHEATRECM_ORDERING_AUTHOR_ASC</option>
+			<option value="u1.name DESC">COM_MINITHEATRECM_ORDERING_AUTHOR_DSC</option>
 			<option value="a.author ASC">COM_MINITHEATRECM_ORDERING_AUTHORID_ASC</option>
 			<option value="a.author DESC">COM_MINITHEATRECM_ORDERING_AUTHORID_DSC</option>
 			
-			<option value="a.recentedit_name ASC">COM_MINITHEATRECM_ORDERING_RECENTEDIT_ASC</option>
-			<option value="a.recentedit_name DESC">COM_MINITHEATRECM_ORDERING_RECENTEDIT_DSC</option>
+			<option value="u2.name ASC">COM_MINITHEATRECM_ORDERING_RECENTEDIT_ASC</option>
+			<option value="u2.name DESC">COM_MINITHEATRECM_ORDERING_RECENTEDIT_DSC</option>
 			<option value="a.recentedit ASC">COM_MINITHEATRECM_ORDERING_RECENTEDITID_ASC</option>
 			<option value="a.recentedit DESC">COM_MINITHEATRECM_ORDERING_RECENTEDITID_DSC</option>
 			
@@ -138,7 +129,6 @@
 			description="COM_MINITHEATRECM_LIST_LIMIT_DESC"
 			class="input-mini"
 			default="25"
-			onchange="this.form.submit();"
-		/>
+			onchange="this.form.submit();" />
 	</fields>
 </form>

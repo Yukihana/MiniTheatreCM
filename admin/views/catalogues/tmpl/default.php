@@ -35,7 +35,7 @@ $franchiselink	= MiniTheatreCMCfgGlobal::getManagerLinkable('franchise');
 $ctypelink		= MiniTheatreCMCfgGlobal::getManagerLinkable('contenttype');
 
 $franchise_col	= NeonHtmlManager::getOrdering($listOrder, 'f.name', 'COM_MINITHEATRECM_DICTIONARY_FRANCHISE',
-					array('f.name'=>'COM_MINITHEATRECM_DICTIONARY_FRANCHISENAME','a.franchise_id'=>'COM_MINITHEATRECM_DICTIONARY_FRANCHISEID'));
+					array('f.name'=>'COM_MINITHEATRECM_DICTIONARY_FRANCHISENAME','a.franchise'=>'COM_MINITHEATRECM_DICTIONARY_FRANCHISEID'));
 $access_col		= NeonHtmlManager::getOrdering($listOrder, 'gp.title', 'COM_MINITHEATRECM_DICTIONARY_ACCESS',
 					array('gp.title'=>'COM_MINITHEATRECM_DICTIONARY_ACCESSGROUP','a.access'=>'COM_MINITHEATRECM_DICTIONARY_ACCESSID'));
 $editor_col		= NeonHtmlManager::getOrdering($listOrder, 'a.author', 'COM_MINITHEATRECM_DICTIONARY_EDITORS',
@@ -46,7 +46,7 @@ $stats_col		= NeonHtmlManager::getOrdering($listOrder, 'a.hits', 'COM_MINITHEATR
 					array('a.hits'=>'COM_MINITHEATRECM_DICTIONARY_HITS', 'a.votes'=>'COM_MINITHEATRECM_DICTIONARY_VOTES'));
 ?>
 
-<form action="index.php?option=com_minitheatrecm&view=catalogues" method="post" id="adminForm" name="adminForm">
+<form action="index.php?option=com_minitheatrecm&view=catalogues" method="post" id="adminForm" name="adminForm" class="clearfix">
 	<?php if (!empty( $this->sidebar)) : ?>
 		<div id="j-sidebar-container" class="span2">
 			<?php echo $this->sidebar; ?>
@@ -114,14 +114,14 @@ $stats_col		= NeonHtmlManager::getOrdering($listOrder, 'a.hits', 'COM_MINITHEATR
 					</td>
 					<td class="nowrap center">
 						<div class="btn-group">
-							<?php echo JHtml::_('jgrid.published', $row->state, $i, 'catalogues.', true, 'cb'); ?>
+							<?php echo JHtml::_('jgrid.published', $row->state, $i, 'catalogues.', true, 'cb', $row->publish_up, $row->publish_down); ?>
 						</div>
 					</td>
 					<td>
 						<div class="pull-left">
 							<div>
 								<?php echo NeonHtmlManager::renderCTypeIcon($row->ctype_name, $row->ctype_color, $row->ctype, $ctypelink)
-											.' '.NeonHtmlManager::renderMain($this->escape($row->name), $link)
+											.' '.NeonHtmlManager::renderMain($this->escape($row->name), $link, 'COM_MINITHEATRECM_TOOLTIP_EDIT_CATALOGUE')
 											.' '.NeonHtmlManager::renderAltNames($this->escape($row->altnames));?>
 							</div>
 							<div class="hidden-phone">

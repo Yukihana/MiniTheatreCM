@@ -12,7 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 ?>
 
-<form action="index.php?option=com_minitheatrecm&view=overview" method="post" id="adminForm" name="adminForm">
+<form action="index.php?option=com_minitheatrecm&view=overview" method="post" id="adminForm" name="adminForm" class="clearfix">
 	<div id="j-sidebar-container" class="span2">
 		<?php echo JHtmlSidebar::render(); ?>
 	</div>

@@ -16,43 +16,13 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class MiniTheatreCMViewReviews extends JViewLegacy
+class MiniTheatreCMViewReviews extends NeonViewManager
 {
-	// Display the template ($tpl: template file)
-	function display($tpl = null)
-	{
-		// Get data from the model
-		$pretime			= microtime(true);
-		$this->items		= $this->get('Items');
-		$posttime			= microtime(true);
-		$this->pagination	= $this->get('Pagination');
-		$this->names		= $this->get('Usernames');
-		$this->itemnames	= $this->get('Itemnames');
-		$this->querytime	= $posttime - $pretime;
-
-		// Check for errors.
-		if (count($errors = $this->get('Errors')))
-		{
-			JError::raiseError(500, implode('<br />', $errors));
-
-			return false;
-		}
-
-		// Set up other UI elements
-		if ($this->getLayout() !== 'modal')
-		{
-			MiniTheatreCMHelper::addSubmenu('reviews');
-			$this->sidebar = JHtmlSidebar::render();
-			
-			$this->setDocument();
-			$this->addToolBar();
-		}
-		
-		// Display the template
-		parent::display($tpl);
-	}
+	protected $ui_submenu	= 'reviews';
+	protected $ui_title		= 'COM_MINITHEATRECM_TITLE_REVIEWS';
+	protected $ui_icon		= 'comments-2';
 	
-	// Add page header and toolbar buttons
+	// Add toolbar buttons
 	protected function addToolBar()
 	{		
 		JToolbarHelper::addNew('review.add');
@@ -60,20 +30,12 @@ class MiniTheatreCMViewReviews extends JViewLegacy
 		JToolbarHelper::publish('reviews.publish', 'JTOOLBAR_PUBLISH', true);
 		JToolbarHelper::unpublish('reviews.unpublish', 'JTOOLBAR_UNPUBLISH', true);		
 		JToolbarHelper::archiveList('reviews.archive');
-		/*
+		
 		if($this->state->get('filter.published') == -2)
 			JToolbarHelper::deleteList('COM_MINITHEATRECM_REVIEWS_CONFIRMDELETE', 'reviews.delete', 'COM_MINITHEATRECM_DICTIONARY_PURGE');
 		else
 			JToolbarHelper::trash('reviews.trash');
-		*/
+		
 		JToolbarHelper::preferences('com_minitheatrecm');
-	}
-	
-	// Set page-header and document-title
-	protected function setDocument()
-	{
-		$title = JText::_('COM_MINITHEATRECM_TITLE_REVIEWS');
-		JToolbarHelper::title( $title, 'comments-2' );
-		JFactory::getDocument()->setTitle($title.' - '.JText::_('COM_MINITHEATRECM_GLOBAL_LONGTITLE'));
 	}
 }

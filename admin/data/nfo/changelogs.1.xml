@@ -1,47 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelogs>
-	<update version="0.0.12.C">
-		<task type="config">Fixed default_view global parameter.</task>
-		<task type="admin misc">Removed bloat layout data from Overview.</task>
-		<task type="config">Added and Implemented a central indexing for tables at admin/meta/database.php.</task>
-		<task type="library">Added and Implemented ManagerFields renderer to help populate table-cells.</task>
-		<task type="database">Added JTable classes, SQL definitions and admin MVC lists for 'ratings'. (Reinstall required)</task>
-		<task type="admin misc">Compacted method comments to optimize file sizes.</task>
-		<task type="admin manager">Fixed irregular responsive columns for many manager views.</task>
-	</update>
-	<update version="0.0.12.D">
-		<task type="library">Added a custom renderer for messages that can parse and translate arrays.</task>
-		<task type="database">Standardised sql table definition for items.</task>
-		<task type="site">Upgraded site/item code to conform to the new system.</task>
-		<task type="site">Added a basic tablayout to site/items. Pending actual design and content.</task>
-		<task type="database">Changed #__mtcm_metadatas to #__mt_shared, and updated tables.</task>
-		<task type="admin manager">Fixed footer colspan values for all manager-list views.</task>
-		<task type="admin manager">Upgraded admin/listings to use non tutorial filters.(not fully functional yet)</task>
-	</update>
-	<update version="0.0.12.D1">
-		<task type="admin manager">Fixed admin/listings fullordering not working.</task>
-		<task type="admin manager">Fixed column header not showing directional arrow on default state.</task>
-		<task type="library translation">Added a lot of missing translations, cleaned up unused libraries.</task>
-		<task type="admin manager">Write custom translations for fullordering. Make 'id desc' the default order.</task>
-		<task type="library">Add minitheatre folder to lib, and move mt specific helpers.</task>
-	</update>
-	<update version="0.0.12.E">
-		<task type="admin manager">Fixed 'publish' not working.</task>
-		<task type="database">Updated SQL definitions for all tables.</task>
-		<task type="admin misc">Moved helpers/nfo.php to lib/mt/nfo.php.</task>
-		<task type="admin form">Added Admin/Listing form view.</task>
-		<task type="admin translation">Added translations to Table Headers like 'COLUMNHEADER_LISTINGNAME'.</task>
-	</update>
-	<update version="0.0.12.F">
-		<task type="admin misc">Version NFO upgraded to INI format.</task>
-		<task type="library">Moved '/lib/mt/nfo.php' to 'meta/nfo.php'.</task>
-		<task type="admin manager">Added footer badge to manager html library and applied to all manager views.</task>
-		<task type="admin manager">Updated all manager views to use 'setDocument()' for page header and titles.</task>
-		<task type="admin misc">Added Manifest tab to Planner(Layout postponed till after structure planning).</task>
-		<task type="config">Moved tables' indices to XML and made required changes to the handler class.</task>
-		<task type="admin misc">Change manifest.x to xml-type file.</task>
-		<task type="admin translation">Implemented pluralisable translations for system messages.</task>
-	</update>
 	<update version="0.0.12.G">
 		<task type="form">Form views added for Item, Franchise, Content-type.</task>
 		<task type="misc">Added ActivityLog MVC(Basic), and a placeholder template.</task>
@@ -97,5 +55,14 @@
 		<task type="library">Partially upgraded the profiling based file-list fetcher.</task>
 		<task type="misc">Changelogs AJAX with fallback fully functional in MVC/Planner (Minor bugs may remain).</task>
 		<task type="library">Several misc changes to the library files.</task>
+	</update>
+	<update version="0.0.12.L">
+		<task type="manager">Content Managers fixed: ContentTypes, Genres, Listings, Franchises, Reviews.</task>
+		<task type="manager">Content Managers added: Crew-members, Crew-roles, Organisations.</task>
+		<task type="database">A lot of bugs fixed in database-filtering codes (yet many more remain: especially outdated code fragments that aren't compatible anymore).</task>
+		<task type="forms">Fixed multi-choice hints not shown in editor views.</task>
+		<task type="manager">All existing release managers now running the latest version of the code, some managers yet to be added.</task>
+		<task type="manager">Added clearfix to all managers to prevent invasion of joomla-debug-console into data area.</task>
+		<task type="misc">Added styling to Planner elements.</task>
 	</update>
 </changelogs>

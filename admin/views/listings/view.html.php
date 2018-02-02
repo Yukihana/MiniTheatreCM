@@ -16,43 +16,11 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class MiniTheatreCMViewListings extends JViewLegacy
+class MiniTheatreCMViewListings extends NeonViewManager
 {
-	// Display the template ($tpl: template file)
-	function display($tpl = null)
-	{
-		// Get data from the model
-		$pretime				= microtime(true);
-		$this->items			= $this->get('Items');
-		$posttime				= microtime(true);
-		$this->pagination		= $this->get('Pagination');
-		$this->state			= $this->get('State');
-		$this->names			= $this->get('Usernames');
-		$this->itemnames		= $this->get('Itemnames');
-		$this->groups			= $this->get('Accessgroups');
-		$this->filterForm    	= $this->get('FilterForm');
-		$this->activeFilters 	= $this->get('ActiveFilters');
-		$this->querytime		= $posttime - $pretime;
-		
-		// Check for errors.
-		if (count($errors = $this->get('Errors')))
-		{
-			throw new Exception(implode("\n", $errors), 500);
-		}
-
-		// Set up other UI elements
-		if ($this->getLayout() !== 'modal')
-		{
-			MiniTheatreCMHelper::addSubmenu('listings');
-			$this->sidebar = JHtmlSidebar::render();
-			
-			$this->setDocument();
-			$this->addToolBar();
-		}
-		
-		// Display the template
-		return parent::display($tpl);
-	}
+	protected $ui_submenu	= 'listings';
+	protected $ui_title		= 'COM_MINITHEATRECM_TITLE_LISTINGS';
+	protected $ui_icon		= 'play-2';
 	
 	// Add toolbar buttons
 	protected function addToolBar()
@@ -69,13 +37,5 @@ class MiniTheatreCMViewListings extends JViewLegacy
 			JToolbarHelper::trash('listings.trash');
 		
 		JToolbarHelper::preferences('com_minitheatrecm');
-	}
-	
-	// Set page-header and document-title
-	protected function setDocument()
-	{
-		$title = JText::_('COM_MINITHEATRECM_TITLE_LISTINGS');
-		JToolbarHelper::title( $title, 'play-2' );
-		JFactory::getDocument()->setTitle($title.' - '.JText::_('COM_MINITHEATRECM_GLOBAL_LONGTITLE'));
 	}
 }
