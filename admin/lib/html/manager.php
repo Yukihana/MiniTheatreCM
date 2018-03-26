@@ -73,32 +73,67 @@ abstract class NeonHtmlManager
 		return $footer;
 	}
 	
+	// Task buttons
+	public static function renderTaskButtons( $state = 1, $i = 0, $prefix = '', $enabled = true, $publish_up, $publish_down )
+	{
+		$r = '<div class="btn-group">';
+		
+		// Auto-task State Button
+		$r.= JHtml::_('jgrid.published', $state, $i, $prefix, $enabled, 'cb', $publish_up, $publish_down);
+		
+		// Custom Buttons (TODO)
+		if( !in_array( $state, array( -2 )))
+		{
+			$r.= JHtml::_('jgrid.action', $i, 'archive', $prefix, 'JARCHIVE', 'JARCHIVE', '', true, 'small icon-archive');
+		}
+		if( !in_array( $state, array( 2 )))
+		{
+			$r.= JHtml::_('jgrid.action', $i, 'trash', $prefix, 'JTRASH', 'JTRASH', '', true, 'small icon-trash');
+		}
+		/*
+		 * Custom button definition:
+		 *
+		 * public static function action($i, $task, $prefix = '', $text = '', $active_title = '', $inactive_title = '', $tip = false, $active_class = '',
+			$inactive_class = '', $enabled = true, $translate = true, $checkbox = 'cb')
+		 */
+		
+		// Finish
+		$r.= '</div>';
+		
+		return $r;
+	}
+	
 	// Filter-Ordering Parser
 	public static function getOrdering( $fullorder, $defkey, $deftext, $columns )
 	{
-		$res		= new stdClass();
+		$r = new stdClass();
 		
 		// Get Order-Index
 		$n = 1;
-		foreach($columns as $key=>$text)
+		foreach($columns as $text=>$keystr)
 		{
-			if( strpos( $fullorder, $key ) !== false )
+			$keys = explode(',', $keystr);
+			foreach($keys as $key)
 			{
-				$res->index = $n;
-				$res->order	= $key;
-				$res->text	= $text;
-				
-				return $res;
+				$key = trim($key);
+				if( strpos( $fullorder, $key ) !== false )
+				{
+					$r->index	= $n;
+					$r->order	= $key;
+					$r->text	= $text;
+					
+					return $r;
+				}
 			}
 			$n++;
 		}
 		
 		// Default
-		$res->index	= 0;
-		$res->order	= $defkey;
-		$res->text	= $deftext;
+		$r->index	= 0;
+		$r->order	= $defkey;
+		$r->text	= $deftext;
 		
-		return $res;
+		return $r;
 	}
 	
 	// Fields: Main
@@ -378,7 +413,7 @@ abstract class NeonHtmlManager
 		if($linkable)
 		{
 			return '<a class="hasTooltip" title="'.$text.'" href="'
-					.JRoute::_('index.php?option=com_minitheatrecm&task=contenttype.edit&id='.$id)
+					.JRoute::_('index.php?option=com_minitheatrecm&task=ctype.edit&id='.$id)
 					.'"><span class="icon-circle" style="color:'.$color.';"> </span></a>';
 		}
 		else

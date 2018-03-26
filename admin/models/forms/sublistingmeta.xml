@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="files">
+	
+		<field name="metafilewrap" type="fileformat" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_CONTAINER"
+			description="COM_MINITHEATRECM_DESCRIPTION_FILECONTAINER"
+			>
+			<option value="-2">COM_MINITHEATRECM_DICTIONARY_MIXED</option>
+			<option value="-1">COM_MINITHEATRECM_DICTIONARY_OTHER</option>
+			<option value="0">COM_MINITHEATRECM_SYMBOLIC_HYPHENS</option>
+		</field>
+			
+		<field name="metafilecomp" type="filecompression" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_COMPRESSION"
+			description="COM_MINITHEATRECM_DESCRIPTION_FILECOMPRESSION"
+			>
+			<option value="-2">COM_MINITHEATRECM_DICTIONARY_MIXED</option>
+			<option value="-1">COM_MINITHEATRECM_DICTIONARY_OTHER</option>
+			<option value="0">COM_MINITHEATRECM_SYMBOLIC_HYPHENS</option>
+		</field>
+			
+		<field name="metafilecount" type="number" default="1" 
+			label="COM_MINITHEATRECM_DICTIONARY_COUNT"
+			description="COM_MINITHEATRECM_DESCRIPTION_FILECOUNT"
+			min="1"	/>
+			
+		<field name="metafilesizet" type="number" default="0" 
+			label="COM_MINITHEATRECM_DICTIONARY_TOTALSIZE"
+			description="COM_MINITHEATRECM_DESCRIPTION_TOTALSIZE"
+			hint="COM_MINITHEATRECM_HINT_SIZEINMEGABYTES"
+			min="0" step="0.001" />
+	
+	</fieldset>
+	<fieldset name="video">
+	
+		<field name="metavideoincluded" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_INCLUDED"
+			description="COM_MINITHEATRECM_DESCRIPTION_VIDEOINCLUDED"
+			class="btn-group btn-group-yesno"
+			>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+		
+		<field name="metavideoresolution" type="videoresolution" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_RESOLUTION"
+			description="COM_MINITHEATRECM_DESCRIPTION_VIDEORESOLUTION"
+			showon="metavideoincluded:1"
+			>
+			<option value="-1">COM_MINITHEATRECM_DICTIONARY_OTHER</option>
+			<option value="0">COM_MINITHEATRECM_SYMBOLIC_HYPHENS</option>
+		</field>
+		
+		<field name="metavideowidth" type="number" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_WIDTH"
+			description="COM_MINITHEATRECM_DESCRIPTION_VIDEOWIDTH"
+			showon="metavideoincluded:1[AND]metavideoresolution:-1"
+			min="0" />
+			
+		<field name="metavideoheight" type="number" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_HEIGHT"
+			description="COM_MINITHEATRECM_DESCRIPTION_VIDEOHEIGHT"
+			showon="metavideoincluded:1[AND]metavideoresolution:-1"
+			min="0" />
+			
+		<field name="metavideoscanmode" type="radio" default="1"
+			label="COM_MINITHEATRECM_DICTIONARY_SCANMODE"
+			description="COM_MINITHEATRECM_DESCRIPTION_VIDEOSCAN"
+			class="btn-group btn-group-yesno" showon="metavideoincluded:1"
+			>
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_INTERLACED</option>
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_PROGRESSIVE</option>
+		</field>
+		
+		<field name="metavideoencoder" type="videoencoder" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_ENCODER"
+			description="COM_MINITHEATRECM_DESCRIPTION_ENCODER"
+			showon="metavideoincluded:1"
+			>
+			<option value="-1">COM_MINITHEATRECM_DICTIONARY_OTHER</option>
+			<option value="0">COM_MINITHEATRECM_SYMBOLIC_HYPHENS</option>
+		</field>
+		
+		<field name="metavideoencother" type="text"
+			label=""
+			showon="metavideoincluded:1[AND]metavideoencoder:-1"/>
+		
+		<field name="metavideofps" type="number" default="24"
+			label="COM_MINITHEATRECM_DICTIONARY_FRAMESPERSECOND"
+			description="COM_MINITHEATRECM_DESCRIPTION_VIDEOFPS"
+			showon="metavideoincluded:1" min="0" step="0.0001" />
+		
+		<field name="metavideobitrate" type="number" default="512"
+			label="COM_MINITHEATRECM_DICTIONARY_BITRATE"
+			description="COM_MINITHEATRECM_DESCRIPTION_VIDEOBITRATE"
+			showon="metavideoincluded:1" min="0" step="0.001" />
+			
+		<field name="metavideoparams" type="textarea"
+			label="COM_MINITHEATRECM_DICTIONARY_ENCODINGPARAMETERS"
+			description="COM_MINITHEATRECM_DESCRIPTION_ENCODINGPARAMETERS"
+			showon="metavideoincluded:1" />
+			
+	</fieldset>
+	<fieldset name="audio">
+	
+		<field name="metaaudioincluded" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_INCLUDED"
+			description="COM_MINITHEATRECM_DESCRIPTION_AUDIOINCLUDED"
+			class="btn-group btn-group-yesno"
+			>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+	
+		<field name="metaaudiocount" type="number" default="1"
+			label="COM_MINITHEATRECM_DICTIONARY_TRACKS"
+			description="COM_MINITHEATRECM_DESCRIPTION_TRACKSCOUNT"
+			showon="metaaudioincluded:1" min="1" />
+			
+		<field name="metaaudiodubbed" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_DUBBED"
+			description="COM_MINITHEATRECM_DESCRIPTION_TRACKDUBBED"
+			class="btn-group btn-group-yesno" showon="metaaudioincluded:1[AND]metaaudiocount:1"
+			>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+		
+		<field name="metaaudiolang" type="langaudio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_LANGUAGE"
+			description="COM_MINITHEATRECM_DESCRIPTION_AUDIOLANGUAGE"
+			multiple="multiple" class="multipleLanguages"
+			showon="metaaudioincluded:1" />
+			
+		<field name="metaaudioencoder" type="audioencoder" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_ENCODER"
+			description="COM_MINITHEATRECM_DESCRIPTION_ENCODER"
+			showon="metaaudioincluded:1" >
+			<option value="-1">COM_MINITHEATRECM_DICTIONARY_OTHER</option>
+			<option value="0">COM_MINITHEATRECM_SYMBOLIC_HYPHENS</option>
+		</field>
+		
+		<field name="metaaudioencother" type="text"
+			label=""
+			showon="metaaudioincluded:1[AND]metaaudioencoder:-1"/>
+			
+		<field name="metaaudiochannels" type="number" default="2"
+			label="COM_MINITHEATRECM_DICTIONARY_CHANNELS"
+			description="COM_MINITHEATRECM_DESCRIPTION_AUDIOCHANNELS"
+			showon="metaaudioincluded:1" min="1" />
+			
+		<field name="metaaudiobitrate" type="number" default="96"
+			label="COM_MINITHEATRECM_DICTIONARY_BITRATE"
+			description="COM_MINITHEATRECM_DESCRIPTION_AUDIOBITRATE"
+			showon="metaaudioincluded:1" min="0" step="0.001" />
+		
+		<field name="metaaudioparams" type="textarea"
+			label="COM_MINITHEATRECM_DICTIONARY_ENCODINGPARAMETERS"
+			description="COM_MINITHEATRECM_DESCRIPTION_ENCODINGPARAMETERS"
+			showon="metaaudioincluded:1" />
+			
+	</fieldset>
+	<fieldset name="subtitles">
+		
+		<field name="metasubincluded" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_INCLUDED"
+			description="COM_MINITHEATRECM_DESCRIPTION_SUBINCLUDED"
+			class="btn-group btn-group-yesno"
+			>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+		
+		<field name="metasubcount" type="number" default="1"
+			label="COM_MINITHEATRECM_DICTIONARY_TRACKS"
+			description="COM_MINITHEATRECM_DESCRIPTION_TRACKSCOUNT"
+			showon="metasubincluded:1" min="1" />
+			
+		<field name="metasublang" type="langscript"
+			label="COM_MINITHEATRECM_DICTIONARY_LANGUAGE"
+			description="COM_MINITHEATRECM_DESCRIPTION_SUBTITLELANGUAGE"
+			multiple="multiple" class="multipleLanguages"
+			showon="metasubincluded:1" />
+			
+		<field name="metasubformat" type="subtitleformat" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_FORMAT"
+			description="COM_MINITHEATRECM_DESCRIPTION_SUBSFORMAT"
+			showon="metasubincluded:1"
+			>
+			<option value="-1">COM_MINITHEATRECM_DICTIONARY_OTHER</option>
+			<option value="0">COM_MINITHEATRECM_SYMBOLIC_HYPHENS</option>
+		</field>
+		
+		<field name="metasubformatother" type="text"
+			label=""
+			showon="metasubincluded:1[AND]metasubformat:-1"/>
+			
+		<field name="metasubofficial" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_OFFICIAL"
+			description="COM_MINITHEATRECM_DESCRIPTION_SUBSOFFICIAL"
+			class="btn-group btn-group-yesno" showon="metasubincluded:1"
+			>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+			
+		<field name="metasubfan" type="organisation"
+			label="COM_MINITHEATRECM_DICTIONARY_FANSUB"
+			description="COM_MINITHEATRECM_DESCRIPTION_FANSUB"
+			multiple="multiple" class="multipleFansubs"
+			showon="metasubincluded:1" />
+		
+	</fieldset>
+</form>

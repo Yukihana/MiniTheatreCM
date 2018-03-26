@@ -16,50 +16,15 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class MiniTheatreCMViewListing extends JViewLegacy
+class MiniTheatreCMViewListing extends NeonViewForm
 {
-	// Vars
-	protected $form = null;
+	protected $ui_title	= 'COM_MINITHEATRECM_TITLE_LISTINGS';
 
-	// Display the view ($tpl = tmpl file to use, defaults to default.php)
-	public function display($tpl = null)
-	{
-		// Get the Data
-		$this->form = $this->get('Form');
-		$this->item = $this->get('Item');
-
-		// Check for errors.
-		if (count($errors = $this->get('Errors')))
-		{
-			JError::raiseError(500, implode('<br />', $errors));
-
-			return false;
-		}
-
-
-		// Set the toolbar
-		$this->addToolBar();
-
-		// Display the template
-		parent::display($tpl);
-		
-		// Set the document
-		$this->setDocument();
-	}
-	
-	// Add the toolbar and title
+	// Add toolbar buttons
 	protected function addToolBar()
 	{
-		$input = JFactory::getApplication()->input;
-
-		// Hide Joomla Administrator Main menu
-		$input->set('hidemainmenu', true);
-
 		$isNew = ($this->item->id == 0);
-
-		$title = JText::_('COM_MINITHEATRECM_TITLE_LISTING').': '.JText::_($isNew ? 'COM_MINITHEATRECM_DICTIONARY_NEW' : 'COM_MINITHEATRECM_DICTIONARY_EDIT');
-
-		JToolbarHelper::title($title, 'pencil-2');
+		
 		JToolbarHelper::apply('listing.apply');
 		JToolbarHelper::save('listing.save');
 		JToolbarHelper::save2new('listing.save2new');
@@ -69,23 +34,7 @@ class MiniTheatreCMViewListing extends JViewLegacy
 			'listing.cancel',
 			$isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE'
 		);
-	}
-	
-	// Document Properties
-	protected function setDocument() 
-	{
-		$isNew = ($this->item->id < 1);
-		$document = JFactory::getDocument();
-		$document->setTitle(
-			JText::_('COM_MINITHEATRECM_TITLE_LISTING').'::'.
-			JText::_($isNew ? 'COM_MINITHEATRECM_DICTIONARY_NEW' : 'COM_MINITHEATRECM_DICTIONARY_EDIT').' - '.
-			JText::_('COM_MINITHEATRECM_GLOBAL_TITLE')
-		);
-		/*
-		$document->addScript(JURI::root() . $this->script);
-		$document->addScript(JURI::root() . "/administrator/components/com_minitheatrecm"
-		                                  . "/views/ulwizsource/submitbutton.js");
-		JText::script('COM_MINITHEATRECM_ERROR_UNACCEPTABLE');
-		*/
+		
+		parent::addToolBar();
 	}
 }

@@ -27,12 +27,8 @@ if (!JFactory::getUser()->authorise('core.manage', 'com_minitheatrecm'))
 JLoader::discover('Neon', JPATH_COMPONENT_ADMINISTRATOR . '/lib/src');
 JLoader::register('MiniTheatreCMHelper', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/minitheatrecm.php');
 JLoader::register('NeonDataEscape', JPATH_COMPONENT_ADMINISTRATOR . '/lib/data/escape.php');
- 
-// Get an instance of the controller prefixed by MiniTheatreCM
+
+// Load the controller, execute the task, and redirect if required
 $controller = JControllerLegacy::getInstance('MiniTheatreCM');
-
-// Perform the Request task
 $controller->execute(JFactory::getApplication()->input->get('task'));
-
-// Redirect if set by the controller
 $controller->redirect();

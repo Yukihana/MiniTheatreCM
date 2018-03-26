@@ -14,35 +14,6 @@
 	</fieldset>	
 	<fieldset name="mtcm_system" label="COM_MINITHEATRECM_DICTIONARY_SYSTEM" description="COM_MINITHEATRECM_DESCRIPTION_SYSTEM">
 	
-		<field
-			type="note"
-			label="COM_MINITHEATRECM_DICTIONARY_GLOBALMESSAGE"
-			description="COM_MINITHEATRECM_DESCRIPTION_GLOBALMESSAGE"/>
-			
-		<field
-			name="glomsg_header" type="text" default=""
-			label="COM_MINITHEATRECM_DICTIONARY_TITLE"
-			description="COM_MINITHEATRECM_DESCRIPTION_TITLE"
-			checksuperusergroup="1" />
-			
-		<field
-			name="glomsg_content" type="textarea" default=""
-			label="COM_MINITHEATRECM_DICTIONARY_CONTENT"
-			description="COM_MINITHEATRECM_DESCRIPTION_CONTENT"
-			checksuperusergroup="1" />
-			
-		<field
-			name="glomsg_sticky" type="radio" default="0"
-			label="COM_MINITHEATRECM_DICTIONARY_STICKY"
-			description="COM_MINITHEATRECM_DESCRIPTION_STICKY"
-			class="btn-group btn-group-yesno"
-			checksuperusergroup="1" >
-			<option value="1">JYES</option>
-			<option value="0">JNO</option>
-		</field>
-		
-		<field type="spacer" hr="true"/>
-		
 		<field type="note"
 			label="COM_MINITHEATRECM_DICTIONARY_DEBUG"
 			description="COM_MINITHEATRECM_DESCRIPTION_DEBUG" />
@@ -61,42 +32,41 @@
 	<fieldset name="mtcm_admin" label="COM_MINITHEATRECM_DICTIONARY_ADMIN" description="COM_MINITHEATRECM_DESCRIPTION_ADMIN">
 	
 		<field
-			name="default_view" type="list" default="overview"
+			name="default_view" type="viewlist" default="dashboard"
 			label="COM_MINITHEATRECM_DICTIONARY_DEFAULTVIEW"
 			description="COM_MINITHEATRECM_DESCRIPTION_DEFAULTVIEW"
-			checksuperusergroup="1" >
-			<option value="overview">COM_MINITHEATRECM_TITLE_OVERVIEW</option>
-			<option value="activitylog">COM_MINITHEATRECM_TITLE_ACTIVITYLOG</option>
-			
-			<option value="listings">COM_MINITHEATRECM_TITLE_LISTINGS</option>
-			<option value="catalogues">COM_MINITHEATRECM_TITLE_CATALOGUES</option>
-			<option value="franchises">COM_MINITHEATRECM_TITLE_FRANCHISES</option>
-			<option value="genres">COM_MINITHEATRECM_TITLE_GENRES</option>
-			<option value="contenttypes">COM_MINITHEATRECM_TITLE_CONTENTTYPES</option>
-			
-			<option value="reviews">COM_MINITHEATRECM_TITLE_REVIEWS</option>
-			<option value="ratingreviews">COM_MINITHEATRECM_TITLE_RATINGREVIEWS</option>
-			<option value="ratinglistings">COM_MINITHEATRECM_TITLE_RATINGLISTINGS</option>
-			
-			<option value="ratingcatalogues">COM_MINITHEATRECM_TITLE_RATINGCATALOGUES</option>
-			<option value="ratingfranchises">COM_MINITHEATRECM_TITLE_RATINGFRANCHISES</option>
-			<option value="ratinggenres">COM_MINITHEATRECM_TITLE_RATINGGENRES</option>
-			
-			<option value="planner">COM_MINITHEATRECM_TITLE_PLANNER</option>
-		</field>
-		
-		<field
-			name="overview_type" type="radio" default="0"
-			label="COM_MINITHEATRECM_DICTIONARY_OVERVIEWTYPE"
-			description="COM_MINITHEATRECM_DESCRIPTION_OVERVIEWTYPE"
-			class="btn-group btn-group-yesno"
-			checksuperusergroup="1" >
-			<option value="1">COM_MINITHEATRECM_DICTIONARY_DETAILED</option>
-			<option value="0">COM_MINITHEATRECM_DICTIONARY_BASIC</option>
-		</field>
+			menuitems="true" 
+			extension="com_minitheatrecm" 
+			checksuperusergroup="1" />
+		<!--TODO above field-->
+		<!--Add dashboard related options here-->
 		
 	</fieldset>
 	<fieldset name="mtcm_manager" label="COM_MINITHEATRECM_DICTIONARY_MANAGER" description="COM_MINITHEATRECM_DESCRIPTION_MANAGER">
+	
+		<field type="note"
+			label="COM_MINITHEATRECM_DICTIONARY_GUIDE"
+			description="COM_MINITHEATRECM_DESCRIPTION_MANAGERTIPS"/>
+	
+		<field
+			name="mgguide_enabled" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_ENABLED"
+			description="COM_MINITHEATRECM_DESCRIPTION_ENABLED"
+			class="btn-group btn-group-yesno"
+			checksuperusergroup="1" >
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
+		
+		<field
+			name="mgguide_sticky" type="radio" default="0"
+			label="COM_MINITHEATRECM_DICTIONARY_STICKY"
+			description="COM_MINITHEATRECM_DESCRIPTION_STICKY"
+			class="btn-group btn-group-yesno"
+			checksuperusergroup="1" showon="mgguide_enabled:1" >
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
 	
 		<field type="note"
 			label="COM_MINITHEATRECM_DICTIONARY_FILTERING"
@@ -207,31 +177,31 @@
 		
 		<field
 			name="ticks_catalogues" type="number"
-			first="1" last="999999"	default="100"
+			min="1" max="999999" default="100"
 			label="COM_MINITHEATRECM_DICTIONARY_CATALOGUES"
 			description="COM_MINITHEATRECM_DESCRIPTION_TICKS" />
 			
 		<field
 			name="ticks_franchises" type="number"
-			first="1" last="999999"	default="100"
+			min="1" max="999999" default="100"
 			label="COM_MINITHEATRECM_DICTIONARY_FRANCHISES"
 			description="COM_MINITHEATRECM_DESCRIPTION_TICKS" />
 			
 		<field
 			name="ticks_listings" type="number"
-			first="1" last="999999"	default="100"
+			min="1" max="999999" default="100"
 			label="COM_MINITHEATRECM_DICTIONARY_LISTINGS"
 			description="COM_MINITHEATRECM_DESCRIPTION_TICKS" />
 			
 		<field
 			name="ticks_reviews" type="number"
-			first="1" last="999999"	default="100"
+			min="1" max="999999" default="100"
 			label="COM_MINITHEATRECM_DICTIONARY_REVIEWS"
 			description="COM_MINITHEATRECM_DESCRIPTION_TICKS" />
 			
 		<field
 			name="ticks_genres" type="number"
-			first="1" last="999999"	default="100"
+			min="1" max="999999" default="100"
 			label="COM_MINITHEATRECM_DICTIONARY_GENRES"
 			description="COM_MINITHEATRECM_DESCRIPTION_TICKS" />
 			

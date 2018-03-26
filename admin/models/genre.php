@@ -16,48 +16,15 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class MiniTheatreCMModelGenre extends JModelAdmin
+class MiniTheatreCMModelGenre extends NeonModelAdmin
 {
+	protected $userstatestring	= 'com_minitheatrecm.edit.editgenre.data';
+	protected $formname			= 'com_minitheatrecm.genre';
+	protected $formxml			= 'editgenre';
+	
 	// Method to fetch JTable instances ($name: modelname, $prefix: class prefix, $config: optional configuration array)
 	public function getTable($type = 'Genres', $prefix = 'MiniTheatreCMTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
-	}
-	
-	// Method to fetch form ($array: form-data, $loadData: load existing?), return [mixed] success? form-object : false.
-	public function getForm($data = array(), $loadData = true)
-	{
-		$form = $this->loadForm(
-			'com_minitheatrecm.genre',
-			'editgenre',
-			array(
-				'control' => 'jform',
-				'load_data' => $loadData
-			)
-		);
-
-		if (empty($form))
-		{
-			return false;
-		}
-
-		return $form;
-	}
-	
-	// Method to get the data for the form
-	protected function loadFormData()
-	{
-		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState(
-			'com_minitheatrecm.edit.editgenre.data',
-			array()
-		);
-
-		if (empty($data))
-		{
-			$data = $this->getItem();
-		}
-
-		return $data;
 	}
 }

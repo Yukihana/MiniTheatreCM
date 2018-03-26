@@ -49,7 +49,7 @@ class MiniTheatreCMControllerPlanner extends JControllerAdmin
 			{
 				case 'changelog':
 					$d = $model->getChangelog();
-					if( $d != null )
+					if( $d->tasks != null )
 					{	
 						echo NeonNfoChangelog::render($d);
 						return;

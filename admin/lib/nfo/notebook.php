@@ -25,7 +25,14 @@ abstract class NeonNfoNotebook
 		$r.= '<div class="row-striped">';
 		foreach( $lines as $line )
 		{
-			$r.= '<div class="row-fluid">'.htmlspecialchars( $line ).'</div>';
+			$c = ( strpos( strtolower($line), '(-done-)' ) !== false )? '' : ' invisible';
+			$d = empty($c)? ' class="disabled muted"' : '';
+			$line = str_ireplace( '(-done-)', '', $line );
+			
+			$r.= '<div class="row-fluid"><div class="pull-right'.$c
+				.'"><span class="icon-checkmark-2 hasTooltip" style="color:#0b0;" title="'
+				.JText::_('COM_MINITHEATRECM_DICTIONARY_DONE').'"> </span></div><span'
+				.$d.'>'.htmlspecialchars( $line ).'</span></div>';
 		}
 		$r.= "</div>";
 		
@@ -47,24 +54,14 @@ abstract class NeonNfoNotebook
 		$r.= '<div class="row-striped">';
 		foreach( $lines as $line )
 		{
-			// Prepare
-			if( strpos( strtolower($line), '(-active-)' ) !== false )
-			{
-				$i = '<span class="icon-clock hasTooltip" title="'.JText::_('COM_MINITHEATRECM_DICTIONARY_ACTIVE').'"> </span>';
-				$line = str_ireplace( '(-active-)', '', $line );
-			}
-			elseif( strpos(  strtolower($line), '(-trashed-)' ) !== false )
-			{
-				$i = '<span class="icon-trash hasTooltip" title="'.JText::_('COM_MINITHEATRECM_DICTIONARY_TRASHED').'"> </span>';
-				$line = str_ireplace( '(-trashed-)', '', $line );
-			}
-			else
-			{
-				$i = '';
-			}
+			$c = ( strpos( strtolower($line), '(-trashed-)' ) !== false )? '' : ' invisible';
+			$d = empty($c)? ' class="disabled muted"' : '';
+			$line = str_ireplace( '(-trashed-)', '', $line );
 			
-			// Text + Icon
-			$r.= '<div class="row-fluid"><div class="span1 nowrap center">'.$i.'</div><div class="span11">'.htmlspecialchars( $line ).'</div></div>';
+			$r.= '<div class="row-fluid"><div class="pull-right'.$c
+				.'"><span class="icon-delete hasTooltip" style="color:#b00;" title="'
+				.JText::_('COM_MINITHEATRECM_DICTIONARY_TRASHED').'"> </span></div><span'
+				.$d.'>'.htmlspecialchars( $line ).'</span></div>';
 		}
 		$r.= "</div>";
 		

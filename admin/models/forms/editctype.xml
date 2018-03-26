@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+	
+		<field
+			name="id" type="number" readonly="true"
+			label="COM_MINITHEATRECM_DICTIONARY_ID"
+			description="COM_MINITHEATRECM_DESCRIPTION_ID"
+			class="readonly" size="10" default="0" />
+		
+		<field 
+			name="asset_id" type="hidden" filter="unset" />
+		
+		<field
+			name="name" type="text"
+			label="COM_MINITHEATRECM_DICTIONARY_TITLE"
+			description="COM_MINITHEATRECM_DESCRIPTION_TITLE"
+			class="input-xxlarge input-large-text"
+			size="64" required="true" default="" />
+			
+		<field
+			name="alias" type="text"
+			label="COM_MINITHEATRECM_DICTIONARY_ALIAS"
+			description="COM_MINITHEATRECM_DESCRIPTION_ALIAS"
+			hint="COM_MINITHEATRECM_HINT_AUTOALIAS"
+			size="64" default="" />
+			
+	</fieldset>
+	<fieldset name="data">
+	
+		<field
+			name="content" type="editor" buttons="true"
+			label="COM_MINITHEATRECM_DICTIONARY_DESCRIPTION"
+			description="COM_MINITHEATRECM_DESCRIPTION_DESCRIPTION" />
+			
+	</fieldset>
+	<fieldset name="metaglobal">
+	
+		<field 
+			name="state" type="list" 
+			label="COM_MINITHEATRECM_DICTIONARY_STATUS"
+			description="COM_MINITHEATRECM_DESCRIPTION_STATUS"
+			class="chzn-color-state"
+			filter="intval" 
+			size="1" default="1"
+			>
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+			<option value="2">JARCHIVED</option>
+			<option value="-2">JTRASHED</option>
+		</field>
+		
+		<field
+			name="access" type="usergrouplist"
+			label="COM_MINITHEATRECM_DICTIONARY_ACCESS"
+			description="COM_MINITHEATRECM_DESCRIPTION_ACCESS" />
+			
+		<field type="spacer"/>
+			
+		<field name="altnames" type="textarea"
+			label="COM_MINITHEATRECM_DICTIONARY_ALTERNATIVENAMES"
+			description="COM_MINITHEATRECM_DESCRIPTION_ALTNAMES"
+			hint="COM_MINITHEATRECM_HINT_ENTRYPERLINE" />
+			
+		<field name="trivia" type="textarea"
+			label="COM_MINITHEATRECM_DICTIONARY_TRIVIA"
+			description="COM_MINITHEATRECM_DESCRIPTION_TRIVIA" 
+			hint="COM_MINITHEATRECM_HINT_ENTRYPERLINE" />
+			
+		<field name="editnote" type="textarea"
+			label="COM_MINITHEATRECM_DICTIONARY_EDITORSNOTES"
+			description="COM_MINITHEATRECM_DESCRIPTION_EDITORSNOTES"
+			hint="COM_MINITHEATRECM_HINT_NOSITEDISPLAY" />
+		
+	</fieldset>
+	<fieldset name="publishing">
+	
+		<field
+			name="publish_up" type="calendar" showtime="true"
+			label="COM_MINITHEATRECM_DICTIONARY_STARTPUBLICATION"
+			description="COM_MINITHEATRECM_DESCRIPTION_PUBLISHUP"
+			timeformat="24" translateformat="true" filter="user_utc"
+			todaybutton="true" weeknumbers="true" filltable="true" />
+			
+		<field
+			name="publish_down" type="calendar" showtime="true"
+			label="COM_MINITHEATRECM_DICTIONARY_FINISHPUBLICATION"
+			description="COM_MINITHEATRECM_DESCRIPTION_PUBLISHDOWN"
+			timeformat="24" translateformat="true" filter="user_utc"
+			todaybutton="true" weeknumbers="true" filltable="true" />
+			
+		<field type="spacer"/>
+		
+		<field
+			name="created" type="calendar" showtime="true"
+			label="COM_MINITHEATRECM_DICTIONARY_CREATED"
+			description="COM_MINITHEATRECM_DESCRIPTION_CREATED"
+			timeformat="24" translateformat="true" filter="user_utc"
+			todaybutton="true" weeknumbers="true" filltable="true"
+			checksuperusergroup="1" />
+			
+		<field
+			name="author" type="user"
+			label="COM_MINITHEATRECM_DICTIONARY_AUTHOR"
+			description="COM_MINITHEATRECM_DESCRIPTION_AUTHOR"
+			checksuperusergroup="1" />
+		
+		<field
+			name="author_alias" type="text" size="20"
+			label="COM_MINITHEATRECM_DICTIONARY_AUTHORALIAS"
+			description="COM_MINITHEATRECM_DESCRIPTION_AUTHORALIAS" />
+			
+		<field type="spacer"/>
+			
+		<field
+			name="modified" type="calendar" showtime="true"
+			label="COM_MINITHEATRECM_DICTIONARY_MODIFIED"
+			description="COM_MINITHEATRECM_DESCRIPTION_MODIFIED"
+			timeformat="24" translateformat="true" filter="user_utc"
+			readonly="true" class="readonly" />
+		
+		<field
+			name="recentedit" type="user"
+			label="COM_MINITHEATRECM_DICTIONARY_MOSTRECENTEDITOR"
+			description="COM_MINITHEATRECM_DESCRIPTION_RECENTEDIT"
+			readonly="true" class="readonly" />
+			
+	</fieldset>
+	<fieldset name="pubtools">
+		
+		<field
+			type="note"
+			label="COM_MINITHEATRECM_DICTIONARY_RESET"
+			description="COM_MINITHEATRECM_DESCRIPTION_PUBRESET"/>
+			
+		<field
+			name="reset_hits" type="radio" default="1"
+			label="COM_MINITHEATRECM_DICTIONARY_HITS"
+			description="COM_MINITHEATRECM_DESCRIPTION_RESETHITS"
+			class="btn-group btn-group-yesno" >
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_RESET</option>
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_IGNORE</option>
+		</field>
+			
+		<field
+			name="reset_ratings" type="radio" default="1"
+			label="COM_MINITHEATRECM_DICTIONARY_RATINGS"
+			description="COM_MINITHEATRECM_DESCRIPTION_RESETRATINGS"
+			class="btn-group btn-group-yesno" >
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_RESET</option>
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_IGNORE</option>
+		</field>
+		
+	</fieldset>
+	<fieldset name="perms">
+	
+		<field 
+			name="rules" type="rules"
+			label="COM_MINITHEATRECM_DICTIONARY_RULES"
+			translate_label="false"
+			filter="rules" validate="rules"
+			component="com_minitheatrecm" section="ctype" />
+			
+	</fieldset>
+</form>

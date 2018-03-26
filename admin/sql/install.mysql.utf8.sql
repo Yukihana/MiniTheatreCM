@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_genres` (
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `#__mtcm_contenttypes` (
+CREATE TABLE IF NOT EXISTS `#__mtcm_ctypes` (
 	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
 	`asset_id`			INT(10)				NOT NULL DEFAULT '0',
 	`name`				VARCHAR(255)		NOT NULL,
@@ -232,11 +232,8 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_listings` (
 	`alias`				VARCHAR(400)		NOT NULL DEFAULT ''		COMMENT 'SEF URI',
 	
 	`content`			TEXT				NOT NULL DEFAULT '',
-	`description`		TEXT				NOT NULL DEFAULT '',
-	`misc1`				VARCHAR(255)		NOT NULL DEFAULT ''		COMMENT 'codec, etc',
-	`misc2`				VARCHAR(255)		NOT NULL DEFAULT ''		COMMENT 'vid_res, etc',
-	`misc3`				VARCHAR(255)		NOT NULL DEFAULT ''		COMMENT 'audio, etc',
-	`misc4`				VARCHAR(255)		NOT NULL DEFAULT ''		COMMENT 'subs, etc',
+	`links`				TEXT				NOT NULL DEFAULT ''		COMMENT 'Links Store',
+	`metadata`			TEXT				NOT NULL DEFAULT ''		COMMENT 'Metadata Information',
 	
 	`catalogue`			INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
 	`request_name`		VARCHAR(255)		NOT NULL DEFAULT '',
@@ -511,7 +508,7 @@ INSERT INTO `#__mtcm_genres` (`name`, `author`) VALUES
 ('Drama', 50),
 ('Romance', 100);
 
-INSERT INTO `#__mtcm_contenttypes` (`name`, `author`) VALUES
+INSERT INTO `#__mtcm_ctypes` (`name`, `author`) VALUES
 ('Anime', 42),
 ('Movie', 43),
 ('Manga', 46),

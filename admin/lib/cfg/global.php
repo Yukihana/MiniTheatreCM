@@ -14,19 +14,12 @@ defined('_JEXEC') or die('Restricted access');
 abstract class MiniTheatreCMCfgGlobal
 {
 	// Admin->Default View
-	public static function getDefaultView($default = 'overview')
+	public static function getDefaultView($default = 'dashboard')
 	{
 		$res = JComponentHelper::getParams('com_minitheatrecm')->get('default_view');
 		return (empty($res)? $default : $res);
 	}
-	
-	// Admin->Overview Type
-	public static function getOverviewType($default = 0)
-	{
-		$res = JComponentHelper::getParams('com_minitheatrecm')->get('overview_type');
-		return ( empty($res)? $default : $res );
-	}
-	
+
 	// Manager Cell Links
 	public static function getManagerLinkable($id, $default = false)
 	{

@@ -1,68 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelogs>
 	<update version="0.0.12.G">
-		<task type="form">Form views added for Item, Franchise, Content-type.</task>
-		<task type="misc">Added ActivityLog MVC(Basic), and a placeholder template.</task>
-		<task type="database">Registered the table for ActivityLog, and added some dummy test data.</task>
 		<task type="manager">Fixed 'trashed' items showing by default in a fresh session.</task>
 		<task type="manager">Merged 'Author/RecentEdit', 'Created/Modified' and 'Hits/Votes' columns to show two-line data with ordering-states.</task>
-		<task type="library">Refactored Library namespace to be slightly smaller and more distinct from the rest of the classes.</task>
 		<task type="manager">SQL and Columns/Data added to layout: Access, Alias, Rating, Vote, Hits. Fullordering added.</task>
 		<task type="manager">Added Recent-editor (author) filter to search.</task>
+		<task type="form">Form views added for Item, Franchise, Content-type.</task>
 		<task type="config">Updated Component config to have manager-links and cache settings. Implementation pending.</task>
+		<task type="library">Refactored Library namespace to be slightly smaller and more distinct from the rest of the classes.</task>
 		<task type="library">Added an intermediate model-class enhanced for List-models to extend from, and implemented to best Manager-Code.</task>
+		<task type="database">Registered the table for ActivityLog, and added some dummy test data.</task>
 		<task type="database">Updated SQL definitions to apply a cache_ticks field to relevant tables.</task>
+		<task type="misc">Added ActivityLog MVC(Basic), and a placeholder template.</task>
 	</update>
 	<update version="0.0.12.H">
+		<task type="config">Sidebar code: Hardcoded data moved to '/cfg/sidebar.xml'. Relative location of the xml file is still hardcoded.</task>
 		<task type="library">Dir '/meta': Merge filebase and database. '/nfo.php' to '/lib/nfo/legacy.php' &amp; '/global.php' to '/lib/cfg/global.php'.</task>
 		<task type="library">Psuedobase class: For better usability, added to library instead of integrating with model-base.</task>
 		<task type="library">Psuedobase directory configuration list added to /cfg/directories.xml</task>
-		<task type="misc">Changelog data converted to individual xml files for psuedobase implementation test.</task>
-		<task type="config">Sidebar code: Hardcoded data moved to '/cfg/sidebar.xml'. Relative location of the xml file is still hardcoded.</task>
 		<task type="library">Structural rewrite completed for upgrade to Query-Joins optimizations.</task>
 		<task type="library">Filters are split into types using an inheritable interface on the source model-list.</task>
+		<task type="misc">Changelog data converted to individual xml files for psuedobase implementation test.</task>
 	</update>
 	<update version="0.0.12.I">
-		<task type="library">Several structural changes.</task>
 		<task type="manager">Several manager class code improvements (Genres still pending implementation).</task>
+		<task type="form">Several updates to form view code.</task>
+		<task type="library">Several structural changes.</task>
 		<task type="database">Several database updates to make space for metadata.</task>
-		<task type="forms">Several updates to form view code.</task>
-		<task type="misc">Preparing MAL and AniDB api for pulling initial catalogue data (JSON over AJAX).</task>
 		<task type="translation">Several updates and cleanups to translation.</task>
+		<task type="misc">Preparing MAL and AniDB api for pulling initial catalogue data (JSON over AJAX).</task>
 	</update>
-	<update version="0.0.12.J">		
-		<task type="database">Several fields added to form view and database for Catalogues.</task>
+	<update version="0.0.12.J">
 		<task type="manager">Upgraded manager-view 'search' to use multiple fields.</task>
 		<task type="manager">Several features added to the manager-renderer class.</task>
-		<task type="forms">Fixed custom list-fields not saving data. (multi-choice list still pending)</task>
+		<task type="form">Fixed custom list-fields not saving data. (multi-choice list still pending)</task>
 		<task type="library">Added source classes for db-list and xml-list type fields.</task>
-		<task type="misc">Several changes done to directory structure to implement xml-type field files.</task>
+		<task type="database">Several fields added to form view and database for Catalogues.</task>
 		<task type="database">Add db-tables for Producers, Licensors, Studios, Actors, Staff, Roles.</task>
 		<task type="database">JTable classes added for: Producers, Licensors, Studios</task>
 		<task type="database">Field-type declaration for: Producers, Licensors, Studios</task>
 		<task type="translation">Added a lot of missing translations.</task>
+		<task type="misc">Several changes done to directory structure to implement xml-type field files.</task>
 	</update>
 	<update version="0.0.12.K">
-		<task type="forms">ModelAdmin and Table source class added with multichoice API support. (Multichoice save/load fixed)</task>
-		<task type="forms">Table/Repeatable/Subform API implemented for Crew(Personnel and Roles) and Episodic-Details.</task>
+		<task type="form">ModelAdmin and Table source class added with multichoice API support. (Multichoice save/load fixed)</task>
+		<task type="form">Table/Repeatable/Subform API implemented for Crew(Personnel and Roles) and Episodic-Details.</task>
 		<task type="config">Registered and implemented a few XML fields: 'agerating' and 'airtype' following 'airstatus' in the previous subversion.</task>
-		<task type="library">Cleaned up MTHELPER-dependent code from model-list classes. (The view codes are still broken and will be fixed after genres-json code upgrade)</task>
 		<task type="config">Added registry for media storage.</task>
 		<task type="library">Added a version-history indexing registry and handler class.</task>
 		<task type="library">Added a dedicated changelog-data handler class and merged the data into a glob-split series of xml subfiles.</task>
-		<task type="misc">Schematised all unschematised XML files.</task>
+		<task type="library">Cleaned up MTHELPER-dependent code from model-list classes. (The view codes are still broken and will be fixed after genres-json code upgrade)</task>
 		<task type="library">Generic ajax script for content is ready for deploying.</task>
 		<task type="library">Partially upgraded the profiling based file-list fetcher.</task>
-		<task type="misc">Changelogs AJAX with fallback fully functional in MVC/Planner (Minor bugs may remain).</task>
 		<task type="library">Several misc changes to the library files.</task>
+		<task type="misc">Schematised all unschematised XML files.</task>
+		<task type="misc">Changelogs AJAX with fallback fully functional in MVC/Planner (Minor bugs may remain).</task>
 	</update>
 	<update version="0.0.12.L">
 		<task type="manager">Content Managers fixed: ContentTypes, Genres, Listings, Franchises, Reviews.</task>
 		<task type="manager">Content Managers added: Crew-members, Crew-roles, Organisations.</task>
-		<task type="database">A lot of bugs fixed in database-filtering codes (yet many more remain: especially outdated code fragments that aren't compatible anymore).</task>
-		<task type="forms">Fixed multi-choice hints not shown in editor views.</task>
 		<task type="manager">All existing release managers now running the latest version of the code, some managers yet to be added.</task>
 		<task type="manager">Added clearfix to all managers to prevent invasion of joomla-debug-console into data area.</task>
+		<task type="form">Fixed multi-choice hints not shown in editor views.</task>
+		<task type="database">A lot of bugs fixed in database-filtering codes (yet many more remain: especially outdated code fragments that aren't compatible anymore).</task>
 		<task type="misc">Added styling to Planner elements.</task>
+	</update>
+	<update version="0.0.12.M">
+		<task type="manager">Fixed manager full-ordering display for multi-mode columns with more than 2 modes.</task>
+		<task type="manager">Added new renderer for manager button-group tasks. Needs debugging.</task>
+		<task type="manager">Full refactor of contenttype -> ctype to prevent conflict with joomla's 'contenttype' formfield. (reinstall required)</task>
+		<task type="manager">Fixed toolbar buttons missing in managers: crew-members, crew-roles, organisations.</task>
+		<task type="form">Applied Form-Model source to all existing managers.</task>
+		<task type="form">Updated forms for listings, contenttypes, genres, franchises, reviews, crew-members, crew-roles, organisations.</task>
+		<task type="library">Full rewrite with new functionality to the AJAX javascript library.</task>
+		<task type="library">Source class added for the Form-View code and applied to all existing managers.</task>
+		<task type="misc">Refactored Overview to Dashboard and remove advanced mode.</task>
+	</update>
+	<update version="0.0.12.N">
+		<task type="form">Fixed some editor forms showing up as incomplete.</task>
+		<task type="form">Fixed old formfield codes breaking the forms.</task>
+		<task type="form">Add Metadata fieldsets to listings: Files, Video, Audio.</task>
+		<task type="form">Alpha-Ready Listing editor layout with details and metadata forms.</task>
+		<task type="site">Added a stub Browse page.</task>
+		<task type="database">Tested base64 serialization for site-wide implementation.</task>
+		<task type="translation">Several translations added to the edit-form for listings.</task>
 	</update>
 </changelogs>

@@ -21,18 +21,20 @@
 	<update version="0.0.12.A1"		date="2017-10-26" time="00:00" zone="UTC"/>
 	<update version="0.0.12.A2"		date="2017-10-28" time="00:00" zone="UTC"/>
 	<update version="0.0.12.A3"		date="2017-10-30" time="00:00" zone="UTC"/>
-	<update version="0.0.12.A4"		date="2017-10-30" time="00:00" zone="UTC"/>
-	<update version="0.0.12.B1"		date="2017-10-31" time="00:00" zone="UTC"/>
-	<update version="0.0.12.B2"		date="2017-11-01" time="00:00" zone="UTC"/>
-	<update version="0.0.12.C"		date="2017-11-04" time="00:00" zone="UTC"/>
-	<update version="0.0.12.D"		date="2017-11-10" time="00:00" zone="UTC"/>
-	<update version="0.0.12.D1"		date="2017-11-10" time="00:00" zone="UTC"/>
-	<update version="0.0.12.E"		date="2017-11-13" time="00:00" zone="UTC"/>
-	<update version="0.0.12.F"		date="2017-11-14" time="00:00" zone="UTC"/>
-	<update version="0.0.12.G"		date="2017-11-17" time="00:00" zone="UTC"/>
+	<update version="0.0.12.A4"		date="2017-10-30" time="14:00" zone="UTC"/>
+	<update version="0.0.12.B1"		date="2017-10-31" time="07:00" zone="UTC"/>
+	<update version="0.0.12.B2"		date="2017-11-01" time="07:00" zone="UTC"/>
+	<update version="0.0.12.C"		date="2017-11-04" time="14:00" zone="UTC"/>
+	<update version="0.0.12.D"		date="2017-11-10" time="14:00" zone="UTC"/>
+	<update version="0.0.12.D1"		date="2017-11-11" time="05:00" zone="UTC"/>
+	<update version="0.0.12.E"		date="2017-11-13" time="07:30" zone="UTC"/>
+	<update version="0.0.12.F"		date="2017-11-14" time="10:00" zone="UTC"/>
+	<update version="0.0.12.G"		date="2017-11-17" time="18:00" zone="UTC"/>
 	<update version="0.0.12.H"		date="2017-11-26" time="11:00" zone="UTC"/>
 	<update version="0.0.12.I"		date="2017-12-07" time="11:00" zone="UTC"/>
 	<update version="0.0.12.J"		date="2017-12-13" time="12:00" zone="UTC"/>
 	<update version="0.0.12.K"		date="2018-01-10" time="21:00" zone="UTC"/>
 	<update version="0.0.12.L"		date="2018-02-01" time="23:00" zone="UTC"/>
+	<update version="0.0.12.M"		date="2018-02-23" time="18:00" zone="UTC"/>
+	<update version="0.0.12.N"		date="2018-03-25" time="09:00" zone="UTC"/>
 </versions>

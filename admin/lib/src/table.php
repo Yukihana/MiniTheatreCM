@@ -52,6 +52,10 @@ abstract class NeonTable extends JTable
 			{
 				$array[$conkey] = NeonDataBinding::SAR( $array[$conkey] );
 			}
+			elseif( $contype == strtolower( 's64' ))
+			{
+				$array[$conkey] = NeonDataBinding::S64( $array[$conkey] );
+			}
 		}
 		
 		// Base
@@ -63,7 +67,7 @@ abstract class NeonTable extends JTable
 	{
 		foreach( $this->dbconcat as $conkey => $contype )
 		{
-			if( strpos( 'csv sar', $contype ) !== false )
+			if( strpos( 'csv sar s64', $contype ) !== false )
 			{
 				$data->$conkey = (array) $data->$conkey;
 			}

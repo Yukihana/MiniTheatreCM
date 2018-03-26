@@ -21,21 +21,21 @@ class MiniTheatreCMViewCrewMembers extends NeonViewManager
 	protected $ui_submenu	= 'crewmembers';
 	protected $ui_title		= 'COM_MINITHEATRECM_TITLE_CREWMEMBERS';
 	protected $ui_icon		= 'users';
-	/*
+	
 	// Add toolbar buttons
 	protected function addToolBar()
 	{
-		JToolbarHelper::addNew('listing.add');
-		JToolbarHelper::editList('listing.edit');
-		JToolbarHelper::publish('listings.publish', 'JTOOLBAR_PUBLISH', true);
-		JToolbarHelper::unpublish('listings.unpublish', 'JTOOLBAR_UNPUBLISH', true);		
-		JToolbarHelper::archiveList('listings.archive');
+		JToolbarHelper::addNew('crewmember.add');
+		JToolbarHelper::editList('crewmember.edit');
+		JToolbarHelper::publish('crewmembers.publish', 'JTOOLBAR_PUBLISH', true);
+		JToolbarHelper::unpublish('crewmembers.unpublish', 'JTOOLBAR_UNPUBLISH', true);		
+		JToolbarHelper::archiveList('crewmembers.archive');
 		
 		if($this->state->get('filter.state') == -2)
-			JToolbarHelper::deleteList('COM_MINITHEATRECM_LISTINGS_CONFIRMDELETE', 'listings.delete', 'COM_MINITHEATRECM_DICTIONARY_PURGE');
+			JToolbarHelper::deleteList('COM_MINITHEATRECM_CREWMEMBERS_CONFIRMDELETE', 'crewmembers.delete', 'COM_MINITHEATRECM_DICTIONARY_PURGE');
 		else
-			JToolbarHelper::trash('listings.trash');
+			JToolbarHelper::trash('crewmembers.trash');
 		
 		JToolbarHelper::preferences('com_minitheatrecm');
-	}*/
+	}
 }

@@ -3,7 +3,7 @@
 	<table typename="catalogues"		address="#__mtcm_catalogues"/>
 	<table typename="franchises"		address="#__mtcm_franchises"/>
 	<table typename="genres"			address="#__mtcm_genres"/>
-	<table typename="contenttypes"		address="#__mtcm_contenttypes"/>
+	<table typename="ctypes"			address="#__mtcm_ctypes"/>
 	
 	<table typename="crewmembers"		address="#__mtcm_crewmembers"/>
 	<table typename="crewroles"			address="#__mtcm_crewroles"/>

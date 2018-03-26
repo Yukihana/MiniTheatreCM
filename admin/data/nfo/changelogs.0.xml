@@ -8,132 +8,134 @@
 		<task type="misc">Started development alongside advanced tutorials.</task>
 	</update>
 	<update version="0.0.9.R" date="2017-09-07">
+		<task type="database">Renamed Database-Tables.</task>
 		<task type="misc">Start of repurposing contents to meet site requirements.</task>
 		<task type="misc">Refactored elements to match context.</task>
-		<task type="database">Renamed Database-Tables.</task>
 	</update>
 	<update version="0.0.10" date="2017-09-09">
 		<task type="tutorial">Tutorial: Added 'search' and 'filter' interfaces to management.</task>
 		<task type="translation">Several translations added and optimized.</task>
 	</update>
 	<update version="0.0.10.D" date="2017-09-11">
+		<task type="manager">Applied: Publish, Unpublish, Archive, Trash options.</task>
+		<task type="translation">Several translations added.</task>
 		<task type="misc">Git: Added an updated git repo inclusive of major previous versions.</task>
-		<task type="admin manager">Applied: Publish, Unpublish, Archive, Trash options.</task>
-		<task type="misc translation">Several minor optimizations done to code and a few translations changed.</task>
+		<task type="misc">Several minor optimizations done to code.</task>
 	</update>
 	<update version="0.0.11" date="2017-09-12">
 		<task type="tutorial">Tutorial: Add Verification. (I think they meant to say Validation).</task>
+		<task type="tutorial">Learnt how to use RegEx formatting, required for validation.</task>
 		<task type="misc">Minor repurposing. Large one pending, perhaps. Database implementation pending.</task>
 		<task type="misc">Minor refactoring, translation changes. 1 pending.</task>
-		<task type="tutorial">Learnt how to use RegEx formatting, required for validation.</task>
 	</update>
 	<update version="0.0.11.X1" date="2017-09-18">
-		<task type="site">Added a few provisional blank views(frontend). MVC implementation pending.</task>
 		<task type="tutorial">Acquiring: SQL syntaces.</task>
+		<task type="site">Added a few provisional blank views(frontend). MVC implementation pending.</task>
 		<task type="database">Ditching tutorial based SQL schema for a more robust, relevant one.</task>
 		<task type="database">Added a few provisional tables to meet the projected tasks of this component.</task>
 		<task type="database">Upgrade existing 'MyISAM' data-tables(as in tutorials) to their InnoDB counterparts.</task>
 	</update>
 	<update version="0.0.11.X7" date="2017-10-01">
-		<task type="admin">Added additional views.</task>
+		<task type="manager">Added additional views.</task>
+		<task type="manager">Trying to implement similar data onto other views.</task>
 		<task type="database">Planning actual database fields.</task>
-		<task type="admin">Trying to implement similar data onto other views.</task>
+		
 	</update>
 	<update version="0.0.11.X10" date="2017-10-10">
 		<task type="site">Added a basic framework for My-Listings, EditListing views on site-end.</task>
-		<task type="translation">Added some translations.</task>
 		<task type="database">Added Database definition modifications as per requirements.</task>
+		<task type="translation">Added some translations.</task>
 	</update>
 	<update version="0.0.11.X12" date="2017-10-23">
-		<task type="admin">Added Admin/ContentType as a final replacement for ulwizsources.</task>
-		<task type="database">ContentType will act as the primary category system and also contain custom uploader code.</task>
+		<task type="manager">Added Admin/ContentType as a final replacement for ulwizsources.</task>
 		<task type="site">Upgraded Site/MyListings to JModelList API over its previously inadequate JModelAdmin API.</task>
 		<task type="site">Added Site/MyReviews view-set with basic code.</task>
 		<task type="site">Minor upgrade for Site/Item to better, and current code.</task>
+		<task type="database">ContentType will act as the primary category system and also contain custom uploader code.</task>
 	</update>
 	<update version="0.0.12" date="2017-10-26">
-		<task type="tutorial config">Added Global Configurations.</task>
-		<task type="admin manager">Added a basic frame for Admin/Genres.</task>
+		<task type="tutorial">Added Configurations.</task>
+		<task type="manager">Added a basic frame for Admin/Genres.</task>
 		<task type="library">Planned a basic implementation for a Model Helper class to optimize code efficiency.</task>
 	</update>
 	<update version="0.0.12.A1" date="2017-10-26">
-		<task type="admin manager">Added a basic frame to Admin/Franchises.</task>
-		<task type="admin manager">Upgraded Admin/Genres code to somewhat usable.</task>
+		<task type="manager">Added a basic frame to Admin/Franchises.</task>
+		<task type="manager">Upgraded Admin/Genres code to somewhat usable.</task>
 		<task type="library">Solified the implementation of the model helper class. Added basic code to it.</task>
 	</update>
 	<update version="0.0.12.A2" date="2017-10-28">
-		<task type="admin manager">Added Admin/Listings MVC table</task>
-		<task type="admin manager">Fixed an error with Admin/Reviews (Layout still pending)</task>
+		<task type="manager">Added Admin/Listings MVC table</task>
+		<task type="manager">Fixed an error with Admin/Reviews (Layout still pending)</task>
 		<task type="site">Upgraded Site/EditListing to a better data-model.</task>
-		<task type="admin misc">Added submenu items to the toolbar menu for the component.</task>
 		<task type="library">Added a basic frame for a site end model-helper class.</task>
+		<task type="misc">Added submenu items to the toolbar menu for the component.</task>
 	</update>
 	<update version="0.0.12.A3" date="2017-10-30">
-		<task type="admin misc">Added ChangeLog to Admin/Overview. Moving it over to advanced overview is pending.</task>
-		<task type="admin misc">Added NFO folder for storing roadmap, planner, version, changelog and other metadata.</task>
-		<task type="admin misc">Added helpers/nfo.php to act as a model for NFO data.</task>
-		<task type="admin manager">Added layout to Admin/Reviews</task>
-		<task type="admin database">A few required changes done to database. Upgrade code hasn't been added. Prior uninstall required.</task>
+		<task type="manager">Added layout to Admin/Reviews</task>
+		<task type="database">A few required changes done to database. Upgrade code hasn't been added. Prior uninstall required.</task>
+		<task type="misc">Added ChangeLog to Admin/Overview. Moving it over to advanced overview is pending.</task>
+		<task type="misc">Added NFO folder for storing roadmap, planner, version, changelog and other metadata.</task>
+		<task type="misc">Added helpers/nfo.php to act as a model for NFO data.</task>
 	</update>
 	<update version="0.0.12.A4" date="2017-10-30">
-		<task type="admin misc">Added Custom Pagination to Admin/Overview/ChangeLog.</task>
-		<task type="admin form">Attempted the most basic use of forms on Admin/Genre.Edit to some success.</task>
+		<task type="form">Attempted the most basic use of forms on Admin/Genre.Edit to some success.</task>
 		<task type="library">Added helpers/html.php to help with layout rendering. Might move this to a admin/lib directory later.</task>
+		<task type="misc">Added Custom Pagination to Admin/Overview/ChangeLog.</task>
 	</update>
 	<update version="0.0.12.B1" date="2017-10-31">
-		<task type="admin misc">Styling added for Changelogs and Tasks.</task>
 		<task type="library">Started making changes for adding an API library.</task>
 		<task type="media">Started moving custom CSS and JS to designated media folders.</task>
+		<task type="misc">Styling added for Changelogs and Tasks.</task>
 	</update>
 	<update version="0.0.12.B2" date="2017-11-01">
 		<task type="library">Created a paging API, added to library.</task>
-		<task type="library">Moved required JS and CSS to media directory.</task>
 		<task type="library">Optimized API calling and dependency syntax to simplify implementation.</task>
 		<task type="library">Created an 'include' API system for indexing and loading php/css/js files based on required tasks.</task>
-		<task type="library">Created a planner view and moved the changelog and roadmap data to here from 'overview'.</task>
 		<task type="library">Implemented the new paging API on the tasks and changelog psueodules: Success.</task>
 		<task type="library">Optimized a few sections using the new API.</task>
+		<task type="media">Moved required JS and CSS to media directory.</task>
+		<task type="misc">Created a planner view and moved the changelog and roadmap data to here from 'overview'.</task>
 	</update>
 		<update version="0.0.12.C">
+		<task type="manager">Fixed irregular responsive columns for many manager views.</task>
 		<task type="config">Fixed default_view global parameter.</task>
-		<task type="admin misc">Removed bloat layout data from Overview.</task>
 		<task type="config">Added and Implemented a central indexing for tables at admin/meta/database.php.</task>
 		<task type="library">Added and Implemented ManagerFields renderer to help populate table-cells.</task>
 		<task type="database">Added JTable classes, SQL definitions and admin MVC lists for 'ratings'. (Reinstall required)</task>
-		<task type="admin misc">Compacted method comments to optimize file sizes.</task>
-		<task type="admin manager">Fixed irregular responsive columns for many manager views.</task>
+		<task type="misc">Compacted method comments to optimize file sizes.</task>
+		<task type="misc">Removed bloat layout data from Overview.</task>
 	</update>
 	<update version="0.0.12.D">
-		<task type="library">Added a custom renderer for messages that can parse and translate arrays.</task>
-		<task type="database">Standardised sql table definition for items.</task>
+		<task type="manager">Fixed footer colspan values for all manager-list views.</task>
+		<task type="manager">Upgraded admin/listings to use non tutorial filters.(not fully functional yet)</task>
 		<task type="site">Upgraded site/item code to conform to the new system.</task>
 		<task type="site">Added a basic tablayout to site/items. Pending actual design and content.</task>
+		<task type="library">Added a custom renderer for messages that can parse and translate arrays.</task>
 		<task type="database">Changed #__mtcm_metadatas to #__mt_shared, and updated tables.</task>
-		<task type="admin manager">Fixed footer colspan values for all manager-list views.</task>
-		<task type="admin manager">Upgraded admin/listings to use non tutorial filters.(not fully functional yet)</task>
+		<task type="database">Standardised sql table definition for items.</task>
 	</update>
 		<update version="0.0.12.D1">
-		<task type="admin manager">Fixed admin/listings fullordering not working.</task>
-		<task type="admin manager">Fixed column header not showing directional arrow on default state.</task>
-		<task type="library translation">Added a lot of missing translations, cleaned up unused libraries.</task>
-		<task type="admin manager">Write custom translations for fullordering. Make 'id desc' the default order.</task>
+		<task type="manager">Fixed admin/listings fullordering not working.</task>
+		<task type="manager">Fixed column header not showing directional arrow on default state.</task>
+		<task type="manager">Write custom translations for fullordering. Make 'id desc' the default order.</task>
 		<task type="library">Add minitheatre folder to lib, and move mt specific helpers.</task>
+		<task type="translation">Added a lot of missing translations, cleaned up unused libraries.</task>
 	</update>
 	<update version="0.0.12.E">
-		<task type="admin manager">Fixed 'publish' not working.</task>
+		<task type="manager">Fixed 'publish' not working.</task>
+		<task type="form">Added Admin/Listing form view.</task>
 		<task type="database">Updated SQL definitions for all tables.</task>
-		<task type="admin misc">Moved helpers/nfo.php to lib/mt/nfo.php.</task>
-		<task type="admin form">Added Admin/Listing form view.</task>
-		<task type="admin translation">Added translations to Table Headers like 'COLUMNHEADER_LISTINGNAME'.</task>
+		<task type="translation">Added translations to Table Headers like 'COLUMNHEADER_LISTINGNAME'.</task>
+		<task type="misc">Moved helpers/nfo.php to lib/mt/nfo.php.</task>
 	</update>
 	<update version="0.0.12.F">
-		<task type="admin misc">Version NFO upgraded to INI format.</task>
-		<task type="library">Moved '/lib/mt/nfo.php' to 'meta/nfo.php'.</task>
-		<task type="admin manager">Added footer badge to manager html library and applied to all manager views.</task>
-		<task type="admin manager">Updated all manager views to use 'setDocument()' for page header and titles.</task>
-		<task type="admin misc">Added Manifest tab to Planner(Layout postponed till after structure planning).</task>
+		<task type="manager">Added footer badge to manager html library and applied to all manager views.</task>
+		<task type="manager">Updated all manager views to use 'setDocument()' for page header and titles.</task>
 		<task type="config">Moved tables' indices to XML and made required changes to the handler class.</task>
-		<task type="admin misc">Change manifest.x to xml-type file.</task>
-		<task type="admin translation">Implemented pluralisable translations for system messages.</task>
+		<task type="library">Moved '/lib/mt/nfo.php' to 'meta/nfo.php'.</task>
+		<task type="translation">Implemented pluralisable translations for system messages.</task>
+		<task type="misc">Change manifest.x to xml-type file.</task>
+		<task type="misc">Added Manifest tab to Planner(Layout postponed till after structure planning).</task>
+		<task type="misc">Version NFO upgraded to INI format.</task>
 	</update>
 </changelogs>

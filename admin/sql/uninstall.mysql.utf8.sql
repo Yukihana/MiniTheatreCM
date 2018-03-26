@@ -7,7 +7,7 @@
 DROP TABLE IF EXISTS `#__mtcm_catalogues`;
 DROP TABLE IF EXISTS `#__mtcm_franchises`;
 DROP TABLE IF EXISTS `#__mtcm_genres`;
-DROP TABLE IF EXISTS `#__mtcm_contenttypes`;
+DROP TABLE IF EXISTS `#__mtcm_ctypes`;
 
 DROP TABLE IF EXISTS `#__mtcm_listings`;
 DROP TABLE IF EXISTS `#__mtcm_reviews`;

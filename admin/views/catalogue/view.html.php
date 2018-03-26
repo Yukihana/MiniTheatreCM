@@ -16,38 +16,13 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class MiniTheatreCMViewCatalogue extends JViewLegacy
+class MiniTheatreCMViewCatalogue extends NeonViewForm
 {
-	protected $form;
-	protected $item;
-	
-	// Display the template ($tpl: template file)
-	 public function display($tpl = null)
-	{
-		// Get data from the model
-		$this->form = $this->get('Form');
-		$this->item = $this->get('Item');
-			//$this->script = $this->get('Script');
+	protected $ui_title	= 'COM_MINITHEATRECM_TITLE_CATALOGUES';
 
-		// Check for errors.
-		if (count($errors = $this->get('Errors')))
-		{
-			throw new Exception(implode("\n", $errors), 500);
-		}
-		
-		// Set up other UI elements
-		$this->setDocument();
-		$this->addToolBar();
-		
-		// Display the template
-		return parent::display($tpl);
-	}
-	
-	// Add page header and toolbar buttons
+	// Add toolbar buttons
 	protected function addToolBar()
 	{
-		JFactory::getApplication()->input->set('hidemainmenu', true);
-
 		$isNew = ($this->item->id == 0);
 		
 		JToolbarHelper::apply('catalogue.apply');
@@ -59,22 +34,7 @@ class MiniTheatreCMViewCatalogue extends JViewLegacy
 			'catalogue.cancel',
 			$isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE'
 		);
-	}
-	
-	// Set page-header and document-title 
-	protected function setDocument() 
-	{
-		$document = JFactory::getDocument();
-		$title = JText::_('COM_MINITHEATRECM_TITLE_CATALOGUES')
-				.': '.JText::_($this->item->id == 0 ? 'COM_MINITHEATRECM_DICTIONARY_NEW' : 'COM_MINITHEATRECM_DICTIONARY_EDIT');
 		
-		JToolbarHelper::title($title, 'pencil-2');
-		$document->setTitle($title.' - '.JText::_('COM_MINITHEATRECM_GLOBAL_LONGTITLE'));
-		/*
-		$document->addScript(JURI::root() . $this->script);
-		$document->addScript(JURI::root() . "/administrator/components/com_minitheatrecm"
-		                                  . "/views/item/submitbutton.js");
-		JText::script('COM_MINITHEATRECM_ERROR_UNACCEPTABLE');
-		*/
+		parent::addToolBar();
 	}
 }

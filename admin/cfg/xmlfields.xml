@@ -4,4 +4,13 @@
 	<field typename="airtype" address="/data/fields/airtype.xml" />
 	<field typename="airstatus" address="/data/fields/airstatus.xml" />
 	<field typename="parttype" address="/data/fields/parttype.xml" />
+	<field typename="fileformat" address="/data/fields/fileformat.xml" />
+	<field typename="filecompression" address="/data/fields/filecompression.xml" />
+	<field typename="videoresolution" address="/data/fields/videoresolution.xml" />
+	<field typename="videoencoder" address="/data/fields/videoencoder.xml" />
+	<field typename="audioencoder" address="/data/fields/audioencoder.xml" />
+	<field typename="langaudio" address="/data/fields/langaudio.xml" />
+	<field typename="langscript" address="/data/fields/langscript.xml" />
+	<field typename="subtitleformat" address="/data/fields/subtitleformat.xml" />
+	<field typename="viewlist" address="/data/fields/viewlist.xml" />
 </xmlfields>

@@ -11,9 +11,6 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-// Include Dependencies
-JLoader::Register('NeonControllerForm', JPATH_COMPONENT_ADMINISTRATOR . '/lib/src/controllerform.php');
-
 /**
  * Catalogue Controller
  *

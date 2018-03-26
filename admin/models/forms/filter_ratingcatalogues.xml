@@ -49,12 +49,12 @@
 			class="multipleCatalogues"
 			onchange="this.form.submit();" />
 		<field
-			name="contenttype"
+			name="ctype"
 			type="ctype"
-			label="COM_MINITHEATRECM_HINT_SELECTCONTENTTYPE"
-			description="COM_MINITHEATRECM_HINT_SELECTCONTENTTYPE_DESC"
+			label="COM_MINITHEATRECM_HINT_SELECTCTYPE"
+			description="COM_MINITHEATRECM_HINT_SELECTCTYPE_DESC"
 			multiple="true"
-			class="multipleContentTypes"
+			class="multipleCTypes"
 			onchange="this.form.submit();" />
 	</fields>
 	<fields name="list">
@@ -77,10 +77,10 @@
 			<option value="a.catalogue ASC">COM_MINITHEATRECM_ORDERING_CATALOGUEID_ASC</option>
 			<option value="a.catalogue DESC">COM_MINITHEATRECM_ORDERING_CATALOGUEID_DSC</option>
 			
-			<option value="c.name ASC">COM_MINITHEATRECM_ORDERING_CONTENTTYPE_ASC</option>
-			<option value="c.name DESC">COM_MINITHEATRECM_ORDERING_CONTENTTYPE_DSC</option>
-			<option value="t.ctype ASC">COM_MINITHEATRECM_ORDERING_CONTENTTYPEID_ASC</option>
-			<option value="t.ctype DESC">COM_MINITHEATRECM_ORDERING_CONTENTTYPEID_DSC</option>
+			<option value="c.name ASC">COM_MINITHEATRECM_ORDERING_CTYPE_ASC</option>
+			<option value="c.name DESC">COM_MINITHEATRECM_ORDERING_CTYPE_DSC</option>
+			<option value="t.ctype ASC">COM_MINITHEATRECM_ORDERING_CTYPEID_ASC</option>
+			<option value="t.ctype DESC">COM_MINITHEATRECM_ORDERING_CTYPEID_DSC</option>
 			
 			<option value="gp.title ASC">COM_MINITHEATRECM_ORDERING_ACCESS_ASC</option>
 			<option value="gp.title DESC">COM_MINITHEATRECM_ORDERING_ACCESS_DSC</option>

@@ -41,7 +41,7 @@ abstract class NeonDataBinding
 		return $data;
 	}
 	
-	// Array <-> Serialization
+	// Array <-> Serialization (Non-DB usage)
 	public static function SAR($data)
 	{
 		if( is_array( $data ))
@@ -57,6 +57,31 @@ abstract class NeonDataBinding
 			else
 			{
 				return unserialize( $data );
+			}
+		}
+		elseif( is_null( $data ))
+		{
+			return '';
+		}
+		return $data;
+	}
+	
+	// Array <-> Serialization <-> Base64 Encode (DB safe)
+	public static function S64($data)
+	{
+		if( is_array( $data ))
+		{
+			return base64_encode( serialize( $data ));
+		}
+		elseif( is_string( $data ))
+		{
+			if( empty( $data ))
+			{
+				return array();
+			}
+			else
+			{
+				return unserialize( base64_decode( $data ));
 			}
 		}
 		elseif( is_null( $data ))

@@ -25,6 +25,7 @@ class NeonFormXmlList extends JFormFieldList
 	// Vars: Type Declaration, Field Xml-Name
 	protected $type = null;
 	protected $xmlname = null;
+	protected $translate = false;
 
 	// Method to get Options
 	protected function getOptions()
@@ -35,7 +36,7 @@ class NeonFormXmlList extends JFormFieldList
 		
 		foreach( $xml->option as $option )
 		{
-			$options[] = JHtml::_('select.option', $option['value'], $option);
+			$options[] = JHtml::_('select.option', $option['value'], ($this->translate === true)? JText::_($option) : $option );
 		}
 		
 		$options = array_merge(parent::getOptions(), $options);

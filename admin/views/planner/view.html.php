@@ -16,14 +16,15 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class MiniTheatreCMViewPlanner extends JViewLegacy
+class MiniTheatreCMViewPlanner extends NeonViewBase
 {
+	protected $ui_submenu	= 'planner';
+	protected $ui_title		= 'COM_MINITHEATRECM_TITLE_PLANNER';
+	protected $ui_icon		= 'calendar';
+	
 	// Display the template ($tpl: template file)
 	function display($tpl = null)
 	{
-		$app				= JFactory::getApplication();
-		$context			= 'com_minitheatrecm.planner.';
-		
 		// Get data from the model
 		$this->state		= $this->get('State');
 		$this->utype		= $this->get('UpdateType');
@@ -34,29 +35,8 @@ class MiniTheatreCMViewPlanner extends JViewLegacy
 		$this->voptions		= $this->get('VOptions');		// Data for the phone version of the list
 		$this->changelog	= $this->get('Changelog');		// Initial Data and Non-Ajax Fallback
 		
-		// Legacy
-		$this->tasks		= $this->get('Tasks');
-		
-		// Check for errors.
-		if (count($errors = $this->get('Errors')))
-		{
-			JError::raiseError(500, implode('<br />', $errors));
-
-			return false;
-		}
-
-		// Set up other UI elements
-		if ($this->getLayout() !== 'modal')
-		{
-			MiniTheatreCMHelper::addSubmenu('planner');
-			$this->sidebar = JHtmlSidebar::render();
-			
-			$this->setDocument();
-			$this->addToolBar();
-		}
-		
-		// Add scripts
-		
+		// Add Scripts and StyleSheets
+		$this->addscripts = JUri::root().'media/com_minitheatrecm/js/neonace.js';
 		
 		// Display the template
 		parent::display($tpl);
@@ -65,13 +45,6 @@ class MiniTheatreCMViewPlanner extends JViewLegacy
 	// Header, Toolbar, and Buttons
 	protected function addToolBar()
 	{
-		JToolbarHelper::title( JText::_('COM_MINITHEATRECM_TITLE_PLANNER'), 'calendar' );
-		
 		JToolbarHelper::preferences('com_minitheatrecm');		
-	}
-	
-	protected function setDocument()
-	{
-		JFactory::getDocument()->addScript( JUri::root().'media/com_minitheatrecm/js/ajaxgeneric.js' );
 	}
 }

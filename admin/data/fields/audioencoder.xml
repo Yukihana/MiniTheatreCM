@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<audioencoder>
+	<option value="aac-nero">AAC - Nero</option>
+	<option value="aac-apple">AAC - Apple</option>
+	<option value="aac-fdk">AAC - FDK</option>
+	<option value="aac-fhg">AAC - FhG</option>
+	<option value="aac-ffmpeg">AAC - FFmpeg</option>
+	<option value="aac-libav">AAC - Libav</option>
+	<option value="mp3-lame">MP3 - Lame</option>
+	<option value="ac3">AC3 - Dolby</option>
+	<option value="alac">ALAC - Apple</option>
+	<option value="flac">FLAC - Free Lossless Audio</option>
+	<option value="ogg">OGG - Vorbis</option>
+	<option value="wma">WMA - Windows Media Audio</option>
+</audioencoder>

@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_genres` (
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `#__mtcm_contenttypes` (
+CREATE TABLE IF NOT EXISTS `#__mtcm_ctypes` (
 	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
 	`asset_id`			INT(10)				NOT NULL DEFAULT '0',
 	`name`				VARCHAR(255)		NOT NULL,
@@ -171,6 +171,11 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_crewmembers` (
 	
 	`searchstrings`		VARCHAR(1023)		NOT NULL					COMMENT 'Additional names to help in search',
 	
+	`access`			INT(10)	UNSIGNED	NOT NULL DEFAULT '2',
+	`state`				TINYINT(3)			NOT NULL DEFAULT '1',
+	`publish_up`		DATETIME			NOT NULL,
+	`publish_down`		DATETIME			NOT NULL,
+	
 	`author`			INT(10) UNSIGNED	NOT NULL DEFAULT '0',
 	`recentedit`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
 	`created`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
@@ -184,6 +189,11 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_crewroles` (
 	`name`				VARCHAR(255)		NOT NULL,
 	`alias`				VARCHAR(400)		NOT NULL DEFAULT ''			COMMENT 'SEF URI',
 	
+	`access`			INT(10)	UNSIGNED	NOT NULL DEFAULT '2',
+	`state`				TINYINT(3)			NOT NULL DEFAULT '1',
+	`publish_up`		DATETIME			NOT NULL,
+	`publish_down`		DATETIME			NOT NULL,
+	
 	`author`			INT(10) UNSIGNED	NOT NULL DEFAULT '0',
 	`recentedit`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
 	`created`			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP,
@@ -196,6 +206,11 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_organisations` (
 	`id`				INT(10)				NOT NULL AUTO_INCREMENT,
 	`name`				VARCHAR(255)		NOT NULL,
 	`alias`				VARCHAR(400)		NOT NULL DEFAULT ''			COMMENT 'SEF URI',
+	
+	`access`			INT(10)	UNSIGNED	NOT NULL DEFAULT '2',
+	`state`				TINYINT(3)			NOT NULL DEFAULT '1',
+	`publish_up`		DATETIME			NOT NULL,
+	`publish_down`		DATETIME			NOT NULL,
 	
 	`author`			INT(10) UNSIGNED	NOT NULL DEFAULT '0',
 	`recentedit`		INT(10) UNSIGNED	NOT NULL DEFAULT '0',
@@ -217,11 +232,8 @@ CREATE TABLE IF NOT EXISTS `#__mtcm_listings` (
 	`alias`				VARCHAR(400)		NOT NULL DEFAULT ''		COMMENT 'SEF URI',
 	
 	`content`			TEXT				NOT NULL DEFAULT '',
-	`description`		TEXT				NOT NULL DEFAULT '',
-	`misc1`				VARCHAR(255)		NOT NULL DEFAULT ''		COMMENT 'codec, etc',
-	`misc2`				VARCHAR(255)		NOT NULL DEFAULT ''		COMMENT 'vid_res, etc',
-	`misc3`				VARCHAR(255)		NOT NULL DEFAULT ''		COMMENT 'audio, etc',
-	`misc4`				VARCHAR(255)		NOT NULL DEFAULT ''		COMMENT 'subs, etc',
+	`links`				TEXT				NOT NULL DEFAULT ''		COMMENT 'Links Store',
+	`metadata`			TEXT				NOT NULL DEFAULT ''		COMMENT 'Metadata Information',
 	
 	`catalogue`			INT(10)	UNSIGNED	NOT NULL DEFAULT '0',
 	`request_name`		VARCHAR(255)		NOT NULL DEFAULT '',
@@ -496,7 +508,7 @@ INSERT INTO `#__mtcm_genres` (`name`, `author`) VALUES
 ('Drama', 50),
 ('Romance', 100);
 
-INSERT INTO `#__mtcm_contenttypes` (`name`, `author`) VALUES
+INSERT INTO `#__mtcm_ctypes` (`name`, `author`) VALUES
 ('Anime', 42),
 ('Movie', 43),
 ('Manga', 46),

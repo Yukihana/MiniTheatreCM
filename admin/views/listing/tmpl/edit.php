@@ -10,31 +10,26 @@
   
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+
+// Include Dependencies
+JLoader::Register('NeonHtmlForm', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/form.php');
+
+JHtml::_('behavior.tabstate');
+JHtml::_('behavior.keepalive');
 JHtml::_('behavior.formvalidator');
+JHtml::_('formbehavior.chosen', '.multipleLanguages', null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTLANGUAGE')));
+JHtml::_('formbehavior.chosen', '.multipleFansubs', null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTFANSUB')));
+JHtml::_('formbehavior.chosen', 'select');
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_minitheatrecm&layout=edit&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="adminForm" class="form-validate clearfix">
 	
-	<fieldset class="adminform">
-		<div class="control-group">
-			<div class="control-label"><?php echo $this->form->getLabel('name');?></div>
-			<div class="controls"><?php echo $this->form->getInput('name'); ?></div>
-		</div>
-	</fieldset>
-
-	<?php
-	/**
-	 * Supposedly works the same as the fieldset above but the code looks ambigious.
-	 * Will keep this commented till I understand how this actually works.
-	 */
-	
-	//echo JLayoutHelper::render('joomla.edit.title_alias', $this);
-	?>
+	<?php echo JLayoutHelper::render('joomla.edit.title_alias', $this); ?>
 	
     <div class="form-horizontal">
-		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'desc')); ?>
+		<?php echo JHtml::_('bootstrap.startTabSet', 'myTabset', array('active' => 'desc')); ?>
 		
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'desc', JText::_('COM_MINITHEATRECM_DICTIONARY_DESCRIPTION')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTabset', 'desc', JText::_('COM_MINITHEATRECM_DICTIONARY_DESCRIPTION')); ?>
 		<div class="row-fluid">
 			<div class="span9">
 				<fieldset class="adminform">
@@ -42,17 +37,48 @@ JHtml::_('behavior.formvalidator');
 				</fieldset>
 			</div>
 			<div class="span3">
-				<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>
+				<?php echo $this->form->renderFieldset('metaglobal', array('class'=>'form-vertical')); ?>
 			</div>
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'security', JText::_('COM_MINITHEATRECM_DICTIONARY_SECURITY')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTabset', 'listdata', JText::_('COM_MINITHEATRECM_DICTIONARY_CONTENTS')); ?>
 		<div class="row-fluid">
-		
+			<div class="span9">
+				<?php echo $this->form->getInput('links'); ?>
+			</div>
+			<div class="span3">
+				<?php echo $this->form->renderFieldset('production', array('class'=>'form-vertical')); ?>
+			</div>
+		</div>
+		<?php echo JHtml::_('bootstrap.endTab'); ?>
+
+		<?php echo JHtml::_('bootstrap.addTab', 'myTabset', 'metadatas', JText::_('COM_MINITHEATRECM_DICTIONARY_METADATA')); ?>
+		<div class="row-fluid">
+			<?php echo $this->form->getInput('metadata'); ?>
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		
+		<?php echo JHtml::_('bootstrap.addTab', 'myTabset', 'publishing', JText::_('COM_MINITHEATRECM_DICTIONARY_PUBLISHING')); ?>
+		<div class="row-fluid">
+			<div class="span6">
+				<?php echo $this->form->renderFieldset('publishing'); ?>
+				<?php echo $this->form->renderField('id'); ?>
+			</div>
+			<div class="span6">
+				<?php echo NeonHtmlForm::renderStatsDisplay($this->item->hits, $this->item->votes, $this->item->rating, $this->item->recommends); ?>
+				<?php echo $this->form->renderFieldset('pubtools'); ?>
+			</div>
+		</div>
+		<?php echo JHtml::_('bootstrap.endTab'); ?>
+		
+		<?php echo JHtml::_('bootstrap.addTab', 'myTabset', 'security', JText::_('COM_MINITHEATRECM_DICTIONARY_SECURITY')); ?>
+		<div class="row-fluid">
+			<?php echo $this->form->getInput('rules'); ?>
+		</div>
+		<?php echo JHtml::_('bootstrap.endTab'); ?>
+		
+		<?php echo JHtml::_('bootstrap.endTabSet'); ?>
     </div>
 	
     <input type="hidden" name="task" value="listing.edit" />

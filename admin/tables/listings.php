@@ -21,4 +21,5 @@ class MiniTheatreCMTableListings extends NeonTable
 	protected $dbname	= 'listings';
 	
 	protected $dbalias	= array('published'=>'state', 'title'=>'name');
+	protected $dbconcat	= array('links'=>'s64', 'metadata'=>'s64');
 }

@@ -1,0 +1,108 @@
+.mtcm-inline
+{
+	display:inline;
+}
+.mtcm-flex
+{
+	display: flex;
+	flex-wrap: wrap;
+}
+.mtcm-flex-spread
+{
+	flex-grow: 1;
+	flex-basis: 0;
+}
+.mtcm-flex-spread-270
+{
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 270pt;
+}
+.mtcm-flexbetween
+{
+	display: flex;
+	justify-content: space-between;
+}
+.mtcm-clog
+{
+	border-radius: 3pt;
+	border: 1pt solid #dedede;
+	background: linear-gradient(rgba(0,0,0,0.03), rgba(0,0,0,0.07));
+}
+.mtcm-rmap-active
+{
+	border-radius: 3pt;
+	border: 1pt solid #dedede;
+	background: linear-gradient(rgba(0,96,128,0.05), rgba(0,96,128,0.1));
+}
+.mtcm-margin-3
+{
+	margin:3pt;
+}
+.mtcm-padding-3
+{
+	padding:3pt;
+}
+.mtcm-margin-3h
+{
+	margin-left:3pt;
+	margin-right:3pt;
+}
+.mtcm-margin-6h
+{
+	margin-left:6pt;
+	margin-right:6pt;
+}
+.mtcm-padding-3h
+{
+	padding-left:3pt;
+	padding-right:3pt;
+}
+.mtcm-padding-6h
+{
+	padding-left:6pt;
+	padding-right:6pt;
+}
+.mtcm-padding-6v
+{
+	padding-top:6pt;
+	padding-bottom:6pt;
+}
+
+/*Styles-1*/
+.mtcm-modsep-1
+{
+	font-size:0;
+	padding:3pt;
+}
+.mtcm-modmargin-1
+{
+	margin:3pt;
+}
+.mtcm-modstyle-1
+{
+	border-radius: 3pt;
+	border: 1pt solid #dedede;
+	background: linear-gradient(rgba(0,0,0,0.03), rgba(0,0,0,0.07));
+}
+.mtcm-modmetrics-1
+{
+	padding:0pt;
+	margin:3pt;
+}
+.mtcm-modfiller-1
+{
+	border-width: 0pt 1pt;
+	border-color:transparent;
+}
+.mtcm-modheader-1
+{
+	margin:6pt;
+}
+
+/*Specifics*/
+
+.mtcm-rating-cell
+{
+	width:174pt;
+}

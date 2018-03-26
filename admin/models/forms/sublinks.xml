@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="info">
+	
+		<field name="index" type="text"
+			label="COM_MINITHEATRECM_DICTIONARY_INDEX"
+			description="COM_MINITHEATRECM_DESCRIPTION_LISTINGLINKCODE" />
+			
+		<field name="info" type="text"
+			label="COM_MINITHEATRECM_DICTIONARY_TITLE"
+			description="COM_MINITHEATRECM_DESCRIPTION_PARTTITLE" />
+	
+	</fieldset>
+	<fieldset name="data">
+
+		<field name="type" type="list"
+			label="COM_MINITHEATRECM_DICTIONARY_TYPE"
+			description="COM_MINITHEATRECM_DESCRIPTION_LISTINGLINKTYPE" >
+			<option value="0">COM_MINITHEATRECM_DICTIONARY_LINK</option>
+			<option value="1">COM_MINITHEATRECM_DICTIONARY_PARTIAL</option>
+		</field>
+			
+		<field name="text" type="text"
+			label="COM_MINITHEATRECM_DICTIONARY_LINK"
+			description="COM_MINITHEATRECM_DESCRIPTION_LISTINGLINKTEXT" />
+			
+	</fieldset>
+</form>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<subtitleformat>
+	<option value="ssa">SSA - Substation Alpha</option>
+	<option value="ass">ASS - Advanced SSA</option>
+	<option value="srt">SRT - SubRip</option>
+	<option value="sub">SUB - VobSub</option>
+</subtitleformat>

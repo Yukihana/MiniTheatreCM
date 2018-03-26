@@ -28,9 +28,9 @@ JHtml::_('formbehavior.chosen', 'select');
 	<?php echo JLayoutHelper::render('joomla.edit.title_alias', $this); ?>
 	
     <div class="form-horizontal">
-		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'desc')); ?>
+		<?php echo JHtml::_('bootstrap.startTabSet', 'myTabset', array('active' => 'desc')); ?>
 		
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'desc', JText::_('COM_MINITHEATRECM_DICTIONARY_DESCRIPTION')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTabset', 'desc', JText::_('COM_MINITHEATRECM_DICTIONARY_DESCRIPTION')); ?>
 		<div class="row-fluid">
 			<div class="span9">
 				<fieldset class="adminform">
@@ -43,7 +43,7 @@ JHtml::_('formbehavior.chosen', 'select');
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'details', JText::_('COM_MINITHEATRECM_DICTIONARY_DETAILS')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTabset', 'details', JText::_('COM_MINITHEATRECM_DICTIONARY_DETAILS')); ?>
 		<div class="row-fluid">
 			<div class="span9">
 				<?php echo $this->form->getInput('specifics'); ?>
@@ -54,7 +54,7 @@ JHtml::_('formbehavior.chosen', 'select');
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'production', JText::_('COM_MINITHEATRECM_DICTIONARY_PRODUCTION')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTabset', 'production', JText::_('COM_MINITHEATRECM_DICTIONARY_PRODUCTION')); ?>
 		<div class="row-fluid">
 			<div class="span9">
 				<?php echo $this->form->getInput('crew'); ?>
@@ -66,7 +66,7 @@ JHtml::_('formbehavior.chosen', 'select');
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'medialinks', JText::_('COM_MINITHEATRECM_DICTIONARY_MEDIA')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTabset', 'medialinks', JText::_('COM_MINITHEATRECM_DICTIONARY_MEDIA')); ?>
 		<div class="row-fluid">
 			<div class="span6">
 				<!--Media here-->
@@ -78,7 +78,7 @@ JHtml::_('formbehavior.chosen', 'select');
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'publishing', JText::_('COM_MINITHEATRECM_DICTIONARY_PUBLISHING')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTabset', 'publishing', JText::_('COM_MINITHEATRECM_DICTIONARY_PUBLISHING')); ?>
 		<div class="row-fluid">
 			<div class="span6">
 				<?php echo $this->form->renderFieldset('publishing'); ?>
@@ -91,7 +91,7 @@ JHtml::_('formbehavior.chosen', 'select');
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'options', JText::_('COM_MINITHEATRECM_DICTIONARY_OPTIONS')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTabset', 'options', JText::_('COM_MINITHEATRECM_DICTIONARY_OPTIONS')); ?>
 		<div class="row-fluid">
 			<div class="span6">
 			</div>
@@ -104,7 +104,7 @@ JHtml::_('formbehavior.chosen', 'select');
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'permissions', JText::_('COM_MINITHEATRECM_DICTIONARY_PERMISSIONS')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTabset', 'permissions', JText::_('COM_MINITHEATRECM_DICTIONARY_PERMISSIONS')); ?>
 		<div class="row-fluid">
 			<?php echo $this->form->getInput('rules'); ?>
 		</div>

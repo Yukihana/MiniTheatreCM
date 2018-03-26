@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<videoresolution>
+	<group label="16:9">
+		<option value="640x360">nHD - 640x360</option>
+		<option value="848x480">WPAL - 848x480</option>
+		<option value="960x540">qHD - 960x540</option>
+		<option value="1280x720">HD - 1280x720</option>
+		<option value="1600x900">HD+ - 1600x900</option>
+		<option value="1920x1080">FHD - 1920x1080</option>
+		<option value="2560x1440">QHD - 2560x1440</option>
+		<option value="3840x2160">4K UHD - 3840x2160</option>
+		<option value="7680x4320">8K UHD - 7680x4320</option>
+	</group>
+	<group label="4:3">
+		<option value="640x480">SD - 640x480</option>
+	</group>
+</videoresolution>

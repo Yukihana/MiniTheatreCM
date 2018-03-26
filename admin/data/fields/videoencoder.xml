@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<videoencoder>
+	<option value="h264_x8">X264 8-bit (H.264/AVC)</option>
+	<option value="h264_x10">X264 10-bit (H.264/AVC)</option>
+	<option value="h265_x8">X265 8-bit (H.265/HEVC)</option>
+	<option value="h265_x10">X265 10-bit (H.265/HEVC)</option>
+	<option value="h265_x12">X265 12-bit (H.265/HEVC)</option>
+</videoencoder>

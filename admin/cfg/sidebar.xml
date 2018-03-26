@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sidebar>
 	<!--Dashboard-->
-	<menuitem option="com_minitheatrecm"	view="overview"			matchstr="overview"			label="COM_MINITHEATRECM_TITLE_OVERVIEW"/>
-	<menuitem option="com_minitheatrecm"	view="activitylog"		matchstr="activitylog"		label="COM_MINITHEATRECM_TITLE_ACTIVITYLOG"/>
+	<menuitem option="com_minitheatrecm"	view="dashboard"		matchstr="dashboard"		label="COM_MINITHEATRECM_TITLE_DASHBOARD"/>
 	
 	<!--User-Content-->
 	<menuitem option="com_minitheatrecm"	view="listings"			matchstr="listings"			label="COM_MINITHEATRECM_TITLE_LISTINGS"/>
@@ -12,7 +11,7 @@
 	<menuitem option="com_minitheatrecm"	view="catalogues"		matchstr="catalogues"		label="COM_MINITHEATRECM_TITLE_CATALOGUES"/>
 	<menuitem option="com_minitheatrecm"	view="franchises"		matchstr="franchises"		label="COM_MINITHEATRECM_TITLE_FRANCHISES"/>
 	<menuitem option="com_minitheatrecm"	view="genres"			matchstr="genres"			label="COM_MINITHEATRECM_TITLE_GENRES"/>
-	<menuitem option="com_minitheatrecm"	view="contenttypes"		matchstr="contenttypes"		label="COM_MINITHEATRECM_TITLE_CONTENTTYPES"/>
+	<menuitem option="com_minitheatrecm"	view="ctypes"			matchstr="ctypes"			label="COM_MINITHEATRECM_TITLE_CTYPES"/>
 	
 	<menuitem option="com_minitheatrecm"	view="crewmembers"		matchstr="crewmembers"		label="COM_MINITHEATRECM_TITLE_CREWMEMBERS"/>
 	<menuitem option="com_minitheatrecm"	view="crewroles"		matchstr="crewroles"		label="COM_MINITHEATRECM_TITLE_CREWROLES"/>
@@ -22,6 +21,7 @@
 	<menuitem option="com_minitheatrecm"	view="ratings"			matchstr="ratings"			label="COM_MINITHEATRECM_TITLE_RATINGS"/>
 	
 	<!--Management-->
+	<menuitem option="com_minitheatrecm"	view="activitylog"		matchstr="activitylog"		label="COM_MINITHEATRECM_TITLE_ACTIVITYLOG"/>
 	<menuitem option="com_minitheatrecm"	view="planner"			matchstr="planner"			label="COM_MINITHEATRECM_TITLE_PLANNER"/>
 	
 	<!--Legacy Objects-->

@@ -12,15 +12,13 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * ContentTypes View
+ * NeonViewManager Source
  *
  * @since  0.0.1
  */
-class NeonViewManager extends JViewLegacy
+class NeonViewManager extends NeonViewBase
 {
-	protected $ui_submenu	= null;
-	protected $ui_title		= 'COM_MINITHEATRECM_DICTIONARY_MANAGER';
-	protected $ui_icon		= 'cogs';
+	protected $ui_title			= 'COM_MINITHEATRECM_DICTIONARY_MANAGER';
 	
 	// Display the template ($tpl: template file)
 	function display($tpl = null)
@@ -36,43 +34,7 @@ class NeonViewManager extends JViewLegacy
 		$this->filterForm    	= $this->get('FilterForm');
 		$this->activeFilters 	= $this->get('ActiveFilters');
 		
-		// Check for errors.
-		if (count($errors = $this->get('Errors')))
-		{
-			JError::raiseError(500, implode('<br />', $errors));
-
-			return false;
-		}
-
-		// Set up other UI elements
-		if ($this->getLayout() !== 'modal')
-		{
-			if( $this->ui_submenu != null )
-			{
-				MiniTheatreCMHelper::addSubmenu($this->ui_submenu);
-			}
-			$this->sidebar = JHtmlSidebar::render();
-			
-			$this->setDocument();
-			$this->addToolBar();
-		}
-		
 		// Display the template
 		parent::display($tpl);
-	}
-	
-	// Add page header and toolbar buttons
-	protected function addToolBar()
-	{
-		
-		
-	}
-	
-	// Set page-header and document-title
-	protected function setDocument()
-	{
-		$title = JText::_($this->ui_title);
-		JToolbarHelper::title( $title, $this->ui_icon );
-		JFactory::getDocument()->setTitle($title.' - '.JText::_('COM_MINITHEATRECM_GLOBAL_LONGTITLE'));
 	}
 }

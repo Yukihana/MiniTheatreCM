@@ -12,11 +12,11 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * CrewPerson Form Field class for the MiniTheatreCM component
+ * CrewMember Form Field class for the MiniTheatreCM component
  *
  * @since  0.0.1
  */
-class JFormFieldCrewPerson extends NeonFormFieldList
+class JFormFieldCrewMember extends NeonFormFieldList
 {
 	protected $type			= 'CrewMember';
 	protected $dbname		= 'crewmembers';

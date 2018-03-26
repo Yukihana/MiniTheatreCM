@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<viewlist>
+	<option value="dashboard">COM_MINITHEATRECM_TITLE_DASHBOARD</option>
+	<option value="activitylog">COM_MINITHEATRECM_TITLE_ACTIVITYLOG</option>
+	
+	<option value="catalogues">COM_MINITHEATRECM_TITLE_CATALOGUES</option>
+	<option value="franchises">COM_MINITHEATRECM_TITLE_FRANCHISES</option>
+	<option value="genres">COM_MINITHEATRECM_TITLE_GENRES</option>
+	<option value="ctypes">COM_MINITHEATRECM_TITLE_CTYPES</option>
+	
+	<option value="listings">COM_MINITHEATRECM_TITLE_LISTINGS</option>
+	<option value="reviews">COM_MINITHEATRECM_TITLE_REVIEWS</option>
+	<option value="ratingreviews">COM_MINITHEATRECM_TITLE_RATINGREVIEWS</option>
+	<option value="ratinglistings">COM_MINITHEATRECM_TITLE_RATINGLISTINGS</option>
+	
+	<option value="ratingcatalogues">COM_MINITHEATRECM_TITLE_RATINGCATALOGUES</option>
+	<option value="ratingfranchises">COM_MINITHEATRECM_TITLE_RATINGFRANCHISES</option>
+	<option value="ratinggenres">COM_MINITHEATRECM_TITLE_RATINGGENRES</option>
+	
+	<option value="planner">COM_MINITHEATRECM_TITLE_PLANNER</option>
+</viewlist>

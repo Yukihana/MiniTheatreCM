@@ -23,9 +23,9 @@ JHtml::_('behavior.formvalidator');
 	</fieldset>
 	
 	<div class="form-horizontal">
-		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'desc')); ?>
+		<?php echo JHtml::_('bootstrap.startTabSet', 'myTabset', array('active' => 'desc')); ?>
 		
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'desc', JText::_('COM_MINITHEATRECM_DICTIONARY_DESCRIPTION')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTabset', 'desc', JText::_('COM_MINITHEATRECM_DICTIONARY_DESCRIPTION')); ?>
 		<div class="row-fluid">
 			<div class="span9">
 				<fieldset class="adminform">
@@ -38,7 +38,7 @@ JHtml::_('behavior.formvalidator');
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'security', JText::_('COM_MINITHEATRECM_DICTIONARY_SECURITY')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTabset', 'security', JText::_('COM_MINITHEATRECM_DICTIONARY_SECURITY')); ?>
 		<div class="row-fluid">
 		
 		</div>

@@ -14,6 +14,7 @@ defined('_JEXEC') or die('Restricted access');
 // Include Dependencies
 JLoader::Register('MiniTheatreCMCfgSettings', JPATH_COMPONENT_ADMINISTRATOR . '/lib/cfg/settings.php');
 JLoader::Register('NeonHtmlMessages', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/messages.php');
+JLoader::Register('NeonHtmlAjax', JPATH_COMPONENT_ADMINISTRATOR . '/lib/html/ajax.php');
 JLoader::Register('NeonNfoChangelog', JPATH_COMPONENT_ADMINISTRATOR . '/lib/nfo/changelog.php');
 JLoader::Register('NeonNfoNotebook', JPATH_COMPONENT_ADMINISTRATOR . '/lib/nfo/notebook.php');
 
@@ -22,28 +23,24 @@ if( empty($this->utype))
 {
 	JHtml::_('behavior.tabstate');
 }
-$deftab			= empty($this->utype)? 'roadmap' : $this->utype;
+$deftab		= empty($this->utype)? 'roadmap' : $this->utype;
 
 $app		= JFactory::getApplication();
 $context	= 'com_minitheatrecm.planner.';
 
-$iver			= MiniTheatreCMCfgSettings::getIVersion();
-$version_str	= 'ver';
-$changelog_str	= 'clog';
-$changelog_id	= $app->getUserState('com_minitheatrecm.planner.changelog',0);
+$iver		= MiniTheatreCMCfgSettings::getIVersion();
+$cprefix	= 'clog_';
+$cid		= $app->getUserState('com_minitheatrecm.planner.changelog',0);
+$c404		= ( $this->changelog->tasks == null );
 
-// Inline Javascript Declaration for AJAX-FW
+// Inline Javascript Declaration for AJAX-FW (Try to add a php-renderer for the store)
 JFactory::getDocument()->addScriptDeclaration('
-	var '.$changelog_str.'_loader = "'.str_replace('"', '\\"', NeonHtmlMessages::_('COM_MINITHEATRECM_MESSAGE_PLEASEWAIT', 'COM_MINITHEATRECM_DICTIONARY_LOADING', false, 'info')).'";
-	var '.$changelog_str.'_error = "'.str_replace('"', '\\"', NeonHtmlMessages::_('COM_MINITHEATRECM_MESSAGE_ERRORUNABLETOPROCEED', 'COM_MINITHEATRECM_DICTIONARY_ERROR', false, 'warning')).'";
-	var '.$changelog_str.'_error403 = "'.str_replace('"', '\\"', NeonHtmlMessages::_('COM_MINITHEATRECM_MESSAGE_NOACCESS', 'COM_MINITHEATRECM_DICTIONARY_ACCESSDENIED', false, 'warning')).'";
-	var '.$changelog_str.'_error404 = "'.str_replace('"', '\\"', NeonHtmlMessages::_('COM_MINITHEATRECM_MESSAGE_PROVIDEVALIDID', 'COM_MINITHEATRECM_MESSAGE_404', false, 'warning')).'";
-	var '.$changelog_str.'_timeout =  "'.str_replace('"', '\\"', NeonHtmlMessages::_('COM_MINITHEATRECM_MESSAGE_TIMEDOUT', 'COM_MINITHEATRECM_DICTIONARY_TIMEOUT', false, 'error')).'";
+	var '.$cprefix.'store = '.NeonHtmlAjax::renderBasic().';
 	function listjax(srclist,linker)
 	{
 		var sl = document.getElementById(srclist);
 		var id = sl.options[sl.selectedIndex].value;
-		neonAjaxContent(unescape(linker+id.toString()), "'.$changelog_str.'_ajax", "'.$changelog_str.'_");
+		neonAce(unescape(linker+id.toString()), "'.$cprefix.'");
 	}
 ');
 ?>
@@ -67,6 +64,11 @@ JFactory::getDocument()->addScriptDeclaration('
 			<?php echo JHtml::_('bootstrap.addTab', 'mtcmplanner', 'manifest', JText::_('COM_MINITHEATRECM_DICTIONARY_MANIFEST')); ?>
 				MANIFEST DATA
 			<?php echo JHtml::_('bootstrap.endTab'); ?>
+			
+			<?php echo JHtml::_('bootstrap.addTab', 'mtcmplanner', 'labs', JText::_('COM_MINITHEATRECM_DICTIONARY_LABS'));
+				$rchpath = JPATH_COMPONENT_ADMINISTRATOR . '/data/nfo/research.php';
+				if( file_exists( $rchpath )) { include( $rchpath ); }
+				echo JHtml::_('bootstrap.endTab'); ?>
 			
 			<?php echo JHtml::_('bootstrap.addTab', 'mtcmplanner', 'notebook', JText::_('COM_MINITHEATRECM_DICTIONARY_NOTEBOOK')); ?>
 				<div class="span6">
@@ -113,7 +115,7 @@ JFactory::getDocument()->addScriptDeclaration('
 									<?php echo NeonNfoChangelog::icon($row->changelog, 'bubble-quote');?>
 								</td>
 								<td class="nowrap">
-									<a href="<?php echo $link;?>" class="hasTooltip" title="<?php echo JText::_('COM_MINITHEATRECM_TOOLTIP_VIEW_CLOG');?>" onclick="javascript:neonAjaxContent('<?php echo $link.'&format=raw';?>', '<?php echo $changelog_str;?>_ajax', '<?php echo $changelog_str;?>_');">
+									<a href="<?php echo $link;?>" class="hasTooltip" title="<?php echo JText::_('COM_MINITHEATRECM_TOOLTIP_VIEW_CLOG');?>" onclick="<?php echo "javascript:neonAce( '".$link."&format=raw', '".$cprefix."' );";?>">
 										<?php echo $row->version;?>
 									</a>
 									<?php if($iver == $row->version){ echo '<span class="muted disabled">('.JText::_('COM_MINITHEATRECM_DICTIONARY_LATESTVERSION').')</span>'; }?>
@@ -134,10 +136,17 @@ JFactory::getDocument()->addScriptDeclaration('
 				</div>
 				<div class="span6">
 					<div class="visible-phone">
-						<?php echo JHtml::_('select.genericlist', $this->voptions, 'clogindex', array('onchange' => 'listjax(\'clogindex\', \'index.php?option=com_minitheatrecm&task=planner.view&format=raw&update=changelog.\');', 'class' => 'input-xlarge'), 'value', 'text', $changelog_id, 'clogindex'); ?>
+						<?php echo JHtml::_('select.genericlist', $this->voptions, 'clogindex', array('onchange' => 'listjax(\'clogindex\', \'index.php?option=com_minitheatrecm&task=planner.view&format=raw&update=changelog.\');', 'class' => 'input-xlarge'), 'value', 'text', $cid, 'clogindex'); ?>
 					</div>
-					<div id="clog_ajax">
-						<?php echo ( $this->changelog != null ) ? NeonNfoChangelog::render($this->changelog) : NeonHtmlMessages::_('COM_MINITHEATRECM_MESSAGE_PROVIDEVALIDID', 'COM_MINITHEATRECM_MESSAGE_404', false, 'warning'); ?>
+					<div id="clog_container" style="position:relative;">
+						<div id="clog_ajax" <?php if($c404 == true) echo 'style="filter:blur(3pt);pointer-events:none;"';?>>
+							<?php if($c404 != true) echo NeonNfoChangelog::render($this->changelog);?>
+						</div>
+						<div id="clog_overlay" style="position:absolute;top:0%;left:50%;<?php if($c404 != true) echo 'visibility:hidden;';?>">
+							<div id="clog_msgbox" class="well" style="margin: 20pt 50% auto -50%;background:white;border:1px solid #dedede;box-shadow:1pt 3pt 10pt rgba(0,0,0,0.3);">
+								<?php echo NeonHtmlMessages::_('COM_MINITHEATRECM_MESSAGE_PROVIDEVALIDID', 'COM_MINITHEATRECM_MESSAGE_404', false, 'warning');?>
+							</div>
+						</div>
 					</div>
 				</div>
 			<?php echo JHtml::_('bootstrap.endTab'); ?>

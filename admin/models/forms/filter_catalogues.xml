@@ -57,12 +57,12 @@
 			class="multipleGenres"
 			onchange="this.form.submit();" />
 		<field
-			name="contenttype"
+			name="ctype"
 			type="ctype"
-			label="COM_MINITHEATRECM_HINT_SELECTCONTENTTYPE"
-			description="COM_MINITHEATRECM_HINT_SELECTCONTENTTYPE_DESC"
+			label="COM_MINITHEATRECM_HINT_SELECTCTYPE"
+			description="COM_MINITHEATRECM_HINT_SELECTCTYPE_DESC"
 			multiple="true"
-			class="multipleContentTypes"
+			class="multipleCTypes"
 			onchange="this.form.submit();" />
 	</fields>
 	<fields name="list">
@@ -85,10 +85,10 @@
 			<option value="a.alias ASC">COM_MINITHEATRECM_ORDERING_ALIAS_ASC</option>
 			<option value="a.alias DESC">COM_MINITHEATRECM_ORDERING_ALIAS_DSC</option>
 			
-			<option value="c.name ASC">COM_MINITHEATRECM_ORDERING_CONTENTTYPE_ASC</option>
-			<option value="c.name DESC">COM_MINITHEATRECM_ORDERING_CONTENTTYPE_DSC</option>
-			<option value="a.ctype ASC">COM_MINITHEATRECM_ORDERING_CONTENTTYPEID_ASC</option>
-			<option value="a.ctype DESC">COM_MINITHEATRECM_ORDERING_CONTENTTYPEID_DSC</option>
+			<option value="c.name ASC">COM_MINITHEATRECM_ORDERING_CTYPE_ASC</option>
+			<option value="c.name DESC">COM_MINITHEATRECM_ORDERING_CTYPE_DSC</option>
+			<option value="a.ctype ASC">COM_MINITHEATRECM_ORDERING_CTYPEID_ASC</option>
+			<option value="a.ctype DESC">COM_MINITHEATRECM_ORDERING_CTYPEID_DSC</option>
 			
 			<option value="f.name ASC">COM_MINITHEATRECM_ORDERING_FRANCHISE_ASC</option>
 			<option value="f.name DESC">COM_MINITHEATRECM_ORDERING_FRANCHISE_DSC</option>

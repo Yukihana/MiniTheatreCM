@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fileformat>
+	<option value="1">Matroska (.mkv)</option>
+	<option value="2">MPEG Layer 4 (.mp4)</option>
+	<option value="3">MPEG Layer 3 (.mp3)</option>
+	<option value="4">Lossless Audio (.flac)</option>
+</fileformat>

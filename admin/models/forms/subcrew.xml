@@ -2,7 +2,7 @@
 <form>
 	<fieldset>
 	
-		<field name="name" type="crewperson"
+		<field name="name" type="crewmember"
 			label="COM_MINITHEATRECM_DICTIONARY_NAME"
 			description="COM_MINITHEATRECM_DESCRIPTION_CREWNAME" >
 			<option value="0">COM_MINITHEATRECM_DICTIONARY_NONE</option>

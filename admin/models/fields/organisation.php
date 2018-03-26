@@ -12,11 +12,11 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Licensor Form Field class for the MiniTheatreCM component
+ * Organisation Form Field class for the MiniTheatreCM component
  *
  * @since  0.0.1
  */
-class JFormFieldLicensor extends NeonFormFieldList
+class JFormFieldOrganisation extends NeonFormFieldList
 {
 	protected $type			= 'Organisation';
 	protected $dbname		= 'organisations';

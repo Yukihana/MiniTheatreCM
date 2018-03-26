@@ -31,13 +31,13 @@ $userlink		= MiniTheatreCMCfgGlobal::getManagerLinkable('user');
 $genrelink		= MiniTheatreCMCfgGlobal::getManagerLinkable('genre');
 
 $access_col		= NeonHtmlManager::getOrdering($listOrder, 'gp.title', 'COM_MINITHEATRECM_DICTIONARY_ACCESS',
-					array('gp.title'=>'COM_MINITHEATRECM_DICTIONARY_ACCESSGROUP','a.access'=>'COM_MINITHEATRECM_DICTIONARY_ACCESSID'));
+					array('COM_MINITHEATRECM_DICTIONARY_ACCESSGROUP'=>'gp.title', 'COM_MINITHEATRECM_DICTIONARY_ACCESSID'=>'a.access'));
 $editor_col		= NeonHtmlManager::getOrdering($listOrder, 'a.author', 'COM_MINITHEATRECM_DICTIONARY_EDITORS',
-					array('a.author'=>'COM_MINITHEATRECM_DICTIONARY_AUTHOR', 'a.recentedit'=>'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT'));
+					array('COM_MINITHEATRECM_DICTIONARY_AUTHOR'=>'a.author, u1.name', 'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT'=>'a.recentedit, u2.name'));
 $timestamp_col	= NeonHtmlManager::getOrdering($listOrder, 'a.created', 'COM_MINITHEATRECM_DICTIONARY_TIMESTAMPS',
-					array('a.created'=>'COM_MINITHEATRECM_DICTIONARY_CREATED', 'a.modified'=>'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT'));
+					array('COM_MINITHEATRECM_DICTIONARY_CREATED'=>'a.created', 'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT'=>'a.modified'));
 $stats_col		= NeonHtmlManager::getOrdering($listOrder, 'a.hits', 'COM_MINITHEATRECM_DICTIONARY_STATS',
-					array('a.hits'=>'COM_MINITHEATRECM_DICTIONARY_HITS', 'a.votes'=>'COM_MINITHEATRECM_DICTIONARY_VOTES'));
+					array('COM_MINITHEATRECM_DICTIONARY_HITS'=>'a.hits', 'COM_MINITHEATRECM_DICTIONARY_VOTES'=>'a.votes'));
 ?>
 
 <form action="index.php?option=com_minitheatrecm&view=franchises" method="post" id="adminForm" name="adminForm" class="clearfix">
@@ -104,9 +104,7 @@ $stats_col		= NeonHtmlManager::getOrdering($listOrder, 'a.hits', 'COM_MINITHEATR
 						<?php echo JHtml::_('grid.id', $i, $row->id); ?>
 					</td>
 					<td class="nowrap center">
-						<div class="btn-group">
-							<?php echo JHtml::_('jgrid.published', $row->state, $i, 'franchises.', true, 'cb', $row->publish_up, $row->publish_down); ?>
-						</div>
+						<?php echo NeonHtmlManager::renderTaskButtons( $row->state, $i, 'franchises.', true, $row->publish_up, $row->publish_down );?>
 					</td>
 					<td>
 						<div class="pull-left">

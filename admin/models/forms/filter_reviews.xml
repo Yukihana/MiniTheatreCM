@@ -69,10 +69,10 @@
 			<option value="a.alias ASC">COM_MINITHEATRECM_ORDERING_ALIAS_ASC</option>
 			<option value="a.alias DESC">COM_MINITHEATRECM_ORDERING_ALIAS_DSC</option>
 			
-			<option value="c.name ASC">COM_MINITHEATRECM_ORDERING_CONTENTTYPE_ASC</option>
-			<option value="c.name DESC">COM_MINITHEATRECM_ORDERING_CONTENTTYPE_DSC</option>
-			<option value="t.ctype ASC">COM_MINITHEATRECM_ORDERING_CONTENTTYPEID_ASC</option>
-			<option value="t.ctype DESC">COM_MINITHEATRECM_ORDERING_CONTENTTYPEID_DSC</option>
+			<option value="c.name ASC">COM_MINITHEATRECM_ORDERING_CTYPE_ASC</option>
+			<option value="c.name DESC">COM_MINITHEATRECM_ORDERING_CTYPE_DSC</option>
+			<option value="t.ctype ASC">COM_MINITHEATRECM_ORDERING_CTYPEID_ASC</option>
+			<option value="t.ctype DESC">COM_MINITHEATRECM_ORDERING_CTYPEID_DSC</option>
 			
 			<option value="t.name ASC">COM_MINITHEATRECM_ORDERING_CATALOGUE_ASC</option>
 			<option value="t.name DESC">COM_MINITHEATRECM_ORDERING_CATALOGUE_DSC</option>

@@ -17,11 +17,11 @@ JLoader::Register('MiniTheatreCMCfgGlobal', JPATH_COMPONENT_ADMINISTRATOR . '/li
 
 JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.multiselect');
+JHtml::_('formbehavior.chosen', '.multipleCTypes',			null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTCTYPE')));
 JHtml::_('formbehavior.chosen', '.multipleGenres',			null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTGENRE')));
 JHtml::_('formbehavior.chosen', '.multipleAuthors',			null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTAUTHOR')));
 JHtml::_('formbehavior.chosen', '.multipleAccesses',		null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTACCESS')));
 JHtml::_('formbehavior.chosen', '.multipleFranchises',		null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTFRANCHISE')));
-JHtml::_('formbehavior.chosen', '.multipleContentTypes',	null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTCONTENTTYPE')));
 JHtml::_('formbehavior.chosen', '.multipleRecentEditors',	null, array('placeholder_text_multiple' => JText::_('COM_MINITHEATRECM_HINT_SELECTRECENTEDITOR')));
 JHtml::_('formbehavior.chosen', 'select');
 
@@ -32,18 +32,18 @@ $accesslink		= MiniTheatreCMCfgGlobal::getManagerLinkable('access');
 $userlink		= MiniTheatreCMCfgGlobal::getManagerLinkable('user');
 $genrelink		= MiniTheatreCMCfgGlobal::getManagerLinkable('genre');
 $franchiselink	= MiniTheatreCMCfgGlobal::getManagerLinkable('franchise');
-$ctypelink		= MiniTheatreCMCfgGlobal::getManagerLinkable('contenttype');
+$ctypelink		= MiniTheatreCMCfgGlobal::getManagerLinkable('ctype');
 
-$franchise_col	= NeonHtmlManager::getOrdering($listOrder, 'f.name', 'COM_MINITHEATRECM_DICTIONARY_FRANCHISE',
-					array('f.name'=>'COM_MINITHEATRECM_DICTIONARY_FRANCHISENAME','a.franchise'=>'COM_MINITHEATRECM_DICTIONARY_FRANCHISEID'));
 $access_col		= NeonHtmlManager::getOrdering($listOrder, 'gp.title', 'COM_MINITHEATRECM_DICTIONARY_ACCESS',
-					array('gp.title'=>'COM_MINITHEATRECM_DICTIONARY_ACCESSGROUP','a.access'=>'COM_MINITHEATRECM_DICTIONARY_ACCESSID'));
+					array('COM_MINITHEATRECM_DICTIONARY_ACCESSGROUP'=>'gp.title', 'COM_MINITHEATRECM_DICTIONARY_ACCESSID'=>'a.access'));
 $editor_col		= NeonHtmlManager::getOrdering($listOrder, 'a.author', 'COM_MINITHEATRECM_DICTIONARY_EDITORS',
-					array('a.author'=>'COM_MINITHEATRECM_DICTIONARY_AUTHOR', 'a.recentedit'=>'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT'));
+					array('COM_MINITHEATRECM_DICTIONARY_AUTHOR'=>'a.author, u1.name', 'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT'=>'a.recentedit, u2.name'));
 $timestamp_col	= NeonHtmlManager::getOrdering($listOrder, 'a.created', 'COM_MINITHEATRECM_DICTIONARY_TIMESTAMPS',
-					array('a.created'=>'COM_MINITHEATRECM_DICTIONARY_CREATED', 'a.modified'=>'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT'));
+					array('COM_MINITHEATRECM_DICTIONARY_CREATED'=>'a.created', 'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT'=>'a.modified'));
 $stats_col		= NeonHtmlManager::getOrdering($listOrder, 'a.hits', 'COM_MINITHEATRECM_DICTIONARY_STATS',
-					array('a.hits'=>'COM_MINITHEATRECM_DICTIONARY_HITS', 'a.votes'=>'COM_MINITHEATRECM_DICTIONARY_VOTES'));
+					array('COM_MINITHEATRECM_DICTIONARY_HITS'=>'a.hits', 'COM_MINITHEATRECM_DICTIONARY_VOTES'=>'a.votes'));
+$franchise_col	= NeonHtmlManager::getOrdering($listOrder, 'f.name', 'COM_MINITHEATRECM_DICTIONARY_FRANCHISE',
+					array('COM_MINITHEATRECM_DICTIONARY_FRANCHISENAME'=>'f.name','COM_MINITHEATRECM_DICTIONARY_FRANCHISEID'=>'a.franchise'));
 ?>
 
 <form action="index.php?option=com_minitheatrecm&view=catalogues" method="post" id="adminForm" name="adminForm" class="clearfix">
@@ -113,9 +113,7 @@ $stats_col		= NeonHtmlManager::getOrdering($listOrder, 'a.hits', 'COM_MINITHEATR
 						<?php echo JHtml::_('grid.id', $i, $row->id); ?>
 					</td>
 					<td class="nowrap center">
-						<div class="btn-group">
-							<?php echo JHtml::_('jgrid.published', $row->state, $i, 'catalogues.', true, 'cb', $row->publish_up, $row->publish_down); ?>
-						</div>
+						<?php echo NeonHtmlManager::renderTaskButtons( $row->state, $i, 'catalogues.', true, $row->publish_up, $row->publish_down );?>
 					</td>
 					<td>
 						<div class="pull-left">

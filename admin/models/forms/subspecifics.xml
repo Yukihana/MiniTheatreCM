@@ -12,6 +12,10 @@
 			label="COM_MINITHEATRECM_DICTIONARY_INDEX"
 			description="COM_MINITHEATRECM_DESCRIPTION_PARTINDEX" />
 			
+		<field name="code" type="text" size="20"
+			label="COM_MINITHEATRECM_DICTIONARY_CODE"
+			description="COM_MINITHEATRECM_DESCRIPTION_PARTCODE" />
+			
 	</fieldset>
 	<fieldset name="synopsis">
 	

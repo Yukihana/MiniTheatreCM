@@ -83,11 +83,11 @@
 	</fieldset>
 	<fieldset name="airing">
 			
-		<field name="count" type="number"
+		<field name="count" type="number" min="1"
 			label="COM_MINITHEATRECM_DICTIONARY_COUNT"
 			description="COM_MINITHEATRECM_DESCRIPTION_CONTENTCOUNT" />
 		
-		<field name="duration" type="number"
+		<field name="duration" type="number" min="0"
 			label="COM_MINITHEATRECM_DICTIONARY_DURATION"
 			description="COM_MINITHEATRECM_DESCRIPTION_CONTENTDURATION" />
 			
@@ -134,7 +134,7 @@
 		<field
 			name="ctype" type="ctype"
 			label="COM_MINITHEATRECM_DICTIONARY_CONTENTTYPE"
-			description="COM_MINITHEATRECM_DESCRIPTION_CONTENTTYPE" >
+			description="COM_MINITHEATRECM_DESCRIPTION_CTYPE" >
 			<option value="0">COM_MINITHEATRECM_DICTIONARY_NONE</option>
 		</field>
 			
@@ -150,19 +150,19 @@
 	<fieldset name="production">
 			
 		<field
-			name="producers" type="producer"
+			name="producers" type="organisation"
 			label="COM_MINITHEATRECM_DICTIONARY_PRODUCERS"
 			description="COM_MINITHEATRECM_DESCRIPTION_PRODUCERS"
 			multiple="true" class="multipleProducers" />
 			
 		<field
-			name="licensors" type="licensor"
+			name="licensors" type="organisation"
 			label="COM_MINITHEATRECM_DICTIONARY_LICENSORS"
 			description="COM_MINITHEATRECM_DESCRIPTION_LICENSORS"
 			multiple="true" class="multipleLicensors" />
 		
 		<field
-			name="studios" type="studio"
+			name="studios" type="organisation"
 			label="COM_MINITHEATRECM_DICTIONARY_STUDIOS"
 			description="COM_MINITHEATRECM_DESCRIPTION_STUDIOS"
 			multiple="true" class="multipleStudios" />

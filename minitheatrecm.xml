@@ -62,8 +62,7 @@
 	    <menu link="option=com_minitheatrecm">COM_MINITHEATRECM_MENU</menu>
 		<submenu>
 			<!--Note: Always escape '&' to '&amp'-->
-			<menu view="overview">COM_MINITHEATRECM_MENU_OVERVIEW</menu>
-			<menu view="activitylog">COM_MINITHEATRECM_MENU_ACTIVITYLOG</menu>
+			<menu view="dashboard">COM_MINITHEATRECM_MENU_DASHBOARD</menu>
 			
 			<menu view="listings">COM_MINITHEATRECM_MENU_LISTINGS</menu>		
 			<menu view="reviews">COM_MINITHEATRECM_MENU_REVIEWS</menu>
@@ -71,7 +70,7 @@
 			<menu view="catalogues">COM_MINITHEATRECM_MENU_CATALOGUES</menu>
 			<menu view="franchises">COM_MINITHEATRECM_MENU_FRANCHISES</menu>
 			<menu view="genres">COM_MINITHEATRECM_MENU_GENRES</menu>
-			<menu view="contenttypes">COM_MINITHEATRECM_MENU_CONTENTTYPES</menu>
+			<menu view="ctypes">COM_MINITHEATRECM_MENU_CTYPES</menu>
 			
 			<menu view="crewmembers">COM_MINITHEATRECM_MENU_CREWMEMBERS</menu>
 			<menu view="crewroles">COM_MINITHEATRECM_MENU_CREWROLES</menu>
@@ -79,6 +78,7 @@
 			
 			<menu view="ratings">COM_MINITHEATRECM_MENU_RATINGS</menu>
 			
+			<menu view="activitylog">COM_MINITHEATRECM_MENU_ACTIVITYLOG</menu>
 			<menu view="planner">COM_MINITHEATRECM_MENU_PLANNER</menu>
 			
 			<menu view="ulwizsources">COM_MINITHEATRECM_MENU_ULWIZSOURCES</menu>
@@ -96,6 +96,7 @@
 			<folder>controllers</folder>
 			<folder>data</folder>
 			<folder>helpers</folder>
+			<folder>layouts</folder>
 			<folder>lib</folder>
 			<folder>models</folder>
 			<folder>sql</folder>

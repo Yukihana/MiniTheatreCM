@@ -131,7 +131,7 @@ abstract class NeonNfoChangelog
 	
 	public static function renderTaskBadge($type)
 	{
-		$colors = array( 'manager'=>'389', 'database'=>'383', 'forms'=>'f91');
+		$colors = array( 'manager'=>'389', 'form'=>'d54', 'site'=>'05f', 'config'=>'f91', 'library'=>'60c', 'database'=>'383', 'translation'=>'cb0');
 		$type = strtolower( $type );
 		$color = isset( $colors[$type] )? $colors[$type] : '999';
 		

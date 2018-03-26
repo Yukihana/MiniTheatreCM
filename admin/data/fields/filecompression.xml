@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<filecompression>
+	<option value="1">WinZip (.zip)</option>
+	<option value="2">WinRAR (.rar)</option>
+	<option value="3">7zip (.7z)</option>
+</filecompression>

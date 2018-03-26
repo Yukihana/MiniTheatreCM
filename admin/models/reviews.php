@@ -66,7 +66,7 @@ class MiniTheatreCMModelReviews extends NeonModelList
 											=> NeonCfgDatabase::getTableName('catalogues').' AS t ON t.id = a.catalogue',
 											
 										'c.id AS ctype, c.name AS ctype_name, c.color AS ctype_color'
-											=> NeonCfgDatabase::getTableName('contenttypes').' AS c ON c.id = t.ctype',
+											=> NeonCfgDatabase::getTableName('ctypes').' AS c ON c.id = t.ctype',
 											
 										'u1.name AS author_name, u1.username AS author_user'
 											=> NeonCfgDatabase::getJoomlaDB('users').' AS u1 ON u1.id = a.author',
@@ -81,7 +81,7 @@ class MiniTheatreCMModelReviews extends NeonModelList
 		// Query Vars: filters, order
 		$this->dbfilters_search		= array('a.name', 'a.alias');
 		$this->dbfilters_core		= array('state'=>'a.state', 'access'=>'a.access');
-		$this->dbfilters_multi_int	= array('author'=>'a.author', 'recentedit'=>'a.recentedit', 'catalogue'=>'a.catalogue', 'contenttype'=>'c.ctype');
+		$this->dbfilters_multi_int	= array('author'=>'a.author', 'recentedit'=>'a.recentedit', 'catalogue'=>'a.catalogue', 'ctype'=>'c.ctype');
 		
 		return parent::getListQuery();
 	}

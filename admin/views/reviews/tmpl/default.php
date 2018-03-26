@@ -31,16 +31,16 @@ $accesslink		= MiniTheatreCMCfgGlobal::getManagerLinkable('access');
 $userlink		= MiniTheatreCMCfgGlobal::getManagerLinkable('user');
 $genrelink		= MiniTheatreCMCfgGlobal::getManagerLinkable('genre');
 $cataloguelink	= MiniTheatreCMCfgGlobal::getManagerLinkable('catalogue');
-$ctypelink		= MiniTheatreCMCfgGlobal::getManagerLinkable('contenttype');
+$ctypelink		= MiniTheatreCMCfgGlobal::getManagerLinkable('ctype');
 
-$catalogue_col	= NeonHtmlManager::getOrdering($listOrder, 't.name', 'COM_MINITHEATRECM_DICTIONARY_CATALOGUE',
-					array('t.name'=>'COM_MINITHEATRECM_DICTIONARY_CATALOGUENAME','a.catalogue'=>'COM_MINITHEATRECM_DICTIONARY_CATALOGUEID'));
 $access_col		= NeonHtmlManager::getOrdering($listOrder, 'gp.title', 'COM_MINITHEATRECM_DICTIONARY_ACCESS',
-					array('gp.title'=>'COM_MINITHEATRECM_DICTIONARY_ACCESSGROUP','a.access'=>'COM_MINITHEATRECM_DICTIONARY_ACCESSID'));
+					array('COM_MINITHEATRECM_DICTIONARY_ACCESSGROUP'=>'gp.title', 'COM_MINITHEATRECM_DICTIONARY_ACCESSID'=>'a.access'));
 $editor_col		= NeonHtmlManager::getOrdering($listOrder, 'a.author', 'COM_MINITHEATRECM_DICTIONARY_EDITORS',
-					array('a.author'=>'COM_MINITHEATRECM_DICTIONARY_AUTHOR', 'a.recentedit'=>'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT'));
+					array('COM_MINITHEATRECM_DICTIONARY_AUTHOR'=>'a.author, u1.name', 'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT'=>'a.recentedit, u2.name'));
 $timestamp_col	= NeonHtmlManager::getOrdering($listOrder, 'a.created', 'COM_MINITHEATRECM_DICTIONARY_TIMESTAMPS',
-					array('a.created'=>'COM_MINITHEATRECM_DICTIONARY_CREATED', 'a.modified'=>'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT'));
+					array('COM_MINITHEATRECM_DICTIONARY_CREATED'=>'a.created', 'COM_MINITHEATRECM_DICTIONARY_RECENTEDIT'=>'a.modified'));
+$catalogue_col	= NeonHtmlManager::getOrdering($listOrder, 't.name', 'COM_MINITHEATRECM_DICTIONARY_CATALOGUE',
+					array('COM_MINITHEATRECM_DICTIONARY_CATALOGUENAME'=>'t.name','COM_MINITHEATRECM_DICTIONARY_CATALOGUEID'=>'a.catalogue'));
 ?>
 
 <form action="index.php?option=com_minitheatrecm&view=reviews" method="post" id="adminForm" name="adminForm" class="clearfix">
@@ -104,9 +104,7 @@ $timestamp_col	= NeonHtmlManager::getOrdering($listOrder, 'a.created', 'COM_MINI
 						<?php echo JHtml::_('grid.id', $i, $row->id); ?>
 					</td>
 					<td class="nowrap center">
-						<div class="btn-group">
-							<?php echo JHtml::_('jgrid.published', $row->state, $i, 'reviews.', true, 'cb', $row->publish_up, $row->publish_down); ?>
-						</div>
+						<?php echo NeonHtmlManager::renderTaskButtons( $row->state, $i, 'reviews.', true, $row->publish_up, $row->publish_down );?>
 					</td>
 					<td>
 						<div class="pull-left">
