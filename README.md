@@ -1,1 +1,1 @@
-# Originally intended for Minitheatre, but the project was halted due to aggressive changes to modern media streaming infrastructures.
+# A Joomla Extension revamp for Minitheatre content hosting. But due to aggressive changes to modern media streaming infrastructures, development was halted.
